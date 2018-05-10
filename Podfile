@@ -6,6 +6,10 @@ target 'LightCloud' do
 
   pod 'AVOSCloud'
   pod 'AVOSCloudIM'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'CocoaChainKit'
+  pod 'EachNavigationBar'
 
   target 'LightCloudTests' do
     inherit! :search_paths

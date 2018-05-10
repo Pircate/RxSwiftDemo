@@ -9,20 +9,37 @@ PODS:
     - AVOSCloudIM/_NOARC (= 10.3.1)
   - AVOSCloudIM/_NOARC (10.3.1):
     - AVOSCloud (= 10.3.1)
+  - CocoaChainKit (0.2.0)
+  - EachNavigationBar (0.1.2)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
 
 DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudIM
+  - CocoaChainKit
+  - EachNavigationBar
+  - RxCocoa
+  - RxSwift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AVOSCloud
     - AVOSCloudIM
+    - CocoaChainKit
+    - EachNavigationBar
+    - RxCocoa
+    - RxSwift
 
 SPEC CHECKSUMS:
   AVOSCloud: f6f1523045495dd1368faa3d6adf21187f9498a7
   AVOSCloudIM: 774f266bc1c6b66577b67eb1f5a1096a1380ca33
+  CocoaChainKit: 8f011a5a96b86f67d42e52f7ee0d8ef8a60da8fe
+  EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
 
-PODFILE CHECKSUM: 3451fd0499c9ec435c43197a1b373c1c6a7af07b
+PODFILE CHECKSUM: fa2e5ef7561e34b01374b3868577bbea5bc61fb4
 
 COCOAPODS: 1.5.0

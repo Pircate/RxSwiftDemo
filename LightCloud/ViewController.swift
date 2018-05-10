@@ -14,8 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let object = AVObject(className: "TestObject")
-        object.setObject("bar", forKey: "foo")
-        object.save()
+        object.delete()
+        
+        AVUser()
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,6 +17,7 @@
 		B5CE125C20A3D88900EC3F30 /* LightCloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE125B20A3D88900EC3F30 /* LightCloudTests.swift */; };
 		B5CE126720A3D88900EC3F30 /* LightCloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE126620A3D88900EC3F30 /* LightCloudUITests.swift */; };
 		B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */; };
+		B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */; };
 		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		B5CE126820A3D88900EC3F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightCloud-Bridging-Header.h"; sourceTree = "<group>"; };
 		B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Services.swift"; sourceTree = "<group>"; };
+		B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE127B20A3DF5600EC3F30 /* Classes */,
 				B5CE127820A3DA7700EC3F30 /* App */,
 				B5CE124820A3D88700EC3F30 /* ViewController.swift */,
 				B5CE124A20A3D88700EC3F30 /* Main.storyboard */,
@@ -153,6 +156,158 @@
 				B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		B5CE127B20A3DF5600EC3F30 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128820A3DF9E00EC3F30 /* Home */,
+				B5CE128220A3DF9E00EC3F30 /* Login */,
+				B5CE127C20A3DF9E00EC3F30 /* Profile */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B5CE127C20A3DF9E00EC3F30 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE127D20A3DF9E00EC3F30 /* Model */,
+				B5CE127E20A3DF9E00EC3F30 /* View */,
+				B5CE128120A3DF9E00EC3F30 /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B5CE127D20A3DF9E00EC3F30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5CE127E20A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE127F20A3DF9E00EC3F30 /* Controller */,
+				B5CE128020A3DF9E00EC3F30 /* View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE127F20A3DF9E00EC3F30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5CE128020A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE128120A3DF9E00EC3F30 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B5CE128220A3DF9E00EC3F30 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128320A3DF9E00EC3F30 /* Model */,
+				B5CE128420A3DF9E00EC3F30 /* View */,
+				B5CE128720A3DF9E00EC3F30 /* ViewModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B5CE128320A3DF9E00EC3F30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5CE128420A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128520A3DF9E00EC3F30 /* Controller */,
+				B5CE128620A3DF9E00EC3F30 /* View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE128520A3DF9E00EC3F30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5CE128620A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE128720A3DF9E00EC3F30 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B5CE128820A3DF9E00EC3F30 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128920A3DF9E00EC3F30 /* Model */,
+				B5CE128A20A3DF9E00EC3F30 /* View */,
+				B5CE128D20A3DF9E00EC3F30 /* ViewModel */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B5CE128920A3DF9E00EC3F30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5CE128A20A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE128B20A3DF9E00EC3F30 /* Controller */,
+				B5CE128C20A3DF9E00EC3F30 /* View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE128B20A3DF9E00EC3F30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5CE128C20A3DF9E00EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE128D20A3DF9E00EC3F30 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C29BE6F96B8AF5F4E6C6B969 /* Pods */ = {
@@ -337,11 +492,19 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
+				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -391,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* ViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
@@ -571,10 +735,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
@@ -593,10 +754,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
@@ -614,11 +772,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -636,11 +790,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -657,11 +807,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -678,11 +824,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

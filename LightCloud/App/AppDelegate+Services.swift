@@ -12,7 +12,6 @@ private let clientKey = "RE7GFObDm0vWSWtWd8DU4qHI"
 extension AppDelegate {
     
     func registerServices(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        
         AVOSCloud.setApplicationId(appID, clientKey: clientKey)
         AVAnalytics.trackAppOpened(launchOptions: launchOptions)
         AVOSCloud.setAllLogsEnabled(true)
