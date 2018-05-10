@@ -9,14 +9,17 @@ PODS:
     - AVOSCloudIM/_NOARC (= 10.3.1)
   - AVOSCloudIM/_NOARC (10.3.1):
     - AVOSCloud (= 10.3.1)
-  - CocoaChainKit (0.2.0)
+  - CocoaChainKit (0.3.0)
   - EachNavigationBar (0.1.2)
   - Hero (1.2.0)
+  - IQKeyboardManagerSwift (6.0.2)
   - Kingfisher (4.7.0)
+  - Result (4.0.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
   - SnapKit (4.0.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - AVOSCloud
@@ -24,34 +27,43 @@ DEPENDENCIES:
   - CocoaChainKit
   - EachNavigationBar
   - Hero
+  - IQKeyboardManagerSwift
   - Kingfisher
+  - Result
   - RxCocoa
   - RxSwift
   - SnapKit
+  - SVProgressHUD
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AVOSCloud
     - AVOSCloudIM
     - CocoaChainKit
     - EachNavigationBar
     - Hero
+    - IQKeyboardManagerSwift
     - Kingfisher
+    - Result
     - RxCocoa
     - RxSwift
     - SnapKit
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   AVOSCloud: f6f1523045495dd1368faa3d6adf21187f9498a7
   AVOSCloudIM: 774f266bc1c6b66577b67eb1f5a1096a1380ca33
-  CocoaChainKit: 8f011a5a96b86f67d42e52f7ee0d8ef8a60da8fe
+  CocoaChainKit: 39f71a2e1b7ca33740dc84f1ed4ba095ee1d04d6
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
+  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: f889593aae850085de7cb04b6263e5f5e430ea26
+PODFILE CHECKSUM: a11ee669990a6f980127c16f49203f5e2037e969
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

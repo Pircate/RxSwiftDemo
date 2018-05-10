@@ -8,9 +8,12 @@ target 'LightCloud' do
   pod 'AVOSCloudIM'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Result'
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'Hero'
+  pod 'SVProgressHUD'
+  pod 'IQKeyboardManagerSwift'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
 

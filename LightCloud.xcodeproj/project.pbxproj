@@ -22,6 +22,12 @@
 		B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129420A3E05800EC3F30 /* StringExt.swift */; };
 		B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129520A3E05900EC3F30 /* UIColorExt.swift */; };
 		B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */; };
+		B5CE129E20A3E4D100EC3F30 /* EffectTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */; };
+		B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129F20A3EB9200EC3F30 /* LoginViewModel.swift */; };
+		B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12A820A3F58700EC3F30 /* BaseViewController.swift */; };
+		B5CE12AC20A4141E00EC3F30 /* AVUser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */; };
+		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
+		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
 		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +75,12 @@
 		B5CE129420A3E05800EC3F30 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		B5CE129520A3E05900EC3F30 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectTextField.swift; sourceTree = "<group>"; };
+		B5CE129F20A3EB9200EC3F30 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B5CE12A820A3F58700EC3F30 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVUser+Rx.swift"; sourceTree = "<group>"; };
+		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +139,7 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE12AA20A4140C00EC3F30 /* API */,
 				B5CE127820A3DA7700EC3F30 /* App */,
 				B5CE124D20A3D88800EC3F30 /* Assets.xcassets */,
 				B5CE127B20A3DF5600EC3F30 /* Classes */,
@@ -169,6 +182,7 @@
 		B5CE127B20A3DF5600EC3F30 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE12A220A3F55F00EC3F30 /* Base */,
 				B5CE128820A3DF9E00EC3F30 /* Home */,
 				B5CE128220A3DF9E00EC3F30 /* Login */,
 				B5CE127C20A3DF9E00EC3F30 /* Profile */,
@@ -253,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */,
+				B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -260,6 +275,7 @@
 		B5CE128620A3DF9E00EC3F30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,6 +283,8 @@
 		B5CE128720A3DF9E00EC3F30 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE129F20A3EB9200EC3F30 /* LoginViewModel.swift */,
+				B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -328,6 +346,62 @@
 				B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B5CE12A220A3F55F00EC3F30 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE12A420A3F57400EC3F30 /* Model */,
+				B5CE12A520A3F57400EC3F30 /* View */,
+				B5CE12A320A3F57400EC3F30 /* ViewModel */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B5CE12A320A3F57400EC3F30 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B5CE12A420A3F57400EC3F30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5CE12A520A3F57400EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE12A620A3F57400EC3F30 /* Controller */,
+				B5CE12A720A3F57400EC3F30 /* View */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE12A620A3F57400EC3F30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE12A820A3F58700EC3F30 /* BaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5CE12A720A3F57400EC3F30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5CE12AA20A4140C00EC3F30 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		C29BE6F96B8AF5F4E6C6B969 /* Pods */ = {
@@ -514,9 +588,12 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -526,9 +603,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,11 +659,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CE129E20A3E4D100EC3F30 /* EffectTextField.swift in Sources */,
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
+				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
 				B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */,
+				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
+				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
+				B5CE12AC20A4141E00EC3F30 /* AVUser+Rx.swift in Sources */,
+				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
 				B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
