@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
+		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
 		B5CE124920A3D88700EC3F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* ViewController.swift */; };
 		B5CE124C20A3D88700EC3F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124A20A3D88700EC3F30 /* Main.storyboard */; };
@@ -14,6 +16,8 @@
 		B5CE125120A3D88800EC3F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */; };
 		B5CE125C20A3D88900EC3F30 /* LightCloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE125B20A3D88900EC3F30 /* LightCloudTests.swift */; };
 		B5CE126720A3D88900EC3F30 /* LightCloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE126620A3D88900EC3F30 /* LightCloudUITests.swift */; };
+		B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */; };
+		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05FCE86C376FC23D2C014D95 /* Pods-LightCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.debug.xcconfig"; sourceTree = "<group>"; };
+		14AE4D52C883F8123E91BC1D /* Pods-LightCloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7248AAD6D56F320C01A23F26 /* Pods-LightCloudTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.release.xcconfig"; sourceTree = "<group>"; };
+		7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A095E71B7201D80AE5B014E6 /* Pods-LightCloudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B08F923131461D0E06265D37 /* Pods_LightCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124620A3D88700EC3F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CE124820A3D88700EC3F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +57,11 @@
 		B5CE126220A3D88900EC3F30 /* LightCloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightCloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE126620A3D88900EC3F30 /* LightCloudUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightCloudUITests.swift; sourceTree = "<group>"; };
 		B5CE126820A3D88900EC3F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightCloud-Bridging-Header.h"; sourceTree = "<group>"; };
+		B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Services.swift"; sourceTree = "<group>"; };
+		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +99,8 @@
 				B5CE125A20A3D88900EC3F30 /* LightCloudTests */,
 				B5CE126520A3D88900EC3F30 /* LightCloudUITests */,
 				B5CE124420A3D88700EC3F30 /* Products */,
+				C29BE6F96B8AF5F4E6C6B969 /* Pods */,
+				EC02E9E018D166D79FB69CF3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +117,13 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE124620A3D88700EC3F30 /* AppDelegate.swift */,
+				B5CE127820A3DA7700EC3F30 /* App */,
 				B5CE124820A3D88700EC3F30 /* ViewController.swift */,
 				B5CE124A20A3D88700EC3F30 /* Main.storyboard */,
 				B5CE124D20A3D88800EC3F30 /* Assets.xcassets */,
 				B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */,
 				B5CE125220A3D88800EC3F30 /* Info.plist */,
+				B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */,
 			);
 			path = LightCloud;
 			sourceTree = "<group>";
@@ -125,6 +146,38 @@
 			path = LightCloudUITests;
 			sourceTree = "<group>";
 		};
+		B5CE127820A3DA7700EC3F30 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE124620A3D88700EC3F30 /* AppDelegate.swift */,
+				B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C29BE6F96B8AF5F4E6C6B969 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05FCE86C376FC23D2C014D95 /* Pods-LightCloud.debug.xcconfig */,
+				D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */,
+				A095E71B7201D80AE5B014E6 /* Pods-LightCloudTests.debug.xcconfig */,
+				7248AAD6D56F320C01A23F26 /* Pods-LightCloudTests.release.xcconfig */,
+				7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */,
+				14AE4D52C883F8123E91BC1D /* Pods-LightCloudUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC02E9E018D166D79FB69CF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B08F923131461D0E06265D37 /* Pods_LightCloud.framework */,
+				BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */,
+				B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5CE126B20A3D88900EC3F30 /* Build configuration list for PBXNativeTarget "LightCloud" */;
 			buildPhases = (
+				E0FFE118DF02BF702C02312D /* [CP] Check Pods Manifest.lock */,
 				B5CE123F20A3D88700EC3F30 /* Sources */,
 				B5CE124020A3D88700EC3F30 /* Frameworks */,
 				B5CE124120A3D88700EC3F30 /* Resources */,
+				4FAAF3ED48F82616BC69DF74 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +204,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5CE126E20A3D88900EC3F30 /* Build configuration list for PBXNativeTarget "LightCloudTests" */;
 			buildPhases = (
+				1BA4F81C750A7CE17F1D9094 /* [CP] Check Pods Manifest.lock */,
 				B5CE125320A3D88900EC3F30 /* Sources */,
 				B5CE125420A3D88900EC3F30 /* Frameworks */,
 				B5CE125520A3D88900EC3F30 /* Resources */,
@@ -167,6 +223,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B5CE127120A3D88900EC3F30 /* Build configuration list for PBXNativeTarget "LightCloudUITests" */;
 			buildPhases = (
+				DFC7C07C98DB097140D237D9 /* [CP] Check Pods Manifest.lock */,
 				B5CE125E20A3D88900EC3F30 /* Sources */,
 				B5CE125F20A3D88900EC3F30 /* Frameworks */,
 				B5CE126020A3D88900EC3F30 /* Resources */,
@@ -193,6 +250,7 @@
 				TargetAttributes = {
 					B5CE124220A3D88700EC3F30 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					B5CE125620A3D88900EC3F30 = {
 						CreatedOnToolsVersion = 9.3;
@@ -251,11 +309,89 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BA4F81C750A7CE17F1D9094 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LightCloudTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FAAF3ED48F82616BC69DF74 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFC7C07C98DB097140D237D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LightCloudUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0FFE118DF02BF702C02312D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LightCloud-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B5CE123F20A3D88700EC3F30 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* ViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
 			);
@@ -428,8 +564,10 @@
 		};
 		B5CE126C20A3D88900EC3F30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05FCE86C376FC23D2C014D95 /* Pods-LightCloud.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
@@ -439,6 +577,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -446,8 +586,10 @@
 		};
 		B5CE126D20A3D88900EC3F30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
@@ -457,6 +599,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -464,6 +607,7 @@
 		};
 		B5CE126F20A3D88900EC3F30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A095E71B7201D80AE5B014E6 /* Pods-LightCloudTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -485,6 +629,7 @@
 		};
 		B5CE127020A3D88900EC3F30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7248AAD6D56F320C01A23F26 /* Pods-LightCloudTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -506,6 +651,7 @@
 		};
 		B5CE127220A3D88900EC3F30 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -526,6 +672,7 @@
 		};
 		B5CE127320A3D88900EC3F30 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14AE4D52C883F8123E91BC1D /* Pods-LightCloudUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

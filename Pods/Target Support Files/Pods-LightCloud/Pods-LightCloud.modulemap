@@ -1,0 +1,6 @@
+framework module Pods_LightCloud {
+  umbrella header "Pods-LightCloud-umbrella.h"
+
+  export *
+  module * { export * }
+}

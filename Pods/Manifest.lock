@@ -1,0 +1,28 @@
+PODS:
+  - AVOSCloud (10.3.1)
+  - AVOSCloudIM (10.3.1):
+    - AVOSCloud (= 10.3.1)
+    - AVOSCloudIM/_ARC (= 10.3.1)
+    - AVOSCloudIM/_NOARC (= 10.3.1)
+  - AVOSCloudIM/_ARC (10.3.1):
+    - AVOSCloud (= 10.3.1)
+    - AVOSCloudIM/_NOARC (= 10.3.1)
+  - AVOSCloudIM/_NOARC (10.3.1):
+    - AVOSCloud (= 10.3.1)
+
+DEPENDENCIES:
+  - AVOSCloud
+  - AVOSCloudIM
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AVOSCloud
+    - AVOSCloudIM
+
+SPEC CHECKSUMS:
+  AVOSCloud: f6f1523045495dd1368faa3d6adf21187f9498a7
+  AVOSCloudIM: 774f266bc1c6b66577b67eb1f5a1096a1380ca33
+
+PODFILE CHECKSUM: 3451fd0499c9ec435c43197a1b373c1c6a7af07b
+
+COCOAPODS: 1.5.0
