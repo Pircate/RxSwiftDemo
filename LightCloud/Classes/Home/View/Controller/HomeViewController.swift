@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  LightCloud
 //
 //  Created by GorXion on 2018/5/10.
@@ -8,15 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let object = AVObject(className: "TestObject")
-        object.delete()
-        
-        AVUser()
     }
 
     override func didReceiveMemoryWarning() {

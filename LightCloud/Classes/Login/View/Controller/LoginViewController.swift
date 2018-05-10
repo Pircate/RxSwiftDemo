@@ -8,12 +8,17 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
+    
+    private lazy var username: UITextField = {
+        return UITextField().chain
+            .placeholder("请输入账号").installed
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

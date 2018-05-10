@@ -10,14 +10,18 @@
 		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
-		B5CE124920A3D88700EC3F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* ViewController.swift */; };
-		B5CE124C20A3D88700EC3F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124A20A3D88700EC3F30 /* Main.storyboard */; };
+		B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* HomeViewController.swift */; };
 		B5CE124E20A3D88800EC3F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124D20A3D88800EC3F30 /* Assets.xcassets */; };
 		B5CE125120A3D88800EC3F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */; };
 		B5CE125C20A3D88900EC3F30 /* LightCloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE125B20A3D88900EC3F30 /* LightCloudTests.swift */; };
 		B5CE126720A3D88900EC3F30 /* LightCloudUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE126620A3D88900EC3F30 /* LightCloudUITests.swift */; };
 		B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */; };
 		B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */; };
+		B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129020A3E01E00EC3F30 /* AppDelegate+Root.swift */; };
+		B5CE129720A3E05900EC3F30 /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */; };
+		B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129420A3E05800EC3F30 /* StringExt.swift */; };
+		B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129520A3E05900EC3F30 /* UIColorExt.swift */; };
+		B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */; };
 		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +51,7 @@
 		B08F923131461D0E06265D37 /* Pods_LightCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124620A3D88700EC3F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5CE124820A3D88700EC3F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B5CE124B20A3D88700EC3F30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B5CE124820A3D88700EC3F30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B5CE124D20A3D88800EC3F30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5CE125020A3D88800EC3F30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5CE125220A3D88800EC3F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,6 +64,11 @@
 		B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LightCloud-Bridging-Header.h"; sourceTree = "<group>"; };
 		B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Services.swift"; sourceTree = "<group>"; };
 		B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B5CE129020A3E01E00EC3F30 /* AppDelegate+Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Root.swift"; sourceTree = "<group>"; };
+		B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
+		B5CE129420A3E05800EC3F30 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		B5CE129520A3E05900EC3F30 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,13 +127,12 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE127B20A3DF5600EC3F30 /* Classes */,
 				B5CE127820A3DA7700EC3F30 /* App */,
-				B5CE124820A3D88700EC3F30 /* ViewController.swift */,
-				B5CE124A20A3D88700EC3F30 /* Main.storyboard */,
 				B5CE124D20A3D88800EC3F30 /* Assets.xcassets */,
-				B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */,
+				B5CE127B20A3DF5600EC3F30 /* Classes */,
+				B5CE129220A3E04700EC3F30 /* Extension */,
 				B5CE125220A3D88800EC3F30 /* Info.plist */,
+				B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */,
 				B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */,
 			);
 			path = LightCloud;
@@ -153,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE124620A3D88700EC3F30 /* AppDelegate.swift */,
+				B5CE129020A3E01E00EC3F30 /* AppDelegate+Root.swift */,
 				B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */,
 			);
 			path = App;
@@ -292,6 +300,7 @@
 		B5CE128B20A3DF9E00EC3F30 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE124820A3D88700EC3F30 /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,6 +317,17 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B5CE129220A3E04700EC3F30 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE129420A3E05800EC3F30 /* StringExt.swift */,
+				B5CE129520A3E05900EC3F30 /* UIColorExt.swift */,
+				B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */,
+				B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C29BE6F96B8AF5F4E6C6B969 /* Pods */ = {
@@ -444,7 +464,6 @@
 			files = (
 				B5CE125120A3D88800EC3F30 /* LaunchScreen.storyboard in Resources */,
 				B5CE124E20A3D88800EC3F30 /* Assets.xcassets in Resources */,
-				B5CE124C20A3D88700EC3F30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,8 +513,11 @@
 				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -503,8 +525,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -555,9 +580,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
+				B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */,
+				B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
-				B5CE124920A3D88700EC3F30 /* ViewController.swift in Sources */,
+				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
+				B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */,
+				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
+				B5CE129720A3E05900EC3F30 /* UIScreenExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,14 +623,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B5CE124A20A3D88700EC3F30 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B5CE124B20A3D88700EC3F30 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -733,15 +755,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3BDD68D98V;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LightCloud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/LightCloud/LightCloud-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -752,14 +775,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3BDD68D98V;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LightCloud/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LightCloud/LightCloud-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/LightCloud/LightCloud-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
