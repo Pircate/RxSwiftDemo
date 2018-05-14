@@ -34,6 +34,7 @@ extension RegisterViewModel: ViewModelType {
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         let user = AVUser()
+        
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
             user.rx.register(username: $0.username, password: $0.password)
         })

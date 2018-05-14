@@ -28,6 +28,7 @@
 		B5CE12AC20A4141E00EC3F30 /* AVUser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */; };
 		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
 		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
+		B5CE12B220A430EB00EC3F30 /* SVProgressHUD+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12B120A430EB00EC3F30 /* SVProgressHUD+Rx.swift */; };
 		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVUser+Rx.swift"; sourceTree = "<group>"; };
 		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		B5CE12B120A430EB00EC3F30 /* SVProgressHUD+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Rx.swift"; sourceTree = "<group>"; };
 		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				B5CE129520A3E05900EC3F30 /* UIColorExt.swift */,
 				B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */,
 				B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */,
+				B5CE12B120A430EB00EC3F30 /* SVProgressHUD+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftUtilities/RxSwiftUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
@@ -608,6 +612,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -664,6 +669,7 @@
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
 				B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */,
+				B5CE12B220A430EB00EC3F30 /* SVProgressHUD+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
 				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,

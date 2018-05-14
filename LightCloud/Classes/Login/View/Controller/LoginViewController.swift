@@ -81,9 +81,12 @@ final class LoginViewController: BaseViewController {
         
         let output = viewModel.transform(input)
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
-        output.login.subscribe(onNext: { (response) in
-            debugPrint(response)
+        output.login.subscribe(onNext: { (user) in
+            if let user = user {
+                debugPrint(user.username)
+            }
         }).disposed(by: disposeBag)
+        output.state.drive(view.rx.loading).disposed(by: disposeBag)
     }
     
     @objc private func gotoRegister() {

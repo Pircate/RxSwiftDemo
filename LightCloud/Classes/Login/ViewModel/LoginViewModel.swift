@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftUtilities
 
 protocol ViewModelType {
     associatedtype Input
@@ -27,7 +28,7 @@ final class LoginViewModel {
     struct Output {
         let validation: Driver<Bool>
         let login: Observable<AVUser?>
-        let state: Observable<NetworkState>
+        let state: Driver<NetworkState>
     }
 }
 
@@ -39,24 +40,31 @@ extension LoginViewModel: ViewModelType {
         }.asDriver(onErrorJustReturn: false)
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
+        
         let login = input.login.withLatestFrom(usernameAndPassword).flatMap {
-            AVUser.rx.login(username: $0.username, password: $0.password)
+            AVUser.rx.login(username: $0.username, password: $0.password).loading().catchErrorJustShow("failure")
         }
         
         let state = login.map({ _ in
             NetworkState.success("success")
-        }).catchError({ _ in
-            Observable.just(NetworkState.failure("failure"))
-        }).startWith(NetworkState.loading("loading"))
+        }).asDriver(onErrorJustReturn: .idle)
         
         return Output(validation: validation, login: login, state: state)
     }
 }
 
 extension ObservableType {
+    
     func catchErrorJustReturnEmpty() -> Observable<E> {
         return catchError({ _ in
             Observable.empty()
+        })
+    }
+    
+    func catchErrorJustShow(_ status: String) -> Observable<E> {
+        return catchError({ _ in
+            SVProgressHUD.showError(withStatus: status)
+            return Observable.empty()
         })
     }
 }

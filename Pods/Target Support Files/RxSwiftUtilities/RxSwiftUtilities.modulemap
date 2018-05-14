@@ -1,0 +1,6 @@
+framework module RxSwiftUtilities {
+  umbrella header "RxSwiftUtilities-umbrella.h"
+
+  export *
+  module * { export * }
+}

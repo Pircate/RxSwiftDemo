@@ -3,3 +3,4 @@
 //
 
 #import <AVOSCloud/AVOSCloud.h>
+#import <SVProgressHUD/SVProgressHUD.h>

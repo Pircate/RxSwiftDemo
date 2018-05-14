@@ -16,6 +16,7 @@ target 'LightCloud' do
   pod 'IQKeyboardManagerSwift'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
+  pod 'RxSwiftUtilities'
 
   target 'LightCloudTests' do
     inherit! :search_paths

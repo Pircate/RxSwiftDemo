@@ -9,12 +9,6 @@
 import RxSwift
 import RxCocoa
 
-enum NetworkState {
-    case loading(String)
-    case success(String)
-    case failure(String)
-}
-
 extension Reactive where Base: AVUser {
     
     func register(username: String?, password: String?) -> Observable<Bool> {

@@ -17,7 +17,7 @@ extension AppDelegate {
         AVOSCloud.setApplicationId(appID, clientKey: clientKey)
 //        AVAnalytics.trackAppOpened(launchOptions: launchOptions)
         AVOSCloud.setAllLogsEnabled(false)
-        AVOSCloud.setLogLevel(AVLogLevel(0))
+        AVOSCloud.setLogLevel(AVLogLevelNone)
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
