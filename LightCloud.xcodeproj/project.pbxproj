@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
+		B5650FEA20A9344D00BA7B87 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5650FE920A9344D00BA7B87 /* Updatable.swift */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
 		B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* HomeViewController.swift */; };
 		B5CE124E20A3D88800EC3F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124D20A3D88800EC3F30 /* Assets.xcassets */; };
@@ -18,9 +19,6 @@
 		B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */; };
 		B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */; };
 		B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129020A3E01E00EC3F30 /* AppDelegate+Root.swift */; };
-		B5CE129720A3E05900EC3F30 /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */; };
-		B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129420A3E05800EC3F30 /* StringExt.swift */; };
-		B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129520A3E05900EC3F30 /* UIColorExt.swift */; };
 		B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */; };
 		B5CE129E20A3E4D100EC3F30 /* EffectTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */; };
 		B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE129F20A3EB9200EC3F30 /* LoginViewModel.swift */; };
@@ -56,6 +54,7 @@
 		7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A095E71B7201D80AE5B014E6 /* Pods-LightCloudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B08F923131461D0E06265D37 /* Pods_LightCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5650FE920A9344D00BA7B87 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124620A3D88700EC3F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CE124820A3D88700EC3F30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -72,9 +71,6 @@
 		B5CE127920A3DA8F00EC3F30 /* AppDelegate+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Services.swift"; sourceTree = "<group>"; };
 		B5CE128E20A3DFB300EC3F30 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B5CE129020A3E01E00EC3F30 /* AppDelegate+Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Root.swift"; sourceTree = "<group>"; };
-		B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
-		B5CE129420A3E05800EC3F30 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
-		B5CE129520A3E05900EC3F30 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectTextField.swift; sourceTree = "<group>"; };
 		B5CE129F20A3EB9200EC3F30 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +137,7 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
+				B5D62F0920AA6BF5002F8FB3 /* Vendor */,
 				B5CE12AA20A4140C00EC3F30 /* API */,
 				B5CE127820A3DA7700EC3F30 /* App */,
 				B5CE124D20A3D88800EC3F30 /* Assets.xcassets */,
@@ -342,9 +339,6 @@
 		B5CE129220A3E04700EC3F30 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE129420A3E05800EC3F30 /* StringExt.swift */,
-				B5CE129520A3E05900EC3F30 /* UIColorExt.swift */,
-				B5CE129320A3E05800EC3F30 /* UIScreenExt.swift */,
 				B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */,
 				B5CE12B120A430EB00EC3F30 /* SVProgressHUD+Rx.swift */,
 			);
@@ -405,6 +399,14 @@
 				B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		B5D62F0920AA6BF5002F8FB3 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B5650FE920A9344D00BA7B87 /* Updatable.swift */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		C29BE6F96B8AF5F4E6C6B969 /* Pods */ = {
@@ -590,6 +592,7 @@
 				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ExtensionX/ExtensionX.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -606,6 +609,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExtensionX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -667,7 +671,6 @@
 				B5CE129E20A3E4D100EC3F30 /* EffectTextField.swift in Sources */,
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
-				B5CE129920A3E05900EC3F30 /* UIColorExt.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */,
 				B5CE12B220A430EB00EC3F30 /* SVProgressHUD+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
@@ -676,10 +679,9 @@
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
 				B5CE12AC20A4141E00EC3F30 /* AVUser+Rx.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
-				B5CE129820A3E05900EC3F30 /* StringExt.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
-				B5CE129720A3E05900EC3F30 /* UIScreenExt.swift in Sources */,
+				B5650FEA20A9344D00BA7B87 /* Updatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,7 +852,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LightCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/LightCloud/LightCloud-Bridging-Header.h";
@@ -870,7 +875,10 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LightCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/LightCloud/LightCloud-Bridging-Header.h";
@@ -888,7 +896,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -906,7 +918,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -923,7 +939,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -940,7 +960,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloudUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaoX.LightCloudUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

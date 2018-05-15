@@ -4,6 +4,8 @@ target 'LightCloud' do
 
   use_frameworks!
 
+  pod 'ExtensionX', :path => './Pods/ExtensionX'
+
   pod 'AVOSCloud'
   pod 'AVOSCloudIM'
   pod 'RxSwift'

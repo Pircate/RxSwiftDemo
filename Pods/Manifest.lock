@@ -11,6 +11,7 @@ PODS:
     - AVOSCloud (= 10.3.1)
   - CocoaChainKit (0.3.0)
   - EachNavigationBar (0.1.2)
+  - ExtensionX (0.1.0)
   - Hero (1.2.0)
   - IQKeyboardManagerSwift (6.0.2)
   - Kingfisher (4.7.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - AVOSCloudIM
   - CocoaChainKit
   - EachNavigationBar
+  - ExtensionX (from `./Pods/ExtensionX`)
   - Hero
   - IQKeyboardManagerSwift
   - Kingfisher
@@ -55,11 +57,16 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
 
+EXTERNAL SOURCES:
+  ExtensionX:
+    :path: "./Pods/ExtensionX"
+
 SPEC CHECKSUMS:
   AVOSCloud: f6f1523045495dd1368faa3d6adf21187f9498a7
   AVOSCloudIM: 774f266bc1c6b66577b67eb1f5a1096a1380ca33
   CocoaChainKit: 39f71a2e1b7ca33740dc84f1ed4ba095ee1d04d6
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
+  ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
@@ -70,6 +77,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 35b4c474462e752b2c7f3cb408a69811f2eb439c
+PODFILE CHECKSUM: 088a3519f601b24c7d14e0ce74dc542cdb6c5802
 
 COCOAPODS: 1.5.2

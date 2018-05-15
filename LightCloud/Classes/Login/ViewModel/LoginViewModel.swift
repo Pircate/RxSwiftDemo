@@ -29,6 +29,8 @@ final class LoginViewModel {
         let validation: Driver<Bool>
         let login: Observable<AVUser?>
         let state: Driver<NetworkState>
+        let image: Driver<String>
+        let text: Driver<String>
     }
 }
 
@@ -49,7 +51,10 @@ extension LoginViewModel: ViewModelType {
             NetworkState.success("success")
         }).asDriver(onErrorJustReturn: .idle)
         
-        return Output(validation: validation, login: login, state: state)
+        let image = Observable.of("").asDriver(onErrorJustReturn: "")
+        let text = Observable.of("").asDriver(onErrorJustReturn: "")
+        
+        return Output(validation: validation, login: login, state: state, image: image, text: text)
     }
 }
 

@@ -36,14 +36,12 @@ extension RegisterViewModel: ViewModelType {
         let user = AVUser()
         
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
-            user.rx.register(username: $0.username, password: $0.password)
+            user.rx.register(username: $0.username, password: $0.password).loading().catchErrorJustShow("failure")
         })
         
         let state = register.map({ _ in
             NetworkState.success("success")
-        }).catchError({ _ in
-            Observable.just(NetworkState.failure("failure"))
-        }).startWith(.loading("loading"))
+        })
         
         return Output(validation: validation, register: register, state: state)
     }

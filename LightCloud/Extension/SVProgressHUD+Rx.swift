@@ -33,7 +33,7 @@ extension Reactive where Base: UIView {
     }
 }
 
-struct NetworkStateToken<E> : ObservableConvertibleType, Disposable {
+struct LoadingToken<E> : ObservableConvertibleType, Disposable {
     
     private let _source: Observable<E>
     
@@ -50,11 +50,11 @@ struct NetworkStateToken<E> : ObservableConvertibleType, Disposable {
 
 extension ObservableConvertibleType {
     func loading(_ status: String? = nil) -> Observable<E> {
-        return Observable.using({ () -> NetworkStateToken<E> in
+        return Observable.using({ () -> LoadingToken<E> in
             SVProgressHUD.show(withStatus: status)
-            return NetworkStateToken(source: self.asObservable())
-        }, observableFactory: { t in
-            t.asObservable()
+            return LoadingToken(source: self.asObservable())
+        }, observableFactory: {
+            $0.asObservable()
         })
     }
 }

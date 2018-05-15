@@ -57,7 +57,7 @@ final class LoginViewController: BaseViewController {
         view.addSubview(loginButton)
         
         usernameTextField.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(200)
+            make.top.equalToSuperview().inset(200)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 36))
         }
@@ -83,7 +83,7 @@ final class LoginViewController: BaseViewController {
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.login.subscribe(onNext: { (user) in
             if let user = user {
-                debugPrint(user.username)
+                debugPrint(user.username!)
             }
         }).disposed(by: disposeBag)
         output.state.drive(view.rx.loading).disposed(by: disposeBag)

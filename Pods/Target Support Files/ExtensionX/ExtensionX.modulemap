@@ -1,0 +1,6 @@
+framework module ExtensionX {
+  umbrella header "ExtensionX-umbrella.h"
+
+  export *
+  module * { export * }
+}
