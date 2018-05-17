@@ -11,6 +11,7 @@
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
 		B5650FEA20A9344D00BA7B87 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5650FE920A9344D00BA7B87 /* Updatable.swift */; };
 		B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557520AD45ED00BAF346 /* Toast.swift */; };
+		B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557720AD575600BAF346 /* AsObservable.swift */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
 		B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* HomeViewController.swift */; };
 		B5CE124E20A3D88800EC3F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124D20A3D88800EC3F30 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		B08F923131461D0E06265D37 /* Pods_LightCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5650FE920A9344D00BA7B87 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		B5BF557520AD45ED00BAF346 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B5BF557720AD575600BAF346 /* AsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsObservable.swift; sourceTree = "<group>"; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124620A3D88700EC3F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CE124820A3D88700EC3F30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				B5CE129620A3E05900EC3F30 /* UIViewControllerExt.swift */,
 				B5CE12B120A430EB00EC3F30 /* Loading+Rx.swift */,
+				B5BF557720AD575600BAF346 /* AsObservable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				B5CE129A20A3E05900EC3F30 /* UIViewControllerExt.swift in Sources */,
 				B5CE12B220A430EB00EC3F30 /* Loading+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
+				B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */,
 				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,
 				B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,

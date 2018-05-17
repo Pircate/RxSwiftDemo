@@ -9,7 +9,7 @@ PODS:
     - AVOSCloudIM/_NOARC (= 11.0.0)
   - AVOSCloudIM/_NOARC (11.0.0):
     - AVOSCloud (= 11.0.0)
-  - CocoaChainKit (0.4.1)
+  - CocoaChainKit (0.4.2)
   - EachNavigationBar (0.1.2)
   - ExtensionX (0.1.0)
   - Hero (1.2.0)
@@ -59,7 +59,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AVOSCloud: 8ffa848f5f7391fc7594d3671a29cd6f8a14cc2a
   AVOSCloudIM: 465af27feb394e50e1b09a7fd2da4645be340cdb
-  CocoaChainKit: 4a19b0e865a04fa01be046b553272efec8656459
+  CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
   ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e

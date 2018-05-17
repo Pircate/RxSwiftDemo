@@ -10,19 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AVUser.logOut()
-        if AVUser.current() == nil {
-            let nav = UINavigationController(rootViewController: LoginViewController())
-            nav.navigation.configuration.isEnabled = true
-            nav.navigation.configuration.isTranslucent = true
-            nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
-            present(nav, animated: true, completion: nil)
-        }
+        (AVUser.current() == nil).asObservable().bind(to: rx.gotoLogin).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,4 +28,14 @@ class HomeViewController: UIViewController {
 
 extension Reactive where Base == HomeViewController {
     
+    var gotoLogin: Binder<Bool> {
+        return Binder(base) {
+            guard $1 else { return }
+            let nav = UINavigationController(rootViewController: LoginViewController())
+            nav.navigation.configuration.isEnabled = true
+            nav.navigation.configuration.isTranslucent = true
+            nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
+            $0.present(nav, animated: true, completion: nil)
+        }
+    }
 }
