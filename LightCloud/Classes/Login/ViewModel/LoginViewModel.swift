@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import RxSwiftUtilities
 
 protocol ViewModelType {
     associatedtype Input
@@ -66,9 +65,9 @@ extension ObservableType {
         })
     }
     
-    func catchErrorJustShow(_ status: String) -> Observable<E> {
+    func catchErrorJustShow(_ info: String) -> Observable<E> {
         return catchError({ _ in
-            SVProgressHUD.showError(withStatus: status)
+            Toast.show(info: info)
             return Observable.empty()
         })
     }

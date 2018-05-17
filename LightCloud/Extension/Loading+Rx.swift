@@ -1,5 +1,5 @@
 //
-//  SVProgressHUD+Rx.swift
+//  Loading+Rx.swift
 //  LightCloud
 //
 //  Created by GorXion on 2018/5/10.
@@ -14,23 +14,6 @@ enum NetworkState {
     case loading(String?)
     case success(String?)
     case failure(String?)
-}
-
-extension Reactive where Base: UIView {
-    var loading: Binder<NetworkState> {
-        return Binder(base) { _, state in
-            switch state {
-            case .idle:
-                break
-            case .loading(let status):
-                SVProgressHUD.show(withStatus: status)
-            case .success(let status):
-                SVProgressHUD.showSuccess(withStatus: status)
-            case .failure(let status):
-                SVProgressHUD.showError(withStatus: status)
-            }
-        }
-    }
 }
 
 struct LoadingToken<E> : ObservableConvertibleType, Disposable {
@@ -51,7 +34,7 @@ struct LoadingToken<E> : ObservableConvertibleType, Disposable {
 extension ObservableConvertibleType {
     func loading(_ status: String? = nil) -> Observable<E> {
         return Observable.using({ () -> LoadingToken<E> in
-            SVProgressHUD.show(withStatus: status)
+            Toast.show()
             return LoadingToken(source: self.asObservable())
         }, observableFactory: {
             $0.asObservable()

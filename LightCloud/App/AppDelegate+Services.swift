@@ -7,6 +7,7 @@
 //
 
 import IQKeyboardManagerSwift
+import Toast_Swift
 
 private let appID = "V2KQKo4Hp6Fz9LdspYqImLJB-gzGzoHsz"
 private let clientKey = "RE7GFObDm0vWSWtWd8DU4qHI"
@@ -21,5 +22,8 @@ extension AppDelegate {
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        ToastManager.shared.duration = 1.5
+        ToastManager.shared.style.activitySize = CGSize(width: 88, height: 88)
     }
 }

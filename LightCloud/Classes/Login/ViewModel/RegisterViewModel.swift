@@ -33,10 +33,9 @@ extension RegisterViewModel: ViewModelType {
             }.asDriver(onErrorJustReturn: false)
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
-        let user = AVUser()
         
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
-            user.rx.register(username: $0.username, password: $0.password).loading().catchErrorJustShow("failure")
+            AVUser.rx.register(username: $0.username, password: $0.password).loading().catchErrorJustShow("failure")
         })
         
         let state = register.map({ _ in

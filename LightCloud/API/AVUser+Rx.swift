@@ -11,11 +11,12 @@ import RxCocoa
 
 extension Reactive where Base: AVUser {
     
-    func register(username: String?, password: String?) -> Observable<Bool> {
-        return Observable.create { [weak base] observer -> Disposable in
-            base?.username = username
-            base?.password = password
-            base?.signUpInBackground { (success, error) in
+    static func register(username: String?, password: String?) -> Observable<Bool> {
+        return Observable.create { observer -> Disposable in
+            let user = AVUser()
+            user.username = username
+            user.password = password
+            user.signUpInBackground { (success, error) in
                 guard let error = error else {
                     observer.onNext(success)
                     return

@@ -19,11 +19,8 @@ PODS:
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
-  - RxSwiftUtilities (2.0.1):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
   - SnapKit (4.0.0)
-  - SVProgressHUD (2.2.5)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - AVOSCloud
@@ -37,9 +34,8 @@ DEPENDENCIES:
   - Result
   - RxCocoa
   - RxSwift
-  - RxSwiftUtilities
   - SnapKit
-  - SVProgressHUD
+  - Toast-Swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -53,9 +49,8 @@ SPEC REPOS:
     - Result
     - RxCocoa
     - RxSwift
-    - RxSwiftUtilities
     - SnapKit
-    - SVProgressHUD
+    - Toast-Swift
 
 EXTERNAL SOURCES:
   ExtensionX:
@@ -73,10 +68,9 @@ SPEC CHECKSUMS:
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
-  RxSwiftUtilities: 0edb01ef16c527c10fb352485b62cbd951e4a04d
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 088a3519f601b24c7d14e0ce74dc542cdb6c5802
+PODFILE CHECKSUM: 8788d180d65d3571678cd085c128d9a40a7e6a3a
 
 COCOAPODS: 1.5.2

@@ -86,7 +86,6 @@ final class LoginViewController: BaseViewController {
                 debugPrint(user.username!)
             }
         }).disposed(by: disposeBag)
-        output.state.drive(view.rx.loading).disposed(by: disposeBag)
     }
     
     @objc private func gotoRegister() {

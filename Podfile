@@ -14,11 +14,10 @@ target 'LightCloud' do
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'Hero'
-  pod 'SVProgressHUD'
+  pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
-  pod 'RxSwiftUtilities'
 
   target 'LightCloudTests' do
     inherit! :search_paths
