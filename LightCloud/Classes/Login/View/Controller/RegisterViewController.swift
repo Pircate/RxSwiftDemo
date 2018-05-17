@@ -41,7 +41,7 @@ class RegisterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupSubviews()
+        buildSubviews()
         bindViewModel()
     }
 
@@ -50,7 +50,9 @@ class RegisterViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupSubviews() {
+    private func buildSubviews() {
+        
+        navigation.item.title = "注册"
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)

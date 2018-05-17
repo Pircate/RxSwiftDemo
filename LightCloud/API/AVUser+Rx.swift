@@ -11,10 +11,13 @@ import RxCocoa
 
 extension Error {
     
-    var statusMessage: String? {
+    var statusMessage: String {
         let error = self as NSError
-        let dic = error.userInfo["com.leancloud.restapi.response.error"] as? [String: Any]
-        return dic?["error"] as? String
+        if let dic = error.userInfo["com.leancloud.restapi.response.error"] as? [String: Any],
+            let message = dic["error"] as? String {
+            return message
+        }
+        return "未知错误"
     }
 }
 

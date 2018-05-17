@@ -43,8 +43,8 @@ final class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(gotoRegister)).chain.tintColor(UIColor.white).build
-        setupSubviews()
+        buildNavigation()
+        buildSubviews()
         bindViewModel()
     }
 
@@ -53,7 +53,13 @@ final class LoginViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupSubviews() {
+    private func buildNavigation() {
+        navigation.item.title = "登录"
+        navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
+        navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoRegister).disposed(by: disposeBag)
+    }
+    
+    private func buildSubviews() {
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -86,13 +92,15 @@ final class LoginViewController: BaseViewController {
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.login.bind(to: rx.dismiss).disposed(by: disposeBag)
     }
-    
-    @objc private func gotoRegister() {
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
-    }
 }
 
 extension Reactive where Base == LoginViewController {
+    
+    var gotoRegister: Binder<Void> {
+        return Binder(base) { home, _ in
+            home.navigationController?.pushViewController(RegisterViewController(), animated: true)
+        }
+    }
     
     var dismiss: Binder<AVUser?> {
         return Binder(base) { vc, user in

@@ -8,6 +8,8 @@
 
 import Toast_Swift
 
+private let timeoutInterval: TimeInterval = 60
+
 final class Toast {
     
     static var keyWindow: UIWindow? {
@@ -16,6 +18,12 @@ final class Toast {
     
     static func show() {
         hide()
+        
+        let maskView = UIView(frame: UIScreen.main.bounds)
+        maskView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        keyWindow?.showToast(maskView, duration: timeoutInterval, position: .center, completion: { _ in
+            Toast.hide()
+        })
         keyWindow?.makeToastActivity(.center)
     }
     
@@ -36,7 +44,6 @@ final class Toast {
     }
     
     static func hide() {
-        keyWindow?.hideToastActivity()
-        keyWindow?.hideAllToasts()
+        keyWindow?.hideAllToasts(includeActivity: true)
     }
 }

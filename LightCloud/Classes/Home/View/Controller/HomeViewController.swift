@@ -35,6 +35,7 @@ extension Reactive where Base == HomeViewController {
             nav.navigation.configuration.isEnabled = true
             nav.navigation.configuration.isTranslucent = true
             nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
+            nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
             $0.present(nav, animated: true, completion: nil)
         }
     }
