@@ -85,5 +85,4 @@ class RegisterViewController: BaseViewController {
         output.validation.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
         output.register.filter({ $0 }).goBack(self).disposed(by: disposeBag)
     }
-
 }

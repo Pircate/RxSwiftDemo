@@ -50,3 +50,18 @@ extension LoginViewModel: ViewModelType {
         return Output(validation: validation, login: login)
     }
 }
+
+extension Reactive where Base == LoginViewController {
+    
+    var gotoRegister: Binder<Void> {
+        return Binder(base) { home, _ in
+            home.navigationController?.pushViewController(RegisterViewController(), animated: true)
+        }
+    }
+    
+    var dismiss: Binder<AVUser?> {
+        return Binder(base) { vc, user in
+            vc.dismiss(animated: true, completion: nil)
+        }
+    }
+}
