@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: BaseViewController {
     
@@ -15,15 +17,16 @@ final class LoginViewController: BaseViewController {
             .placeholder("请输入账号")
             .returnKeyType(.next)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).installed
+            .activeColor(UIColor(hex: "#CE9728")).build
     }()
     
     private lazy var passwordTextField: EffectTextField = {
         return EffectTextField().chain
             .placeholder("请输入密码")
+            .isSecureTextEntry(true)
             .returnKeyType(.go)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).installed
+            .activeColor(UIColor(hex: "#CE9728")).build
     }()
     
     private lazy var loginButton: UIButton = {
@@ -34,13 +37,13 @@ final class LoginViewController: BaseViewController {
             .backgroundImage(#imageLiteral(resourceName: "login_button_enabled"), for: .normal)
             .backgroundImage(#imageLiteral(resourceName: "login_button_disabled"), for: .disabled)
             .title("登录", for: .normal)
-            .isEnabled(false).installed
+            .isEnabled(false).build
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(gotoRegister)).chain.tintColor(UIColor.white).installed
+        
+        navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(gotoRegister)).chain.tintColor(UIColor.white).build
         setupSubviews()
         bindViewModel()
     }
@@ -81,14 +84,19 @@ final class LoginViewController: BaseViewController {
         
         let output = viewModel.transform(input)
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
-        output.login.subscribe(onNext: { (user) in
-            if let user = user {
-                debugPrint(user.username!)
-            }
-        }).disposed(by: disposeBag)
+        output.login.bind(to: rx.dismiss).disposed(by: disposeBag)
     }
     
     @objc private func gotoRegister() {
         navigationController?.pushViewController(RegisterViewController(), animated: true)
+    }
+}
+
+extension Reactive where Base == LoginViewController {
+    
+    var dismiss: Binder<AVUser?> {
+        return Binder(base) { vc, user in
+            vc.dismiss(animated: true, completion: nil)
+        }
     }
 }

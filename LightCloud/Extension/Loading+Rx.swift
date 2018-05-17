@@ -9,13 +9,6 @@
 import RxSwift
 import RxCocoa
 
-enum NetworkState {
-    case idle
-    case loading(String?)
-    case success(String?)
-    case failure(String?)
-}
-
 struct LoadingToken<E> : ObservableConvertibleType, Disposable {
     
     private let _source: Observable<E>

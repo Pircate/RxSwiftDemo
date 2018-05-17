@@ -1,20 +1,20 @@
 PODS:
-  - AVOSCloud (10.3.1)
-  - AVOSCloudIM (10.3.1):
-    - AVOSCloud (= 10.3.1)
-    - AVOSCloudIM/_ARC (= 10.3.1)
-    - AVOSCloudIM/_NOARC (= 10.3.1)
-  - AVOSCloudIM/_ARC (10.3.1):
-    - AVOSCloud (= 10.3.1)
-    - AVOSCloudIM/_NOARC (= 10.3.1)
-  - AVOSCloudIM/_NOARC (10.3.1):
-    - AVOSCloud (= 10.3.1)
-  - CocoaChainKit (0.3.0)
+  - AVOSCloud (11.0.0)
+  - AVOSCloudIM (11.0.0):
+    - AVOSCloud (= 11.0.0)
+    - AVOSCloudIM/_ARC (= 11.0.0)
+    - AVOSCloudIM/_NOARC (= 11.0.0)
+  - AVOSCloudIM/_ARC (11.0.0):
+    - AVOSCloud (= 11.0.0)
+    - AVOSCloudIM/_NOARC (= 11.0.0)
+  - AVOSCloudIM/_NOARC (11.0.0):
+    - AVOSCloud (= 11.0.0)
+  - CocoaChainKit (0.4.1)
   - EachNavigationBar (0.1.2)
   - ExtensionX (0.1.0)
   - Hero (1.2.0)
-  - IQKeyboardManagerSwift (6.0.2)
-  - Kingfisher (4.7.0)
+  - IQKeyboardManagerSwift (6.0.3)
+  - Kingfisher (4.8.0)
   - Result (4.0.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
@@ -57,14 +57,14 @@ EXTERNAL SOURCES:
     :path: "./Pods/ExtensionX"
 
 SPEC CHECKSUMS:
-  AVOSCloud: f6f1523045495dd1368faa3d6adf21187f9498a7
-  AVOSCloudIM: 774f266bc1c6b66577b67eb1f5a1096a1380ca33
-  CocoaChainKit: 39f71a2e1b7ca33740dc84f1ed4ba095ee1d04d6
+  AVOSCloud: 8ffa848f5f7391fc7594d3671a29cd6f8a14cc2a
+  AVOSCloudIM: 465af27feb394e50e1b09a7fd2da4645be340cdb
+  CocoaChainKit: 4a19b0e865a04fa01be046b553272efec8656459
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
   ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
-  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
-  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570

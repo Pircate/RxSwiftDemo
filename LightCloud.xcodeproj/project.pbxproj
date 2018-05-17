@@ -139,7 +139,6 @@
 		B5CE124520A3D88700EC3F30 /* LightCloud */ = {
 			isa = PBXGroup;
 			children = (
-				B5D62F0920AA6BF5002F8FB3 /* Vendor */,
 				B5CE12AA20A4140C00EC3F30 /* API */,
 				B5CE127820A3DA7700EC3F30 /* App */,
 				B5CE124D20A3D88800EC3F30 /* Assets.xcassets */,
@@ -148,6 +147,7 @@
 				B5CE125220A3D88800EC3F30 /* Info.plist */,
 				B5CE124F20A3D88800EC3F30 /* LaunchScreen.storyboard */,
 				B5CE127420A3DA2A00EC3F30 /* LightCloud-Bridging-Header.h */,
+				B5D62F0920AA6BF5002F8FB3 /* Vendor */,
 			);
 			path = LightCloud;
 			sourceTree = "<group>";

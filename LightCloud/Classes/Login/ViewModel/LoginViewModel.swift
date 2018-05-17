@@ -27,9 +27,6 @@ final class LoginViewModel {
     struct Output {
         let validation: Driver<Bool>
         let login: Observable<AVUser?>
-        let state: Driver<NetworkState>
-        let image: Driver<String>
-        let text: Driver<String>
     }
 }
 
@@ -43,32 +40,13 @@ extension LoginViewModel: ViewModelType {
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
         let login = input.login.withLatestFrom(usernameAndPassword).flatMap {
-            AVUser.rx.login(username: $0.username, password: $0.password).loading().catchErrorJustShow("failure")
+            AVUser.rx.login(username: $0.username, password: $0.password).loading().catchError({
+                Toast.show(info: $0.statusMessage)
+                return Observable.empty()
+            }).do(onNext: { _ in
+                Toast.show(info: "Login success")
+            })
         }
-        
-        let state = login.map({ _ in
-            NetworkState.success("success")
-        }).asDriver(onErrorJustReturn: .idle)
-        
-        let image = Observable.of("").asDriver(onErrorJustReturn: "")
-        let text = Observable.of("").asDriver(onErrorJustReturn: "")
-        
-        return Output(validation: validation, login: login, state: state, image: image, text: text)
-    }
-}
-
-extension ObservableType {
-    
-    func catchErrorJustReturnEmpty() -> Observable<E> {
-        return catchError({ _ in
-            Observable.empty()
-        })
-    }
-    
-    func catchErrorJustShow(_ info: String) -> Observable<E> {
-        return catchError({ _ in
-            Toast.show(info: info)
-            return Observable.empty()
-        })
+        return Output(validation: validation, login: login)
     }
 }

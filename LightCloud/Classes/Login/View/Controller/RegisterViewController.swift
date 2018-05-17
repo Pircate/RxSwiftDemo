@@ -15,15 +15,16 @@ class RegisterViewController: BaseViewController {
             .placeholder("请输入账号")
             .returnKeyType(.next)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).installed
+            .activeColor(UIColor(hex: "#CE9728")).build
     }()
     
     private lazy var passwordTextField: EffectTextField = {
         return EffectTextField().chain
             .placeholder("请输入密码")
+            .isSecureTextEntry(true)
             .returnKeyType(.go)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).installed
+            .activeColor(UIColor(hex: "#CE9728")).build
     }()
     
     private lazy var registerButton: UIButton = {
@@ -34,7 +35,7 @@ class RegisterViewController: BaseViewController {
             .backgroundImage(#imageLiteral(resourceName: "login_button_enabled"), for: .normal)
             .backgroundImage(#imageLiteral(resourceName: "login_button_disabled"), for: .disabled)
             .title("注册", for: .normal)
-            .isEnabled(false).installed
+            .isEnabled(false).build
     }()
 
     override func viewDidLoad() {

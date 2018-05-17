@@ -9,6 +9,15 @@
 import RxSwift
 import RxCocoa
 
+extension Error {
+    
+    var statusMessage: String? {
+        let error = self as NSError
+        let dic = error.userInfo["com.leancloud.restapi.response.error"] as? [String: Any]
+        return dic?["error"] as? String
+    }
+}
+
 extension Reactive where Base: AVUser {
     
     static func register(username: String?, password: String?) -> Observable<Bool> {
@@ -30,6 +39,19 @@ extension Reactive where Base: AVUser {
     static func login(username: String, password: String) -> Observable<AVUser?> {
         return Observable.create { (observer) -> Disposable in
             Base.logInWithUsername(inBackground: username, password: password, block: { (user, error) in
+                guard let error = error else {
+                    observer.onNext(user)
+                    return
+                }
+                observer.onError(error)
+            })
+            return Disposables.create()
+        }
+    }
+    
+    static func login(mobile: String, captcha: String) -> Observable<AVUser?> {
+        return Observable.create { (observer) -> Disposable in
+            Base.logInWithMobilePhoneNumber(inBackground: mobile, smsCode: captcha, block: { (user, error) in
                 guard let error = error else {
                     observer.onNext(user)
                     return
