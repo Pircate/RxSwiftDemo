@@ -16,13 +16,13 @@ final class Toast {
         return UIApplication.shared.keyWindow
     }
     
-    static func show() {
+    static func loading() {
         hide()
         
         let maskView = UIView(frame: UIScreen.main.bounds)
         maskView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
         keyWindow?.showToast(maskView, duration: timeoutInterval, position: .center, completion: { _ in
-            Toast.hide()
+            Toast.hideActivity()
         })
         keyWindow?.makeToastActivity(.center)
     }
@@ -41,6 +41,10 @@ final class Toast {
     static func show(customView: UIView, duration: TimeInterval = ToastManager.shared.duration) {
         hide()
         keyWindow?.showToast(customView, duration: duration)
+    }
+    
+    static func hideActivity() {
+        keyWindow?.hideToastActivity()
     }
     
     static func hide() {
