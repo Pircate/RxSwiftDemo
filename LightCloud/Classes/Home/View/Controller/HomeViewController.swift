@@ -15,7 +15,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (AVUser.current() == nil).asObservable().bind(to: rx.gotoLogin).disposed(by: disposeBag)
+        (AVUser.current() == nil).asObservable().then(true).gotoLogin(self).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,19 +24,4 @@ class HomeViewController: BaseViewController {
     }
 
 
-}
-
-extension Reactive where Base == HomeViewController {
-    
-    var gotoLogin: Binder<Bool> {
-        return Binder(base) {
-            guard $1 else { return }
-            let nav = UINavigationController(rootViewController: LoginViewController())
-            nav.navigation.configuration.isEnabled = true
-            nav.navigation.configuration.isTranslucent = true
-            nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
-            nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
-            $0.present(nav, animated: true, completion: nil)
-        }
-    }
 }
