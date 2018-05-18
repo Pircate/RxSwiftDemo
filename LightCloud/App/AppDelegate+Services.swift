@@ -23,8 +23,6 @@ extension AppDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        ToastManager.shared.duration = 1.5
         ToastManager.shared.style.activitySize = CGSize(width: 88, height: 88)
-        ToastManager.shared.isTapToDismissEnabled = true
     }
 }

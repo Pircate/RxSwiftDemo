@@ -6,7 +6,7 @@
 //  Copyright © 2018年 gaoX. All rights reserved.
 //
 
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
     
     convenience init(title: String?) {
         self.init(title: title, style: .plain, target: nil, action: nil)

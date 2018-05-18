@@ -21,11 +21,13 @@ final class LoginViewModel {
     struct Input {
         let username: ControlProperty<String>
         let password: ControlProperty<String>
+        let captcha: ControlEvent<Void>
         let login: ControlEvent<Void>
     }
     
     struct Output {
         let validation: Driver<Bool>
+        let captcha: Driver<String>
         let login: Observable<AVUser?>
     }
 }
@@ -37,17 +39,33 @@ extension LoginViewModel: ViewModelType {
             !$0.isEmpty && !$1.isEmpty
         }.asDriver(onErrorJustReturn: false)
         
+        let captcha = input.captcha.withLatestFrom(input.username).flatMap({
+            AVUser.rx.requestLoginCaptcha(mobile: $0)
+                .loading()
+                .catchErrorJustShow()
+                .do(onNext: { success in
+                    Toast.show(info: "获取验证码成功")
+                })
+        }).filter({ $0 }).flatMap({ _ in
+            Observable<Int>.interval(1, scheduler: MainScheduler.instance).map({ index -> String in
+                if 60 > index {
+                    return "\(60 - index)s"
+                }
+                return "重新发送"
+            })
+        }).asDriver(onErrorJustReturn: "")
+        
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
         let login = input.login.withLatestFrom(usernameAndPassword).flatMap {
-            AVUser.rx.login(username: $0.username, password: $0.password).loading().catchError({
-                Toast.show(info: $0.statusMessage)
-                return Observable.empty()
-            }).do(onNext: { _ in
-                Toast.show(info: "Login success")
-            })
+            AVUser.rx.login(username: $0.username, password: $0.password)
+                .loading()
+                .catchErrorJustShow()
+                .do(onNext: { _ in
+                    Toast.show(info: "登录成功")
+                })
         }
-        return Output(validation: validation, login: login)
+        return Output(validation: validation, captcha: captcha, login: login)
     }
 }
 

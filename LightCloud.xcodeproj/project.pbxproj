@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
+		B54FC4B320AEA412001A8CE8 /* CatchError+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FC4B220AEA412001A8CE8 /* CatchError+Rx.swift */; };
 		B5650FEA20A9344D00BA7B87 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5650FE920A9344D00BA7B87 /* Updatable.swift */; };
 		B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557520AD45ED00BAF346 /* Toast.swift */; };
 		B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557720AD575600BAF346 /* AsObservable.swift */; };
-		B5BF557A20AD66A700BAF346 /* UIBarButtonItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557920AD66A700BAF346 /* UIBarButtonItemExt.swift */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
 		B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124820A3D88700EC3F30 /* HomeViewController.swift */; };
 		B5CE124E20A3D88800EC3F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CE124D20A3D88800EC3F30 /* Assets.xcassets */; };
@@ -57,10 +57,10 @@
 		7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A095E71B7201D80AE5B014E6 /* Pods-LightCloudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B08F923131461D0E06265D37 /* Pods_LightCloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B54FC4B220AEA412001A8CE8 /* CatchError+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatchError+Rx.swift"; sourceTree = "<group>"; };
 		B5650FE920A9344D00BA7B87 /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		B5BF557520AD45ED00BAF346 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B5BF557720AD575600BAF346 /* AsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsObservable.swift; sourceTree = "<group>"; };
-		B5BF557920AD66A700BAF346 /* UIBarButtonItemExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExt.swift; sourceTree = "<group>"; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CE124620A3D88700EC3F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CE124820A3D88700EC3F30 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -346,9 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				B5CE129620A3E05900EC3F30 /* UIViewController+Rx.swift */,
+				B54FC4B220AEA412001A8CE8 /* CatchError+Rx.swift */,
 				B5CE12B120A430EB00EC3F30 /* Loading+Rx.swift */,
 				B5BF557720AD575600BAF346 /* AsObservable.swift */,
-				B5BF557920AD66A700BAF346 /* UIBarButtonItemExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -679,11 +679,11 @@
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewController+Rx.swift in Sources */,
+				B54FC4B320AEA412001A8CE8 /* CatchError+Rx.swift in Sources */,
 				B5CE12B220A430EB00EC3F30 /* Loading+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
 				B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */,
 				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,
-				B5BF557A20AD66A700BAF346 /* UIBarButtonItemExt.swift in Sources */,
 				B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */,
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
@@ -859,7 +859,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -882,7 +882,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

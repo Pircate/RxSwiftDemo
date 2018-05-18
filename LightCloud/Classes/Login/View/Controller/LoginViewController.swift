@@ -20,11 +20,20 @@ final class LoginViewController: BaseViewController {
     
     private lazy var passwordTextField: EffectTextField = {
         return EffectTextField().chain
-            .placeholder("请输入密码")
+            .placeholder("请输入验证码")
             .isSecureTextEntry(true)
             .returnKeyType(.go)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
             .activeColor(UIColor(hex: "#CE9728")).build
+    }()
+    
+    private lazy var captchaButton: UIButton = {
+        return UIButton(type: .custom).chain
+            .backgroundColor(UIColor(hex: "#4381E8"))
+            .cornerRadius(2)
+            .masksToBounds(true)
+            .title("获取验证码", for: .normal)
+            .systemFont(ofSize: 14).build
     }()
     
     private lazy var loginButton: UIButton = {
@@ -61,6 +70,7 @@ final class LoginViewController: BaseViewController {
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(captchaButton)
         view.addSubview(loginButton)
         
         usernameTextField.snp.makeConstraints { (make) in
@@ -69,14 +79,21 @@ final class LoginViewController: BaseViewController {
             make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 36))
         }
         
-        passwordTextField.snp.makeConstraints { (make) in
+        captchaButton.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().inset(30)
             make.top.equalTo(usernameTextField.snp.bottom).offset(30)
-            make.centerX.size.equalTo(usernameTextField)
+            make.size.equalTo(CGSize(width: 80, height: 30))
+        }
+        
+        passwordTextField.snp.makeConstraints { (make) in
+            make.left.height.equalTo(usernameTextField)
+            make.right.equalTo(captchaButton.snp.left).offset(-15)
+            make.centerY.equalTo(captchaButton)
         }
         
         loginButton.snp.makeConstraints { (make) in
             make.top.equalTo(passwordTextField.snp.bottom).offset(30)
-            make.centerX.size.equalTo(passwordTextField)
+            make.centerX.size.equalTo(usernameTextField)
         }
     }
 
@@ -84,10 +101,12 @@ final class LoginViewController: BaseViewController {
         let viewModel = LoginViewModel()
         let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty,
                                          password: passwordTextField.rx.text.orEmpty,
+                                         captcha: captchaButton.rx.tap,
                                          login: loginButton.rx.tap)
         
         let output = viewModel.transform(input)
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
+        output.captcha.drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.login.then(true).dismiss(from: self).disposed(by: disposeBag)
     }
 }

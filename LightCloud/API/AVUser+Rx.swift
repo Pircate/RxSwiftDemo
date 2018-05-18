@@ -23,6 +23,19 @@ extension Error {
 
 extension Reactive where Base: AVUser {
     
+    static func requestLoginCaptcha(mobile: String) -> Observable<Bool> {
+        return Observable.create({ (observer) -> Disposable in
+            AVUser.requestLoginSmsCode(mobile) { (success, error) in
+                guard let error = error else {
+                    observer.onNext(success)
+                    return
+                }
+                observer.onError(error)
+            }
+            return Disposables.create()
+        })
+    }
+    
     static func register(username: String?, password: String?) -> Observable<Bool> {
         return Observable.create { observer -> Disposable in
             let user = AVUser()

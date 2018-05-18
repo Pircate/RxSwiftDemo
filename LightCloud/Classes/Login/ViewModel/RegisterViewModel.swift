@@ -34,12 +34,12 @@ extension RegisterViewModel: ViewModelType {
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
-            AVUser.rx.register(username: $0.username, password: $0.password).loading().catchError({
-                Toast.show(info: $0.statusMessage)
-                return Observable.empty()
-            }).do(onNext: { _ in
-                Toast.hide()
-            })
+            AVUser.rx.register(username: $0.username, password: $0.password)
+                .loading()
+                .catchErrorJustShow()
+                .do(onNext: { _ in
+                    Toast.show(info: "注册成功")
+                })
         })
         
         return Output(validation: validation, register: register)
