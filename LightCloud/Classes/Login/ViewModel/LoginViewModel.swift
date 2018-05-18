@@ -47,7 +47,7 @@ extension LoginViewModel: ViewModelType {
                     Toast.show(info: "获取验证码\(success ? "成功" : "失败")")
                 })
         }).filter({ $0 }).flatMap({ _ in
-            Observable.of(60).countdown()
+            60.countdown()
         }).asDriver(onErrorJustReturn: "")
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
