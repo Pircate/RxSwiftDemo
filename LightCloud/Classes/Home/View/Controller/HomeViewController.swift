@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class HomeViewController: BaseViewController {
 
@@ -17,6 +15,7 @@ class HomeViewController: BaseViewController {
         
         navigation.item.title = "首页"
         
+        AVUser.logOut()
         (AVUser.current() == nil).asObservable().gotoLogin(from: self).disposed(by: disposeBag)
     }
 
