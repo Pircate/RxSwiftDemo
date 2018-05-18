@@ -15,6 +15,8 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigation.item.title = "首页"
+        
         (AVUser.current() == nil).asObservable().gotoLogin(from: self).disposed(by: disposeBag)
     }
 

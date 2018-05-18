@@ -44,7 +44,7 @@ extension LoginViewModel: ViewModelType {
                 .loading()
                 .catchErrorJustShow()
                 .do(onNext: { success in
-                    Toast.show(info: "获取验证码成功")
+                    Toast.show(info: "获取验证码\(success ? "成功" : "失败")")
                 })
         }).filter({ $0 }).flatMap({ _ in
             Observable<Int>.interval(1, scheduler: MainScheduler.instance).map({ index -> String in

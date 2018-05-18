@@ -15,6 +15,7 @@ extension AppDelegate {
         nav.navigation.configuration.isEnabled = true
         nav.navigation.configuration.isTranslucent = true
         nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
+        nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
         nav.navigationBar.barStyle = .black
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

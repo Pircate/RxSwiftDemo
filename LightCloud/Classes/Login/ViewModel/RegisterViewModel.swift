@@ -37,8 +37,8 @@ extension RegisterViewModel: ViewModelType {
             AVUser.rx.register(username: $0.username, password: $0.password)
                 .loading()
                 .catchErrorJustShow()
-                .do(onNext: { _ in
-                    Toast.show(info: "注册成功")
+                .do(onNext: { success in
+                    Toast.show(info: "注册\(success ? "成功" : "失败")")
                 })
         })
         
