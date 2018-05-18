@@ -64,6 +64,8 @@ final class LoginViewController: BaseViewController {
         navigation.item.title = "登录"
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoRegister).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
+        navigation.item.leftBarButtonItem?.rx.tap.then(true).dismiss(from: self).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
