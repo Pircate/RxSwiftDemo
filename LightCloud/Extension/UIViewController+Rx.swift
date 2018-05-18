@@ -18,15 +18,15 @@ extension ObservableType {
 
 extension ObservableType where E == Bool {
     
-    func goBack(_ viewController: UIViewController) -> Disposable {
+    func goBack(from viewController: UIViewController) -> Disposable {
         return asDriver(onErrorJustReturn: false).drive(viewController.rx.goBack)
     }
     
-    func dismiss(_ viewController: UIViewController) -> Disposable {
+    func dismiss(from viewController: UIViewController) -> Disposable {
         return asDriver(onErrorJustReturn: false).drive(viewController.rx.dismiss)
     }
     
-    func gotoLogin(_ viewController: UIViewController) -> Disposable {
+    func gotoLogin(from viewController: UIViewController) -> Disposable {
         return asDriver(onErrorJustReturn: false).drive(viewController.rx.gotoLogin)
     }
 }

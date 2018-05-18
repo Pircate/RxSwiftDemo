@@ -88,6 +88,6 @@ final class LoginViewController: BaseViewController {
         
         let output = viewModel.transform(input)
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
-        output.login.then(true).dismiss(self).disposed(by: disposeBag)
+        output.login.then(true).dismiss(from: self).disposed(by: disposeBag)
     }
 }
