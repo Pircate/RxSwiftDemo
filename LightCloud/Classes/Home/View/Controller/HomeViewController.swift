@@ -15,7 +15,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        (AVUser.current() == nil).asObservable().then(true).gotoLogin(from: self).disposed(by: disposeBag)
+        (AVUser.current() == nil).asObservable().gotoLogin(from: self).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
