@@ -10,14 +10,14 @@ import RxSwift
 
 extension Observable where Element == Int {
     
-    func countdown(_ retry: String = "重新发送") -> Observable<String> {
+    func countdown(_ resend: String = "重新发送") -> Observable<String> {
         return flatMap({ (until) -> Observable<String> in
             Observable<Int>.timer(0, period: 1, scheduler: MainScheduler.instance).map({ index -> String in
                 if until > index {
                     return "\(until - index)s"
                 }
                 throw NSError()
-            }).catchErrorJustReturn(retry)
+            }).catchErrorJustReturn(resend)
         })
     }
 }
