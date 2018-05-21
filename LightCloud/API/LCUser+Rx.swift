@@ -31,6 +31,7 @@ extension Reactive where Base: LCUser {
             let user = LCUser()
             user.username = LCString(username)
             user.password = LCString(password)
+            user.mobilePhoneNumber = LCString(username)
             user.signUp({ (result) in
                 switch result {
                 case .success:

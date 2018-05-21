@@ -23,11 +23,8 @@ final class QueryViewController: BaseViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
-        tableView.mj_header = MJRefreshNormalHeader()
-        tableView.mj_footer = MJRefreshBackNormalFooter()
-        return tableView
+        UITableView(frame: CGRect.zero, style: .plain).chain
+            .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
     }()
     
     private let start: Observable<Int> = Observable.of(0)
@@ -60,16 +57,11 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
-        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty,
-                                         refresh: tableView.mj_header.rx.refreshClosure,
-                                         more: tableView.mj_footer.rx.refreshClosure)
+        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty)
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(cellIdentifier: "cellID")) { index, item, cell in
             cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
         }.disposed(by: disposeBag)
-        
-        output.endRefresh.drive(tableView.rx.endRefreshing).disposed(by: disposeBag)
-        output.endMore.drive(tableView.rx.endRefreshing).disposed(by: disposeBag)
     }
 }

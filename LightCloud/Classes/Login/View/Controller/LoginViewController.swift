@@ -12,8 +12,9 @@ final class LoginViewController: BaseViewController {
     
     private lazy var usernameTextField: EffectTextField = {
         return EffectTextField().chain
-            .placeholder("请输入账号")
+            .placeholder("请输入手机号")
             .returnKeyType(.next)
+            .clearButtonMode(.whileEditing)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
             .activeColor(UIColor(hex: "#CE9728")).build
     }()
@@ -78,7 +79,7 @@ final class LoginViewController: BaseViewController {
         usernameTextField.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(200)
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 36))
+            make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 44))
         }
         
         captchaButton.snp.makeConstraints { (make) in

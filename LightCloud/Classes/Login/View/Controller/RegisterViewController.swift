@@ -15,7 +15,8 @@ class RegisterViewController: BaseViewController {
             .placeholder("请输入账号")
             .returnKeyType(.next)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).build
+            .activeColor(UIColor(hex: "#CE9728"))
+            .clearButtonMode(.whileEditing).build
     }()
     
     private lazy var passwordTextField: EffectTextField = {
@@ -61,7 +62,7 @@ class RegisterViewController: BaseViewController {
         usernameTextField.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(200)
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 36))
+            make.size.equalTo(CGSize(width: UIScreen.width - 60, height: 44))
         }
         
         passwordTextField.snp.makeConstraints { (make) in
