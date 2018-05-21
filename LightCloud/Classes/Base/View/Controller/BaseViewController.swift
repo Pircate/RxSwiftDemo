@@ -26,6 +26,9 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        debugPrint("\(type(of: self)) deinit")
+    }
 
     /*
     // MARK: - Navigation

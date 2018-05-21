@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import LeanCloud
 
 protocol ViewModelType {
     associatedtype Input
@@ -28,7 +29,7 @@ final class LoginViewModel {
     struct Output {
         let validation: Driver<Bool>
         let captcha: Driver<String>
-        let login: Observable<AVUser?>
+        let login: Observable<LCUser>
     }
 }
 
@@ -40,9 +41,9 @@ extension LoginViewModel: ViewModelType {
         }.asDriver(onErrorJustReturn: false)
         
         let captcha = input.captcha.withLatestFrom(input.username).flatMap({
-            AVUser.rx.requestLoginCaptcha(mobile: $0)
+            LCUser.rx.requestLoginCaptcha(mobile: $0)
                 .loading()
-                .catchErrorJustShowForAVUser()
+                .catchErrorJustShow()
                 .do(onNext: { success in
                     Toast.show(info: "获取验证码\(success ? "成功" : "失败")")
                 })
@@ -53,9 +54,9 @@ extension LoginViewModel: ViewModelType {
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
         let login = input.login.withLatestFrom(usernameAndPassword).flatMap {
-            AVUser.rx.login(username: $0.username, password: $0.password)
+            LCUser.rx.login(username: $0.username, password: $0.password)
                 .loading()
-                .catchErrorJustShowForAVUser()
+                .catchErrorJustShow()
                 .do(onNext: { _ in
                     Toast.show(info: "登录成功")
                 })

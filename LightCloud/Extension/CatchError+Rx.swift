@@ -7,22 +7,12 @@
 //
 
 import RxSwift
-import LeanCloud
 
 extension ObservableType {
     
-    func catchErrorJustShowForAVUser() -> Observable<E> {
+    func catchErrorJustShow() -> Observable<E> {
         return catchError({
-            Toast.show(info: $0.statusMessage)
-            return Observable.empty()
-        })
-    }
-    
-    func catchErrorJustShowForLCQuery() -> Observable<E> {
-        return catchError({
-            if let error = $0 as? LCError {
-                Toast.show(info: error.reason)
-            }
+            Toast.show(info: $0.reason)
             return Observable.empty()
         })
     }

@@ -13,6 +13,7 @@ import LeanCloud
 final class QueryViewModel {
     
     struct Input {
+        let keyword: ControlProperty<String>
         let refresh: ControlEvent<Void>
         let more: ControlEvent<Void>
     }
@@ -23,36 +24,50 @@ final class QueryViewModel {
         let endMore: Driver<RefreshState>
     }
     
-    var start = 0
+    private var start = 0
+    private var items: [LCObject] = []
 }
 
 extension QueryViewModel: ViewModelType {
     
     func transform(_ input: QueryViewModel.Input) -> QueryViewModel.Output {
         
+        let source2 = input.keyword.filter({ !$0.isBlank })
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged().flatMap({
+                LCQuery.rx.query("ObjC", keyword: $0)
+                    .catchErrorJustReturn([]).flatMap({ items -> Observable<[LCObject]> in
+                        self.items = items
+                        return Observable.of(items)
+                    })
+            })
+        
         let source0 = input.refresh.map({
             self.start = 0
-            return self.start
-        }).flatMap({
-            LCQuery.rx.queryForID("ObjC", start: $0, offset: 10)
-                .loading()
-                .catchErrorJustShowForLCQuery()
-                .hideToast()
-        }).share(replay: 1)
+        }).withLatestFrom(input.keyword)
+            .flatMap({
+                LCQuery.rx.query("ObjC", keyword: $0, start: 0)
+                    .catchErrorJustReturn([])
+                    .flatMap({ items -> Observable<[LCObject]> in
+                        self.items = items
+                        return Observable.of(items)
+                    })
+            }).share(replay: 1)
         
         let source1 = input.more.map({
             self.start += 10
-            return self.start
-        }).flatMap({
-            LCQuery.rx.queryForID("ObjC", start: $0, offset: 10)
-                .loading()
-                .catchErrorJustShowForLCQuery()
-                .hideToast()
+        }).withLatestFrom(input.keyword).flatMap({
+            LCQuery.rx.query("ObjC", keyword: $0, start: self.start)
+                .catchErrorJustReturn([])
+                .flatMap({ items -> Observable<[LCObject]> in
+                    self.items.append(contentsOf: items)
+                    return Observable.of(self.items)
+                })
         }).share(replay: 1)
         
         let endRefresh = source0.map({ _ in RefreshState.endHeaderRefresh }).asDriver(onErrorJustReturn: .none)
         let endMore = source1.map({ _ in RefreshState.endFooterRefresh }).asDriver(onErrorJustReturn: .none)
-        let items = Observable.merge(source0, source1).asDriver(onErrorJustReturn: [])
+        let items = Observable.merge(source0, source1, source2).asDriver(onErrorJustReturn: [])
         
         return Output(items: items, endRefresh: endRefresh, endMore: endMore)
     }

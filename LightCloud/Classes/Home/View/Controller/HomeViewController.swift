@@ -16,7 +16,7 @@ class HomeViewController: BaseViewController {
         
         buildNavigation()
         
-        (AVUser.current() == nil).asObservable().gotoLogin(from: self).disposed(by: disposeBag)
+        (LCUser.current == nil).asObservable().gotoLogin(from: self).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import LeanCloud
 
 final class RegisterViewModel {
     
@@ -34,9 +35,9 @@ extension RegisterViewModel: ViewModelType {
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
-            AVUser.rx.register(username: $0.username, password: $0.password)
+            LCUser.rx.register(username: $0.username, password: $0.password)
                 .loading()
-                .catchErrorJustShowForAVUser()
+                .catchErrorJustShow()
                 .do(onNext: { success in
                     Toast.show(info: "注册\(success ? "成功" : "失败")")
                 })
