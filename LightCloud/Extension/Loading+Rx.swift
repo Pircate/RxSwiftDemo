@@ -34,3 +34,13 @@ extension ObservableConvertibleType {
         })
     }
 }
+
+extension ObservableType {
+    
+    func hideToast() -> Observable<E> {
+        return map({
+            Toast.hide()
+            return $0
+        })
+    }
+}

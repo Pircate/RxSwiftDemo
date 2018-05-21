@@ -12,6 +12,7 @@ target 'LightCloud' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SnapKit'
+  pod 'MJRefresh'
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
   pod 'CocoaChainKit'

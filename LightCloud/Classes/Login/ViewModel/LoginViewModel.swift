@@ -42,7 +42,7 @@ extension LoginViewModel: ViewModelType {
         let captcha = input.captcha.withLatestFrom(input.username).flatMap({
             AVUser.rx.requestLoginCaptcha(mobile: $0)
                 .loading()
-                .catchErrorJustShow()
+                .catchErrorJustShowForAVUser()
                 .do(onNext: { success in
                     Toast.show(info: "获取验证码\(success ? "成功" : "失败")")
                 })
@@ -55,7 +55,7 @@ extension LoginViewModel: ViewModelType {
         let login = input.login.withLatestFrom(usernameAndPassword).flatMap {
             AVUser.rx.login(username: $0.username, password: $0.password)
                 .loading()
-                .catchErrorJustShow()
+                .catchErrorJustShowForAVUser()
                 .do(onNext: { _ in
                     Toast.show(info: "登录成功")
                 })

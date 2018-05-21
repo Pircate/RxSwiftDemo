@@ -18,6 +18,7 @@ PODS:
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
+  - MJRefresh (3.1.15.3)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - ExtensionX (from `./Pods/ExtensionX`)
   - IQKeyboardManagerSwift
   - LeanCloud
+  - MJRefresh
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -46,6 +48,7 @@ SPEC REPOS:
     - EachNavigationBar
     - IQKeyboardManagerSwift
     - LeanCloud
+    - MJRefresh
     - RxCocoa
     - RxSwift
     - SnapKit
@@ -64,11 +67,12 @@ SPEC CHECKSUMS:
   ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 096a9376e8495ceaeb0ec218699669cb9e6dc022
+PODFILE CHECKSUM: fa1f790e09cd334716cd75b647c0a7d0225c44a8
 
 COCOAPODS: 1.5.2

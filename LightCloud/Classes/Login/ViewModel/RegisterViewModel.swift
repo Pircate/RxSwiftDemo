@@ -36,7 +36,7 @@ extension RegisterViewModel: ViewModelType {
         let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
             AVUser.rx.register(username: $0.username, password: $0.password)
                 .loading()
-                .catchErrorJustShow()
+                .catchErrorJustShowForAVUser()
                 .do(onNext: { success in
                     Toast.show(info: "注册\(success ? "成功" : "失败")")
                 })
