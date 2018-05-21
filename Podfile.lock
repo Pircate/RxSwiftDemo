@@ -13,14 +13,11 @@ PODS:
   - CocoaChainKit (0.4.2)
   - EachNavigationBar (0.1.2)
   - ExtensionX (0.1.0)
-  - Hero (1.2.0)
   - IQKeyboardManagerSwift (6.0.3)
-  - Kingfisher (4.8.0)
   - LeanCloud (11.0.1):
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
-  - Result (4.0.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
@@ -33,11 +30,8 @@ DEPENDENCIES:
   - CocoaChainKit
   - EachNavigationBar
   - ExtensionX (from `./Pods/ExtensionX`)
-  - Hero
   - IQKeyboardManagerSwift
-  - Kingfisher
   - LeanCloud
-  - Result
   - RxCocoa
   - RxSwift
   - SnapKit
@@ -50,11 +44,8 @@ SPEC REPOS:
     - AVOSCloudIM
     - CocoaChainKit
     - EachNavigationBar
-    - Hero
     - IQKeyboardManagerSwift
-    - Kingfisher
     - LeanCloud
-    - Result
     - RxCocoa
     - RxSwift
     - SnapKit
@@ -71,16 +62,13 @@ SPEC CHECKSUMS:
   CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
   ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
-  Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 2770b92d753f73fa065f3c4030c68fd53eaf70c5
+PODFILE CHECKSUM: 096a9376e8495ceaeb0ec218699669cb9e6dc022
 
 COCOAPODS: 1.5.2
