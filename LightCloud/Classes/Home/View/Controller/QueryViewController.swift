@@ -26,8 +26,6 @@ final class QueryViewController: BaseViewController {
         UITableView(frame: CGRect.zero, style: .plain).chain
             .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
     }()
-    
-    private let start: Observable<Int> = Observable.of(0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
