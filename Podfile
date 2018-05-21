@@ -8,6 +8,7 @@ target 'LightCloud' do
 
   pod 'AVOSCloud'
   pod 'AVOSCloudIM'
+  pod 'LeanCloud'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'Result'

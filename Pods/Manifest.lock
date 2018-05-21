@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.2)
   - AVOSCloud (11.0.0)
   - AVOSCloudIM (11.0.0):
     - AVOSCloud (= 11.0.0)
@@ -15,6 +16,10 @@ PODS:
   - Hero (1.2.0)
   - IQKeyboardManagerSwift (6.0.3)
   - Kingfisher (4.8.0)
+  - LeanCloud (11.0.1):
+    - LeanCloud/Storage (= 11.0.1)
+  - LeanCloud/Storage (11.0.1):
+    - Alamofire (~> 4.7)
   - Result (4.0.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
@@ -31,6 +36,7 @@ DEPENDENCIES:
   - Hero
   - IQKeyboardManagerSwift
   - Kingfisher
+  - LeanCloud
   - Result
   - RxCocoa
   - RxSwift
@@ -39,6 +45,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - AVOSCloud
     - AVOSCloudIM
     - CocoaChainKit
@@ -46,6 +53,7 @@ SPEC REPOS:
     - Hero
     - IQKeyboardManagerSwift
     - Kingfisher
+    - LeanCloud
     - Result
     - RxCocoa
     - RxSwift
@@ -57,6 +65,7 @@ EXTERNAL SOURCES:
     :path: "./Pods/ExtensionX"
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AVOSCloud: 8ffa848f5f7391fc7594d3671a29cd6f8a14cc2a
   AVOSCloudIM: 465af27feb394e50e1b09a7fd2da4645be340cdb
   CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
@@ -65,12 +74,13 @@ SPEC CHECKSUMS:
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 8788d180d65d3571678cd085c128d9a40a7e6a3a
+PODFILE CHECKSUM: 2770b92d753f73fa065f3c4030c68fd53eaf70c5
 
 COCOAPODS: 1.5.2

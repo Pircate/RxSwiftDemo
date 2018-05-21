@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LeanCloud
 
 class HomeViewController: BaseViewController {
 
@@ -26,6 +27,8 @@ class HomeViewController: BaseViewController {
     private func buildNavigation() {
         navigation.item.title = "首页"
         navigation.bar.tintColor = UIColor.white
+        navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.gotoQuery).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
         navigation.item.rightBarButtonItem?.rx.tap.then(true).gotoLogin(from: self).disposed(by: disposeBag)
     }

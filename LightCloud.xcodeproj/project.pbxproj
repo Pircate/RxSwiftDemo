@@ -31,6 +31,10 @@
 		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
 		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
 		B5CE12B220A430EB00EC3F30 /* Loading+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12B120A430EB00EC3F30 /* Loading+Rx.swift */; };
+		B5F7C08920B258EC00B8F53B /* LCQuery+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C08820B258EC00B8F53B /* LCQuery+Rx.swift */; };
+		B5F7C08B20B25C4200B8F53B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C08A20B25C4200B8F53B /* HomeViewModel.swift */; };
+		B5F7C08D20B25CD800B8F53B /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C08C20B25CD800B8F53B /* QueryViewController.swift */; };
+		B5F7C08F20B25E4E00B8F53B /* QueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C08E20B25E4E00B8F53B /* QueryViewModel.swift */; };
 		D5B6A42A5DF7E28906C99BF7 /* Pods_LightCloudUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +91,10 @@
 		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B5CE12B120A430EB00EC3F30 /* Loading+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Loading+Rx.swift"; sourceTree = "<group>"; };
+		B5F7C08820B258EC00B8F53B /* LCQuery+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCQuery+Rx.swift"; sourceTree = "<group>"; };
+		B5F7C08A20B25C4200B8F53B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B5F7C08C20B25CD800B8F53B /* QueryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
+		B5F7C08E20B25E4E00B8F53B /* QueryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryViewModel.swift; sourceTree = "<group>"; };
 		B9F76D6726E9537F583A497D /* Pods_LightCloudUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightCloudTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E124A2AB1601C3B9E16950 /* Pods-LightCloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -326,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE124820A3D88700EC3F30 /* HomeViewController.swift */,
+				B5F7C08C20B25CD800B8F53B /* QueryViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +349,8 @@
 		B5CE128D20A3DF9E00EC3F30 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B5F7C08A20B25C4200B8F53B /* HomeViewModel.swift */,
+				B5F7C08E20B25E4E00B8F53B /* QueryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -408,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE12AB20A4141E00EC3F30 /* AVUser+Rx.swift */,
+				B5F7C08820B258EC00B8F53B /* LCQuery+Rx.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -602,12 +614,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ExtensionX/ExtensionX.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/LeanCloud/LeanCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -618,12 +632,14 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloudIM.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExtensionX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeanCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -681,9 +697,12 @@
 				B5CE129E20A3E4D100EC3F30 /* EffectTextField.swift in Sources */,
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
+				B5F7C08B20B25C4200B8F53B /* HomeViewModel.swift in Sources */,
+				B5F7C08920B258EC00B8F53B /* LCQuery+Rx.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewController+Rx.swift in Sources */,
 				B54FC4B320AEA412001A8CE8 /* CatchError+Rx.swift in Sources */,
 				B54FC4B920AEC74D001A8CE8 /* Countdown+Rx.swift in Sources */,
+				B5F7C08D20B25CD800B8F53B /* QueryViewController.swift in Sources */,
 				B5CE12B220A430EB00EC3F30 /* Loading+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
 				B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */,
@@ -692,6 +711,7 @@
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
 				B5CE12AC20A4141E00EC3F30 /* AVUser+Rx.swift in Sources */,
+				B5F7C08F20B25E4E00B8F53B /* QueryViewModel.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,

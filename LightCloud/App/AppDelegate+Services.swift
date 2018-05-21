@@ -8,6 +8,7 @@
 
 import IQKeyboardManagerSwift
 import Toast_Swift
+import LeanCloud
 
 private let appID = "V2KQKo4Hp6Fz9LdspYqImLJB-gzGzoHsz"
 private let clientKey = "RE7GFObDm0vWSWtWd8DU4qHI"
@@ -19,6 +20,8 @@ extension AppDelegate {
 //        AVAnalytics.trackAppOpened(launchOptions: launchOptions)
         AVOSCloud.setAllLogsEnabled(false)
         AVOSCloud.setLogLevel(AVLogLevelNone)
+        
+        LeanCloud.initialize(applicationID: appID, applicationKey: clientKey)
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
