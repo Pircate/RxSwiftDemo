@@ -21,14 +21,14 @@ public enum RefreshState {
 extension Reactive where Base: MJRefreshHeader {
     
     public var beginRefreshing: Binder<Void> {
-        return Binder(self.base) { header, _ in
+        return Binder(base) { header, _ in
             header.beginRefreshing()
         }
     }
     
     public var refreshClosure: ControlEvent<Void> {
-        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
-            self.base.refreshingBlock = {
+        return ControlEvent(events: Observable.create({ [weak base] (observer) -> Disposable in
+            base?.refreshingBlock = {
                 observer.onNext(())
             }
             return Disposables.create()
@@ -39,14 +39,14 @@ extension Reactive where Base: MJRefreshHeader {
 extension Reactive where Base: MJRefreshFooter {
     
     public var beginRefreshing: Binder<Void> {
-        return Binder(self.base) { footer, _ in
+        return Binder(base) { footer, _ in
             footer.beginRefreshing()
         }
     }
     
     public var refreshClosure: ControlEvent<Void> {
-        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
-            self.base.refreshingBlock = {
+        return ControlEvent(events: Observable.create({ [weak base] (observer) -> Disposable in
+            base?.refreshingBlock = {
                 observer.onNext(())
             }
             return Disposables.create()
@@ -57,7 +57,7 @@ extension Reactive where Base: MJRefreshFooter {
 extension Reactive where Base: UIScrollView {
     
     public var endRefreshing: Binder<RefreshState> {
-        return Binder(self.base) { (scrollView, status) in
+        return Binder(base) { (scrollView, status) in
             switch status {
             case .endHeaderRefresh:
                 scrollView.endHeaderRefreshing()

@@ -10,7 +10,7 @@ import RxSwift
 
 extension ObservableType {
     
-    func catchErrorJustShow() -> Observable<E> {
+    func catchErrorJustToast() -> Observable<E> {
         return catchError({
             Toast.show(info: $0.reason)
             return Observable.empty()
