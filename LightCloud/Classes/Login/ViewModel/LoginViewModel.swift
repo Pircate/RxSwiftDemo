@@ -28,7 +28,7 @@ final class LoginViewModel {
     
     struct Output {
         let validation: Driver<Bool>
-        let captcha: Driver<String>
+        let captcha: Driver<(title: String, isEnabled: Bool)>
         let login: Observable<LCUser>
     }
 }
@@ -47,7 +47,7 @@ extension LoginViewModel: ViewModelType {
                 .do(onNext: { _ in
                     Toast.show(info: "验证码已发送")
                 })
-        }).flatThen(60.countdown()).asDriver(onErrorJustReturn: "")
+        }).flatThen(60.countdown()).asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         

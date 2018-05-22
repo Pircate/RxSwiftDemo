@@ -109,8 +109,8 @@ final class LoginViewController: BaseViewController {
         
         let output = viewModel.transform(input)
         output.validation.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
-        output.captcha.drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
-        output.captcha.map({ $0 == "重新发送" }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
+        output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
+        output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
         output.login.then(true).dismiss(from: self).disposed(by: disposeBag)
     }
 }
