@@ -9,13 +9,6 @@ import RxSwift
 import RxCocoa
 import ExtensionX
 
-extension ObservableType {
-    
-    func then<T>(_ element: T) -> Observable<T> {
-        return map({ _ in element })
-    }
-}
-
 extension ObservableType where E == Bool {
     
     func goBack(from viewController: UIViewController) -> Disposable {
