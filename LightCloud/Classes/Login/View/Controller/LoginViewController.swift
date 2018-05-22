@@ -102,8 +102,8 @@ final class LoginViewController: BaseViewController {
 
     private func bindViewModel() {
         let viewModel = LoginViewModel()
-        let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty,
-                                         password: passwordTextField.rx.text.orEmpty,
+        let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(replay: 1),
+                                         password: passwordTextField.rx.text.orEmpty.share(replay: 1),
                                          captcha: captchaButton.rx.tap,
                                          login: loginButton.rx.tap)
         

@@ -20,8 +20,8 @@ protocol ViewModelType {
 final class LoginViewModel {
     
     struct Input {
-        let username: ControlProperty<String>
-        let password: ControlProperty<String>
+        let username: Observable<String>
+        let password: Observable<String>
         let captcha: ControlEvent<Void>
         let login: ControlEvent<Void>
     }
@@ -44,12 +44,10 @@ extension LoginViewModel: ViewModelType {
             LCUser.rx.requestLoginCaptcha(mobile: $0)
                 .loading()
                 .catchErrorJustToast()
-                .do(onNext: { success in
-                    Toast.show(info: "获取验证码\(success ? "成功" : "失败")")
+                .do(onNext: { _ in
+                    Toast.show(info: "验证码已发送")
                 })
-        }).filter({ $0 }).flatMap({ _ in
-            60.countdown()
-        }).asDriver(onErrorJustReturn: "")
+        }).flatThen(60.countdown()).asDriver(onErrorJustReturn: "")
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         

@@ -13,8 +13,8 @@ import LeanCloud
 final class RegisterViewModel {
     
     struct Input {
-        let username: ControlProperty<String>
-        let password: ControlProperty<String>
+        let username: Observable<String>
+        let password: Observable<String>
         let register: ControlEvent<Void>
     }
     
@@ -38,8 +38,8 @@ extension RegisterViewModel: ViewModelType {
             LCUser.rx.register(username: $0.username, password: $0.password)
                 .loading()
                 .catchErrorJustToast()
-                .do(onNext: { success in
-                    Toast.show(info: "注册\(success ? "成功" : "失败")")
+                .do(onNext: { _ in
+                    Toast.show(info: "注册成功")
                 })
         })
         
