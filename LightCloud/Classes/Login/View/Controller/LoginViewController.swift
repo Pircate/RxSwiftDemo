@@ -104,10 +104,10 @@ final class LoginViewController: BaseViewController {
         let viewModel = LoginViewModel()
         let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(replay: 1),
                                          password: passwordTextField.rx.text.orEmpty.share(replay: 1),
-                                         captcha: captchaButton.rx.tap,
-                                         login: loginButton.rx.tap)
-        
+                                         captchaTap: captchaButton.rx.tap,
+                                         loginTap: loginButton.rx.tap)
         let output = viewModel.transform(input)
+        
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)

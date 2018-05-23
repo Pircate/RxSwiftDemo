@@ -34,13 +34,24 @@ extension ObservableConvertibleType {
             $0.asObservable()
         })
     }
-}
-
-extension ObservableType {
     
-    func hideToast() -> Observable<E> {
-        return map({
+    func catchErrorJustToast() -> Observable<E> {
+        return asObservable().catchError({
+            Toast.show(info: $0.reason)
+            return Observable.empty()
+        })
+    }
+    
+    func hideToastOnSuccess() -> Observable<E> {
+        return asObservable().map({
             Toast.hide()
+            return $0
+        })
+    }
+    
+    func showToast(onSuccess info: String) -> Observable<E> {
+        return asObservable().map({
+            Toast.show(info: info)
             return $0
         })
     }

@@ -15,7 +15,7 @@ final class RegisterViewModel {
     struct Input {
         let username: Observable<String>
         let password: Observable<String>
-        let register: ControlEvent<Void>
+        let registerTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -34,13 +34,11 @@ extension RegisterViewModel: ViewModelType {
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         
-        let register = input.register.withLatestFrom(usernameAndPassword).flatMapLatest({
+        let register = input.registerTap.withLatestFrom(usernameAndPassword).flatMapLatest({
             LCUser.rx.register(username: $0.username, password: $0.password)
                 .loading()
                 .catchErrorJustToast()
-                .do(onNext: { _ in
-                    Toast.show(info: "注册成功")
-                })
+                .showToast(onSuccess: "注册成功")
         })
         
         return Output(isEnabled: isEnabled, register: register)

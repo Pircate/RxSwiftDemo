@@ -80,9 +80,9 @@ class RegisterViewController: BaseViewController {
         let viewModel = RegisterViewModel()
         let input = RegisterViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(replay: 1),
                                             password: passwordTextField.rx.text.orEmpty.share(replay: 1),
-                                            register: registerButton.rx.tap)
-        
+                                            registerTap: registerButton.rx.tap)
         let output = viewModel.transform(input)
+        
         output.isEnabled.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
         output.register.dismiss(from: self).disposed(by: disposeBag)
     }
