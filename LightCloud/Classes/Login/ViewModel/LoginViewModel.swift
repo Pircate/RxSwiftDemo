@@ -27,7 +27,7 @@ final class LoginViewModel {
     }
     
     struct Output {
-        let validation: Driver<Bool>
+        let isEnabled: Driver<Bool>
         let captcha: Driver<(title: String, isEnabled: Bool)>
         let login: Observable<LCUser>
     }
@@ -36,7 +36,7 @@ final class LoginViewModel {
 extension LoginViewModel: ViewModelType {
     
     func transform(_ input: LoginViewModel.Input) -> LoginViewModel.Output {
-        let validation = Observable.combineLatest(input.username, input.password) {
+        let isEnabled = Observable.combineLatest(input.username, input.password) {
             !$0.isEmpty && !$1.isEmpty
         }.asDriver(onErrorJustReturn: false)
         
@@ -59,7 +59,7 @@ extension LoginViewModel: ViewModelType {
                     Toast.show(info: "登录成功")
                 })
         }
-        return Output(validation: validation, captcha: captcha, login: login)
+        return Output(isEnabled: isEnabled, captcha: captcha, login: login)
     }
 }
 

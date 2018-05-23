@@ -19,7 +19,7 @@ final class RegisterViewModel {
     }
     
     struct Output {
-        let validation: Driver<Bool>
+        let isEnabled: Driver<Bool>
         let register: Observable<Bool>
     }
 }
@@ -28,7 +28,7 @@ extension RegisterViewModel: ViewModelType {
     
     func transform(_ input: RegisterViewModel.Input) -> RegisterViewModel.Output {
         
-        let validation = Observable.combineLatest(input.username, input.password) {
+        let isEnabled = Observable.combineLatest(input.username, input.password) {
             !$0.isEmpty && !$1.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
@@ -43,6 +43,6 @@ extension RegisterViewModel: ViewModelType {
                 })
         })
         
-        return Output(validation: validation, register: register)
+        return Output(isEnabled: isEnabled, register: register)
     }
 }

@@ -25,6 +25,7 @@ struct LoadingToken<E> : ObservableConvertibleType, Disposable {
 }
 
 extension ObservableConvertibleType {
+    
     func loading() -> Observable<E> {
         return Observable.using({ () -> LoadingToken<E> in
             Toast.loading()
