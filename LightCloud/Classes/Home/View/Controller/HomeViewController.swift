@@ -58,14 +58,10 @@ final class HomeViewController: BaseViewController {
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(cellIdentifier: "cellID", cellType: TodoItemCell.self)) { [weak self] index, item, cell in
-            
-            cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
-            cell.followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
-            
+            cell.update(item)
             viewModel.selectFollowButton(cell.followButton, item: item).subscribe(onNext: { _ in
                 self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }).disposed(by: cell.disposeBag)
-            
         }.disposed(by: disposeBag)
         
         output.items.then(()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)

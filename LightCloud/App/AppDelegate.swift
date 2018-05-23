@@ -9,6 +9,7 @@
 import UIKit
 @_exported import RxSwift
 @_exported import RxCocoa
+@_exported import LeanCloud
 import CocoaChainKit
 import EachNavigationBar
 import SnapKit

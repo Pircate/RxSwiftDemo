@@ -53,3 +53,11 @@ class TodoItemCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension TodoItemCell: Updatable {
+    
+    func update(_ item: LCObject) {
+        textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
+        followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
+    }
+}
