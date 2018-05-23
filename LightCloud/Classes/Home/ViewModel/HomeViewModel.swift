@@ -8,22 +8,31 @@
 
 import RxSwift
 import RxCocoa
+import LeanCloud
 
 final class HomeViewModel {
     
     struct Input {
-        
+        let refresh: ControlEvent<Void>
     }
     
     struct Output {
-        
+        let items: Driver<[LCObject]>
     }
 }
 
 extension HomeViewModel: ViewModelType {
     
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
-        return Output()
+        
+        let items = input.refresh.flatMap({
+            LCQuery.rx.query("TodoList", keyword: "")
+                .loading()
+                .catchErrorJustToast()
+                .hideToastOnSuccess()
+        }).asDriver(onErrorJustReturn: [])
+        
+        return Output(items: items)
     }
 }
 
@@ -32,6 +41,12 @@ extension Reactive where Base == HomeViewController {
     var gotoQuery: Binder<Void> {
         return Binder(base) { home, _ in
             home.navigationController?.pushViewController(QueryViewController(), animated: true)
+        }
+    }
+    
+    var reloadRows: Binder<IndexPath> {
+        return Binder(base) { home, indexPath in
+            home.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }

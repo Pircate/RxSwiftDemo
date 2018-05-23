@@ -8,13 +8,25 @@
 
 import UIKit
 import LeanCloud
+import MJRefresh
 
-class HomeViewController: BaseViewController {
+final class HomeViewController: BaseViewController {
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
+            .rowHeight(60)
+            .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
+        tableView.mj_header = MJRefreshNormalHeader()
+        disablesAdjustScrollViewInsets(tableView)
+        return tableView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buildNavigation()
+        setupNavigation()
+        buildSubviews()
+        bindViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,12 +34,44 @@ class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func buildNavigation() {
+    private func setupNavigation() {
         navigation.item.title = "首页"
         navigation.bar.tintColor = UIColor.white
         navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
         navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.gotoQuery).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
         navigation.item.rightBarButtonItem?.rx.tap.then(true).gotoLogin(from: self).disposed(by: disposeBag)
+    }
+    
+    private func buildSubviews() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(navigation.bar.snp.bottom)
+            make.left.bottom.right.equalToSuperview()
+        }
+        tableView.mj_header.beginRefreshing()
+    }
+    
+    private func bindViewModel() {
+        let viewModel = HomeViewModel()
+        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshClosure)
+        let output = viewModel.transform(input)
+        
+        output.items.drive(tableView.rx.items(cellIdentifier: "cellID", cellType: TodoItemCell.self)) { [weak self] index, item, cell in
+            
+            cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
+            cell.followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
+            
+            cell.followButton.rx.tap.map({
+                item.set("follow", value: !cell.followButton.isSelected)
+            }).flatMap({
+                item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+            }).subscribe(onNext: { _ in
+                self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            }).disposed(by: cell.disposeBag)
+            
+        }.disposed(by: disposeBag)
+        
+        output.items.then(()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
     }
 }
