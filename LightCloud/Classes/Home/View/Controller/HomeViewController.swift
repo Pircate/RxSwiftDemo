@@ -62,11 +62,7 @@ final class HomeViewController: BaseViewController {
             cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
             cell.followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
             
-            cell.followButton.rx.tap.map({
-                item.set("follow", value: !cell.followButton.isSelected)
-            }).flatMap({
-                item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
-            }).subscribe(onNext: { _ in
+            viewModel.selectFollowButton(cell.followButton, item: item).subscribe(onNext: { _ in
                 self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }).disposed(by: cell.disposeBag)
             

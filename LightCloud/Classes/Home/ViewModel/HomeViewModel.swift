@@ -34,6 +34,14 @@ extension HomeViewModel: ViewModelType {
         
         return Output(items: items)
     }
+    
+    func selectFollowButton(_ button: UIButton, item: LCObject) -> Observable<Bool> {
+        return button.rx.tap.map({
+            item.set("follow", value: !button.isSelected)
+        }).flatMap({
+            item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+        })
+    }
 }
 
 extension Reactive where Base == HomeViewController {
