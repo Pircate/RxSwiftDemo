@@ -57,11 +57,13 @@ final class HomeViewController: BaseViewController {
         let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshClosure)
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(cellIdentifier: "cellID", cellType: TodoItemCell.self)) { [weak self] index, item, cell in
+        output.items.drive(tableView.rx.items(cellIdentifier: "cellID", cellType: TodoItemCell.self)) { index, item, cell in
             cell.update(item)
-            viewModel.selectFollowButton(cell.followButton, item: item).subscribe(onNext: { _ in
-                self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-            }).disposed(by: cell.disposeBag)
+            
+            let input = HomeViewModel.ItemInput(followTap: cell.followButton.rx.tap,
+                                                item: Observable.of(item).share(replay: 1))
+            let output = viewModel.itemTransform(input)
+            output.isSelected.drive(cell.followButton.rx.isSelected).disposed(by: cell.disposeBag)
         }.disposed(by: disposeBag)
         
         output.items.then(()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)

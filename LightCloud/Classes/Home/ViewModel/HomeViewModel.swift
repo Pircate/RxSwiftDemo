@@ -19,6 +19,15 @@ final class HomeViewModel {
     struct Output {
         let items: Driver<[LCObject]>
     }
+    
+    struct ItemInput {
+        let followTap: ControlEvent<Void>
+        let item: Observable<LCObject>
+    }
+    
+    struct ItemOutput {
+        let isSelected: Driver<Bool>
+    }
 }
 
 extension HomeViewModel: ViewModelType {
@@ -35,12 +44,18 @@ extension HomeViewModel: ViewModelType {
         return Output(items: items)
     }
     
-    func selectFollowButton(_ button: UIButton, item: LCObject) -> Observable<Bool> {
-        return button.rx.tap.map({
-            item.set("follow", value: !button.isSelected)
-        }).flatMap({
-            item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
-        })
+    func itemTransform(_ input: ItemInput) -> ItemOutput {
+        let isSelected = input.followTap.withLatestFrom(input.item)
+            .map { item -> LCObject in
+                item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
+                return item
+            }
+            .flatMap({ item -> Observable<Bool> in
+                item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+            })
+            .withLatestFrom(input.item).map({ ($0.value(forKey: "follow") as! LCBool).value })
+            .asDriver(onErrorJustReturn: false)
+        return ItemOutput(isSelected: isSelected)
     }
 }
 
