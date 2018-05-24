@@ -11,27 +11,32 @@ import ExtensionX
 
 extension Reactive where Base: UIViewController {
     
-    var goBack: Binder<Bool> {
+    var push: Binder<UIViewController> {
         return Binder(base) {
-            if $1 { $0.goBack() }
+            $0.navigationController?.pushViewController($1, animated: true)
         }
     }
     
-    var dismiss: Binder<Bool> {
-        return Binder(base) {
-            if $1 { $0.dismiss(animated: true, completion: nil) }
+    var goBack: Binder<Void> {
+        return Binder(base) { vc, _ in
+            vc.goBack()
         }
     }
     
-    var gotoLogin: Binder<Bool> {
-        return Binder(base) {
-            guard $1 else { return }
+    var dismiss: Binder<Void> {
+        return Binder(base) { vc, _ in
+            vc.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    var gotoLogin: Binder<Void> {
+        return Binder(base) { vc, _ in
             let nav = UINavigationController(rootViewController: LoginViewController())
             nav.navigation.configuration.isEnabled = true
             nav.navigation.configuration.isTranslucent = true
             nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
             nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
-            $0.present(nav, animated: true, completion: nil)
+            vc.present(nav, animated: true, completion: nil)
         }
     }
 }

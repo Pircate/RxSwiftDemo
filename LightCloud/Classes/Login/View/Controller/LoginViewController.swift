@@ -65,9 +65,9 @@ final class LoginViewController: BaseViewController {
     private func buildNavigation() {
         navigation.item.title = "登录"
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
-        navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoRegister).disposed(by: disposeBag)
+        navigation.item.rightBarButtonItem?.rx.tap.map(to: RegisterViewController()).bind(to: rx.push).disposed(by: disposeBag)
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
-        navigation.item.leftBarButtonItem?.rx.tap.map(to: true).bind(to: rx.dismiss).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.dismiss).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
@@ -112,6 +112,6 @@ final class LoginViewController: BaseViewController {
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
-        output.login.drive(rx.dismiss).disposed(by: disposeBag)
+        output.login.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
     }
 }

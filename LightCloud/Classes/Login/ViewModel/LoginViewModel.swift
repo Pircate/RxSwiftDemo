@@ -58,12 +58,3 @@ extension LoginViewModel: ViewModelType {
         return Output(isEnabled: isEnabled, captcha: captcha, login: login)
     }
 }
-
-extension Reactive where Base == LoginViewController {
-    
-    var gotoRegister: Binder<Void> {
-        return Binder(base) { loginVC, _ in
-            loginVC.navigationController?.pushViewController(RegisterViewController(), animated: true)
-        }
-    }
-}

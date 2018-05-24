@@ -63,24 +63,14 @@ final class HomeViewModel {
 extension HomeViewModel: ViewModelType {
     
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
-        
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "")
                 .map({ [TodoSectionModel(items: $0)] })
                 .loading()
-                .catchErrorJustToast()
                 .hideToastOnSuccess()
+                .catchErrorJustToast(return: [])
         }).asDriver(onErrorJustReturn: [])
         
         return Output(items: items)
-    }
-}
-
-extension Reactive where Base == HomeViewController {
-    
-    var gotoQuery: Binder<Void> {
-        return Binder(base) { home, _ in
-            home.navigationController?.pushViewController(QueryViewController(), animated: true)
-        }
     }
 }
