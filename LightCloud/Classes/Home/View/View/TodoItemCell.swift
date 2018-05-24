@@ -43,7 +43,7 @@ class TodoItemCell: UITableViewCell {
         
         addSubview(followButton)
         followButton.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().inset(24)
+            make.right.equalToSuperview().inset(20)
             make.centerY.equalToSuperview()
             make.size.equalTo(CGSize(width: 44, height: 44))
         }

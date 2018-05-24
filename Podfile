@@ -9,6 +9,7 @@ target 'LightCloud' do
   pod 'LeanCloud'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxDataSources'
   pod 'SnapKit'
   pod 'MJRefresh'
   pod 'Toast-Swift'

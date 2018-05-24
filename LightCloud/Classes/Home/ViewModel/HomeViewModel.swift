@@ -66,10 +66,4 @@ extension Reactive where Base == HomeViewController {
             home.navigationController?.pushViewController(QueryViewController(), animated: true)
         }
     }
-    
-    var reloadRows: Binder<IndexPath> {
-        return Binder(base) { home, indexPath in
-            home.tableView.reloadRows(at: [indexPath], with: .none)
-        }
-    }
 }
