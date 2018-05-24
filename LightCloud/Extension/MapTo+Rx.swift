@@ -1,5 +1,5 @@
 //
-//  Then+Rx.swift
+//  MapTo+Rx.swift
 //  LightCloud
 //
 //  Created by GorXion on 2018/5/22.
@@ -10,22 +10,22 @@ import RxSwift
 
 extension ObservableType {
     
-    func then<T>(_ element: T) -> Observable<T> {
+    func map<T>(to element: T) -> Observable<T> {
         return map({ _ in element })
     }
     
-    func flatThen<T>(_ element: Observable<T>) -> Observable<T> {
+    func flatMap<T>(to element: Observable<T>) -> Observable<T> {
         return flatMap({ _ in element })
     }
 }
 
 extension Driver {
     
-    func then<T>(_ element: T) -> SharedSequence<S, T> {
+    func map<T>(to element: T) -> SharedSequence<S, T> {
         return map({ _ in element })
     }
     
-    func flatThen<T>(_ element: SharedSequence<S, T>) -> SharedSequence<S, T> {
+    func flatMap<T>(to element: SharedSequence<S, T>) -> SharedSequence<S, T> {
         return flatMap({ _ in element })
     }
 }

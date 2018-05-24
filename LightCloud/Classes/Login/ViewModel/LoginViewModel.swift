@@ -45,7 +45,7 @@ extension LoginViewModel: ViewModelType {
                 .loading()
                 .catchErrorJustToast()
                 .showToast(onSuccess: "验证码已发送")
-        }).flatThen(60.countdown()).asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
+        }).flatMap(to: 60.countdown()).asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         

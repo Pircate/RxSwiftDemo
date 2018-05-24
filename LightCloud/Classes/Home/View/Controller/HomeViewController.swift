@@ -40,7 +40,7 @@ final class HomeViewController: BaseViewController {
         navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
         navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.gotoQuery).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
-        navigation.item.rightBarButtonItem?.rx.tap.then(true).gotoLogin(from: self).disposed(by: disposeBag)
+        navigation.item.rightBarButtonItem?.rx.tap.map(to: true).gotoLogin(from: self).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
@@ -66,6 +66,6 @@ final class HomeViewController: BaseViewController {
             output.isSelected.drive(cell.followButton.rx.isSelected).disposed(by: cell.disposeBag)
         }.disposed(by: disposeBag)
         
-        output.items.then(()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
     }
 }

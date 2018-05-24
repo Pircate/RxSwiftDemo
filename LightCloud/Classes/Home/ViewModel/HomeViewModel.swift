@@ -50,8 +50,8 @@ extension HomeViewModel: ViewModelType {
                 item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
                 return item
             }
-            .flatMap({ item -> Observable<Bool> in
-                item.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+            .flatMap({
+                $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
             })
             .withLatestFrom(input.item).map({ ($0.value(forKey: "follow") as! LCBool).value })
             .asDriver(onErrorJustReturn: false)

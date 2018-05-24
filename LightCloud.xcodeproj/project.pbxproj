@@ -32,7 +32,7 @@
 		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
 		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
 		B5CE12B220A430EB00EC3F30 /* Toast+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */; };
-		B5DCEF4320B3EFE9001ED144 /* Then+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCEF4220B3EFE9001ED144 /* Then+Rx.swift */; };
+		B5DCEF4320B3EFE9001ED144 /* MapTo+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */; };
 		B5F7C09120B25F9B00B8F53B /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */; };
 		B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */; };
 		B5F7C09520B25FA700B8F53B /* QueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09320B25FA700B8F53B /* QueryViewModel.swift */; };
@@ -95,7 +95,7 @@
 		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Rx.swift"; sourceTree = "<group>"; };
-		B5DCEF4220B3EFE9001ED144 /* Then+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Then+Rx.swift"; sourceTree = "<group>"; };
+		B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapTo+Rx.swift"; sourceTree = "<group>"; };
 		B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B5F7C09320B25FA700B8F53B /* QueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewModel.swift; sourceTree = "<group>"; };
@@ -362,7 +362,7 @@
 				B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */,
 				B5BF557720AD575600BAF346 /* AsObservable.swift */,
 				B54FC4B820AEC74D001A8CE8 /* Countdown+Rx.swift */,
-				B5DCEF4220B3EFE9001ED144 /* Then+Rx.swift */,
+				B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
 				B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */,
-				B5DCEF4320B3EFE9001ED144 /* Then+Rx.swift in Sources */,
+				B5DCEF4320B3EFE9001ED144 /* MapTo+Rx.swift in Sources */,
 				33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewController+Rx.swift in Sources */,
 				B54FC4B920AEC74D001A8CE8 /* Countdown+Rx.swift in Sources */,
