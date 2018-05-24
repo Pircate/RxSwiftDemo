@@ -16,16 +16,17 @@ final class LoginViewController: BaseViewController {
             .returnKeyType(.next)
             .clearButtonMode(.whileEditing)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).build
+            .activeColor(UIColor(hex: "#CE9728"))
+            .keyboardType(.numberPad).build
     }()
     
     private lazy var passwordTextField: EffectTextField = {
         return EffectTextField().chain
             .placeholder("请输入验证码")
-            .isSecureTextEntry(true)
             .returnKeyType(.go)
             .inactiveColor(UIColor(hex: "#EFEFEF"))
-            .activeColor(UIColor(hex: "#CE9728")).build
+            .activeColor(UIColor(hex: "#CE9728"))
+            .keyboardType(.numberPad).build
     }()
     
     private lazy var captchaButton: UIButton = {
@@ -66,7 +67,7 @@ final class LoginViewController: BaseViewController {
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoRegister).disposed(by: disposeBag)
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
-        navigation.item.leftBarButtonItem?.rx.tap.map(to: true).dismiss(from: self).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem?.rx.tap.map(to: true).bind(to: rx.dismiss).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
@@ -111,6 +112,6 @@ final class LoginViewController: BaseViewController {
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
-        output.login.map(to: true).dismiss(from: self).disposed(by: disposeBag)
+        output.login.drive(rx.dismiss).disposed(by: disposeBag)
     }
 }

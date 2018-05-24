@@ -9,21 +9,6 @@ import RxSwift
 import RxCocoa
 import ExtensionX
 
-extension ObservableType where E == Bool {
-    
-    func goBack(from viewController: UIViewController) -> Disposable {
-        return asDriver(onErrorJustReturn: false).drive(viewController.rx.goBack)
-    }
-    
-    func dismiss(from viewController: UIViewController) -> Disposable {
-        return asDriver(onErrorJustReturn: false).drive(viewController.rx.dismiss)
-    }
-    
-    func gotoLogin(from viewController: UIViewController) -> Disposable {
-        return asDriver(onErrorJustReturn: false).drive(viewController.rx.gotoLogin)
-    }
-}
-
 extension Reactive where Base: UIViewController {
     
     var goBack: Binder<Bool> {

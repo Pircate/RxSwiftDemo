@@ -29,7 +29,7 @@ final class LoginViewModel {
     struct Output {
         let isEnabled: Driver<Bool>
         let captcha: Driver<(title: String, isEnabled: Bool)>
-        let login: Observable<LCUser>
+        let login: Driver<Bool>
     }
 }
 
@@ -54,7 +54,7 @@ extension LoginViewModel: ViewModelType {
                 .loading()
                 .catchErrorJustToast()
                 .showToast(onSuccess: "登录成功")
-        }
+        }.map(to: true).asDriver(onErrorJustReturn: false)
         return Output(isEnabled: isEnabled, captcha: captcha, login: login)
     }
 }
@@ -62,8 +62,8 @@ extension LoginViewModel: ViewModelType {
 extension Reactive where Base == LoginViewController {
     
     var gotoRegister: Binder<Void> {
-        return Binder(base) { viewController, _ in
-            viewController.navigationController?.pushViewController(RegisterViewController(), animated: true)
+        return Binder(base) { loginVC, _ in
+            loginVC.navigationController?.pushViewController(RegisterViewController(), animated: true)
         }
     }
 }

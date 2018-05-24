@@ -40,7 +40,7 @@ final class HomeViewController: BaseViewController {
         navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
         navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.gotoQuery).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
-        navigation.item.rightBarButtonItem?.rx.tap.map(to: true).gotoLogin(from: self).disposed(by: disposeBag)
+        navigation.item.rightBarButtonItem?.rx.tap.map(to: true).bind(to: rx.gotoLogin).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
@@ -80,7 +80,6 @@ final class HomeViewController: BaseViewController {
                         viewModel.dataSource.setSections(sections)
                         self.tableView.deleteRows(at: [indexPath], with: .automatic)
                     }
-                    
                 }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }

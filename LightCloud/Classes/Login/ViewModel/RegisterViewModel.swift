@@ -20,7 +20,7 @@ final class RegisterViewModel {
     
     struct Output {
         let isEnabled: Driver<Bool>
-        let register: Observable<Bool>
+        let register: Driver<Bool>
     }
 }
 
@@ -39,7 +39,7 @@ extension RegisterViewModel: ViewModelType {
                 .loading()
                 .catchErrorJustToast()
                 .showToast(onSuccess: "注册成功")
-        })
+        }).asDriver(onErrorJustReturn: false)
         
         return Output(isEnabled: isEnabled, register: register)
     }
