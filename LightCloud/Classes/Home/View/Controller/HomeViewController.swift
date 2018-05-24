@@ -57,15 +57,31 @@ final class HomeViewController: BaseViewController {
         let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshClosure)
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(cellIdentifier: "cellID", cellType: TodoItemCell.self)) { index, item, cell in
-            cell.update(item)
-            
-            let input = HomeViewModel.ItemInput(followTap: cell.followButton.rx.tap,
-                                                item: Observable.of(item).share(replay: 1))
-            let output = viewModel.itemTransform(input)
-            output.isSelected.drive(cell.followButton.rx.isSelected).disposed(by: cell.disposeBag)
-        }.disposed(by: disposeBag)
-        
+        output.items.drive(tableView.rx.items(dataSource: viewModel.dataSource)).disposed(by: disposeBag)
         output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        
+        // cell 删除操作
+        tableView.rx.itemDeleted.subscribe(onNext: { [weak self] (indexPath) in
+            guard let `self` = self else { return }
+            var sections = viewModel.dataSource.sectionModels
+            var items = sections[indexPath.section].items
+            let item = items[indexPath.row]
+            item.rx.delete().loading()
+                .catchErrorJustToast()
+                .showToast(onSuccess: "删除成功")
+                .subscribe(onNext: { _ in
+                    items.remove(at: indexPath.row)
+                    if items.isEmpty {
+                        sections.remove(at: indexPath.section)
+                        viewModel.dataSource.setSections(sections)
+                        self.tableView.deleteSections([indexPath.section], animationStyle: .automatic)
+                    } else {
+                        sections[indexPath.section].items = items
+                        viewModel.dataSource.setSections(sections)
+                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    }
+                    
+                }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
 }

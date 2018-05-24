@@ -25,4 +25,18 @@ extension Reactive where Base: LCObject {
             return Disposables.create()
         })
     }
+    
+    func delete() -> Observable<Bool> {
+        return Observable.create({ [weak base] (observer) -> Disposable in
+            base?.delete({ (result) in
+                switch result {
+                case .success:
+                    observer.onNext(true)
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            })
+            return Disposables.create()
+        })
+    }
 }

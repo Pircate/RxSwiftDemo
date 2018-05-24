@@ -8,7 +8,21 @@
 
 import RxSwift
 import RxCocoa
+import RxDataSources
 import LeanCloud
+
+struct TodoSectionModel {
+    
+    var items: [LCObject]
+}
+
+extension TodoSectionModel: SectionModelType {
+    
+    init(original: TodoSectionModel, items: [LCObject]) {
+        self = original
+        self.items = items
+    }
+}
 
 final class HomeViewModel {
     
@@ -17,17 +31,32 @@ final class HomeViewModel {
     }
     
     struct Output {
-        let items: Driver<[LCObject]>
+        let items: Driver<[TodoSectionModel]>
     }
     
-    struct ItemInput {
-        let followTap: ControlEvent<Void>
-        let item: Observable<LCObject>
-    }
-    
-    struct ItemOutput {
-        let isSelected: Driver<Bool>
-    }
+    lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
+        return RxTableViewSectionedReloadDataSource<TodoSectionModel>.init(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
+            cell.update(item)
+            
+            let source = Observable.of(item)
+            cell.followButton.rx.tap.withLatestFrom(source)
+                .map { item -> LCObject in
+                    item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
+                    return item
+                }
+                .flatMap({
+                    $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+                })
+                .withLatestFrom(source).map({ ($0.value(forKey: "follow") as! LCBool).value })
+                .asDriver(onErrorJustReturn: false).drive(cell.followButton.rx.isSelected).disposed(by: cell.disposeBag)
+            
+            return cell
+        }, canEditRowAtIndexPath: { _, _ in
+            return true
+        })
+    }()
 }
 
 extension HomeViewModel: ViewModelType {
@@ -36,26 +65,13 @@ extension HomeViewModel: ViewModelType {
         
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "")
+                .map({ [TodoSectionModel(items: $0)] })
                 .loading()
                 .catchErrorJustToast()
                 .hideToastOnSuccess()
         }).asDriver(onErrorJustReturn: [])
         
         return Output(items: items)
-    }
-    
-    func itemTransform(_ input: ItemInput) -> ItemOutput {
-        let isSelected = input.followTap.withLatestFrom(input.item)
-            .map { item -> LCObject in
-                item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
-                return item
-            }
-            .flatMap({
-                $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
-            })
-            .withLatestFrom(input.item).map({ ($0.value(forKey: "follow") as! LCBool).value })
-            .asDriver(onErrorJustReturn: false)
-        return ItemOutput(isSelected: isSelected)
     }
 }
 
