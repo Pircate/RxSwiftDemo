@@ -107,13 +107,12 @@ final class HomeViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         // cell 移动操作
-        tableView.rx.itemMoved.subscribe(onNext: { (source, destination) in
-            let sections = viewModel.dataSource.sectionModels
-            var items = sections[source.section].items
-            let item = items[source.row]
-            items.remove(at: source.row)
-            items.insert(item, at: destination.row)
-            viewModel.dataSource.setSections([TodoSectionModel(items: items)])
+        tableView.rx.itemMoved.subscribe(onNext: { (from, to) in
+            var sections = viewModel.dataSource.sectionModels
+            let item = sections[from.section].items[from.row]
+            sections[from.section].items.remove(at: from.item)
+            sections[to.section].items.insert(item, at: to.row)
+            viewModel.dataSource.setSections(sections)
         }).disposed(by: disposeBag)
     }
 }
