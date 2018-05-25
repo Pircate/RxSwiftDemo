@@ -54,7 +54,7 @@ final class HomeViewController: BaseViewController {
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
-        isSelected.map({ !$0 }).bind(to: tableView.rx.bounces).disposed(by: disposeBag)
+        isSelected.map(!).bind(to: tableView.rx.bounces).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
