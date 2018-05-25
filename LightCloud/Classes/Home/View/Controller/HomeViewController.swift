@@ -17,6 +17,12 @@ extension Reactive where Base: UITableView {
             tableView.setEditing(isEditing, animated: false)
         }
     }
+    
+    var bounces: Binder<Bool> {
+        return Binder(base) { tableView, bounces in
+            tableView.bounces = bounces
+        }
+    }
 }
 
 final class HomeViewController: BaseViewController {
@@ -61,7 +67,7 @@ final class HomeViewController: BaseViewController {
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
-        isSelected.map({ !$0 }).bind(to: tableView.cr.header!.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        isSelected.map({ !$0 }).bind(to: tableView.rx.bounces).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
