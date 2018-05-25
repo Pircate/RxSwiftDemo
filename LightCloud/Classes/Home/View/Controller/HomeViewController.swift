@@ -57,7 +57,7 @@ final class HomeViewController: BaseViewController {
             .systemFont(ofSize: 16).build
         navigation.item.titleView = editButton
         
-        let isSelected = editButton.rx.controlEvent(.touchUpInside).map({ !editButton.isSelected }).share(replay: 1)
+        let isSelected = editButton.rx.tap.map({ !editButton.isSelected }).share(replay: 1)
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
