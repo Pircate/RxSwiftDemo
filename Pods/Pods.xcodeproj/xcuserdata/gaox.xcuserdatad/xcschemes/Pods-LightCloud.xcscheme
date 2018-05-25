@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4606FAEEA81038055A7E9E328421CC5D"
+               BlueprintIdentifier = "C9FAF2E71CA4B7D8E59F98E435DE2C45"
                BuildableName = "Pods_LightCloud.framework"
                BlueprintName = "Pods-LightCloud"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4606FAEEA81038055A7E9E328421CC5D"
+            BlueprintIdentifier = "C9FAF2E71CA4B7D8E59F98E435DE2C45"
             BuildableName = "Pods_LightCloud.framework"
             BlueprintName = "Pods-LightCloud"
             ReferencedContainer = "container:Pods.xcodeproj">

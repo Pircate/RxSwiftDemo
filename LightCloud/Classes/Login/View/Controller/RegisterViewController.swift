@@ -54,6 +54,8 @@ class RegisterViewController: BaseViewController {
     private func buildSubviews() {
         
         navigation.item.title = "注册"
+        navigation.item.leftBarButtonItem = UIBarButtonItem(title: "返回").chain.tintColor(UIColor.white).build
+        navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.goBack).disposed(by: disposeBag)
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -85,5 +87,6 @@ class RegisterViewController: BaseViewController {
         
         output.isEnabled.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
         output.register.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
+        output.register.drive(view.rx.endEditing).disposed(by: disposeBag)
     }
 }

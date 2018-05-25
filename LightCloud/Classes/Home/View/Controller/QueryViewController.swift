@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MJRefresh
 import LeanCloud
 
 final class QueryViewController: BaseViewController {
