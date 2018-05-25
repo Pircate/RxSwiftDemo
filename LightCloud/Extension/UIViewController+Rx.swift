@@ -11,9 +11,9 @@ import ExtensionX
 
 extension Reactive where Base: UIViewController {
     
-    var push: Binder<UIViewController> {
-        return Binder(base) {
-            $0.navigationController?.pushViewController($1, animated: true)
+    func push(to viewController: UIViewController) -> Binder<Void> {
+        return Binder(base) { from, to in
+            from.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
