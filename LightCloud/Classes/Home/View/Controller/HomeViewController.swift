@@ -10,6 +10,15 @@ import UIKit
 import LeanCloud
 import CRRefresh
 
+extension Reactive where Base: UITableView {
+    
+    var isEditing: Binder<Bool> {
+        return Binder(base) { tableView, isEditing in
+            tableView.setEditing(isEditing, animated: false)
+        }
+    }
+}
+
 final class HomeViewController: BaseViewController {
     
     lazy var tableView: UITableView = {
@@ -41,6 +50,18 @@ final class HomeViewController: BaseViewController {
         navigation.item.leftBarButtonItem?.rx.tap.map(to: QueryViewController()).bind(to: rx.push).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoLogin).disposed(by: disposeBag)
+        
+        let editButton = UIButton(type: .custom).chain
+            .title("编辑", for: .normal, .highlighted)
+            .title("完成", for: .selected, [.selected, .highlighted])
+            .systemFont(ofSize: 16).build
+        navigation.item.titleView = editButton
+        
+        let isSelected = editButton.rx.controlEvent(.touchUpInside).map({ !editButton.isSelected }).share(replay: 1)
+        isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
+        isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
+        // 编辑状态禁用下拉刷新
+        isSelected.map({ !$0 }).bind(to: tableView.cr.header!.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
     
     private func buildSubviews() {
@@ -58,6 +79,8 @@ final class HomeViewController: BaseViewController {
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(dataSource: viewModel.dataSource)).disposed(by: disposeBag)
+        
+        // 请求完成结束刷新
         output.items.map(to: ()).drive(tableView.cr.header!.rx.endRefreshing).disposed(by: disposeBag)
         
         // cell 删除操作
@@ -81,6 +104,16 @@ final class HomeViewController: BaseViewController {
                         self.tableView.deleteRows(at: [indexPath], with: .automatic)
                     }
                 }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+        
+        // cell 移动操作
+        tableView.rx.itemMoved.subscribe(onNext: { (source, destination) in
+            let sections = viewModel.dataSource.sectionModels
+            var items = sections[source.section].items
+            let item = items[source.row]
+            items.remove(at: source.row)
+            items.insert(item, at: destination.row)
+            viewModel.dataSource.setSections([TodoSectionModel(items: items)])
         }).disposed(by: disposeBag)
     }
 }

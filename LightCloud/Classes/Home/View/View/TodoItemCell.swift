@@ -11,6 +11,10 @@ import RxSwift
 
 class TodoItemCell: UITableViewCell {
     
+    lazy var nameLabel: UILabel = {
+        UILabel().chain.systemFont(ofSize: 16).build
+    }()
+    
     lazy var followButton: UIButton = {
         UIButton(type: .custom).chain
             .image(#imageLiteral(resourceName: "unlike"), for: .normal)
@@ -41,7 +45,14 @@ class TodoItemCell: UITableViewCell {
         
         selectionStyle = .none
         
-        addSubview(followButton)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(followButton)
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
+        }
+        
         followButton.snp.makeConstraints { (make) in
             make.right.equalToSuperview().inset(20)
             make.centerY.equalToSuperview()
@@ -57,7 +68,7 @@ class TodoItemCell: UITableViewCell {
 extension TodoItemCell: Updatable {
     
     func update(_ item: LCObject) {
-        textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
+        nameLabel.text = (item.value(forKey: "name") as? LCString)?.value
         followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
     }
 }

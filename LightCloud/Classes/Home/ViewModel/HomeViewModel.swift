@@ -56,6 +56,8 @@ final class HomeViewModel {
             return cell
         }, canEditRowAtIndexPath: { _, _ in
             return true
+        }, canMoveRowAtIndexPath: { _, _ in
+            return true
         })
     }()
 }
