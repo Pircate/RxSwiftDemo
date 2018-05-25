@@ -17,9 +17,9 @@ extension Reactive where Base: UIViewController {
         }
     }
     
-    var goBack: Binder<Void> {
+    var pop: Binder<Void> {
         return Binder(base) { vc, _ in
-            vc.goBack()
+            vc.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -29,14 +29,9 @@ extension Reactive where Base: UIViewController {
         }
     }
     
-    var gotoLogin: Binder<Void> {
+    var goBack: Binder<Void> {
         return Binder(base) { vc, _ in
-            let nav = UINavigationController(rootViewController: LoginViewController())
-            nav.navigation.configuration.isEnabled = true
-            nav.navigation.configuration.isTranslucent = true
-            nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")
-            nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
-            vc.present(nav, animated: true, completion: nil)
+            vc.goBack()
         }
     }
 }
