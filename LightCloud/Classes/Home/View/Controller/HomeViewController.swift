@@ -10,21 +10,6 @@ import UIKit
 import LeanCloud
 import CRRefresh
 
-extension Reactive where Base: UITableView {
-    
-    var isEditing: Binder<Bool> {
-        return Binder(base) { tableView, isEditing in
-            tableView.setEditing(isEditing, animated: false)
-        }
-    }
-    
-    var bounces: Binder<Bool> {
-        return Binder(base) { tableView, bounces in
-            tableView.bounces = bounces
-        }
-    }
-}
-
 final class HomeViewController: BaseViewController {
     
     lazy var tableView: UITableView = {
