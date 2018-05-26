@@ -36,23 +36,8 @@ final class HomeViewModel {
     
     lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
         return RxTableViewSectionedReloadDataSource<TodoSectionModel>.init(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
-            cell.update(item)
-            
-            cell.followButton.rx.tap
-                .map { _ -> LCObject in
-                    item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
-                    return item
-                }
-                .flatMap({
-                    $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
-                })
-                .map({ _ in (item.value(forKey: "follow") as! LCBool).value })
-                .asDriver(onErrorJustReturn: false)
-                .drive(cell.followButton.rx.isSelected)
-                .disposed(by: cell.disposeBag)
-            
+            cell.bindItem(item)
             return cell
         }, canEditRowAtIndexPath: { _, _ in
             return true

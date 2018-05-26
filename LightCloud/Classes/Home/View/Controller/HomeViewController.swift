@@ -48,7 +48,7 @@ final class HomeViewController: BaseViewController {
             .systemFont(ofSize: 16).build
         navigation.item.titleView = editButton
         
-        let isSelected = editButton.rx.tap.map({ !editButton.isSelected }).share(replay: 1)
+        let isSelected = editButton.rx.tap.map({ !editButton.isSelected }).share(1)
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
@@ -74,7 +74,12 @@ final class HomeViewController: BaseViewController {
         // 请求完成结束刷新
         output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
         
-        // cell 删除操作
+        itemDeletedBind(viewModel)
+        itemMovedBind(viewModel)
+    }
+    
+    // cell 删除操作
+    private func itemDeletedBind(_ viewModel: HomeViewModel) {
         tableView.rx.itemDeleted.flatMap({ indexPath in
             viewModel.dataSource[indexPath].rx.delete().loading()
                 .catchErrorJustToast()
@@ -95,8 +100,10 @@ final class HomeViewController: BaseViewController {
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }).disposed(by: disposeBag)
-        
-        // cell 移动操作
+    }
+    
+    // cell 移动操作
+    private func itemMovedBind(_ viewModel: HomeViewModel) {
         tableView.rx.itemMoved.subscribe(onNext: { (from, to) in
             let sections = viewModel.dataSource.sectionModels
             let item = viewModel.dataSource[from]

@@ -65,10 +65,23 @@ class TodoItemCell: UITableViewCell {
     }
 }
 
-extension TodoItemCell: Updatable {
+extension TodoItemCell {
     
-    func update(_ item: LCObject) {
+    func bindItem(_ item: LCObject) {
         nameLabel.text = (item.value(forKey: "name") as? LCString)?.value
         followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
+        
+        followButton.rx.tap
+            .map { _ -> LCObject in
+                item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
+                return item
+            }
+            .flatMap({
+                $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+            })
+            .map({ _ in (item.value(forKey: "follow") as! LCBool).value })
+            .asDriver(onErrorJustReturn: false)
+            .drive(followButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
 }

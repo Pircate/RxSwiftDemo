@@ -67,7 +67,7 @@ final class LoginViewController: BaseViewController {
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.push(RegisterViewController.self)).disposed(by: disposeBag)
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
-        let leftTap = navigation.item.leftBarButtonItem!.rx.tap.share(replay: 1)
+        let leftTap = navigation.item.leftBarButtonItem!.rx.tap.share(1)
         leftTap.bind(to: rx.dismiss).disposed(by: disposeBag)
         leftTap.map(to: true).bind(to: view.rx.endEditing).disposed(by: disposeBag)
     }
@@ -105,8 +105,8 @@ final class LoginViewController: BaseViewController {
 
     private func bindViewModel() {
         let viewModel = LoginViewModel()
-        let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(replay: 1),
-                                         password: passwordTextField.rx.text.orEmpty.share(replay: 1),
+        let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(1),
+                                         password: passwordTextField.rx.text.orEmpty.share(1),
                                          captchaTap: captchaButton.rx.tap,
                                          loginTap: loginButton.rx.tap)
         let output = viewModel.transform(input)
