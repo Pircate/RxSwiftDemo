@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (4.7.2)
   - CocoaChainKit (0.4.2)
-  - CRRefresh (1.0.7)
   - Differentiator (3.0.2)
   - EachNavigationBar (0.1.2)
   - ExtensionX (0.1.0)
@@ -10,6 +9,7 @@ PODS:
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
+  - MJRefresh (3.1.15.3)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxDataSources (3.0.2):
@@ -22,11 +22,11 @@ PODS:
 
 DEPENDENCIES:
   - CocoaChainKit
-  - CRRefresh
   - EachNavigationBar
   - ExtensionX (from `./Pods/ExtensionX`)
   - IQKeyboardManagerSwift
   - LeanCloud
+  - MJRefresh
   - RxCocoa
   - RxDataSources
   - RxSwift
@@ -37,11 +37,11 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CocoaChainKit
-    - CRRefresh
     - Differentiator
     - EachNavigationBar
     - IQKeyboardManagerSwift
     - LeanCloud
+    - MJRefresh
     - RxCocoa
     - RxDataSources
     - RxSwift
@@ -55,18 +55,18 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
-  CRRefresh: 0a77b1b0d81a6a9e1ac611cb748ba3660b89601f
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
   ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: c61319b03794c1d66315b1a1b6a34ce1975218f8
+PODFILE CHECKSUM: ff59ffea475b42f916623e0dfbcc9f7140431ac9
 
 COCOAPODS: 1.5.2

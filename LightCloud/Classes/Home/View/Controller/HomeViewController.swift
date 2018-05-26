@@ -8,7 +8,7 @@
 
 import UIKit
 import LeanCloud
-import CRRefresh
+import MJRefresh
 
 final class HomeViewController: BaseViewController {
     
@@ -16,7 +16,7 @@ final class HomeViewController: BaseViewController {
         let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .rowHeight(60)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
-        tableView.cr.addHeadRefresh {}
+        tableView.mj_header = MJRefreshNormalHeader()
         disablesAdjustScrollViewInsets(tableView)
         return tableView
     }()
@@ -63,18 +63,18 @@ final class HomeViewController: BaseViewController {
             make.top.equalTo(navigation.bar.snp.bottom)
             make.left.bottom.right.equalToSuperview()
         }
-        tableView.cr.header?.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     private func bindViewModel() {
         let viewModel = HomeViewModel()
-        let input = HomeViewModel.Input(refresh: tableView.cr.header!.rx.refreshHandler)
+        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshingClosure)
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(dataSource: viewModel.dataSource)).disposed(by: disposeBag)
         
         // 请求完成结束刷新
-        output.items.map(to: ()).drive(tableView.cr.header!.rx.endRefreshing).disposed(by: disposeBag)
+        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
         
         // cell 删除操作
         tableView.rx.itemDeleted.flatMap({ indexPath in

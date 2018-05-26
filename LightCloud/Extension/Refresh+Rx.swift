@@ -8,9 +8,9 @@
 
 import RxSwift
 import RxCocoa
-import CRRefresh
+import MJRefresh
 
-extension Reactive where Base: CRRefreshComponent {
+extension Reactive where Base: MJRefreshComponent {
     
     var beginRefreshing: Binder<Void> {
         return Binder(base) { component, _ in
@@ -18,9 +18,9 @@ extension Reactive where Base: CRRefreshComponent {
         }
     }
     
-    var refreshHandler: ControlEvent<Void> {
+    var refreshingClosure: ControlEvent<Void> {
         return ControlEvent(events: Observable.create({ [weak base] (observer) -> Disposable in
-            base?.handler = {
+            base?.refreshingBlock = {
                 observer.onNext(())
             }
             return Disposables.create()
