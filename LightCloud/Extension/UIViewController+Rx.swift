@@ -11,6 +11,12 @@ import ExtensionX
 
 extension Reactive where Base: UIViewController {
     
+    func push<T: UIViewController>(_ type: T.Type) -> Binder<Void> {
+        return Binder(base) { vc, _ in
+            vc.navigationController?.pushViewController(type.init(), animated: true)
+        }
+    }
+    
     var pop: Binder<Void> {
         return Binder(base) { vc, _ in
             vc.navigationController?.popViewController(animated: true)
