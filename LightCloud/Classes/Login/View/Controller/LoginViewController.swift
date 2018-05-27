@@ -117,5 +117,7 @@ final class LoginViewController: BaseViewController {
         output.captcha.asObservable().take(1).map(to: ()).asDriver(onErrorJustReturn: ()).drive(passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
         output.login.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
         output.login.drive(view.rx.endEditing).disposed(by: disposeBag)
+        
+        view.rx.swipeGesture(.left).when(.recognized).map(to: ()).bind(to: rx.push(RegisterViewController.self)).disposed(by: disposeBag)
     }
 }

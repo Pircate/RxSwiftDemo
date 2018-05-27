@@ -16,6 +16,9 @@ PODS:
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
   - SnapKit (4.0.0)
   - Toast-Swift (3.0.1)
@@ -29,6 +32,7 @@ DEPENDENCIES:
   - MJRefresh
   - RxCocoa
   - RxDataSources
+  - RxGesture
   - RxSwift
   - SnapKit
   - Toast-Swift
@@ -44,6 +48,7 @@ SPEC REPOS:
     - MJRefresh
     - RxCocoa
     - RxDataSources
+    - RxGesture
     - RxSwift
     - SnapKit
     - Toast-Swift
@@ -63,10 +68,11 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
+  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: ff59ffea475b42f916623e0dfbcc9f7140431ac9
+PODFILE CHECKSUM: a4f8cb5760c6bf80966175dba546ce29270cde0e
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
