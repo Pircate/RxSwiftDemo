@@ -105,16 +105,17 @@ final class LoginViewController: BaseViewController {
 
     private func bindViewModel() {
         let viewModel = LoginViewModel()
+        let captchaTap = captchaButton.rx.tap.share(1)
         let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(1),
                                          password: passwordTextField.rx.text.orEmpty.share(1),
-                                         captchaTap: captchaButton.rx.tap,
+                                         captchaTap: captchaTap,
                                          loginTap: loginButton.rx.tap)
         let output = viewModel.transform(input)
         
+        captchaTap.bind(to: passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
-        output.captcha.map(to: ()).drive(passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
         output.login.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
         output.login.drive(view.rx.endEditing).disposed(by: disposeBag)
     }

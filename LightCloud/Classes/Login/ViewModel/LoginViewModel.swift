@@ -22,7 +22,7 @@ final class LoginViewModel {
     struct Input {
         let username: Observable<String>
         let password: Observable<String>
-        let captchaTap: ControlEvent<Void>
+        let captchaTap: Observable<Void>
         let loginTap: ControlEvent<Void>
     }
     
