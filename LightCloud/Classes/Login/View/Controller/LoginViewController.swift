@@ -113,7 +113,7 @@ final class LoginViewController: BaseViewController {
         
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
-        output.captcha.map({ $0.isEnabled }).drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
+        output.captcha.map({ $0.isEnabled }).distinctUntilChanged().drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.asObservable().take(1).map(to: ()).asDriver(onErrorJustReturn: ()).drive(passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
         output.login.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
         output.login.drive(view.rx.endEditing).disposed(by: disposeBag)
