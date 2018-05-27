@@ -35,7 +35,7 @@ final class HomeViewModel {
     }
     
     lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
-        return RxTableViewSectionedReloadDataSource<TodoSectionModel>.init(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+        return RxTableViewSectionedReloadDataSource<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
             cell.bindItem(item)
             return cell

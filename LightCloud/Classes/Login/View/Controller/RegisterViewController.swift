@@ -80,8 +80,8 @@ class RegisterViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = RegisterViewModel()
-        let input = RegisterViewModel.Input(username: usernameTextField.rx.text.orEmpty.share(1),
-                                            password: passwordTextField.rx.text.orEmpty.share(1),
+        let input = RegisterViewModel.Input(username: usernameTextField.rx.text.orEmpty.shareOnce(),
+                                            password: passwordTextField.rx.text.orEmpty.shareOnce(),
                                             registerTap: registerButton.rx.tap)
         let output = viewModel.transform(input)
         

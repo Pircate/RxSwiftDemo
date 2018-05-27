@@ -1,5 +1,5 @@
 //
-//  Share+Rx.swift
+//  ShareOnce+Rx.swift
 //  LightCloud
 //
 //  Created by GorXion on 2018/5/26.
@@ -10,7 +10,7 @@ import RxSwift
 
 extension ObservableType {
     
-    func share(_ replay: Int) -> Observable<E> {
+    func shareOnce() -> Observable<E> {
         return share(replay: 1)
     }
 }
