@@ -33,18 +33,6 @@ final class HomeViewModel {
     struct Output {
         let items: Driver<[TodoSectionModel]>
     }
-    
-    lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
-        return RxTableViewSectionedReloadDataSource<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
-            cell.bindItem(item)
-            return cell
-        }, canEditRowAtIndexPath: { _, _ in
-            return true
-        }, canMoveRowAtIndexPath: { _, _ in
-            return true
-        })
-    }()
 }
 
 extension HomeViewModel: ViewModelType {

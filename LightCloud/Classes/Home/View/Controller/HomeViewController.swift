@@ -9,16 +9,29 @@
 import UIKit
 import LeanCloud
 import MJRefresh
+import RxDataSources
 
 final class HomeViewController: BaseViewController {
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .rowHeight(60)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
         tableView.mj_header = MJRefreshNormalHeader()
         disablesAdjustScrollViewInsets(tableView)
         return tableView
+    }()
+    
+    private lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
+        RxTableViewSectionedReloadDataSource<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
+            cell.bindItem(item)
+            return cell
+        }, canEditRowAtIndexPath: { _, _ in
+            return true
+        }, canMoveRowAtIndexPath: { _, _ in
+            return true
+        })
     }()
 
     override func viewDidLoad() {
@@ -69,49 +82,49 @@ final class HomeViewController: BaseViewController {
         let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshingClosure)
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(dataSource: viewModel.dataSource)).disposed(by: disposeBag)
+        output.items.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
         // 请求完成结束刷新
         output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
         
-        itemDeletedBind(viewModel)
-        itemMovedBind(viewModel)
+        itemDeletedBind(dataSource)
+        itemMovedBind(dataSource)
     }
     
     // cell 删除操作
-    private func itemDeletedBind(_ viewModel: HomeViewModel) {
+    private func itemDeletedBind(_ dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel>) {
         tableView.rx.itemDeleted.flatMap({ indexPath in
-            viewModel.dataSource[indexPath].rx.delete().loading()
+            dataSource[indexPath].rx.delete().loading()
                 .catchErrorJustToast()
                 .showToast(onSuccess: "删除成功")
                 .map({ _ in indexPath })
         }).subscribe(onNext: { [weak self] indexPath in
-            var sections = viewModel.dataSource.sectionModels
+            var sections = dataSource.sectionModels
             var items = sections[indexPath.section].items
             items.remove(at: indexPath.row)
             guard let `self` = self else { return }
             if items.isEmpty {
                 sections.remove(at: indexPath.section)
-                viewModel.dataSource.setSections(sections)
+                dataSource.setSections(sections)
                 self.tableView.deleteSections([indexPath.section], animationStyle: .automatic)
             } else {
                 sections[indexPath.section].items = items
-                viewModel.dataSource.setSections(sections)
+                dataSource.setSections(sections)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }).disposed(by: disposeBag)
     }
     
     // cell 移动操作
-    private func itemMovedBind(_ viewModel: HomeViewModel) {
+    private func itemMovedBind(_ dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel>) {
         tableView.rx.itemMoved.subscribe(onNext: { (from, to) in
-            let sections = viewModel.dataSource.sectionModels
-            let item = viewModel.dataSource[from]
+            let sections = dataSource.sectionModels
+            let item = dataSource[from]
             var fromItems = sections[from.section].items
             var toItems = sections[to.section].items
             fromItems.remove(at: from.item)
             toItems.insert(item, at: to.row)
-            viewModel.dataSource.setSections(sections)
+            dataSource.setSections(sections)
         }).disposed(by: disposeBag)
     }
 }
