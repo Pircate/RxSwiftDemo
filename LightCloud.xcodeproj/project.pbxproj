@@ -10,6 +10,7 @@
 		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
 		330EE6FA20B8699E00D0823D /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330EE6F920B8699E00D0823D /* UIScrollView+Rx.swift */; };
+		331D8C9020BC4E800075C83D /* UIState+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331D8C8F20BC4E800075C83D /* UIState+Rx.swift */; };
 		33313DDC20B998BC0078E900 /* ShareOnce+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33313DDB20B998BC0078E900 /* ShareOnce+Rx.swift */; };
 		336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336115D520B5A018001B5668 /* TodoItemCell.swift */; };
 		33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */; };
@@ -34,7 +35,6 @@
 		B5CE12AC20A4141E00EC3F30 /* LCUser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AB20A4141E00EC3F30 /* LCUser+Rx.swift */; };
 		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
 		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
-		B5CE12B220A430EB00EC3F30 /* Toast+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */; };
 		B5DCEF4320B3EFE9001ED144 /* MapTo+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */; };
 		B5F7C09120B25F9B00B8F53B /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */; };
 		B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */; };
@@ -65,6 +65,7 @@
 		05FCE86C376FC23D2C014D95 /* Pods-LightCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.debug.xcconfig"; sourceTree = "<group>"; };
 		14AE4D52C883F8123E91BC1D /* Pods-LightCloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.release.xcconfig"; sourceTree = "<group>"; };
 		330EE6F920B8699E00D0823D /* UIScrollView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Rx.swift"; sourceTree = "<group>"; };
+		331D8C8F20BC4E800075C83D /* UIState+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIState+Rx.swift"; sourceTree = "<group>"; };
 		33313DDB20B998BC0078E900 /* ShareOnce+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareOnce+Rx.swift"; sourceTree = "<group>"; };
 		336115D520B5A018001B5668 /* TodoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemCell.swift; sourceTree = "<group>"; };
 		33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCObject+Rx.swift"; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		B5CE12AB20A4141E00EC3F30 /* LCUser+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCUser+Rx.swift"; sourceTree = "<group>"; };
 		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Rx.swift"; sourceTree = "<group>"; };
 		B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapTo+Rx.swift"; sourceTree = "<group>"; };
 		B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 				B5F7C09620B2600B00B8F53B /* Refresh+Rx.swift */,
 				B5CE129620A3E05900EC3F30 /* UIViewController+Rx.swift */,
 				330EE6F920B8699E00D0823D /* UIScrollView+Rx.swift */,
-				B5CE12B120A430EB00EC3F30 /* Toast+Rx.swift */,
+				331D8C8F20BC4E800075C83D /* UIState+Rx.swift */,
 				B5BF557720AD575600BAF346 /* AsObservable.swift */,
 				B54FC4B820AEC74D001A8CE8 /* Countdown+Rx.swift */,
 				B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */,
@@ -712,7 +712,6 @@
 				B5CE129A20A3E05900EC3F30 /* UIViewController+Rx.swift in Sources */,
 				33313DDC20B998BC0078E900 /* ShareOnce+Rx.swift in Sources */,
 				B54FC4B920AEC74D001A8CE8 /* Countdown+Rx.swift in Sources */,
-				B5CE12B220A430EB00EC3F30 /* Toast+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
 				B5F7C09920B2610100B8F53B /* LCQuery+Rx.swift in Sources */,
 				336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */,
@@ -723,6 +722,7 @@
 				B5CE127A20A3DA8F00EC3F30 /* AppDelegate+Services.swift in Sources */,
 				B5F7C09120B25F9B00B8F53B /* QueryViewController.swift in Sources */,
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
+				331D8C9020BC4E800075C83D /* UIState+Rx.swift in Sources */,
 				B5CE12AC20A4141E00EC3F30 /* LCUser+Rx.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,

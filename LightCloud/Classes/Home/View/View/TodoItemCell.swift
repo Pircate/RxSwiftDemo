@@ -71,17 +71,19 @@ extension TodoItemCell {
         nameLabel.text = (item.value(forKey: "name") as? LCString)?.value
         followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
         
+        let state = PublishRelay<UIState>()
         followButton.rx.tap
             .map { _ -> LCObject in
                 item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
                 return item
             }
             .flatMap({
-                $0.rx.save().loading().catchErrorJustToast().hideToastOnSuccess()
+                $0.rx.save().trackState(state)
             })
             .map({ _ in (item.value(forKey: "follow") as! LCBool).value })
             .asDriver(onErrorJustReturn: false)
             .drive(followButton.rx.isSelected)
             .disposed(by: disposeBag)
+        state.asDriver(onErrorJustReturn: .idle).drive(contentView.rx.state).disposed(by: disposeBag)
     }
 }

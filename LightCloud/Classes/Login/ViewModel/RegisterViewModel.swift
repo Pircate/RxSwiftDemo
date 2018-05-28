@@ -21,6 +21,7 @@ final class RegisterViewModel {
     struct Output {
         let isEnabled: Driver<Bool>
         let register: Driver<Bool>
+        let state: Driver<UIState>
     }
 }
 
@@ -32,15 +33,13 @@ extension RegisterViewModel: ViewModelType {
             !$0.isEmpty && !$1.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
+        let state = PublishRelay<UIState>()
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
-        
         let register = input.registerTap.withLatestFrom(usernameAndPassword).flatMapLatest({
             LCUser.rx.register(username: $0.username, password: $0.password)
-                .loading()
-                .catchErrorJustToast()
-                .showToast(onSuccess: "注册成功")
+                .trackState(state, success: "注册成功")
         }).asDriver(onErrorJustReturn: false)
         
-        return Output(isEnabled: isEnabled, register: register)
+        return Output(isEnabled: isEnabled, register: register, state: state.asDriver(onErrorJustReturn: .idle))
     }
 }

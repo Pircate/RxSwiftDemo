@@ -28,24 +28,33 @@ final class HomeViewModel {
     
     struct Input {
         let refresh: ControlEvent<Void>
+        let itemDeleted: ControlEvent<IndexPath>
+        let dataSource: Observable<RxTableViewSectionedReloadDataSource<TodoSectionModel>>
     }
     
     struct Output {
         let items: Driver<[TodoSectionModel]>
+        let state: Driver<UIState>
+        let itemDeleted: Observable<IndexPath>
     }
 }
 
 extension HomeViewModel: ViewModelType {
     
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
+        let state = PublishRelay<UIState>()
+        
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "")
                 .map({ [TodoSectionModel(items: $0)] })
-                .loading()
-                .hideToastOnSuccess()
-                .catchErrorJustToast(return: [])
+                .trackState(state)
         }).asDriver(onErrorJustReturn: [])
         
-        return Output(items: items)
+        let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
+            .flatMap({
+                $0.rx.delete().trackState(state, success: "删除成功")
+            }).withLatestFrom(input.itemDeleted)
+        
+        return Output(items: items, state: state.asDriver(onErrorJustReturn: .idle), itemDeleted: itemDeleted)
     }
 }

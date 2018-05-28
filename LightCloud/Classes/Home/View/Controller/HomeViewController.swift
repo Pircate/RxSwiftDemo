@@ -79,40 +79,39 @@ final class HomeViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = HomeViewModel()
-        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshingClosure)
+        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshingClosure,
+                                        itemDeleted: tableView.rx.itemDeleted,
+                                        dataSource: Observable.of(dataSource))
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
         // 请求完成结束刷新
-        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.state.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.state.drive(view.rx.state).disposed(by: disposeBag)
         
-        itemDeletedBind(dataSource)
+        output.itemDeleted.bind { [weak self] indexPath in
+            guard let `self` = self else { return }
+            self.itemDeleted(at: indexPath)
+        }.disposed(by: disposeBag)
+        
         itemMovedBind(dataSource)
     }
     
     // cell 删除操作
-    private func itemDeletedBind(_ dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel>) {
-        tableView.rx.itemDeleted.flatMap({ indexPath in
-            dataSource[indexPath].rx.delete().loading()
-                .catchErrorJustToast()
-                .showToast(onSuccess: "删除成功")
-                .map({ _ in indexPath })
-        }).subscribe(onNext: { [weak self] indexPath in
-            var sections = dataSource.sectionModels
-            var items = sections[indexPath.section].items
-            items.remove(at: indexPath.row)
-            guard let `self` = self else { return }
-            if items.isEmpty {
-                sections.remove(at: indexPath.section)
-                dataSource.setSections(sections)
-                self.tableView.deleteSections([indexPath.section], animationStyle: .automatic)
-            } else {
-                sections[indexPath.section].items = items
-                dataSource.setSections(sections)
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-        }).disposed(by: disposeBag)
+    private func itemDeleted(at indexPath: IndexPath) {
+        var sections = dataSource.sectionModels
+        var items = sections[indexPath.section].items
+        items.remove(at: indexPath.row)
+        if items.isEmpty {
+            sections.remove(at: indexPath.section)
+            dataSource.setSections(sections)
+            tableView.deleteSections([indexPath.section], animationStyle: .automatic)
+        } else {
+            sections[indexPath.section].items = items
+            dataSource.setSections(sections)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     // cell 移动操作

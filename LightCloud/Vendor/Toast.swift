@@ -27,7 +27,7 @@ final class Toast {
         keyWindow?.makeToastActivity(.center)
     }
     
-    static func show(info: String?, duration: TimeInterval = ToastManager.shared.duration) {
+    static func show(info: String, duration: TimeInterval = ToastManager.shared.duration) {
         hide()
         keyWindow?.makeToast(info, duration: duration, position: .center)
     }
