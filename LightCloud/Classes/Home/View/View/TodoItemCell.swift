@@ -84,6 +84,6 @@ extension TodoItemCell {
             .asDriver(onErrorJustReturn: false)
             .drive(followButton.rx.isSelected)
             .disposed(by: disposeBag)
-        state.asDriver(onErrorJustReturn: .idle).drive(contentView.rx.state).disposed(by: disposeBag)
+        state.asDriver(onErrorJustReturn: .idle).drive(Toast.rx.state).disposed(by: disposeBag)
     }
 }
