@@ -99,7 +99,8 @@ final class HomeViewController: BaseViewController {
         }.disposed(by: disposeBag)
         
         // 请求完成结束刷新
-        output.state.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        
         output.state.drive(view.rx.state).disposed(by: disposeBag)
         
         output.itemDeleted.bind { [weak self] indexPath in
