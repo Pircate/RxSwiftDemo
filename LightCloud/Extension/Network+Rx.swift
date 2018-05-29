@@ -12,13 +12,6 @@ import Moya
 
 extension Network {
     
-    enum Error: Swift.Error {
-        case status(code: Int, message: String)
-    }
-}
-
-extension Network {
-    
     struct Response<T: Codable>: Codable {
         let code: Int
         let message: String

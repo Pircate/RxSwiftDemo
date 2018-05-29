@@ -44,13 +44,13 @@ extension LoginViewModel: ViewModelType {
         let state = PublishRelay<UIState>()
         let captcha = input.captchaTap.withLatestFrom(input.username).flatMap({
             LCUser.rx.requestLoginCaptcha(mobile: $0)
-                .trackState(state, success: "验证码已发送").catchErrorJustComplete()
+                .trackLCState(state, success: "验证码已发送").catchErrorJustComplete()
         }).flatMap(to: 60.countdown()).asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
         
         let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
         let login = input.loginTap.withLatestFrom(usernameAndPassword).flatMap {
             LCUser.rx.login(mobile: $0.username, captcha: $0.password)
-                .trackState(state, success: "登录成功").catchErrorJustComplete()
+                .trackLCState(state, success: "登录成功").catchErrorJustComplete()
         }.map(to: true).asDriver(onErrorJustReturn: false)
         return Output(isEnabled: isEnabled, captcha: captcha, login: login, state: state.asDriver(onErrorJustReturn: .idle))
     }

@@ -10,16 +10,6 @@ import RxSwift
 import RxCocoa
 import LeanCloud
 
-extension Error {
-    
-    var reason: String? {
-        if let error = self as? LCError {
-            return error.reason
-        }
-        return "未知错误"
-    }
-}
-
 extension Reactive where Base: LCQuery {
     
     static func query(_ className: String, keyword: String) -> Observable<[LCObject]> {

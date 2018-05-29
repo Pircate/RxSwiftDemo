@@ -57,24 +57,20 @@ extension ObservableConvertibleType {
     ///   - state: UIState publish relay
     ///   - loading: 是否显示loading框
     ///   - success: 成功提示信息
-    ///   - failure: 失败提示信息，默认toast后台返回的错误信息，自定义错误信息返回nil则隐藏loading框
+    ///   - failure: 失败提示信息
     /// - Returns: 绑定的序列
-    func trackState(_ state: PublishRelay<UIState>,
+    func trackState(_ relay: PublishRelay<UIState>,
                     loading: Bool = true,
                     success: String? = nil,
-                    failure: ((Error) -> String?)? = nil) -> Observable<E> {
+                    failure: @escaping (Error) -> String? = { _ in nil }) -> Observable<E> {
         return Observable.using({ () -> UIStateToken<E> in
-            if loading { state.accept(.loading) }
+            if loading { relay.accept(.loading) }
             return UIStateToken(source: self.asObservable())
         }, observableFactory: {
             return $0.asObservable().do(onNext: { _ in
-                state.accept(.success(success))
+                relay.accept(.success(success))
             }).catchError({
-                guard let failure = failure else {
-                    state.accept(.failure($0.reason))
-                    return Observable.error($0)
-                }
-                state.accept(.failure(failure($0)))
+                relay.accept(.failure(failure($0)))
                 return Observable.error($0)
             })
         })

@@ -50,19 +50,19 @@ extension HomeViewModel: ViewModelType {
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "")
                 .map({ [TodoSectionModel(items: $0)] })
-                .trackState(state).catchErrorJustReturn([])
+                .trackLCState(state).catchErrorJustReturn([])
         }).asDriver(onErrorJustReturn: [])
         
         // 获取 banner 列表
         let banners = input.refresh.flatMap({
             BannerAPI.items(count: 10).request().mapResult([BannerItemModel].self)
-                .trackState(state).catchErrorJustComplete()
+                .trackNWState(state).catchErrorJustComplete()
         }).map({ $0.map({ "http://106.15.201.144:82/upload/" + $0.img }) })
         
         // 删除 item 请求
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
             .flatMap({
-                $0.rx.delete().trackState(state, success: "删除成功").catchErrorJustComplete()
+                $0.rx.delete().trackLCState(state, success: "删除成功").catchErrorJustComplete()
             }).withLatestFrom(input.itemDeleted)
         
         return Output(items: items, banners: banners, itemDeleted: itemDeleted, state: state.asDriver(onErrorJustReturn: .idle))
