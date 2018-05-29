@@ -18,7 +18,7 @@ extension Reactive where Base: MJRefreshComponent {
         }
     }
     
-    var refreshingClosure: ControlEvent<Void> {
+    var refreshing: ControlEvent<Void> {
         return ControlEvent(events: Observable.create({ [weak base] (observer) -> Disposable in
             base?.refreshingBlock = {
                 observer.onNext(())

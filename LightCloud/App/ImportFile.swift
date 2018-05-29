@@ -17,3 +17,5 @@ import SnapKit
 import RxSwiftExt
 
 typealias Observable = RxSwift.Observable
+typealias Reactive = RxSwift.Reactive
+typealias Binder = RxCocoa.Binder

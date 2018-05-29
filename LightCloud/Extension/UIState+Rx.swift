@@ -67,9 +67,8 @@ extension ObservableConvertibleType {
             if loading { state.accept(.loading) }
             return UIStateToken(source: self.asObservable())
         }, observableFactory: {
-            return $0.asObservable().map({
+            return $0.asObservable().do(onNext: { _ in
                 state.accept(.success(success))
-                return $0
             }).catchError({
                 guard let failure = failure else {
                     state.accept(.failure($0.reason))

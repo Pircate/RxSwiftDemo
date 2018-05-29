@@ -19,6 +19,7 @@ final class HomeViewController: BaseViewController {
             .rowHeight(60)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
         tableView.mj_header = MJRefreshNormalHeader()
+        tableView.tableHeaderView = cycleScrollView
         disablesAdjustScrollViewInsets(tableView)
         return tableView
     }()
@@ -82,14 +83,13 @@ final class HomeViewController: BaseViewController {
             make.top.equalTo(navigation.bar.snp.bottom)
             make.left.bottom.right.equalToSuperview()
         }
-        tableView.tableHeaderView = cycleScrollView
         
         tableView.mj_header.beginRefreshing()
     }
     
     private func bindViewModel() {
         let viewModel = HomeViewModel()
-        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshingClosure.shareOnce(),
+        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshing.shareOnce(),
                                         itemDeleted: tableView.rx.itemDeleted,
                                         dataSource: Observable.of(dataSource))
         let output = viewModel.transform(input)
