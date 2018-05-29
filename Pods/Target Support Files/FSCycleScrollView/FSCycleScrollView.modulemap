@@ -1,0 +1,6 @@
+framework module FSCycleScrollView {
+  umbrella header "FSCycleScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,6 +9,7 @@ target 'LightCloud' do
   pod 'LeanCloud'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxNetwork'
   pod 'RxDataSources'
   pod 'RxGesture'
   pod 'RxSwiftExt'
@@ -16,6 +17,7 @@ target 'LightCloud' do
   pod 'MJRefresh'
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
+  pod 'FSCycleScrollView'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
 

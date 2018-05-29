@@ -18,6 +18,10 @@
 		B55498BB20B7E2E100AC288D /* UIResponder+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55498BA20B7E2E100AC288D /* UIResponder+Rx.swift */; };
 		B55498BD20B7E4DD00AC288D /* UIView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55498BC20B7E4DD00AC288D /* UIView+Rx.swift */; };
 		B585042020BCE4D200D9846D /* ImportFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585041F20BCE4D200D9846D /* ImportFile.swift */; };
+		B585042220BCF28000D9846D /* BannerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042120BCF28000D9846D /* BannerAPI.swift */; };
+		B585042520BCF3B200D9846D /* BannerItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042420BCF3B200D9846D /* BannerItemModel.swift */; };
+		B585042720BCF51B00D9846D /* Network+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042620BCF51B00D9846D /* Network+Rx.swift */; };
+		B5B96BAD20BCFA0F00D60EDE /* CleanJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */; };
 		B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557520AD45ED00BAF346 /* Toast.swift */; };
 		B5BF557820AD575600BAF346 /* AsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557720AD575600BAF346 /* AsObservable.swift */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
@@ -78,6 +82,10 @@
 		B55498BA20B7E2E100AC288D /* UIResponder+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Rx.swift"; sourceTree = "<group>"; };
 		B55498BC20B7E4DD00AC288D /* UIView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rx.swift"; sourceTree = "<group>"; };
 		B585041F20BCE4D200D9846D /* ImportFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFile.swift; sourceTree = "<group>"; };
+		B585042120BCF28000D9846D /* BannerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAPI.swift; sourceTree = "<group>"; };
+		B585042420BCF3B200D9846D /* BannerItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerItemModel.swift; sourceTree = "<group>"; };
+		B585042620BCF51B00D9846D /* Network+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+Rx.swift"; sourceTree = "<group>"; };
+		B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanJSON.swift; sourceTree = "<group>"; };
 		B5BF557520AD45ED00BAF346 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B5BF557720AD575600BAF346 /* AsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsObservable.swift; sourceTree = "<group>"; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +156,14 @@
 				336115D520B5A018001B5668 /* TodoItemCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B585042320BCF39D00D9846D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B585042420BCF3B200D9846D /* BannerItemModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B5CE123A20A3D88700EC3F30 = {
@@ -330,6 +346,7 @@
 		B5CE128820A3DF9E00EC3F30 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B585042320BCF39D00D9846D /* Model */,
 				B5CE128A20A3DF9E00EC3F30 /* View */,
 				B5CE128D20A3DF9E00EC3F30 /* ViewModel */,
 			);
@@ -366,16 +383,17 @@
 		B5CE129220A3E04700EC3F30 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B5F7C09620B2600B00B8F53B /* Refresh+Rx.swift */,
-				B5CE129620A3E05900EC3F30 /* UIViewController+Rx.swift */,
-				330EE6F920B8699E00D0823D /* UIScrollView+Rx.swift */,
-				331D8C8F20BC4E800075C83D /* UIState+Rx.swift */,
 				B5BF557720AD575600BAF346 /* AsObservable.swift */,
 				B54FC4B820AEC74D001A8CE8 /* Countdown+Rx.swift */,
 				B5DCEF4220B3EFE9001ED144 /* MapTo+Rx.swift */,
+				B585042620BCF51B00D9846D /* Network+Rx.swift */,
+				B5F7C09620B2600B00B8F53B /* Refresh+Rx.swift */,
 				33313DDB20B998BC0078E900 /* ShareOnce+Rx.swift */,
 				B55498BA20B7E2E100AC288D /* UIResponder+Rx.swift */,
+				330EE6F920B8699E00D0823D /* UIScrollView+Rx.swift */,
+				331D8C8F20BC4E800075C83D /* UIState+Rx.swift */,
 				B55498BC20B7E4DD00AC288D /* UIView+Rx.swift */,
+				B5CE129620A3E05900EC3F30 /* UIViewController+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -434,6 +452,7 @@
 				B5F7C09820B2610100B8F53B /* LCQuery+Rx.swift */,
 				B5CE12AB20A4141E00EC3F30 /* LCUser+Rx.swift */,
 				33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */,
+				B585042120BCF28000D9846D /* BannerAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -441,6 +460,7 @@
 		B5D62F0920AA6BF5002F8FB3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */,
 				B5BF557520AD45ED00BAF346 /* Toast.swift */,
 			);
 			path = Vendor;
@@ -626,16 +646,23 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ExtensionX/ExtensionX.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCycleScrollView/FSCycleScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LeanCloud/LeanCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/RxNetwork/RxNetwork.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -644,16 +671,23 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExtensionX.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCycleScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LeanCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxNetwork.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -711,11 +745,14 @@
 				330EE6FA20B8699E00D0823D /* UIScrollView+Rx.swift in Sources */,
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
+				B5B96BAD20BCFA0F00D60EDE /* CleanJSON.swift in Sources */,
+				B585042520BCF3B200D9846D /* BannerItemModel.swift in Sources */,
 				B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */,
 				B5DCEF4320B3EFE9001ED144 /* MapTo+Rx.swift in Sources */,
 				33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */,
 				B585042020BCE4D200D9846D /* ImportFile.swift in Sources */,
 				B5CE129A20A3E05900EC3F30 /* UIViewController+Rx.swift in Sources */,
+				B585042720BCF51B00D9846D /* Network+Rx.swift in Sources */,
 				33313DDC20B998BC0078E900 /* ShareOnce+Rx.swift in Sources */,
 				B54FC4B920AEC74D001A8CE8 /* Countdown+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
@@ -729,6 +766,7 @@
 				B5F7C09120B25F9B00B8F53B /* QueryViewController.swift in Sources */,
 				B5CE129120A3E01E00EC3F30 /* AppDelegate+Root.swift in Sources */,
 				331D8C9020BC4E800075C83D /* UIState+Rx.swift in Sources */,
+				B585042220BCF28000D9846D /* BannerAPI.swift in Sources */,
 				B5CE12AC20A4141E00EC3F30 /* LCUser+Rx.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
