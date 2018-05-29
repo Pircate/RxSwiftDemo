@@ -80,8 +80,7 @@ final class HomeViewController: BaseViewController {
     private func buildSubviews() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigation.bar.snp.bottom)
-            make.left.bottom.right.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         tableView.mj_header.beginRefreshing()
@@ -109,6 +108,14 @@ final class HomeViewController: BaseViewController {
         }.disposed(by: disposeBag)
         
         itemMovedBind(dataSource)
+        
+        contentOffsetBindNavigationBar()
+    }
+    
+    private func contentOffsetBindNavigationBar() {
+        tableView.rx.contentOffset.map({ offset in
+            offset.y > 0 ? offset.y / (240 - (UIApplication.shared.statusBarFrame.maxY + 44)) : 0
+        }).bind(to: navigation.bar.rx.alpha).disposed(by: disposeBag)
     }
     
     // cell 删除操作

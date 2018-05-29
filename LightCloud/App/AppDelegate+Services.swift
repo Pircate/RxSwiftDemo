@@ -27,7 +27,6 @@ extension AppDelegate {
         ToastManager.shared.style.activitySize = CGSize(width: 88, height: 88)
         
         Network.shared.timeoutInterval = 20
-        Network.shared.plugins = [NetworkLoggerPlugin(verbose: true)]
         Network.shared.taskClosure = { target in
             switch target.task {
             case let .requestParameters(parameters, encoding):

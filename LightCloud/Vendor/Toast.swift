@@ -19,11 +19,11 @@ final class Toast {
     static func loading() {
         hide()
         
-        let maskView = UIView(frame: UIScreen.main.bounds)
-        maskView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        keyWindow?.showToast(maskView, duration: timeoutInterval, position: .center, completion: { _ in
-            Toast.hideActivity()
-        })
+//        let maskView = UIView(frame: UIScreen.main.bounds)
+//        maskView.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+//        keyWindow?.showToast(maskView, duration: timeoutInterval, position: .center, completion: { _ in
+//            Toast.hideActivity()
+//        })
         keyWindow?.makeToastActivity(.center)
     }
     
