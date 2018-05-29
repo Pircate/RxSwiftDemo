@@ -78,7 +78,7 @@ extension TodoItemCell {
                 return item
             }
             .flatMap({
-                $0.rx.save().trackState(state)
+                $0.rx.save().trackState(state).catchErrorJustComplete()
             })
             .map({ _ in (item.value(forKey: "follow") as! LCBool).value })
             .asDriver(onErrorJustReturn: false)

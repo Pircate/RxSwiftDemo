@@ -20,6 +20,10 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
+  - RxSwiftExt (3.2.0):
+    - RxSwiftExt/Core (= 3.2.0)
+  - RxSwiftExt/Core (3.2.0):
+    - RxSwift (~> 4.0)
   - SnapKit (4.0.0)
   - Toast-Swift (3.0.1)
 
@@ -34,6 +38,7 @@ DEPENDENCIES:
   - RxDataSources
   - RxGesture
   - RxSwift
+  - RxSwiftExt
   - SnapKit
   - Toast-Swift
 
@@ -50,6 +55,7 @@ SPEC REPOS:
     - RxDataSources
     - RxGesture
     - RxSwift
+    - RxSwiftExt
     - SnapKit
     - Toast-Swift
 
@@ -70,9 +76,10 @@ SPEC CHECKSUMS:
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: e49536837d9901277638493ea537394d4b55f570
+  RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: a4f8cb5760c6bf80966175dba546ce29270cde0e
+PODFILE CHECKSUM: 4c7f2deaa2db14fdbf0e5a18f7a2940f824ea22f
 
 COCOAPODS: 1.5.3

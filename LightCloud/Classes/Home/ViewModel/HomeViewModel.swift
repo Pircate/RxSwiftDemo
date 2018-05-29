@@ -34,8 +34,8 @@ final class HomeViewModel {
     
     struct Output {
         let items: Driver<[TodoSectionModel]>
-        let state: Driver<UIState>
         let itemDeleted: Observable<IndexPath>
+        let state: Driver<UIState>
     }
 }
 
@@ -44,17 +44,19 @@ extension HomeViewModel: ViewModelType {
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
         let state = PublishRelay<UIState>()
         
+        // 获取 todo 列表
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "")
                 .map({ [TodoSectionModel(items: $0)] })
-                .trackState(state)
+                .trackState(state).catchErrorJustReturn([])
         }).asDriver(onErrorJustReturn: [])
         
+        // item 删除请求
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
             .flatMap({
-                $0.rx.delete().trackState(state, success: "删除成功")
+                $0.rx.delete().trackState(state, success: "删除成功").catchErrorJustComplete()
             }).withLatestFrom(input.itemDeleted)
         
-        return Output(items: items, state: state.asDriver(onErrorJustReturn: .idle), itemDeleted: itemDeleted)
+        return Output(items: items, itemDeleted: itemDeleted, state: state.asDriver(onErrorJustReturn: .idle))
     }
 }
