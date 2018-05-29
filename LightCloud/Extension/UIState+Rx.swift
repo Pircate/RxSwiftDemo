@@ -14,30 +14,22 @@ enum UIState {
     case loading
     case success(String?)
     case failure(String?)
-}
-
-extension Reactive where Base: UIView {
     
-    var state: Binder<UIState> {
-        return Binder(base) { view, state in
-            switch state {
-            case .idle:
-                break
-            case .loading:
-                Toast.loading()
-            case .success(let info):
-                if let info = info {
-                    Toast.show(info: info)
-                } else {
-                    Toast.hide()
-                }
-            case .failure(let info):
-                if let info = info {
-                    Toast.show(info: info)
-                } else {
-                    Toast.hide()
-                }
-            }
+    var isSuccess: Bool {
+        switch self {
+        case .success:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    var isFailure: Bool {
+        switch self {
+        case .failure:
+            return true
+        default:
+            return false
         }
     }
 }
