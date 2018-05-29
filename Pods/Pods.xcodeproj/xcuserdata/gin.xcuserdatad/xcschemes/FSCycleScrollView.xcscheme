@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17D0EF6BE86A01889679F25EFD2164BE"
-               BlueprintName = "RxGesture"
+               BlueprintIdentifier = "8F81FD81737E05BE15EFE3514290F63A"
+               BlueprintName = "FSCycleScrollView"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxGesture.framework">
+               BuildableName = "FSCycleScrollView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

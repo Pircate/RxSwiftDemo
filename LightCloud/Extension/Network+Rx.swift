@@ -46,7 +46,7 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType: TargetT
                                        atKeyPath keyPath: String? = nil,
                                        using decoder: JSONDecoder = .init()) -> Single<T> {
         return flatMap({ target -> Single<T> in
-            target.request(Network.Response<T>.self, atKeyPath: keyPath, using: decoder).map({
+            target.request().map(Network.Response<T>.self, atKeyPath: keyPath, using: decoder).map({
                 if $0.success { return $0.result }
                 throw Network.Error.status(code: $0.code, message: $0.message)
             }).storeCachedObject(for: target)
@@ -60,7 +60,7 @@ extension ObservableType where E: TargetType {
                                        atKeyPath keyPath: String? = nil,
                                        using decoder: JSONDecoder = .init()) -> Observable<T> {
         return flatMap { target -> Observable<T> in
-            let result = target.request(Network.Response<T>.self, atKeyPath: keyPath, using: decoder).map({ response -> T in
+            let result = target.request().map(Network.Response<T>.self, atKeyPath: keyPath, using: decoder).map({ response -> T in
                 if response.success { return response.result }
                 throw Network.Error.status(code: response.code, message: response.message)
             }).storeCachedObject(for: target).asObservable()

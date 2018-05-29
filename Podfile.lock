@@ -32,7 +32,7 @@ PODS:
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxNetwork (0.3.0):
+  - RxNetwork (0.3.1):
     - Cache
     - Moya/RxSwift
   - RxSwift (4.1.2)
@@ -106,7 +106,7 @@ SPEC CHECKSUMS:
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
-  RxNetwork: e7a10bac59f46d50de50e9501a21bfb28f6788a1
+  RxNetwork: abd942cc7efd710b6a41b3a32fb553acc85c5930
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694

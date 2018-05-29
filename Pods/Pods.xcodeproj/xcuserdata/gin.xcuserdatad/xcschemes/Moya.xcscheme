@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17D0EF6BE86A01889679F25EFD2164BE"
-               BlueprintName = "RxGesture"
+               BlueprintIdentifier = "73A8AECE61E72257A71434F07F511157"
+               BlueprintName = "Moya"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxGesture.framework">
+               BuildableName = "Moya.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

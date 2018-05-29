@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17D0EF6BE86A01889679F25EFD2164BE"
-               BlueprintName = "RxGesture"
+               BlueprintIdentifier = "69A39ADE2095194480DB1AA0305E9BAB"
+               BlueprintName = "FSPagerView"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxGesture.framework">
+               BuildableName = "FSPagerView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
