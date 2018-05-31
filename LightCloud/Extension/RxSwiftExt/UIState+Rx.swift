@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 enum UIState {
     case idle

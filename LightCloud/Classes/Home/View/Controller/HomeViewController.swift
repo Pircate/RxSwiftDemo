@@ -103,10 +103,9 @@ final class HomeViewController: BaseViewController {
         
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
         
-        output.itemDeleted.bind { [weak self] indexPath in
-            guard let `self` = self else { return }
-            self.itemDeleted(at: indexPath)
-        }.disposed(by: disposeBag)
+        output.itemDeleted.subscribeNext(weak: self, { (self) in
+            { self.itemDeleted(at: $0) }
+        }).disposed(by: disposeBag)
         
         itemMovedBind(dataSource)
         

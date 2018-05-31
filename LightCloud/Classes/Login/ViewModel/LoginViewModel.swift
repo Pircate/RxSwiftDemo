@@ -37,9 +37,7 @@ final class LoginViewModel {
 extension LoginViewModel: ViewModelType {
     
     func transform(_ input: LoginViewModel.Input) -> LoginViewModel.Output {
-        let isEnabled = Observable.combineLatest(input.username, input.password) {
-            !$0.isEmpty && !$1.isEmpty
-        }.asDriver(onErrorJustReturn: false)
+        let isEnabled = Observable.combineLatest(input.username.isEmpty, input.password.isEmpty) { !$0 && !$1 }.asDriver(onErrorJustReturn: false)
         
         let state = PublishRelay<UIState>()
         let captcha = input.captchaTap.withLatestFrom(input.username).flatMap({

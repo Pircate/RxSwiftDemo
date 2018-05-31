@@ -8,20 +8,6 @@
 
 import RxNetwork
 
-extension Network {
-    
-    enum Error: Swift.Error {
-        case status(code: Int, message: String)
-        
-        var message: String {
-            switch self {
-            case let .status(_, message):
-                return message
-            }
-        }
-    }
-}
-
 extension Error {
     
     var errorMessage: String {

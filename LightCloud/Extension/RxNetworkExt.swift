@@ -1,5 +1,5 @@
 //
-//  Network+Rx.swift
+//  RxNetworkExt.swift
 //  RxNetwork_Example
 //
 //  Created by GorXion on 2018/5/28.
@@ -19,6 +19,20 @@ extension Network {
         
         var success: Bool {
             return code == 2000
+        }
+    }
+}
+
+extension Network {
+    
+    enum Error: Swift.Error {
+        case status(code: Int, message: String)
+        
+        var message: String {
+            switch self {
+            case let .status(_, message):
+                return message
+            }
         }
     }
 }
@@ -45,12 +59,12 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType: TargetT
     func requestWithResult<T: Codable>(_ type: T.Type,
                                        atKeyPath keyPath: String? = nil,
                                        using decoder: JSONDecoder = .init()) -> Single<T> {
-        return flatMap({ target -> Single<T> in
+        return flatMap { target -> Single<T> in
             target.request().map(Network.Response<T>.self, atKeyPath: keyPath, using: decoder).map({
                 if $0.success { return $0.result }
                 throw Network.Error.status(code: $0.code, message: $0.message)
             }).storeCachedObject(for: target)
-        })
+        }
     }
 }
 
