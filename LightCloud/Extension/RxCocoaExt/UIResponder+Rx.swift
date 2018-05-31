@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-extension Reactive where Base: UIResponder {
+public extension Reactive where Base: UIResponder {
     
     var becomeFirstResponder: Binder<Void> {
         return Binder(base) { responder, _ in

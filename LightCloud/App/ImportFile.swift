@@ -16,6 +16,6 @@ import EachNavigationBar
 import SnapKit
 import RxSwiftExt
 
-typealias Observable = RxSwift.Observable
-typealias Reactive = RxSwift.Reactive
-typealias Binder = RxCocoa.Binder
+public typealias Observable = RxSwift.Observable
+public typealias Reactive = RxSwift.Reactive
+public typealias Binder = RxCocoa.Binder

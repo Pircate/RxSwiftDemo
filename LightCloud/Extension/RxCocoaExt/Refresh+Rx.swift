@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import MJRefresh
 
-extension Reactive where Base: MJRefreshComponent {
+public extension Reactive where Base: MJRefreshComponent {
     
     var beginRefreshing: Binder<Void> {
         return Binder(base) { component, _ in

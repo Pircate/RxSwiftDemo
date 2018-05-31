@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-extension ObservableType {
+public extension ObservableType {
     
     func map<T>(to element: T) -> Observable<T> {
         return map { _ in element }
@@ -20,7 +20,7 @@ extension ObservableType {
     }
 }
 
-extension Driver {
+public extension Driver {
     
     func map<T>(to element: T) -> SharedSequence<S, T> {
         return map { _ in element }

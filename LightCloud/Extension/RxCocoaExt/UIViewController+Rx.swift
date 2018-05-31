@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import ExtensionX
 
-extension Reactive where Base: UIViewController {
+public extension Reactive where Base: UIViewController {
     
     func push<T: UIViewController>(_ type: T.Type) -> Binder<Void> {
         return Binder(base) { vc, _ in

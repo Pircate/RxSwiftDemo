@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-extension Reactive where Base: UIView {
+public extension Reactive where Base: UIView {
     
     var endEditing: Binder<Bool> {
         return Binder(base) { view, force in
