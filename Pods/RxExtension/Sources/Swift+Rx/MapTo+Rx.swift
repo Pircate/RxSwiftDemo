@@ -1,9 +1,9 @@
 //
 //  MapTo+Rx.swift
-//  LightCloud
+//  RxExtension
 //
-//  Created by GorXion on 2018/5/22.
-//  Copyright © 2018年 gaoX. All rights reserved.
+//  Created by Pircate on 2018/5/22.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import RxSwift

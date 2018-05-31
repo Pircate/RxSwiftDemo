@@ -8,7 +8,7 @@
 
 import RxSwift
 
-public enum UIState {
+enum UIState {
     case idle
     case loading
     case success(String?)
@@ -33,7 +33,7 @@ public enum UIState {
     }
 }
 
-public struct UIStateToken<E>: Disposable {
+struct UIStateToken<E>: Disposable {
     
     private let _source: Observable<E>
     
@@ -48,7 +48,7 @@ public struct UIStateToken<E>: Disposable {
     public func dispose() {}
 }
 
-public extension ObservableConvertibleType {
+extension ObservableConvertibleType {
     
     /// Toast
     ///

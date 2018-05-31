@@ -1,9 +1,9 @@
 //
 //  Refresh+Rx.swift
-//  Refresh
+//  RxExtension
 //
 //  Created by Pircate on 2018/3/12.
-//  Copyright © 2018年 pircate. All rights reserved.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import RxSwift
