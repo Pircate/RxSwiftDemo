@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
     
   s.name                  = "RxExtension"
-  s.version               = "0.0.1"
+  s.version               = "0.1.0"
   s.summary               = "Extension of RxSwift and RxCocoa."
   s.homepage              = "http://EXAMPLE/RxExtension"
   s.author                = { "Pircate" => "gao497868860@163.com" }
