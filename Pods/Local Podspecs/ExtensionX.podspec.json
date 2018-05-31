@@ -2,17 +2,12 @@
   "name": "ExtensionX",
   "version": "0.1.0",
   "summary": "A short description of ExtensionX.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Ginxx/ExtensionX",
-  "license": {
-    "type": "MIT",
-    "file": "LICENSE"
-  },
+  "homepage": "https://github.com/Pircate/ExtensionX",
   "authors": {
     "gaoX": "gao497868860@163.com"
   },
   "source": {
-    "git": "https://github.com/Ginxx/ExtensionX.git",
+    "git": "https://github.com/Pircate/ExtensionX.git",
     "tag": "0.1.0"
   },
   "platforms": {

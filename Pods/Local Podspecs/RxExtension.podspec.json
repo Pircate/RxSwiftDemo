@@ -1,0 +1,34 @@
+{
+  "name": "RxExtension",
+  "version": "0.0.1",
+  "summary": "Extension of RxSwift and RxCocoa.",
+  "homepage": "http://EXAMPLE/RxExtension",
+  "authors": {
+    "Pircate": "gao497868860@163.com"
+  },
+  "source": {
+    "git": "https://github.com/Pircate/RxExtension.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": [
+    "Classes",
+    "Classes/**/*"
+  ],
+  "dependencies": {
+    "MJRefresh": [
+
+    ],
+    "RxSwift": [
+
+    ],
+    "RxCocoa": [
+
+    ],
+    "ExtensionX": [
+
+    ]
+  }
+}

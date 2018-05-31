@@ -29,6 +29,11 @@ PODS:
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
+  - RxExtension (0.0.1):
+    - ExtensionX
+    - MJRefresh
+    - RxCocoa
+    - RxSwift
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
@@ -53,6 +58,7 @@ DEPENDENCIES:
   - MJRefresh
   - RxCocoa
   - RxDataSources
+  - RxExtension (from `./Pods/RxExtension`)
   - RxGesture
   - RxNetwork
   - RxSwift
@@ -87,6 +93,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   ExtensionX:
     :path: "./Pods/ExtensionX"
+  RxExtension:
+    :path: "./Pods/RxExtension"
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -94,7 +102,7 @@ SPEC CHECKSUMS:
   CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
-  ExtensionX: 91034096d5169845375a9ffdceda0f828616de17
+  ExtensionX: d2603d030c3e6a9c2b0140db22c8177b92316ae0
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
@@ -105,6 +113,7 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
+  RxExtension: a571804732d1ba4c2953989ced292f6774950b96
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxNetwork: abd942cc7efd710b6a41b3a32fb553acc85c5930
   RxSwift: e49536837d9901277638493ea537394d4b55f570
@@ -112,6 +121,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 9de02314ada3d584279cae7d1e286e78c21a7ef1
+PODFILE CHECKSUM: 8cc3b25cd0c4339abb15a51020c3e2c382f802b0
 
 COCOAPODS: 1.5.3
