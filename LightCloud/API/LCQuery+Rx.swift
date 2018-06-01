@@ -14,6 +14,10 @@ extension Reactive where Base: LCQuery {
     
     static func query(_ className: String, keyword: String, page: Int = -1) -> Observable<[LCObject]> {
         return Observable.create { (observer) -> Disposable in
+            guard !keyword.isEmpty else {
+                observer.onNext([])
+                return Disposables.create()
+            }
             let query = LCQuery(className: className)
             query.whereKey("name", .matchedSubstring(keyword))
             if page >= 0 {

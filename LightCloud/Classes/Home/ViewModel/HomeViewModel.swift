@@ -48,7 +48,7 @@ extension HomeViewModel: ViewModelType {
         
         // 获取 todo 列表
         let items = input.refresh.flatMap({
-            LCQuery.rx.query("TodoList", keyword: "")
+            LCQuery.rx.query("TodoList", keyword: "Todo")
                 .map({ [TodoSectionModel(items: $0)] })
                 .trackLCState(state).catchErrorJustReturn([])
         }).asDriver(onErrorJustReturn: [])

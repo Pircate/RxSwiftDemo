@@ -61,7 +61,7 @@ final class QueryViewController: BaseViewController {
     private func bindViewModel() {
         let viewModel = QueryViewModel()
         
-        let keyword = searchTextField.rx.text.orEmpty.filter({ !$0.isEmpty }).shareOnce()
+        let keyword = searchTextField.rx.text.orEmpty.shareOnce()
         keyword.throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged().map(to: ())
             .asDriver(onErrorJustReturn: ())
