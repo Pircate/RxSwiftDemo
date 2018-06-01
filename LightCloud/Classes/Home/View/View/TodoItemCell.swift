@@ -34,6 +34,14 @@ class TodoItemCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.followButton.transform = highlighted ? CGAffineTransform(scaleX: 0.8, y: 0.8) : CGAffineTransform.identity
+        }
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
