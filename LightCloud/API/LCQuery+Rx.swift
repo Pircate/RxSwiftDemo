@@ -12,10 +12,13 @@ import LeanCloud
 
 extension Reactive where Base: LCQuery {
     
-    static func query(_ className: String, keyword: String) -> Observable<[LCObject]> {
+    static func query(_ className: String, keyword: String, page: Int = -1) -> Observable<[LCObject]> {
         return Observable.create { (observer) -> Disposable in
             let query = LCQuery(className: className)
             query.whereKey("name", .matchedSubstring(keyword))
+            if page >= 0 {
+                query.whereKey("page", .equalTo(page))
+            }
             query.find({ (result) in
                 switch result {
                 case .success(let objects):

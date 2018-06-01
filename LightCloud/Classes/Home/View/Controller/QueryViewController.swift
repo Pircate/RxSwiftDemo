@@ -8,6 +8,9 @@
 
 import UIKit
 import LeanCloud
+import MJRefresh
+import RxSwift
+import RxCocoa
 
 final class QueryViewController: BaseViewController {
     
@@ -22,8 +25,11 @@ final class QueryViewController: BaseViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        UITableView(frame: CGRect.zero, style: .plain).chain
+        let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
+        tableView.mj_header = MJRefreshNormalHeader()
+        tableView.mj_footer = MJRefreshBackStateFooter()
+        return tableView
     }()
 
     override func viewDidLoad() {
@@ -54,11 +60,24 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
-        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty)
+        
+        let keyword = searchTextField.rx.text.orEmpty.filter({ !$0.isEmpty }).shareOnce()
+        keyword.throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged().map(to: ())
+            .asDriver(onErrorJustReturn: ())
+            .drive(tableView.mj_header.rx.beginRefreshing)
+            .disposed(by: disposeBag)
+        
+        let input = QueryViewModel.Input(keyword: keyword,
+                                         refresh: tableView.mj_header.rx.refreshing,
+                                         more: tableView.mj_footer.rx.refreshing)
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(cellIdentifier: "cellID")) { index, item, cell in
             cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
         }.disposed(by: disposeBag)
+        
+        output.endRefresh.drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.endMore.drive(tableView.mj_footer.rx.endRefreshing).disposed(by: disposeBag)
     }
 }

@@ -13,23 +13,44 @@ import LeanCloud
 final class QueryViewModel {
     
     struct Input {
-        let keyword: ControlProperty<String>
+        let keyword: Observable<String>
+        let refresh: ControlEvent<Void>
+        let more: ControlEvent<Void>
     }
     
     struct Output {
         let items: Driver<[LCObject]>
+        let endRefresh: Driver<Void>
+        let endMore: Driver<Void>
     }
 }
 
 extension QueryViewModel: ViewModelType {
     
     func transform(_ input: QueryViewModel.Input) -> QueryViewModel.Output {
-        let items = input.keyword.filter({ !$0.isBlank })
-            .throttle(0.5, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .flatMap({
-                LCQuery.rx.query("ObjC", keyword: $0).catchErrorJustReturn([])
-            }).asDriver(onErrorJustReturn: [])
-        return Output(items: items)
+        
+        var page = 1
+        var objects: [LCObject] = []
+        let refresh = input.refresh.map({ page = 0 }).withLatestFrom(input.keyword).flatMap({
+            LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn([])
+        }).map({ items -> [LCObject] in
+            objects = items
+            return objects
+        }).shareOnce()
+        
+        let endRefresh = refresh.map(to: ()).asDriver(onErrorJustReturn: ())
+        
+        let more = input.more.map({ page += 1 }).withLatestFrom(input.keyword).flatMap({
+            LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn([])
+        }).map { items -> [LCObject] in
+            objects.append(contentsOf: items)
+            return objects
+        }.shareOnce()
+        
+        let endMore = more.map(to: ()).asDriver(onErrorJustReturn: ())
+        
+        let items = Observable.merge(refresh, more).asDriver(onErrorJustReturn: [])
+        
+        return Output(items: items, endRefresh: endRefresh, endMore: endMore)
     }
 }
