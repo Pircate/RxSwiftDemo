@@ -62,7 +62,7 @@ final class QueryViewController: BaseViewController {
         let viewModel = QueryViewModel()
         
         let keyword = searchTextField.rx.text.orEmpty.skip(1).shareOnce()
-        keyword.throttle(0.5, scheduler: MainScheduler.instance)
+        keyword.throttle(1, scheduler: MainScheduler.instance)
             .distinctUntilChanged().map(to: ())
             .asDriver(onErrorJustReturn: ())
             .drive(tableView.mj_header.rx.beginRefreshing)

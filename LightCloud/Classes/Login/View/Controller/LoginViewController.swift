@@ -106,8 +106,16 @@ final class LoginViewController: BaseViewController {
 
     private func bindViewModel() {
         let viewModel = LoginViewModel()
-        let input = LoginViewModel.Input(username: usernameTextField.rx.text.orEmpty.shareOnce(),
-                                         password: passwordTextField.rx.text.orEmpty.shareOnce(),
+        
+        let username = usernameTextField.rx.text.orEmpty.shareOnce()
+        let password = passwordTextField.rx.text.orEmpty.shareOnce()
+        
+        // 限制输入框输入位数
+        username.asDriver(onErrorJustReturn: "").drive(usernameTextField.rx.prefix(11)).disposed(by: disposeBag)
+        password.asDriver(onErrorJustReturn: "").drive(passwordTextField.rx.prefix(6)).disposed(by: disposeBag)
+        
+        let input = LoginViewModel.Input(username: username,
+                                         password: password,
                                          captchaTap: captchaButton.rx.tap,
                                          loginTap: loginButton.rx.tap)
         let output = viewModel.transform(input)
