@@ -55,8 +55,10 @@ extension HomeViewModel: ViewModelType {
         
         // 获取 banner 列表
         let banners = input.refresh.flatMap({
-            BannerAPI.items(count: 10).request().mapResult([BannerItemModel].self)
-                .trackNWState(state).catchErrorJustComplete()
+            BannerAPI.items(count: 10).request()
+                .mapResult([BannerItemModel].self)
+                .asObservable()
+                .catchErrorJustComplete()
         }).map({ $0.map({ "http://106.15.201.144:82/upload/" + $0.img }) })
         
         // 删除 item 请求

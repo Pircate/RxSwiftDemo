@@ -29,8 +29,10 @@ extension QueryViewModel: ViewModelType {
     
     func transform(_ input: QueryViewModel.Input) -> QueryViewModel.Output {
         
-        var page = 1
+        var page = 0
         var objects: [LCObject] = []
+        
+        // 下拉刷新
         let refresh = input.refresh.map({ page = 0 }).withLatestFrom(input.keyword).flatMap({
             LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn([])
         }).map({ items -> [LCObject] in
@@ -40,6 +42,7 @@ extension QueryViewModel: ViewModelType {
         
         let endRefresh = refresh.map(to: ()).asDriver(onErrorJustReturn: ())
         
+        // 上拉加载更多
         let more = input.more.map({ page += 1 }).withLatestFrom(input.keyword).flatMap({
             LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn([])
         }).map { items -> [LCObject] in
