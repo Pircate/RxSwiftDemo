@@ -12,8 +12,8 @@ import LeanCloud
 import RxNetwork
 import Moya
 
-private let appID = "V2KQKo4Hp6Fz9LdspYqImLJB-gzGzoHsz"
-private let clientKey = "RE7GFObDm0vWSWtWd8DU4qHI"
+private let appID = "JwwkO6PWDcn5gz3f83swpkOy-gzGzoHsz"
+private let clientKey = "tSmrT1lKWnPwcLTXBDeL0N8A"
 
 extension AppDelegate {
     
