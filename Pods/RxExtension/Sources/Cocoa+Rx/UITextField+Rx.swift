@@ -10,37 +10,29 @@ import RxCocoa
 
 public extension Reactive where Base: UITextField {
     
-    var shouldChangeCharacters: (Observable<String>) -> (@escaping TextFieldDelegate.ShouldChangeCharacters) -> Disposable {
-        return { [weak base] source in
+    public var delegate: DelegateProxy<UITextField, UITextFieldDelegate> {
+        return RxTextFieldDelegateProxy.proxy(for: base)
+    }
+    
+    var shouldChangeCharacters: (Observable<String>) -> (@escaping RxTextFieldDelegateProxy.ShouldChangeCharacters) -> Disposable {
+        let proxy = RxTextFieldDelegateProxy.proxy(for: base)
+        return { source in
             return { shouldChangeCharacters in
-                let delegate = TextFieldDelegate(base)
                 return source.bind(onNext: { _ in
-                    delegate.shouldChangeCharacters = shouldChangeCharacters
+                    proxy.shouldChangeCharacters = shouldChangeCharacters
                 })
             }
         }
     }
     
-    var shouldReturn: ControlEvent<UITextField> {
-        let delegate = TextFieldDelegate(base)
-        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
-            delegate.shouldReturn = { textField in
-                observer.onNext(textField)
-                return true
-            }
-            return Disposables.create()
-        }))
+    var shouldClear: ControlEvent<UITextField> {
+        let source = RxTextFieldDelegateProxy.proxy(for: base).shouldClearPublishSubject
+        return ControlEvent(events: source)
     }
     
-    var shouldClear: ControlEvent<UITextField> {
-        let delegate = TextFieldDelegate(base)
-        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
-            delegate.shouldClear = { textField in
-                observer.onNext(textField)
-                return true
-            }
-            return Disposables.create()
-        }))
+    var shouldReturn: ControlEvent<UITextField> {
+        let source = RxTextFieldDelegateProxy.proxy(for: base).shouldReturnPublishSubject
+        return ControlEvent(events: source)
     }
     
     func limit(_ maxLength: Int) -> Disposable {
