@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20E1FA8E40B5C21A66B89D28 /* Pods_LightCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08F923131461D0E06265D37 /* Pods_LightCloud.framework */; };
 		2548B5C773D0CB3547448FF3 /* Pods_LightCloudTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAF8201F33770CD8D8638427 /* Pods_LightCloudTests.framework */; };
+		335BF73A20C3092F00CFA2C2 /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BF73920C3092F00CFA2C2 /* MJRefresh+Rx.swift */; };
 		336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336115D520B5A018001B5668 /* TodoItemCell.swift */; };
 		33E40B5A20BD8C2700F7EAF1 /* Toast+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */; };
 		33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		05FCE86C376FC23D2C014D95 /* Pods-LightCloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloud/Pods-LightCloud.debug.xcconfig"; sourceTree = "<group>"; };
 		14AE4D52C883F8123E91BC1D /* Pods-LightCloudUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.release.xcconfig"; sourceTree = "<group>"; };
+		335BF73920C3092F00CFA2C2 /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
 		336115D520B5A018001B5668 /* TodoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemCell.swift; sourceTree = "<group>"; };
 		33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Rx.swift"; sourceTree = "<group>"; };
 		33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCObject+Rx.swift"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				B585042620BCF51B00D9846D /* RxNetworkExt.swift */,
 				33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */,
 				B59F983C20BFE771007A8880 /* UIState+Rx.swift */,
+				335BF73920C3092F00CFA2C2 /* MJRefresh+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -701,6 +704,7 @@
 				B585042220BCF28000D9846D /* BannerAPI.swift in Sources */,
 				B5CE12AC20A4141E00EC3F30 /* LCUser+Rx.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
+				335BF73A20C3092F00CFA2C2 /* MJRefresh+Rx.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
 				B5B96BAF20BD1C4800D60EDE /* LCError+Rx.swift in Sources */,

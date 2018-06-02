@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import ExtensionX
 
 public extension Reactive where Base: UIViewController {
     
@@ -27,12 +26,6 @@ public extension Reactive where Base: UIViewController {
     var dismiss: Binder<Void> {
         return Binder(base) { vc, _ in
             vc.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    var goBack: Binder<Void> {
-        return Binder(base) { vc, _ in
-            vc.goBack()
         }
     }
 }

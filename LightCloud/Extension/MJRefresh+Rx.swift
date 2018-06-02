@@ -1,9 +1,9 @@
 //
-//  Refresh+Rx.swift
-//  RxExtension
+//  MJRefresh+Rx.swift
+//  LightCloud
 //
-//  Created by Pircate on 2018/3/12.
-//  Copyright © 2018年 Pircate. All rights reserved.
+//  Created by GorXion on 2018/6/3.
+//  Copyright © 2018年 gaoX. All rights reserved.
 //
 
 import RxSwift

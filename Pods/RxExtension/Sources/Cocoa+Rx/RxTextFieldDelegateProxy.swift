@@ -1,8 +1,9 @@
 //
 //  RxTextFieldDelegateProxy.swift
-//  Alamofire
+//  RxExtension
 //
-//  Created by GorXion on 2018/6/3.
+//  Created by Pircate on 2018/6/3.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import RxSwift

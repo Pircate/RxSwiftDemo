@@ -55,7 +55,7 @@ class RegisterViewController: BaseViewController {
         
         navigation.item.title = "注册"
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "返回").chain.tintColor(UIColor.white).build
-        navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.goBack).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.pop).disposed(by: disposeBag)
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
