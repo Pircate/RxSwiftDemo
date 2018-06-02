@@ -14,11 +14,33 @@ public extension Reactive where Base: UITextField {
         return { [weak base] source in
             return { shouldChangeCharacters in
                 let delegate = TextFieldDelegate(base)
-                return source.bind(onNext: { text in
+                return source.bind(onNext: { _ in
                     delegate.shouldChangeCharacters = shouldChangeCharacters
                 })
             }
         }
+    }
+    
+    var shouldReturn: ControlEvent<UITextField> {
+        let delegate = TextFieldDelegate(base)
+        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
+            delegate.shouldReturn = { textField in
+                observer.onNext(textField)
+                return true
+            }
+            return Disposables.create()
+        }))
+    }
+    
+    var shouldClear: ControlEvent<UITextField> {
+        let delegate = TextFieldDelegate(base)
+        return ControlEvent(events: Observable.create({ (observer) -> Disposable in
+            delegate.shouldClear = { textField in
+                observer.onNext(textField)
+                return true
+            }
+            return Disposables.create()
+        }))
     }
     
     func limit(_ maxLength: Int) -> Disposable {
