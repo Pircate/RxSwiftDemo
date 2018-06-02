@@ -10,10 +10,23 @@ import RxCocoa
 
 public extension Reactive where Base: UITextField {
     
-    func prefix(_ maxLength: Int) -> Binder<String> {
-        return Binder(base) { textField, text in
-            guard text.count > maxLength else { return }
-            textField.text = String(text.prefix(maxLength))
+    var shouldChangeCharacters: (Observable<String>) -> (@escaping TextFieldDelegate.ShouldChangeCharacters) -> Disposable {
+        return { [weak base] source in
+            return { shouldChangeCharacters in
+                let delegate = TextFieldDelegate(base)
+                return source.bind(onNext: { text in
+                    delegate.shouldChangeCharacters = shouldChangeCharacters
+                })
+            }
+        }
+    }
+    
+    func limit(_ maxLength: Int) -> Disposable {
+        return base.rx.text.orEmpty.asDriver().drive(base.rx.shouldChangeCharacters) { (textField, range, string) -> Bool in
+            if string.isEmpty { return true }
+            guard let text = textField.text else { return true }
+            let length = text.count + string.count - range.length
+            return length <= maxLength
         }
     }
 }

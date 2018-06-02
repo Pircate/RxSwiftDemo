@@ -111,8 +111,8 @@ final class LoginViewController: BaseViewController {
         let password = passwordTextField.rx.text.orEmpty.shareOnce()
         
         // 限制输入框输入位数
-        username.bind(to: usernameTextField.rx.prefix(11)).disposed(by: disposeBag)
-        password.bind(to: passwordTextField.rx.prefix(6)).disposed(by: disposeBag)
+        usernameTextField.rx.limit(11).disposed(by: disposeBag)
+        passwordTextField.rx.limit(6).disposed(by: disposeBag)
         
         let input = LoginViewModel.Input(username: username,
                                          password: password,
