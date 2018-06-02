@@ -17,7 +17,7 @@ open class RxTextFieldDelegateProxy: DelegateProxy<UITextField, UITextFieldDeleg
     
     public weak private(set) var textField: UITextField?
     
-    init(textField: ParentObject) {
+    public init(textField: ParentObject) {
         self.textField = textField
         super.init(parentObject: textField, delegateProxy: RxTextFieldDelegateProxy.self)
     }
@@ -26,10 +26,10 @@ open class RxTextFieldDelegateProxy: DelegateProxy<UITextField, UITextFieldDeleg
         self.register { RxTextFieldDelegateProxy(textField: $0) }
     }
     
-    fileprivate var _shouldClearPublishSubject: PublishSubject<UITextField>?
-    fileprivate var _shouldReturnPublishSubject: PublishSubject<UITextField>?
+    private var _shouldClearPublishSubject: PublishSubject<UITextField>?
+    private var _shouldReturnPublishSubject: PublishSubject<UITextField>?
     
-    internal var shouldClearPublishSubject: PublishSubject<UITextField> {
+    var shouldClearPublishSubject: PublishSubject<UITextField> {
         if let subject = _shouldClearPublishSubject {
             return subject
         }
@@ -40,7 +40,7 @@ open class RxTextFieldDelegateProxy: DelegateProxy<UITextField, UITextFieldDeleg
         return subject
     }
     
-    internal var shouldReturnPublishSubject: PublishSubject<UITextField> {
+    var shouldReturnPublishSubject: PublishSubject<UITextField> {
         if let subject = _shouldReturnPublishSubject {
             return subject
         }
@@ -60,12 +60,25 @@ open class RxTextFieldDelegateProxy: DelegateProxy<UITextField, UITextFieldDeleg
     }
     
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        shouldClearPublishSubject.onNext(textField)
+        if let subject = _shouldClearPublishSubject {
+            subject.onNext(textField)
+        }
         return true
     }
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        shouldReturnPublishSubject.onNext(textField)
+        if let subject = _shouldReturnPublishSubject {
+            subject.onNext(textField)
+        }
         return true
+    }
+    
+    deinit {
+        if let subject = _shouldClearPublishSubject {
+            subject.onCompleted()
+        }
+        if let subject = _shouldReturnPublishSubject {
+            subject.onCompleted()
+        }
     }
 }
