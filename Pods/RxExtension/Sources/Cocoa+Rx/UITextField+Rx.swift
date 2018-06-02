@@ -10,18 +10,16 @@ import RxCocoa
 
 public extension Reactive where Base: UITextField {
     
-    public var delegate: DelegateProxy<UITextField, UITextFieldDelegate> {
+    var delegate: DelegateProxy<UITextField, UITextFieldDelegate> {
         return RxTextFieldDelegateProxy.proxy(for: base)
     }
     
-    var shouldChangeCharacters: (Observable<String>) -> (@escaping RxTextFieldDelegateProxy.ShouldChangeCharacters) -> Disposable {
-        let proxy = RxTextFieldDelegateProxy.proxy(for: base)
-        return { source in
-            return { shouldChangeCharacters in
-                return source.bind(onNext: { _ in
-                    proxy.shouldChangeCharacters = shouldChangeCharacters
-                })
-            }
+    var shouldChangeCharacters: RxTextFieldDelegateProxy.ShouldChangeCharacters {
+        get {
+            return RxTextFieldDelegateProxy.proxy(for: base).shouldChangeCharacters
+        }
+        set {
+            RxTextFieldDelegateProxy.proxy(for: base).shouldChangeCharacters = newValue
         }
     }
     
@@ -34,13 +32,21 @@ public extension Reactive where Base: UITextField {
         let source = RxTextFieldDelegateProxy.proxy(for: base).shouldReturnPublishSubject
         return ControlEvent(events: source)
     }
+}
+
+public extension UITextField {
     
-    func limit(_ maxLength: Int) -> Disposable {
-        return base.rx.text.orEmpty.asDriver().drive(base.rx.shouldChangeCharacters) { (textField, range, string) -> Bool in
-            if string.isEmpty { return true }
-            guard let text = textField.text else { return true }
-            let length = text.count + string.count - range.length
-            return length <= maxLength
+    var maxLength: Int {
+        get {
+            return 0
+        }
+        set {
+            RxTextFieldDelegateProxy.proxy(for: self).shouldChangeCharacters = { (textField, range, string) -> Bool in
+                if string.isEmpty { return true }
+                guard let text = textField.text else { return true }
+                let length = text.count + string.count - range.length
+                return length <= newValue
+            }
         }
     }
 }
