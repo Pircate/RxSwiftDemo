@@ -10,26 +10,17 @@ import RxCocoa
 
 public extension Reactive where Base: UITextField {
     
-    var delegate: DelegateProxy<UITextField, UITextFieldDelegate> {
+    var delegate: RxTextFieldDelegateProxy {
         return RxTextFieldDelegateProxy.proxy(for: base)
     }
     
-    var shouldChangeCharacters: RxTextFieldDelegateProxy.ShouldChangeCharacters {
-        get {
-            return RxTextFieldDelegateProxy.proxy(for: base).shouldChangeCharacters
-        }
-        set {
-            RxTextFieldDelegateProxy.proxy(for: base).shouldChangeCharacters = newValue
-        }
-    }
-    
     var shouldClear: ControlEvent<UITextField> {
-        let source = RxTextFieldDelegateProxy.proxy(for: base).shouldClearPublishSubject
+        let source = delegate.shouldClearPublishSubject
         return ControlEvent(events: source)
     }
     
     var shouldReturn: ControlEvent<UITextField> {
-        let source = RxTextFieldDelegateProxy.proxy(for: base).shouldReturnPublishSubject
+        let source = delegate.shouldReturnPublishSubject
         return ControlEvent(events: source)
     }
 }
@@ -37,9 +28,7 @@ public extension Reactive where Base: UITextField {
 public extension UITextField {
     
     var maxLength: Int {
-        get {
-            return 0
-        }
+        get { return 0 }
         set {
             RxTextFieldDelegateProxy.proxy(for: self).shouldChangeCharacters = { (textField, range, string) -> Bool in
                 if string.isEmpty { return true }
