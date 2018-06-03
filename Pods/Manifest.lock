@@ -30,9 +30,8 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxExtension (0.1.0):
-    - ExtensionX
-    - MJRefresh
     - RxCocoa
+    - RxDataSources
     - RxSwift
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
@@ -113,7 +112,7 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxExtension: cad4b2d026744001a0073ca72db5bb888f84d247
+  RxExtension: d1226e2daf10fe56484851d5e9d492b68091eb8b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxNetwork: d61fa60a8b5d91ddce950030235f663f99eb2bcd
   RxSwift: e49536837d9901277638493ea537394d4b55f570

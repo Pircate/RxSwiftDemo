@@ -9,9 +9,8 @@ Pod::Spec.new do |s|
   s.source                = { :git => "https://github.com/Pircate/RxExtension.git", :tag => "#{s.version}" }
   s.source_files          = "Sources/**/*"
   s.ios.deployment_target = "9.0"
-  s.dependency "MJRefresh"
   s.dependency "RxSwift"
   s.dependency "RxCocoa"
-  s.dependency "ExtensionX"
+  s.dependency "RxDataSources"
 
 end

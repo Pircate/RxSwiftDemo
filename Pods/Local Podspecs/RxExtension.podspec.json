@@ -15,16 +15,13 @@
     "ios": "9.0"
   },
   "dependencies": {
-    "MJRefresh": [
-
-    ],
     "RxSwift": [
 
     ],
     "RxCocoa": [
 
     ],
-    "ExtensionX": [
+    "RxDataSources": [
 
     ]
   }
