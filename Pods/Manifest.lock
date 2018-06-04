@@ -32,27 +32,29 @@ PODS:
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxNetwork (0.4.0):
-    - Cache
-    - Moya/RxSwift
   - RxSwift (4.1.2)
   - RxSwiftExt (3.2.0):
     - RxSwiftExt/Core (= 3.2.0)
   - RxSwiftExt/Core (3.2.0):
     - RxSwift (~> 4.0)
-  - RxSwiftX (0.2.0):
+  - RxSwiftX (0.2.5):
     - RxCocoa
     - RxSwift
-    - RxSwiftX/Core (= 0.2.0)
-  - RxSwiftX/Core (0.2.0):
+    - RxSwiftX/Core (= 0.2.5)
+  - RxSwiftX/Core (0.2.5):
     - RxCocoa
     - RxSwift
-  - RxSwiftX/DataSources (0.2.0):
+  - RxSwiftX/DataSources (0.2.5):
     - RxCocoa
     - RxDataSources
     - RxSwift
-  - RxSwiftX/MJRefresh (0.2.0):
+  - RxSwiftX/MJRefresh (0.2.5):
     - MJRefresh
+    - RxCocoa
+    - RxSwift
+  - RxSwiftX/Network (0.2.5):
+    - Cache
+    - Moya/RxSwift
     - RxCocoa
     - RxSwift
   - SnapKit (4.0.0)
@@ -69,12 +71,12 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxGesture
-  - RxNetwork
   - RxSwift
   - RxSwiftExt
   - RxSwiftX
   - RxSwiftX/DataSources
   - RxSwiftX/MJRefresh
+  - RxSwiftX/Network
   - SnapKit
   - Toast-Swift
 
@@ -96,7 +98,6 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxGesture
-    - RxNetwork
     - RxSwift
     - RxSwiftExt
     - RxSwiftX
@@ -125,13 +126,12 @@ SPEC CHECKSUMS:
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
-  RxNetwork: d61fa60a8b5d91ddce950030235f663f99eb2bcd
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
-  RxSwiftX: b945ee1fe0fe68766a2815e1d8edfeaf2eda8d9a
+  RxSwiftX: c681eb661af1d14ed3177ddb6557b90a8e37b584
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 5c50e7e35269ccf2d52595d4e72c776d538abf8d
+PODFILE CHECKSUM: dfe2403b5530d8fda6a6ab21d61c6dafca5a4790
 
 COCOAPODS: 1.5.3

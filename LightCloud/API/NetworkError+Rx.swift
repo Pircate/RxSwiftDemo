@@ -6,7 +6,7 @@
 //  Copyright © 2018年 gaoX. All rights reserved.
 //
 
-import RxNetwork
+import RxSwiftX
 
 extension Error {
     

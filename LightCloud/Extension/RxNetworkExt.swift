@@ -6,7 +6,7 @@
 //  Copyright © 2018年 CocoaPods. All rights reserved.
 //
 
-import RxNetwork
+import RxSwiftX
 import RxSwift
 import Moya
 
