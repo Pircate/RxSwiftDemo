@@ -23,6 +23,12 @@ public extension Reactive where Base: UIViewController {
         }
     }
     
+    var popToRoot: Binder<Void> {
+        return Binder(base) { vc, _ in
+            vc.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
     var dismiss: Binder<Void> {
         return Binder(base) { vc, _ in
             vc.dismiss(animated: true, completion: nil)

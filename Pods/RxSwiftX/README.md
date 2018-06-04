@@ -20,6 +20,14 @@ it, simply add the following line to your Podfile:
 pod 'RxSwiftX'
 ```
 
+### Optional
+
+```ruby
+pod 'RxSwiftX/DataSources'
+pod 'RxSwiftX/Network'
+pod 'RxSwiftX/MJRefresh'
+```
+
 ## Author
 
 Pircate, gao497868860@163.com

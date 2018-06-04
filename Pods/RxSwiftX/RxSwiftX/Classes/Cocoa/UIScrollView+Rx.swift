@@ -9,15 +9,6 @@
 import RxSwift
 import RxCocoa
 
-public extension Reactive where Base: UITableView {
-    
-    var isEditing: Binder<Bool> {
-        return Binder(base) { tableView, isEditing in
-            tableView.setEditing(isEditing, animated: true)
-        }
-    }
-}
-
 public extension Reactive where Base: UIScrollView {
     
     var bounces: Binder<Bool> {

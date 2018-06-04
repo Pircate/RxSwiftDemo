@@ -8,6 +8,7 @@
 import RxSwift
 import RxCocoa
 
+// MARK: - dataSource and delegate
 public extension Reactive where Base: UITableView {
     
     func items<Proxy: RxTableViewDataSourceType & UITableViewDataSource & UITableViewDelegate, O: ObservableType>(proxy: Proxy)
@@ -41,6 +42,16 @@ public extension Reactive where Base: UITableView {
                     guard let tableView = tableView else { return }
                     delegate.tableView(tableView, observedEvent: event)
             })
+        }
+    }
+}
+
+// MARK: - binder
+public extension Reactive where Base: UITableView {
+    
+    var isEditing: Binder<Bool> {
+        return Binder(base) { tableView, isEditing in
+            tableView.setEditing(isEditing, animated: true)
         }
     }
 }

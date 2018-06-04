@@ -88,7 +88,7 @@ extension TodoItemCell {
             .flatMap({
                 $0.rx.save().trackLCState(state).catchErrorJustComplete()
             })
-            .map({ _ in (item.value(forKey: "follow") as! LCBool).value })
+            .map(to: (item.value(forKey: "follow") as! LCBool).value)
             .asDriver(onErrorJustReturn: false)
             .drive(followButton.rx.isSelected)
             .disposed(by: disposeBag)

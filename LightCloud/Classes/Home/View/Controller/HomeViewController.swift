@@ -43,9 +43,9 @@ final class HomeViewController: BaseViewController {
             return true
         }, heightForRowAtIndexPath: { _, _, item in
             return 60
-        }, heightForHeaderInSection: { (_, _) -> CGFloat in
+        }, heightForHeaderInSection: { _, _ -> CGFloat in
             return 50
-        }, viewForHeaderInSection: { (_, _) -> UIView? in
+        }, viewForHeaderInSection: { _, _ -> UIView? in
             return UILabel().chain.text("云推荐").textAlignment(.center).build
         })
     }()
@@ -77,7 +77,7 @@ final class HomeViewController: BaseViewController {
             .systemFont(ofSize: 16).build
         navigation.item.titleView = editButton
         
-        let isSelected = editButton.rx.tap.map({ !editButton.isSelected }).shareOnce()
+        let isSelected = editButton.rx.tap.map(to: !editButton.isSelected ).shareOnce()
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
