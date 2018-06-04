@@ -11,11 +11,12 @@ import LeanCloud
 import MJRefresh
 import RxDataSources
 import FSCycleScrollView
+import RxExtension
 
 final class HomeViewController: BaseViewController {
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
             .rowHeight(60)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
         tableView.mj_header = MJRefreshNormalHeader()
@@ -40,6 +41,16 @@ final class HomeViewController: BaseViewController {
             return true
         }, canMoveRowAtIndexPath: { _, _ in
             return true
+        })
+    }()
+    
+    private lazy var delegate: RxTableViewSectionedDelegate<TodoSectionModel> = {
+        RxTableViewSectionedDelegate<TodoSectionModel>(heightForRowAtIndexPath: { _, _, item in
+            return 60
+        }, heightForHeaderInSection: { (_, _) -> CGFloat in
+            return 80
+        }, viewForHeaderInSection: { (_, _) -> UIView? in
+            return UILabel().chain.text("云推荐").textAlignment(.center).build
         })
     }()
 
@@ -94,6 +105,8 @@ final class HomeViewController: BaseViewController {
         let output = viewModel.transform(input)
         
         output.items.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        output.items.drive(tableView.rx.items(delegate: delegate)).disposed(by: disposeBag)
+        
         output.banners.bind { [weak self] images in
             self?.cycleScrollView.dataSourceType = .onlyImage(images: images)
         }.disposed(by: disposeBag)

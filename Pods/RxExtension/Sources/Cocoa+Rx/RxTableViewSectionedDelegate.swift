@@ -141,6 +141,7 @@ extension RxTableViewSectionedDelegate: RxTableViewDataSourceType {
             #if DEBUG
             self._delegateBound = true
             #endif
+            delegate.setSections(element)
             tableView.reloadData()
             }.on(observedEvent)
     }
