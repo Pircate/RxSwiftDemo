@@ -11,7 +11,7 @@ import LeanCloud
 import MJRefresh
 import RxDataSources
 import FSCycleScrollView
-import RxExtension
+import RxSwiftX
 
 final class HomeViewController: BaseViewController {
     

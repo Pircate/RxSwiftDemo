@@ -15,7 +15,7 @@ import CocoaChainKit
 import EachNavigationBar
 import SnapKit
 import RxSwiftExt
-import RxExtension
+import RxSwiftX
 import ExtensionX
 
 public typealias Observable = RxSwift.Observable
