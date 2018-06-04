@@ -11,9 +11,9 @@ import RxSwift
 
 extension Error {
     
-    var errorReason: String? {
+    var errorReason: String {
         if let error = self as? LCError {
-            return error.reason
+            return error.reason ?? "服务器异常"
         }
         return "未知错误"
     }

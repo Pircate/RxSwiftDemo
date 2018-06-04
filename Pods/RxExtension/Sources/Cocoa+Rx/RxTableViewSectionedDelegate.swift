@@ -9,74 +9,24 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-extension ObservableType {
-    func subscribeProxyDataSource<DelegateProxy: DelegateProxyType>(ofObject object: DelegateProxy.ParentObject, dataSource: DelegateProxy.Delegate, retainDataSource: Bool, binding: @escaping (DelegateProxy, Event<E>) -> Void)
-        -> Disposable
-        where DelegateProxy.ParentObject: UIView
-        , DelegateProxy.Delegate: AnyObject {
-            let proxy = DelegateProxy.proxy(for: object)
-            let unregisterDelegate = DelegateProxy.installForwardDelegate(dataSource, retainDelegate: retainDataSource, onProxyForObject: object)
-            // this is needed to flush any delayed old state (https://github.com/RxSwiftCommunity/RxDataSources/pull/75)
-            object.layoutIfNeeded()
-            
-            let subscription = self.asObservable()
-                .observeOn(MainScheduler())
-                .catchError { error in
-//                    bindingError(error)
-                    return Observable.empty()
-                }
-                // source can never end, otherwise it would release the subscriber, and deallocate the data source
-                .concat(Observable.never())
-                .takeUntil(object.rx.deallocated)
-                .subscribe { [weak object] (event: Event<E>) in
-                    
-                    if let object = object {
-                        assert(proxy === DelegateProxy.currentDelegate(for: object), "Proxy changed from the time it was first set.\nOriginal: \(proxy)\nExisting: \(String(describing: DelegateProxy.currentDelegate(for: object)))")
-                    }
-                    
-                    binding(proxy, event)
-                    
-                    switch event {
-                    case .error(let error):
-//                        bindingError(error)
-                        unregisterDelegate.dispose()
-                    case .completed:
-                        unregisterDelegate.dispose()
-                    default:
-                        break
-                    }
-            }
-            
-            return Disposables.create { [weak object] in
-                subscription.dispose()
-                object?.layoutIfNeeded()
-                unregisterDelegate.dispose()
-            }
-    }
-}
-
-public extension Reactive where Base: UITableView {
+open class RxTableViewSectionedDelegate<S: SectionModelType>: NSObject, UITableViewDelegate {
     
-    func items<Proxy: RxTableViewDataSourceType & UITableViewDelegate & UITableViewDataSource, O: ObservableType>(proxy: Proxy)
-        -> (_ source: O)
-        -> Disposable
-        where Proxy.Element == O.E {
-            return { source in
-                _ = self.delegate
-                return source.subscribeProxyDataSource(ofObject: self.base, dataSource: proxy as (UITableViewDataSource & UITableViewDelegate), retainDataSource: true) { [weak tableView = self.base] (_: RxTableViewDataSourceProxy, event) -> Void in
-                    guard let tableView = tableView else { return }
-                    proxy.tableView(tableView, observedEvent: event)
-                }
-            }
-    }
-}
-
-open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSectionedReloadDataSource<S>, UITableViewDelegate {
+    public typealias I = S.Item
+    public typealias Section = S
     
-    public typealias HeightForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
-    public typealias HeightForFooterInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
-    public typealias ViewForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> UIView?
-    public typealias ViewForFooterInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> UIView?
+    public typealias HeightForRowAtIndexPath = (RxTableViewSectionedDelegate<S>, IndexPath, I) -> CGFloat
+    public typealias HeightForHeaderInSection = (RxTableViewSectionedDelegate<S>, Int) -> CGFloat
+    public typealias HeightForFooterInSection = (RxTableViewSectionedDelegate<S>, Int) -> CGFloat
+    public typealias ViewForHeaderInSection = (RxTableViewSectionedDelegate<S>, Int) -> UIView?
+    public typealias ViewForFooterInSection = (RxTableViewSectionedDelegate<S>, Int) -> UIView?
+    
+    open var heightForRowAtIndexPath: HeightForRowAtIndexPath {
+        didSet {
+            #if DEBUG
+            ensureNotMutatedAfterBinding()
+            #endif
+        }
+    }
     
     open var heightForHeaderInSection: HeightForHeaderInSection {
         didSet {
@@ -110,29 +60,23 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
         }
     }
     
-    public init(configureCell: @escaping ConfigureCell,
-                titleForHeaderInSection: @escaping  TitleForHeaderInSection = { _, _ in nil },
-                titleForFooterInSection: @escaping TitleForFooterInSection = { _, _ in nil },
-                canEditRowAtIndexPath: @escaping CanEditRowAtIndexPath = { _, _ in false },
-                canMoveRowAtIndexPath: @escaping CanMoveRowAtIndexPath = { _, _ in false },
-                sectionIndexTitles: @escaping SectionIndexTitles = { _ in nil },
-                sectionForSectionIndexTitle: @escaping SectionForSectionIndexTitle = { _, _, index in index },
+    public init(heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, _, _ in 44.0 },
                 heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, _ in 0 },
                 heightForFooterInSection: @escaping HeightForFooterInSection = { _, _ in 0 },
                 viewForHeaderInSection: @escaping ViewForHeaderInSection = { _, _ in nil },
                 viewForFooterInSection: @escaping ViewForFooterInSection = { _, _ in nil }) {
+        self.heightForRowAtIndexPath = heightForRowAtIndexPath
         self.heightForHeaderInSection = heightForHeaderInSection
         self.heightForFooterInSection = heightForFooterInSection
         self.viewForHeaderInSection = viewForHeaderInSection
         self.viewForFooterInSection = viewForFooterInSection
         
-        super.init(configureCell: configureCell,
-                   titleForHeaderInSection: titleForHeaderInSection,
-                   titleForFooterInSection: titleForFooterInSection,
-                   canEditRowAtIndexPath: canEditRowAtIndexPath,
-                   canMoveRowAtIndexPath: canMoveRowAtIndexPath,
-                   sectionIndexTitles: sectionIndexTitles,
-                   sectionForSectionIndexTitle: sectionForSectionIndexTitle)
+        super.init()
+    }
+    
+    // MARK: - UITableViewDelegate
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return heightForRowAtIndexPath(self, indexPath, self[indexPath])
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -155,5 +99,57 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
     
     private func ensureNotMutatedAfterBinding() {
         assert(!_delegateBound, "delegate is already bound. Please write this line before binding call (`bindTo`, `drive`). delegate must first be completely configured, and then bound after that, otherwise there could be runtime bugs, glitches, or partial malfunctions.")
+    }
+    
+    // MARK: - Section Model
+    public typealias SectionModelSnapshot = SectionModel<S, I>
+    
+    private var _sectionModels: [SectionModelSnapshot] = []
+    
+    open var sectionModels: [S] {
+        return _sectionModels.map { Section(original: $0.model, items: $0.items) }
+    }
+    
+    open func setSections(_ sections: [S]) {
+        self._sectionModels = sections.map { SectionModelSnapshot(model: $0, items: $0.items) }
+    }
+    
+    open subscript(section: Int) -> S {
+        let sectionModel = self._sectionModels[section]
+        return S(original: sectionModel.model, items: sectionModel.items)
+    }
+    
+    open subscript(indexPath: IndexPath) -> I {
+        get {
+            return self._sectionModels[indexPath.section].items[indexPath.item]
+        }
+        set(item) {
+            var section = self._sectionModels[indexPath.section]
+            section.items[indexPath.item] = item
+            self._sectionModels[indexPath.section] = section
+        }
+    }
+}
+
+// MARK: - RxTableViewDataSourceType
+extension RxTableViewSectionedDelegate: RxTableViewDataSourceType {
+    
+    public typealias Element = [S]
+    
+    public func tableView(_ tableView: UITableView, observedEvent: Event<[S]>) {
+        Binder(self) { delegate, element in
+            #if DEBUG
+            self._delegateBound = true
+            #endif
+            tableView.reloadData()
+            }.on(observedEvent)
+    }
+}
+
+// MARK: - SectionedViewDataSourceType
+extension RxTableViewSectionedDelegate: SectionedViewDataSourceType {
+    
+    public func model(at indexPath: IndexPath) throws -> Any {
+        return self[indexPath]
     }
 }
