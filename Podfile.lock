@@ -29,10 +29,6 @@ PODS:
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxExtension (0.1.0):
-    - RxCocoa
-    - RxDataSources
-    - RxSwift
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
@@ -44,6 +40,10 @@ PODS:
     - RxSwiftExt/Core (= 3.2.0)
   - RxSwiftExt/Core (3.2.0):
     - RxSwift (~> 4.0)
+  - RxSwiftX (0.1.1):
+    - RxCocoa
+    - RxDataSources
+    - RxSwift
   - SnapKit (4.0.0)
   - Toast-Swift (3.0.1)
 
@@ -57,11 +57,11 @@ DEPENDENCIES:
   - MJRefresh
   - RxCocoa
   - RxDataSources
-  - RxExtension (from `./Pods/RxExtension`)
   - RxGesture
   - RxNetwork
   - RxSwift
   - RxSwiftExt
+  - RxSwiftX
   - SnapKit
   - Toast-Swift
 
@@ -86,14 +86,13 @@ SPEC REPOS:
     - RxNetwork
     - RxSwift
     - RxSwiftExt
+    - RxSwiftX
     - SnapKit
     - Toast-Swift
 
 EXTERNAL SOURCES:
   ExtensionX:
     :path: "./Pods/ExtensionX"
-  RxExtension:
-    :path: "./Pods/RxExtension"
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -112,14 +111,14 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
-  RxExtension: d1226e2daf10fe56484851d5e9d492b68091eb8b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxNetwork: d61fa60a8b5d91ddce950030235f663f99eb2bcd
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
+  RxSwiftX: 940c03934afadaa25e4597b4094fcd38fdc47633
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 8cc3b25cd0c4339abb15a51020c3e2c382f802b0
+PODFILE CHECKSUM: dcd3e0bfca32dc587a7b88090733a4738eddc3a1
 
 COCOAPODS: 1.5.3

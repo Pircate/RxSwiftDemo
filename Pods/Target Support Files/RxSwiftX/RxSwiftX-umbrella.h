@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double RxExtensionVersionNumber;
-FOUNDATION_EXPORT const unsigned char RxExtensionVersionString[];
+FOUNDATION_EXPORT double RxSwiftXVersionNumber;
+FOUNDATION_EXPORT const unsigned char RxSwiftXVersionString[];
 

@@ -5,7 +5,6 @@ target 'LightCloud' do
   use_frameworks!
 
   pod 'ExtensionX', :path => './Pods/ExtensionX'
-  pod 'RxExtension', :path => './Pods/RxExtension'
 
   pod 'LeanCloud'
   pod 'RxSwift'
@@ -14,6 +13,7 @@ target 'LightCloud' do
   pod 'RxDataSources'
   pod 'RxGesture'
   pod 'RxSwiftExt'
+  pod 'RxSwiftX'
   pod 'SnapKit'
   pod 'MJRefresh'
   pod 'Toast-Swift'
