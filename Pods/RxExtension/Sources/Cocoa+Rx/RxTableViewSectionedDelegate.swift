@@ -60,9 +60,9 @@ open class RxTableViewSectionedDelegate<S: SectionModelType>: NSObject, UITableV
         }
     }
     
-    public init(heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, _, _ in 44.0 },
-                heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, _ in 0 },
-                heightForFooterInSection: @escaping HeightForFooterInSection = { _, _ in 0 },
+    public init(heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, _, _ in UITableViewAutomaticDimension },
+                heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, _ in UITableViewAutomaticDimension },
+                heightForFooterInSection: @escaping HeightForFooterInSection = { _, _ in UITableViewAutomaticDimension },
                 viewForHeaderInSection: @escaping ViewForHeaderInSection = { _, _ in nil },
                 viewForFooterInSection: @escaping ViewForFooterInSection = { _, _ in nil }) {
         self.heightForRowAtIndexPath = heightForRowAtIndexPath

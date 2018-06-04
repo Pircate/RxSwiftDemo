@@ -48,7 +48,7 @@ final class HomeViewController: BaseViewController {
         RxTableViewSectionedDelegate<TodoSectionModel>(heightForRowAtIndexPath: { _, _, item in
             return 60
         }, heightForHeaderInSection: { (_, _) -> CGFloat in
-            return 80
+            return 50
         }, viewForHeaderInSection: { (_, _) -> UIView? in
             return UILabel().chain.text("云推荐").textAlignment(.center).build
         })
