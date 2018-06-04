@@ -14,6 +14,8 @@ target 'LightCloud' do
   pod 'RxGesture'
   pod 'RxSwiftExt'
   pod 'RxSwiftX'
+  pod 'RxSwiftX/DataSources'
+  pod 'RxSwiftX/MJRefresh'
   pod 'SnapKit'
   pod 'MJRefresh'
   pod 'Toast-Swift'

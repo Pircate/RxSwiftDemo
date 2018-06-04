@@ -16,9 +16,13 @@ public extension Reactive where Base: UITableView {
         where Proxy.Element == O.E
     {
         return { source in
-            return source.subscribeTableViewProxy(self.base, proxy: proxy as (UITableViewDataSource & UITableViewDelegate), retainDelegate: true, binding: { [weak tableView = self.base] (_, _, event) in
-                guard let tableView = tableView else { return }
-                proxy.tableView(tableView, observedEvent: event)
+            return source.subscribeTableViewProxy(
+                self.base,
+                proxy: proxy as (UITableViewDataSource & UITableViewDelegate),
+                retainDelegate: true,
+                binding: { [weak tableView = self.base] (_, _, event) in
+                    guard let tableView = tableView else { return }
+                    proxy.tableView(tableView, observedEvent: event)
             })
         }
     }
@@ -29,9 +33,13 @@ public extension Reactive where Base: UITableView {
         where Delegate.Element == O.E
     {
         return { source in
-            return source.subscribeTableViewDelegate(self.base, delegate: delegate as UITableViewDelegate, retainDelegate: true, binding: { [weak tableView = self.base] (_, event) in
-                guard let tableView = tableView else { return }
-                delegate.tableView(tableView, observedEvent: event)
+            return source.subscribeTableViewDelegate(
+                self.base,
+                delegate: delegate as UITableViewDelegate,
+                retainDelegate: true,
+                binding: { [weak tableView = self.base] (_, event) in
+                    guard let tableView = tableView else { return }
+                    delegate.tableView(tableView, observedEvent: event)
             })
         }
     }
@@ -137,7 +145,7 @@ fileprivate extension ObservableType {
     }
 }
 
-fileprivate func bindingError(_ error: Swift.Error) {
+func bindingError(_ error: Swift.Error) {
     let error = "Binding error: \(error)"
     #if DEBUG
     fatalError(error)

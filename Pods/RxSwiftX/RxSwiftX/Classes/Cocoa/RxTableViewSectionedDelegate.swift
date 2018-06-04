@@ -7,7 +7,6 @@
 
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 open class RxTableViewSectionedDelegate<Section>: NSObject, UITableViewDelegate {
     
