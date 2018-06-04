@@ -46,19 +46,21 @@ extension HomeViewModel: ViewModelType {
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
         let state = PublishRelay<UIState>()
         
-        let array = (0...99).map { index -> LCObject in
-            let todo = LCObject(className: "TodoList")
-            todo.set("id", value: index)
-            todo.set("name", value: "Todo-\(index)")
-            todo.set("follow", value: false)
-            return todo
+        let itemsClosure = {
+            (0...99).map { index -> LCObject in
+                let todo = LCObject(className: "TodoList")
+                todo.set("id", value: index)
+                todo.set("name", value: "Todo-\(index)")
+                todo.set("follow", value: false)
+                return todo
+            }
         }
         
         // 获取 todo 列表
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "Todo")
                 .map({ [TodoSectionModel(items: $0)] })
-                .trackLCState(state).catchErrorJustReturn([TodoSectionModel(items: array)])
+                .trackLCState(state).catchErrorJustReturn(closure: [TodoSectionModel(items: itemsClosure())])
         }).asDriver(onErrorJustReturn: [])
         
         // 获取 banner 列表
