@@ -32,8 +32,8 @@ final class HomeViewController: BaseViewController {
         return cycleScrollView
     }()
     
-    private lazy var dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel> = {
-        RxTableViewSectionedReloadDataSource<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+    private lazy var proxy: RxTableViewSectionedReloadProxy<TodoSectionModel> = {
+        RxTableViewSectionedReloadProxy<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
             cell.bindItem(item)
             return cell
@@ -41,11 +41,7 @@ final class HomeViewController: BaseViewController {
             return true
         }, canMoveRowAtIndexPath: { _, _ in
             return true
-        })
-    }()
-    
-    private lazy var delegate: RxTableViewSectionedDelegate<TodoSectionModel> = {
-        RxTableViewSectionedDelegate<TodoSectionModel>(heightForRowAtIndexPath: { _, _, item in
+        }, heightForRowAtIndexPath: { _, _, item in
             return 60
         }, heightForHeaderInSection: { (_, _) -> CGFloat in
             return 50
@@ -101,11 +97,10 @@ final class HomeViewController: BaseViewController {
         let viewModel = HomeViewModel()
         let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshing.shareOnce(),
                                         itemDeleted: tableView.rx.itemDeleted,
-                                        dataSource: Observable.of(dataSource))
+                                        dataSource: Observable.of(proxy))
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
-        output.items.drive(tableView.rx.items(delegate: delegate)).disposed(by: disposeBag)
+        output.items.drive(tableView.rx.items(proxy: proxy)).disposed(by: disposeBag)
         
         output.banners.bind { [weak self] images in
             self?.cycleScrollView.dataSourceType = .onlyImage(images: images)
@@ -120,7 +115,7 @@ final class HomeViewController: BaseViewController {
             { self.itemDeleted(at: $0) }
         }).disposed(by: disposeBag)
         
-        itemMovedBind(dataSource)
+        itemMovedBind(proxy)
         
         contentOffsetBindNavigationBar()
     }
@@ -133,30 +128,30 @@ final class HomeViewController: BaseViewController {
     
     // cell 删除操作
     private func itemDeleted(at indexPath: IndexPath) {
-        var sections = dataSource.sectionModels
+        var sections = proxy.sectionModels
         var items = sections[indexPath.section].items
         items.remove(at: indexPath.row)
         if items.isEmpty {
             sections.remove(at: indexPath.section)
-            dataSource.setSections(sections)
+            proxy.setSections(sections)
             tableView.deleteSections([indexPath.section], animationStyle: .automatic)
         } else {
             sections[indexPath.section].items = items
-            dataSource.setSections(sections)
+            proxy.setSections(sections)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     // cell 移动操作
-    private func itemMovedBind(_ dataSource: RxTableViewSectionedReloadDataSource<TodoSectionModel>) {
+    private func itemMovedBind(_ proxy: RxTableViewSectionedReloadProxy<TodoSectionModel>) {
         tableView.rx.itemMoved.subscribe(onNext: { (from, to) in
-            let sections = dataSource.sectionModels
-            let item = dataSource[from]
+            let sections = proxy.sectionModels
+            let item = proxy[from]
             var fromItems = sections[from.section].items
             var toItems = sections[to.section].items
             fromItems.remove(at: from.item)
             toItems.insert(item, at: to.row)
-            dataSource.setSections(sections)
+            proxy.setSections(sections)
         }).disposed(by: disposeBag)
     }
 }

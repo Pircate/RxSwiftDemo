@@ -60,7 +60,8 @@ extension HomeViewModel: ViewModelType {
         let items = input.refresh.flatMap({
             LCQuery.rx.query("TodoList", keyword: "Todo")
                 .map({ [TodoSectionModel(items: $0)] })
-                .trackLCState(state).catchErrorJustReturn(closure: [TodoSectionModel(items: itemsClosure())])
+                .trackLCState(state)
+                .catchErrorJustReturn(closure: [TodoSectionModel(items: itemsClosure())])
         }).asDriver(onErrorJustReturn: [])
         
         // 获取 banner 列表
