@@ -60,15 +60,7 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
-        
-        let keyword = searchTextField.rx.text.orEmpty.skip(1).shareOnce()
-        keyword.throttle(1, scheduler: MainScheduler.instance)
-            .distinctUntilChanged().map(to: ())
-            .asDriver(onErrorJustReturn: ())
-            .drive(tableView.mj_header.rx.beginRefreshing)
-            .disposed(by: disposeBag)
-        
-        let input = QueryViewModel.Input(keyword: keyword,
+        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty.skip(1).shareOnce(),
                                          refresh: tableView.mj_header.rx.refreshing,
                                          more: tableView.mj_footer.rx.refreshing)
         let output = viewModel.transform(input)

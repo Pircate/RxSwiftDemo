@@ -37,22 +37,22 @@ PODS:
     - RxSwiftExt/Core (= 3.2.0)
   - RxSwiftExt/Core (3.2.0):
     - RxSwift (~> 4.0)
-  - RxSwiftX (0.3.0):
+  - RxSwiftX (0.3.2):
     - RxCocoa
     - RxSwift
-    - RxSwiftX/Core (= 0.3.0)
-  - RxSwiftX/Core (0.3.0):
+    - RxSwiftX/Core (= 0.3.2)
+  - RxSwiftX/Core (0.3.2):
     - RxCocoa
     - RxSwift
-  - RxSwiftX/DataSources (0.3.0):
+  - RxSwiftX/DataSources (0.3.2):
     - RxCocoa
     - RxDataSources
     - RxSwift
-  - RxSwiftX/MJRefresh (0.3.0):
+  - RxSwiftX/MJRefresh (0.3.2):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - RxSwiftX/Network (0.3.0):
+  - RxSwiftX/Network (0.3.2):
     - Cache
     - Moya/RxSwift
     - RxCocoa
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
-  RxSwiftX: d676c7e227eddc04616745a548a86d9902109275
+  RxSwiftX: f2ce5a0fe8ec580b115dcf9d54eef0f239229e84
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 

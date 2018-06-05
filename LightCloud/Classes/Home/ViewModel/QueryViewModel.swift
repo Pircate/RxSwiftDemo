@@ -32,8 +32,17 @@ extension QueryViewModel: ViewModelType {
         var page = 0
         var objects: [LCObject] = []
         
+        let query = input.keyword
+            .throttle(1, scheduler: MainScheduler.instance)
+            .distinctUntilChanged().then(page = 0).flatMap({
+                LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
+            }).map({ items -> [LCObject] in
+                objects = items
+                return objects
+            }).shareOnce()
+        
         // 下拉刷新
-        let refresh = input.refresh.map({ page = 0 }).withLatestFrom(input.keyword).flatMap({
+        let refresh = input.refresh.then(page = 0).withLatestFrom(input.keyword).flatMap({
             LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
         }).map({ items -> [LCObject] in
             objects = items
@@ -43,7 +52,7 @@ extension QueryViewModel: ViewModelType {
         let endRefresh = refresh.map(to: ()).asDriver(onErrorJustReturn: ())
         
         // 上拉加载更多
-        let more = input.more.map({ page += 1 }).withLatestFrom(input.keyword).flatMap({
+        let more = input.more.then(page += 1).withLatestFrom(input.keyword).flatMap({
             LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
         }).map { items -> [LCObject] in
             objects.append(contentsOf: items)
@@ -52,7 +61,7 @@ extension QueryViewModel: ViewModelType {
         
         let endMore = more.map(to: ()).asDriver(onErrorJustReturn: ())
         
-        let items = Observable.merge(refresh, more).asDriver(onErrorJustReturn: [])
+        let items = Observable.merge(query, refresh, more).asDriver(onErrorJustReturn: [])
         
         return Output(items: items, endRefresh: endRefresh, endMore: endMore)
     }
