@@ -1,8 +1,8 @@
 //
 //  CatchError.swift
-//  Alamofire
+//  RxSwiftX
 //
-//  Created by GorXion on 2018/6/4.
+//  Created by Pircate on 2018/6/4.
 //
 
 import RxSwift
@@ -20,8 +20,14 @@ public extension ObservableType {
 public extension ObservableConvertibleType {
     
     func asDriver(onErrorJustReturnClosure: @escaping @autoclosure () -> E) -> Driver<E> {
-        return asDriver(onErrorRecover: { _ in
-            return Driver.just(onErrorJustReturnClosure())
-        })
+        return asDriver { _ in
+            Driver.just(onErrorJustReturnClosure())
+        }
+    }
+    
+    func asDriverOnErrorJustComplete() -> Driver<E> {
+        return asDriver { _ in
+            Driver.empty()
+        }
     }
 }

@@ -1,8 +1,8 @@
 //
 //  RxTableViewSectionedDelegate.swift
-//  Alamofire
+//  RxSwiftX
 //
-//  Created by GorXion on 2018/6/3.
+//  Created by Pircate on 2018/6/3.
 //
 
 import RxSwift

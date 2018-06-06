@@ -2,7 +2,7 @@
 //  Then.swift
 //  RxSwiftX
 //
-//  Created by GorXion on 2018/6/5.
+//  Created by Pircate on 2018/6/5.
 //
 
 import RxSwift

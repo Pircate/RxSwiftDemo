@@ -1,8 +1,8 @@
 //
 //  UITextField+Rx.swift
-//  Alamofire
+//  RxSwiftX
 //
-//  Created by GorXion on 2018/6/1.
+//  Created by Pircate on 2018/6/1.
 //
 
 import RxSwift

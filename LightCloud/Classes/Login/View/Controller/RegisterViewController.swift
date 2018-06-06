@@ -55,7 +55,7 @@ class RegisterViewController: BaseViewController {
         
         navigation.item.title = "注册"
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "返回").chain.tintColor(UIColor.white).build
-        navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.pop).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.pop(animated: true)).disposed(by: disposeBag)
         
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -86,7 +86,7 @@ class RegisterViewController: BaseViewController {
         let output = viewModel.transform(input)
         
         output.isEnabled.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
-        output.register.map(to: ()).drive(rx.dismiss).disposed(by: disposeBag)
+        output.register.mapVoid.drive(rx.dismiss(animated: true)).disposed(by: disposeBag)
         output.register.drive(view.rx.endEditing).disposed(by: disposeBag)
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
     }

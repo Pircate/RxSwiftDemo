@@ -49,7 +49,7 @@ extension QueryViewModel: ViewModelType {
             return objects
         }).shareOnce()
         
-        let endRefresh = refresh.map(to: ()).asDriver(onErrorJustReturn: ())
+        let endRefresh = refresh.mapVoid.asDriver(onErrorJustReturn: ())
         
         // 上拉加载更多
         let more = input.more.then(page += 1).withLatestFrom(input.keyword).flatMap({
@@ -59,7 +59,7 @@ extension QueryViewModel: ViewModelType {
             return objects
         }.shareOnce()
         
-        let endMore = more.map(to: ()).asDriver(onErrorJustReturn: ())
+        let endMore = more.mapVoid.asDriver(onErrorJustReturn: ())
         
         let items = Observable.merge(query, refresh, more).asDriver(onErrorJustReturn: [])
         

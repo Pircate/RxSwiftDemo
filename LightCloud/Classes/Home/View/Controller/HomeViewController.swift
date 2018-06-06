@@ -66,7 +66,7 @@ final class HomeViewController: BaseViewController {
     private func setupNavigation() {
         navigation.bar.tintColor = UIColor.white
         navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
-        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.push(QueryViewController.self)).disposed(by: disposeBag)
+        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.push(QueryViewController.self, animated: true)).disposed(by: disposeBag)
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoLogin).disposed(by: disposeBag)
         
@@ -106,7 +106,7 @@ final class HomeViewController: BaseViewController {
         }.disposed(by: disposeBag)
         
         // 请求完成结束刷新
-        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.items.mapVoid.drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
         
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
         

@@ -1,9 +1,9 @@
 //
 //  Network.swift
-//  RxNetwork
+//  RxSwiftX
 //
-//  Created by GorXion on 2018/4/17.
-//  Copyright © 2018年 gaoX. All rights reserved.
+//  Created by Pircate on 2018/4/17.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import Moya

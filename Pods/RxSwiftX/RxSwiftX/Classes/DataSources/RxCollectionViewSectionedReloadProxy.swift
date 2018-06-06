@@ -1,8 +1,8 @@
 //
 //  RxCollectionViewSectionedReloadProxy.swift
-//  Differentiator
+//  RxSwiftX
 //
-//  Created by GorXion on 2018/6/4.
+//  Created by Pircate on 2018/6/4.
 //
 
 import RxSwift

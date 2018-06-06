@@ -1,6 +1,6 @@
 //
 //  UIViewControllerExt.swift
-//  RxExtension
+//  RxSwiftX
 //
 //  Created by Pircate on 2018/5/2.
 //  Copyright © 2018年 Pircate. All rights reserved.
@@ -11,27 +11,27 @@ import RxCocoa
 
 public extension Reactive where Base: UIViewController {
     
-    func push<T: UIViewController>(_ type: T.Type) -> Binder<Void> {
+    func push<T: UIViewController>(_ type: T.Type, animated: Bool) -> Binder<Void> {
         return Binder(base) { vc, _ in
-            vc.navigationController?.pushViewController(type.init(), animated: true)
+            vc.navigationController?.pushViewController(type.init(), animated: animated)
         }
     }
     
-    var pop: Binder<Void> {
+    func pop(animated: Bool) -> Binder<Void> {
         return Binder(base) { vc, _ in
-            vc.navigationController?.popViewController(animated: true)
+            vc.navigationController?.popViewController(animated: animated)
         }
     }
     
-    var popToRoot: Binder<Void> {
+    func popToRoot(animated: Bool) -> Binder<Void> {
         return Binder(base) { vc, _ in
-            vc.navigationController?.popToRootViewController(animated: true)
+            vc.navigationController?.popToRootViewController(animated: animated)
         }
     }
     
-    var dismiss: Binder<Void> {
+    func dismiss(animated: Bool) -> Binder<Void> {
         return Binder(base) { vc, _ in
-            vc.dismiss(animated: true, completion: nil)
+            vc.dismiss(animated: animated, completion: nil)
         }
     }
 }
