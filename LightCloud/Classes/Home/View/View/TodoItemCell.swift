@@ -75,20 +75,20 @@ class TodoItemCell: UITableViewCell {
 
 extension TodoItemCell {
     
-    func bindItem(_ item: LCObject) {
-        nameLabel.text = (item.value(forKey: "name") as? LCString)?.value
-        followButton.isSelected = (item.value(forKey: "follow") as? LCBool)!.value
+    func bindItem(_ item: TodoItemModel) {
+        nameLabel.text = item.name
+        followButton.isSelected = item.follow
         
         let state = PublishRelay<UIState>()
         followButton.rx.tap
-            .map { _ -> LCObject in
-                item.set("follow", value: !(item.value(forKey: "follow") as! LCBool).value)
+            .map { _ -> TodoItemModel in
+                item.follow = !item.follow
                 return item
             }
             .flatMap({
-                $0.rx.save().trackLCState(state).catchErrorJustComplete()
+                $0.object.rx.save().trackLCState(state).catchErrorJustComplete()
             })
-            .map(to: (item.value(forKey: "follow") as! LCBool).value)
+            .map(to: item.follow)
             .asDriver(onErrorJustReturn: false)
             .drive(followButton.rx.isSelected)
             .disposed(by: disposeBag)

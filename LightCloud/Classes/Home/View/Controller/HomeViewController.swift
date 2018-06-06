@@ -64,7 +64,6 @@ final class HomeViewController: BaseViewController {
     }
 
     private func setupNavigation() {
-        navigation.item.title = "首页"
         navigation.bar.tintColor = UIColor.white
         navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
         navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.push(QueryViewController.self)).disposed(by: disposeBag)

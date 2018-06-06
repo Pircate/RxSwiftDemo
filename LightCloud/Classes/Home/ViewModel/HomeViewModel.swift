@@ -14,12 +14,12 @@ import RxSwiftX
 
 struct TodoSectionModel {
     
-    var items: [LCObject]
+    var items: [TodoItemModel]
 }
 
 extension TodoSectionModel: SectionModelType {
     
-    init(original: TodoSectionModel, items: [LCObject]) {
+    init(original: TodoSectionModel, items: [TodoItemModel]) {
         self = original
         self.items = items
     }
@@ -47,18 +47,19 @@ extension HomeViewModel: ViewModelType {
         let state = PublishRelay<UIState>()
         
         let itemsClosure = {
-            (0...99).map { index -> LCObject in
-                let todo = LCObject(className: "TodoList")
-                todo.set("id", value: index)
-                todo.set("name", value: "Todo-\(index)")
-                todo.set("follow", value: false)
-                return todo
+            (0...99).map { index -> TodoItemModel in
+                let object = LCObject(className: "TodoList")
+                object.set("id", value: index)
+                object.set("name", value: "Todo-\(index)")
+                object.set("follow", value: false)
+                return TodoItemModel(object)
             }
         }
         
         // 获取 todo 列表
-        let items = input.refresh.flatMap({
+        let items = input.refresh.flatMap({ _ in
             LCQuery.rx.query("TodoList", keyword: "Todo")
+                .map({ $0.map(TodoItemModel.init) })
                 .map({ [TodoSectionModel(items: $0)] })
                 .trackLCState(state)
                 .catchErrorJustReturn(closure: [TodoSectionModel(items: itemsClosure())])
@@ -75,7 +76,7 @@ extension HomeViewModel: ViewModelType {
         // 删除 item 请求
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
             .flatMap({
-                $0.rx.delete().trackLCState(state, success: "删除成功").catchErrorJustComplete()
+                $0.object.rx.delete().trackLCState(state, success: "删除成功").catchErrorJustComplete()
             }).withLatestFrom(input.itemDeleted)
         
         return Output(items: items, banners: banners, itemDeleted: itemDeleted, state: state.asDriver(onErrorJustReturn: .idle))
