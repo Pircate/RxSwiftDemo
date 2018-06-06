@@ -60,7 +60,7 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
-        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty.skip(1).shareOnce(),
+        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty.shareOnce(),
                                          refresh: tableView.mj_header.rx.refreshing,
                                          more: tableView.mj_footer.rx.refreshing)
         let output = viewModel.transform(input)

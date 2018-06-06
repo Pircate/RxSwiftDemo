@@ -32,7 +32,7 @@ extension QueryViewModel: ViewModelType {
         var page = 0
         var objects: [LCObject] = []
         
-        let query = input.keyword
+        let query = input.keyword.skip(1)
             .throttle(1, scheduler: MainScheduler.instance)
             .distinctUntilChanged().then(page = 0).flatMap({
                 LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
