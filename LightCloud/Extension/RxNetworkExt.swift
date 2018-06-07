@@ -28,9 +28,16 @@ extension Network {
     enum Error: Swift.Error {
         case status(code: Int, message: String)
         
+        var code: Int {
+            switch self {
+            case .status(let code, _):
+                return code
+            }
+        }
+        
         var message: String {
             switch self {
-            case let .status(_, message):
+            case .status(_, let message):
                 return message
             }
         }
@@ -43,13 +50,11 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType: Moya.Re
                                atKeyPath keyPath: String? = nil,
                                using decoder: JSONDecoder = .init()) -> Single<T> {
         return flatMap { response -> Single<T> in
-            if let resp = try? response.map(Network.Response<T>.self) {
-                if resp.success {
-                    return Single.just(resp.result)
-                }
-                return Single.error(Network.Error.status(code: resp.code, message: resp.message))
+            guard let resp = try? response.map(Network.Response<T>.self) else {
+                return Single.error(MoyaError.jsonMapping(response))
             }
-            return Single.error(MoyaError.jsonMapping(response))
+            if resp.success { return Single.just(resp.result) }
+            return Single.error(Network.Error.status(code: resp.code, message: resp.message))
         }
     }
 }
