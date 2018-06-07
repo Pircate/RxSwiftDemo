@@ -13,20 +13,23 @@ import RxDataSources
 import FSCycleScrollView
 import RxSwiftX
 
+private let kCycleScrollViewHeight: CGFloat = 240
+
 final class HomeViewController: BaseViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
             .rowHeight(60)
+            .contentInset(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
+            .scrollIndicatorInsets(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
         tableView.mj_header = MJRefreshNormalHeader()
-        tableView.tableHeaderView = cycleScrollView
         disablesAdjustScrollViewInsets(tableView)
         return tableView
     }()
     
     private lazy var cycleScrollView: FSCycleScrollView = {
-        let cycleScrollView = FSCycleScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.width, height: 240))
+        let cycleScrollView = FSCycleScrollView()
         cycleScrollView.backgroundColor = UIColor(hex: "#4381E8")
         cycleScrollView.isInfinite = true
         cycleScrollView.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
@@ -80,8 +83,15 @@ final class HomeViewController: BaseViewController {
     
     private func buildSubviews() {
         view.addSubview(tableView)
+        view.addSubview(cycleScrollView)
+        
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        
+        cycleScrollView.snp.makeConstraints { (make) in
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(kCycleScrollViewHeight)
         }
         
         tableView.mj_header.beginRefreshing()
@@ -115,9 +125,11 @@ final class HomeViewController: BaseViewController {
     }
     
     private func contentOffsetBindNavigationBar() {
-        tableView.rx.contentOffset.map({ offset in
-            offset.y > 0 ? offset.y / (240 - (UIApplication.shared.statusBarFrame.maxY + 44)) : 0
+        let offsetY = tableView.rx.contentOffset.map { $0.y + kCycleScrollViewHeight }.shareOnce()
+        offsetY.map({
+            $0 > 0 ? $0 / (kCycleScrollViewHeight - (UIApplication.shared.statusBarFrame.maxY + 44)) : 0
         }).bind(to: navigation.bar.rx.alpha).disposed(by: disposeBag)
+        offsetY.map({ $0 > 0 ? -$0 : 0 }).bind(to: cycleScrollView.rx.originY).disposed(by: disposeBag)
     }
     
     // cell 删除操作
@@ -147,5 +159,14 @@ final class HomeViewController: BaseViewController {
             toItems.insert(item, at: to.row)
             proxy.setSections(sections)
         }).disposed(by: disposeBag)
+    }
+}
+
+extension Reactive where Base: UIView {
+    
+    var originY: Binder<CGFloat> {
+        return Binder(base) { view, y in
+            view.frame.origin.y = y
+        }
     }
 }

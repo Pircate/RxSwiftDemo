@@ -57,6 +57,7 @@ class RegisterViewController: BaseViewController {
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "返回").chain.tintColor(UIColor.white).build
         navigation.item.leftBarButtonItem!.rx.tap.bind(to: rx.pop(animated: true)).disposed(by: disposeBag)
         
+        usernameTextField.maxLength = 11
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
