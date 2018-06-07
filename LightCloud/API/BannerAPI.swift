@@ -9,20 +9,20 @@
 import Moya
 
 enum BannerAPI {
-    case items(count: Int)
+    case items
 }
 
 extension BannerAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "http://106.15.201.144:82/")!
+        return URL(string: "https://news-at.zhihu.com/api")!
     }
     
     var path: String {
-        return "m/banner"
+        return "4/news/latest"
     }
     
     var method: Moya.Method {
-        return .post
+        return .get
     }
     
     var sampleData: Data {
@@ -31,8 +31,8 @@ extension BannerAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .items(let count):
-            return .requestParameters(parameters: ["count": count], encoding: JSONEncoding.default)
+        case .items:
+            return .requestPlain
         }
     }
     

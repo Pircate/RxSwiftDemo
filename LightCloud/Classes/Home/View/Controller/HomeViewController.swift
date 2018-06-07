@@ -29,6 +29,7 @@ final class HomeViewController: BaseViewController {
         let cycleScrollView = FSCycleScrollView(frame: CGRect(x: 0, y: 0, width: UIScreen.width, height: 240))
         cycleScrollView.backgroundColor = UIColor(hex: "#4381E8")
         cycleScrollView.isInfinite = true
+        cycleScrollView.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         return cycleScrollView
     }()
     
@@ -95,8 +96,8 @@ final class HomeViewController: BaseViewController {
         
         output.items.drive(tableView.rx.items(proxy: proxy)).disposed(by: disposeBag)
         
-        output.banners.bind { [weak self] images in
-            self?.cycleScrollView.dataSourceType = .onlyImage(images: images)
+        output.banners.bind { [weak self] items in
+            self?.cycleScrollView.dataSourceType = .both(items: items)
         }.disposed(by: disposeBag)
         
         // 请求完成结束刷新

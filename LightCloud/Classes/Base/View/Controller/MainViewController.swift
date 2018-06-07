@@ -18,7 +18,9 @@ class MainViewController: BaseViewController {
     }()
     
     private lazy var dataSource: [(String, BaseViewController.Type)] = {
-        [("登录注册", LoginViewController.self), ("tableView编辑", HomeViewController.self), ("搜索及刷新", QueryViewController.self)]
+        [("登录注册", LoginViewController.self),
+         ("列表编辑", HomeViewController.self),
+         ("搜索及刷新", QueryViewController.self)]
     }()
 
     override func viewDidLoad() {

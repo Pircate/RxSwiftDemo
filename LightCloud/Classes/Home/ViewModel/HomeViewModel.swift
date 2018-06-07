@@ -35,7 +35,7 @@ final class HomeViewModel {
     
     struct Output {
         let items: Driver<[TodoSectionModel]>
-        let banners: Observable<[String]>
+        let banners: Observable<[(image: String, title: String)]>
         let itemDeleted: Observable<IndexPath>
         let state: Driver<UIState>
     }
@@ -67,11 +67,13 @@ extension HomeViewModel: ViewModelType {
         
         // 获取 banner 列表
         let banners = input.refresh.flatMap({
-            BannerAPI.items(count: 10).request()
-                .mapResult([BannerItemModel].self)
+            BannerAPI.items.request()
+                .map(BannerListModel.self)
+                .map({ $0.topStories })
+                .map({ $0.map({ (image: $0.image, title: $0.title) })})
                 .asObservable()
                 .catchErrorJustComplete()
-        }).map({ $0.map({ "http://106.15.201.144:82/upload/" + $0.img }) })
+        })
         
         // 删除 item 请求
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }

@@ -27,14 +27,5 @@ extension AppDelegate {
         ToastManager.shared.style.activitySize = CGSize(width: 88, height: 88)
         
         Network.default.timeoutInterval = 20
-        Network.default.taskClosure = { target in
-            switch target.task {
-            case let .requestParameters(parameters, encoding):
-                let params: [String: Any] = ["sign": "", "token": "", "body": parameters]
-                return .requestParameters(parameters: params, encoding: encoding)
-            default:
-                return target.task
-            }
-        }
     }
 }

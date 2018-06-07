@@ -8,8 +8,16 @@
 
 import Foundation
 
+struct BannerListModel: Codable {
+    let topStories: [BannerItemModel]
+    
+    enum CodingKeys: String, CodingKey {
+        case topStories = "top_stories"
+    }
+}
+
 struct BannerItemModel: Codable {
     let id: String
-    let name: String
-    let img: String
+    let title: String
+    let image: String
 }
