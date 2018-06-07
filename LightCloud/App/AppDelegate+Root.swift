@@ -11,7 +11,7 @@ extension AppDelegate {
     func setupRootViewController() {
         UIViewController.setupNavigationBar
         window = UIWindow(frame: UIScreen.main.bounds).chain.backgroundColor(UIColor.white).build
-        let nav = UINavigationController(rootViewController: HomeViewController())
+        let nav = UINavigationController(rootViewController: MainViewController())
         nav.navigation.configuration.isEnabled = true
         nav.navigation.configuration.isTranslucent = true
         nav.navigation.configuration.barTintColor = UIColor(hex: "#4381E8")

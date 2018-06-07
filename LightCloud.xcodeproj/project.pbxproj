@@ -37,6 +37,7 @@
 		B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */; };
 		B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */; };
 		B5DD813820C7AB400041A66E /* TodoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD813720C7AB400041A66E /* TodoItemModel.swift */; };
+		B5DEFE8A20C8F3580051C7DE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DEFE8920C8F3580051C7DE /* MainViewController.swift */; };
 		B5F7C09120B25F9B00B8F53B /* QueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */; };
 		B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */; };
 		B5F7C09520B25FA700B8F53B /* QueryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7C09320B25FA700B8F53B /* QueryViewModel.swift */; };
@@ -103,6 +104,7 @@
 		B5CE12AD20A419F000EC3F30 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B5CE12AF20A41B1800EC3F30 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B5DD813720C7AB400041A66E /* TodoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemModel.swift; sourceTree = "<group>"; };
+		B5DEFE8920C8F3580051C7DE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B5F7C09020B25F9B00B8F53B /* QueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewController.swift; sourceTree = "<group>"; };
 		B5F7C09220B25FA700B8F53B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B5F7C09320B25FA700B8F53B /* QueryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryViewModel.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE12A820A3F58700EC3F30 /* BaseViewController.swift */,
+				B5DEFE8920C8F3580051C7DE /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				B585042720BCF51B00D9846D /* RxNetworkExt.swift in Sources */,
 				B5B96BB120BD1C8200D60EDE /* NetworkError+Rx.swift in Sources */,
 				B5CE12A920A3F58700EC3F30 /* BaseViewController.swift in Sources */,
+				B5DEFE8A20C8F3580051C7DE /* MainViewController.swift in Sources */,
 				B5F7C09920B2610100B8F53B /* LCQuery+Rx.swift in Sources */,
 				336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */,
 				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,

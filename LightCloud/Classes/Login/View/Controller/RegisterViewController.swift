@@ -86,7 +86,7 @@ class RegisterViewController: BaseViewController {
         let output = viewModel.transform(input)
         
         output.isEnabled.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
-        output.register.map(to: ()).drive(rx.dismiss(animated: true)).disposed(by: disposeBag)
+        output.register.map(to: ()).drive(rx.popToRoot(animated: true)).disposed(by: disposeBag)
         output.register.drive(view.rx.endEditing).disposed(by: disposeBag)
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
     }

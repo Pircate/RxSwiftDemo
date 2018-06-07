@@ -19,6 +19,10 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.white
+        
+        navigation.bar.tintColor = UIColor.white
+        navigation.item.leftBarButtonItem = UIBarButtonItem(title: "返回")
+        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.pop(animated: true)).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

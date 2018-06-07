@@ -63,18 +63,12 @@ final class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    private func setupNavigation() {
-        navigation.bar.tintColor = UIColor.white
-        navigation.item.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
-        navigation.item.leftBarButtonItem?.rx.tap.bind(to: rx.push(QueryViewController.self, animated: true)).disposed(by: disposeBag)
-        navigation.item.rightBarButtonItem = UIBarButtonItem(title: "登录")
-        navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.gotoLogin).disposed(by: disposeBag)
-        
+    private func setupNavigation() {        
         let editButton = UIButton(type: .custom).chain
             .title("编辑", for: .normal, .highlighted)
             .title("完成", for: .selected, [.selected, .highlighted])
             .systemFont(ofSize: 16).build
-        navigation.item.titleView = editButton
+        navigation.item.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
         let isSelected = editButton.rx.tap.map(to: !editButton.isSelected ).shareOnce()
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)

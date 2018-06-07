@@ -21,7 +21,8 @@ final class QueryViewController: BaseViewController {
             .masksToBounds(true)
             .textAlignment(.center)
             .backgroundColor(UIColor.white)
-            .systemFont(ofSize: 14).build
+            .systemFont(ofSize: 14)
+            .placeholder("请输入关键字Query").build
     }()
     
     private lazy var tableView: UITableView = {
