@@ -28,6 +28,7 @@ final class QueryViewController: BaseViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
+        tableView.tableFooterView = UIView()
         tableView.mj_header = MJRefreshNormalHeader()
         tableView.mj_footer = MJRefreshBackStateFooter()
         return tableView
