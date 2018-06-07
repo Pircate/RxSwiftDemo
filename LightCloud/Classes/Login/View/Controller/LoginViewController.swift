@@ -123,11 +123,11 @@ final class LoginViewController: BaseViewController {
         output.isEnabled.drive(loginButton.rx.isEnabled).disposed(by: disposeBag)
         output.captcha.map({ $0.title }).drive(captchaButton.rx.title(for: .normal)).disposed(by: disposeBag)
         output.captcha.map({ $0.isEnabled }).distinctUntilChanged().drive(captchaButton.rx.isEnabled).disposed(by: disposeBag)
-        output.captcha.asObservable().take(1).mapVoid.asDriver(onErrorJustReturn: ()).drive(passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
-        output.login.mapVoid.drive(rx.dismiss(animated: true)).disposed(by: disposeBag)
+        output.captcha.asObservable().take(1).map(to: ()).asDriver(onErrorJustReturn: ()).drive(passwordTextField.rx.becomeFirstResponder).disposed(by: disposeBag)
+        output.login.map(to: ()).drive(rx.dismiss(animated: true)).disposed(by: disposeBag)
         output.login.drive(view.rx.endEditing).disposed(by: disposeBag)
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
         
-        view.rx.swipeGesture(.left).when(.recognized).mapVoid.bind(to: rx.push(RegisterViewController.self, animated: true)).disposed(by: disposeBag)
+        view.rx.swipeGesture(.left).when(.recognized).map(to: ()).bind(to: rx.push(RegisterViewController.self, animated: true)).disposed(by: disposeBag)
     }
 }
