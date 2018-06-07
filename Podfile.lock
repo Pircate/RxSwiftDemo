@@ -3,7 +3,7 @@ PODS:
   - Cache (4.2.0)
   - CocoaChainKit (0.4.2)
   - Differentiator (3.0.2)
-  - EachNavigationBar (0.1.2)
+  - EachNavigationBar (0.2.0)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -37,22 +37,22 @@ PODS:
     - RxSwiftExt/Core (= 3.2.0)
   - RxSwiftExt/Core (3.2.0):
     - RxSwift (~> 4.0)
-  - RxSwiftX (0.3.4):
+  - RxSwiftX (0.3.5):
     - RxCocoa
     - RxSwift
-    - RxSwiftX/Core (= 0.3.4)
-  - RxSwiftX/Core (0.3.4):
+    - RxSwiftX/Core (= 0.3.5)
+  - RxSwiftX/Core (0.3.5):
     - RxCocoa
     - RxSwift
-  - RxSwiftX/DataSources (0.3.4):
+  - RxSwiftX/DataSources (0.3.5):
     - RxCocoa
     - RxDataSources
     - RxSwift
-  - RxSwiftX/MJRefresh (0.3.4):
+  - RxSwiftX/MJRefresh (0.3.5):
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - RxSwiftX/Network (0.3.4):
+  - RxSwiftX/Network (0.3.5):
     - Cache
     - Moya/RxSwift
     - RxCocoa
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   Cache: f28f8dd64b632155aabf9b3906b036a659048251
   CocoaChainKit: b812b87c270e8383cf65640857d63112b1d8ad88
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
-  EachNavigationBar: 899d8bdb544e6283d631b05648a6974a7c3d2573
+  EachNavigationBar: b312787038071216f2687bb8afa67084576f2a9f
   ExtensionX: 5c532cdabafa029bff1c461a9eca6a2bc4a7c754
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
-  RxSwiftX: c924c8507d37e0b4f00ca05712a8fe0eb4f2932c
+  RxSwiftX: 44748334bb0876f92903f481f0411678da03c62f
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 

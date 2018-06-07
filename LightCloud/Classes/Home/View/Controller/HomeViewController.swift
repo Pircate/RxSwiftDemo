@@ -49,7 +49,7 @@ final class HomeViewController: BaseViewController {
             return 60
         }, heightForHeaderInSection: { _, _ -> CGFloat in
             return 50
-        }, viewForHeaderInSection: { _, _ -> UIView? in
+        }, viewForHeaderInSection: { _, _, _  -> UIView? in
             return UILabel().chain.text("云推荐").textAlignment(.center).build
         })
     }()

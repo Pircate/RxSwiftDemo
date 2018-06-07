@@ -38,7 +38,7 @@ public extension Reactive where Base: UITableView {
         }
     }
     
-    func deselectRow(animated: Bool) -> Binder<IndexPath> {
+    func deselectRow(animated: Bool = true) -> Binder<IndexPath> {
         return Binder(base) { tableView, indexPath in
             tableView.deselectRow(at: indexPath, animated: animated)
         }

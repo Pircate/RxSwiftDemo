@@ -14,8 +14,8 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
     public typealias HeightForRowAtIndexPath = (RxTableViewSectionedReloadProxy<S>, IndexPath, I) -> CGFloat
     public typealias HeightForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
     public typealias HeightForFooterInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
-    public typealias ViewForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> UIView?
-    public typealias ViewForFooterInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> UIView?
+    public typealias ViewForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> UIView?
+    public typealias ViewForFooterInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> UIView?
     
     open var heightForRowAtIndexPath: HeightForRowAtIndexPath
     open var heightForHeaderInSection: HeightForHeaderInSection
@@ -33,8 +33,8 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
                 heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, _, _ in UITableViewAutomaticDimension },
                 heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, _ in UITableViewAutomaticDimension },
                 heightForFooterInSection: @escaping HeightForFooterInSection = { _, _ in UITableViewAutomaticDimension },
-                viewForHeaderInSection: @escaping ViewForHeaderInSection = { _, _ in nil },
-                viewForFooterInSection: @escaping ViewForFooterInSection = { _, _ in nil }) {
+                viewForHeaderInSection: @escaping ViewForHeaderInSection = { _, _, _ in nil },
+                viewForFooterInSection: @escaping ViewForFooterInSection = { _, _, _ in nil }) {
         
         self.heightForRowAtIndexPath = heightForRowAtIndexPath
         self.heightForHeaderInSection = heightForHeaderInSection
@@ -65,10 +65,10 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return viewForHeaderInSection(self, section)
+        return viewForHeaderInSection(self, tableView, section)
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return viewForFooterInSection(self, section)
+        return viewForFooterInSection(self, tableView, section)
     }
 }

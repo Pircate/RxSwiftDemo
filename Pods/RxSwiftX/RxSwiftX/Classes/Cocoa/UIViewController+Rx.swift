@@ -11,25 +11,25 @@ import RxCocoa
 
 public extension Reactive where Base: UIViewController {
     
-    func push<T: UIViewController>(_ type: T.Type, animated: Bool) -> Binder<Void> {
+    func push<T: UIViewController>(_ type: T.Type, animated: Bool = true) -> Binder<Void> {
         return Binder(base) { vc, _ in
             vc.navigationController?.pushViewController(type.init(), animated: animated)
         }
     }
     
-    func pop(animated: Bool) -> Binder<Void> {
+    func pop(animated: Bool = true) -> Binder<Void> {
         return Binder(base) { vc, _ in
             vc.navigationController?.popViewController(animated: animated)
         }
     }
     
-    func popToRoot(animated: Bool) -> Binder<Void> {
+    func popToRoot(animated: Bool = true) -> Binder<Void> {
         return Binder(base) { vc, _ in
             vc.navigationController?.popToRootViewController(animated: animated)
         }
     }
     
-    func dismiss(animated: Bool) -> Binder<Void> {
+    func dismiss(animated: Bool = true) -> Binder<Void> {
         return Binder(base) { vc, _ in
             vc.dismiss(animated: animated, completion: nil)
         }
