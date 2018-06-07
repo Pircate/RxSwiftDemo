@@ -41,6 +41,18 @@ public extension KeyedDecodingContainer {
             return objectValue
         } else if let arrayValue = try? JSONDecoder().decode(type, from: "[]".data(using: .utf8)!) {
             return arrayValue
+        } else if let stringValue = try decode(String.self, forKey: key) as? T {
+            return stringValue
+        } else if let boolValue = try decode(Bool.self, forKey: key) as? T {
+            return boolValue
+        } else if let intValue = try decode(Int.self, forKey: key) as? T {
+            return intValue
+        } else if let uintValue = try decode(UInt.self, forKey: key) as? T {
+            return uintValue
+        } else if let doubleValue = try decode(Double.self, forKey: key) as? T {
+            return doubleValue
+        } else if let floatValue = try decode(Float.self, forKey: key) as? T {
+            return floatValue
         }
         let context = DecodingError.Context(codingPath: [key], debugDescription: "Key: <\(key.stringValue)> cannot be decoded")
         throw DecodingError.dataCorrupted(context)

@@ -76,7 +76,9 @@ extension HomeViewModel: ViewModelType {
         // 删除 item 请求
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
             .flatMap({
-                $0.object.rx.delete().trackLCState(state, success: "删除成功").catchErrorJustComplete()
+                $0.object.rx.delete()
+                    .trackLCState(state, success: "删除成功")
+                    .catchErrorJustComplete()
             }).withLatestFrom(input.itemDeleted)
         
         return Output(items: items, banners: banners, itemDeleted: itemDeleted, state: state.asDriver(onErrorJustReturn: .idle))
