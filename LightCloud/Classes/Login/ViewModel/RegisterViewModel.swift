@@ -28,15 +28,29 @@ final class RegisterViewModel {
 extension RegisterViewModel: ViewModelType {
     
     func transform(_ input: RegisterViewModel.Input) -> RegisterViewModel.Output {
-        let isEnabled = Observable.combineLatest(input.username.isEmpty, input.password.isEmpty) { !$0 && !$1 }.asDriver(onErrorJustReturn: false)
+        let isEnabled = input.verifyloginButton()
         
-        let state = PublishRelay<UIState>()
-        let usernameAndPassword = Observable.combineLatest(input.username, input.password) { (username: $0, password: $1) }
-        let register = input.registerTap.withLatestFrom(usernameAndPassword).flatMapLatest({
+        let state = State()
+        let register = input.requestRegister(state)
+        
+        return Output(isEnabled: isEnabled,
+                      register: register,
+                      state: state.asDriver(onErrorJustReturn: .idle))
+    }
+}
+
+fileprivate extension RegisterViewModel.Input {
+    
+    func verifyloginButton() -> Driver<Bool> {
+        return Observable.combineLatest(username.isEmpty, password.isEmpty) { !$0 && !$1 }
+            .asDriver(onErrorJustReturn: false)
+    }
+    
+    func requestRegister(_ state: State) -> Driver<Bool> {
+        let usernameAndPassword = Observable.combineLatest(username, password) { (username: $0, password: $1) }
+        return registerTap.withLatestFrom(usernameAndPassword).flatMapLatest({
             LCUser.rx.register(username: $0.username, password: $0.password)
                 .trackState(state, success: "注册成功").catchErrorJustComplete()
         }).asDriver(onErrorJustReturn: false)
-        
-        return Output(isEnabled: isEnabled, register: register, state: state.asDriver(onErrorJustReturn: .idle))
     }
 }

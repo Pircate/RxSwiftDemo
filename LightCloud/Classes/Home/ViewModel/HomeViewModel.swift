@@ -44,8 +44,23 @@ final class HomeViewModel {
 extension HomeViewModel: ViewModelType {
     
     func transform(_ input: HomeViewModel.Input) -> HomeViewModel.Output {
-        let state = PublishRelay<UIState>()
+        let state = State()
         
+        let items = input.requestTodoList(state)
+        let banners = input.requestBannerList()
+        let itemDeleted = input.requestDeleteItem(state)
+        
+        return Output(items: items,
+                      banners: banners,
+                      itemDeleted: itemDeleted,
+                      state: state.asDriver(onErrorJustReturn: .idle))
+    }
+}
+
+fileprivate extension HomeViewModel.Input {
+    
+    // 获取 todo 列表
+    func requestTodoList(_ state: State) -> Driver<[TodoSectionModel]> {
         let models = (0...99).lazy.map { index -> TodoItemModel in
             let object = LCObject(className: "TodoList")
             object.set("id", value: index)
@@ -53,18 +68,18 @@ extension HomeViewModel: ViewModelType {
             object.set("follow", value: false)
             return TodoItemModel(object)
         }
-        
-        // 获取 todo 列表
-        let items = input.refresh.flatMap({ _ in
+    
+        return refresh.flatMap({ _ in
             LCQuery.rx.query("TodoList", keyword: "Todo")
                 .map({ $0.map(TodoItemModel.init) })
                 .map({ [TodoSectionModel(items: $0)] })
                 .trackState(state)
                 .catchErrorJustReturn(closure: [TodoSectionModel(items: Array(models))])
         }).asDriver(onErrorJustReturn: [])
-        
-        // 获取 banner 列表
-        let banners = input.refresh.flatMap({
+    }
+    
+    func requestBannerList() -> Observable<[(image: String, title: String)]> {
+        return refresh.flatMap({
             BannerAPI.items.request()
                 .map(BannerListModel.self)
                 .map({ $0.topStories })
@@ -72,15 +87,14 @@ extension HomeViewModel: ViewModelType {
                 .asObservable()
                 .catchErrorJustComplete()
         })
-        
-        // 删除 item 请求
-        let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
+    }
+    
+    func requestDeleteItem(_ state: State) -> Observable<IndexPath> {
+        return Observable.combineLatest(itemDeleted, dataSource) { $1[$0] }
             .flatMap({
                 $0.object.rx.delete()
                     .trackState(state, success: "删除成功")
                     .catchErrorJustComplete()
-            }).withLatestFrom(input.itemDeleted)
-        
-        return Output(items: items, banners: banners, itemDeleted: itemDeleted, state: state.asDriver(onErrorJustReturn: .idle))
+            }).withLatestFrom(itemDeleted)
     }
 }
