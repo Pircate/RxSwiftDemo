@@ -86,7 +86,7 @@ extension TodoItemCell {
                 return item
             }
             .flatMap({
-                $0.object.rx.save().trackLCState(state).catchErrorJustComplete()
+                $0.object.rx.save().trackState(state).catchErrorJustComplete()
             })
             .map(to: item.follow)
             .asDriver(onErrorJustReturn: false)

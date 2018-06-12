@@ -59,7 +59,7 @@ extension HomeViewModel: ViewModelType {
             LCQuery.rx.query("TodoList", keyword: "Todo")
                 .map({ $0.map(TodoItemModel.init) })
                 .map({ [TodoSectionModel(items: $0)] })
-                .trackLCState(state)
+                .trackState(state)
                 .catchErrorJustReturn(closure: [TodoSectionModel(items: Array(models))])
         }).asDriver(onErrorJustReturn: [])
         
@@ -77,7 +77,7 @@ extension HomeViewModel: ViewModelType {
         let itemDeleted = Observable.combineLatest(input.itemDeleted, input.dataSource) { $1[$0] }
             .flatMap({
                 $0.object.rx.delete()
-                    .trackLCState(state, success: "删除成功")
+                    .trackState(state, success: "删除成功")
                     .catchErrorJustComplete()
             }).withLatestFrom(input.itemDeleted)
         

@@ -61,7 +61,7 @@ extension ObservableConvertibleType {
     func trackState(_ relay: PublishRelay<UIState>,
                     loading: Bool = true,
                     success: String? = nil,
-                    failure: @escaping (Error) -> String? = { _ in nil }) -> Observable<E> {
+                    failure: @escaping (Error) -> String? = { $0.errorMessage }) -> Observable<E> {
         return Observable.using({ () -> UIStateToken<E> in
             if loading { relay.accept(.loading) }
             return UIStateToken(source: self.asObservable())

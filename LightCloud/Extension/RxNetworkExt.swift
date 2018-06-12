@@ -25,7 +25,7 @@ extension Network {
 
 extension Network {
     
-    enum Error: Swift.Error {
+    enum Error: LightCloudError {
         case status(code: Int, message: String)
         
         var code: Int {
