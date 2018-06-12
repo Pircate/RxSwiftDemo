@@ -9,9 +9,9 @@
 import LeanCloud
 import RxSwift
 
-extension LCError: LightCloudError {
+extension LCError {
     
-    var errorMessage: String {
+    public var localizedDescription: String {
         return reason ?? "服务器异常"
     }
 }

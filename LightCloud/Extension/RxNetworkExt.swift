@@ -25,7 +25,7 @@ extension Network {
 
 extension Network {
     
-    enum Error: LightCloudError {
+    enum Error: Swift.Error {
         case status(code: Int, message: String)
         
         var code: Int {
@@ -40,6 +40,10 @@ extension Network {
             case .status(_, let message):
                 return message
             }
+        }
+        
+        var localizedDescription: String {
+            return message
         }
     }
 }
