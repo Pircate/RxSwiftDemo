@@ -25,7 +25,7 @@ extension Network {
 
 extension Network {
     
-    enum Error: Swift.Error {
+    enum Error: LightError {
         case status(code: Int, message: String)
         
         var code: Int {
@@ -42,7 +42,7 @@ extension Network {
             }
         }
         
-        var localizedDescription: String {
+        var errorMessage: String {
             return message
         }
     }
