@@ -90,11 +90,12 @@ fileprivate extension HomeViewModel.Input {
     }
     
     func requestDeleteItem(_ state: State) -> Observable<IndexPath> {
-        return Observable.combineLatest(itemDeleted, dataSource) { $1[$0] }
+        return Observable.combineLatest(itemDeleted, dataSource) { (item: $1[$0], indexPath: $0) }
             .flatMap({
-                $0.object.rx.delete()
+                $0.item.object.rx.delete()
                     .trackState(state, success: "删除成功")
                     .catchErrorJustComplete()
-            }).withLatestFrom(itemDeleted)
+                    .map(to: $0.indexPath)
+            })
     }
 }
