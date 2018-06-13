@@ -23,6 +23,12 @@ public extension Reactive where Base: UITextField {
         let source = delegate.shouldReturnPublishSubject
         return ControlEvent(events: source)
     }
+    
+    var valueChanged: Binder<Void> {
+        return Binder(base) { textField, _ in
+            textField.sendActions(for: .valueChanged)
+        }
+    }
 }
 
 public extension UITextField {

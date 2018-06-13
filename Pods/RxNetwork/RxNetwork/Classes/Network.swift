@@ -1,14 +1,13 @@
 //
 //  Network.swift
-//  RxSwiftX
+//  RxNetwork
 //
-//  Created by Pircate on 2018/4/17.
-//  Copyright © 2018年 Pircate. All rights reserved.
+//  Created by GorXion on 2018/4/17.
+//  Copyright © 2018年 gaoX. All rights reserved.
 //
 
 import Moya
-import Cache
-import enum Result.Result
+import Result
 
 public let kNetworkTimeoutInterval: TimeInterval = 60
 
@@ -27,11 +26,6 @@ public final class Network {
     public lazy var provider: MoyaProvider<MultiTarget> = {
         MoyaProvider<MultiTarget>(taskClosure: taskClosure, timeoutInterval: timeoutInterval, plugins: plugins)
     }()
-}
-
-extension Network {
-    
-    public static let storage = try? Storage(diskConfig: DiskConfig(name: "RxNetworkCache"), memoryConfig: MemoryConfig())
 }
 
 extension MoyaProvider {
