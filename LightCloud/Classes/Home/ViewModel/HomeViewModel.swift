@@ -80,7 +80,7 @@ fileprivate extension HomeViewModel.Input {
     
     func requestBannerList() -> Observable<[(image: String, title: String)]> {
         return refresh.flatMap({
-            BannerAPI.items.request()
+            BannerAPI.items.cache.request()
                 .map(BannerListModel.self)
                 .map({ $0.topStories })
                 .map({ $0.map({ (image: $0.image, title: $0.title) })})

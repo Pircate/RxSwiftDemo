@@ -21,7 +21,7 @@ public extension TargetType {
     }
     
     func cachedObject<T: Codable>(_ type: T.Type) -> T? {
-        if let storage = try? Storage(diskConfig: DiskConfig(name: "RxNetworkCache"),
+        if let storage = try? Storage(diskConfig: DiskConfig(name: "RxNetworkObjectCache"),
                                       memoryConfig: MemoryConfig(),
                                       transformer: TransformerFactory.forCodable(ofType: type)),
             let object = try? storage.object(forKey: cachedKey) {
@@ -30,10 +30,17 @@ public extension TargetType {
         return nil
     }
     
+    var cachedResponse: Response? {
+        if let response = try? Network.storage?.object(forKey: cachedKey) {
+            return response
+        }
+        return nil
+    }
+    
     func onCache<T: Codable>(_ type: T.Type,
-                             _ closure: (T) -> Void) -> Single<Self> {
+                             _ closure: (T) -> Void) -> OnCache<Self, T> {
         if let object = cachedObject(type) { closure(object) }
-        return Single.just(self)
+        return OnCache(self)
     }
     
     var cache: Observable<Self> {
