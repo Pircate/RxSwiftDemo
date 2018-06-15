@@ -47,22 +47,59 @@ Network.default.taskClosure = { target in
 
 ### Request with cache
 
+#### normal
+
 ```swift
-TestTarget.test(count: 10)
-    .onCache([TestModel].self, { (response) in
-    
+/*
+ {
+    "top_stories": []
+ }
+ */
+StoryAPI.latest
+    .onCache(StoryListModel.self, { (model) in
+        
     })
-    .request([TestModel].self, atKeyPath: "result")
-    .subscribe(onSuccess: { (response) in
+    .request()
+    .subscribe(onSuccess: { (model) in
+        
+    })
+    .disposed(by: disposeBag)
+
+StoryAPI.latest
+    .cache
+    .request()
+    .map(StoryListModel.self)
+    .subscribe(onNext: { (model) in
+
+    }).disposed(by: disposeBag)
+```
+
+#### other
+
+```swift
+/*
+ {
+    "code": 2000,
+    "message": "Ok",
+    "result": []
+ }
+ */
+TestTarget.test(count: 10)
+    .onCache([TestModel].self, { (models) in
+
+    })
+    .requestObject()
+    .subscribe(onSuccess: { (models) in
 
     })
     .disposed(by: disposeBag)
-// or
+
 TestTarget.test(count: 10)
     .cache
-    .request([TestModel].self, atKeyPath: "result")
-    .subscribe(onNext: { (response) in
-    
+    .request()
+    .mapObject([TestModel].self)
+    .subscribe(onNext: { (models) in
+        
     })
     .disposed(by: disposeBag)
 ```
@@ -71,11 +108,11 @@ TestTarget.test(count: 10)
 
 ```swift
 TestTarget.test(count: 10)
-    .request([TestModel].self, atKeyPath: "result")
-    .subscribe(onSuccess: { (response) in
-    
-    })
-    .disposed(by: disposeBag)
+    .request()
+    .mapObject([TestModel].self)
+    .subscribe(onSuccess: { (models) in
+        
+    }).disposed(by: disposeBag)
 ```
 
 ## Author

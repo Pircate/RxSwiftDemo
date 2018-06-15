@@ -2,35 +2,27 @@
 //  Single+Network.swift
 //  RxNetwork
 //
-//  Created by GorXion on 2018/4/18.
-//  Copyright © 2018年 gaoX. All rights reserved.
+//  Created by Pircate on 2018/4/18.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import RxSwift
 import Moya
 import Cache
 
-extension PrimitiveSequence where TraitType == SingleTrait, ElementType: TargetType {
-    
-    public func request<T: Codable>(_ type: T.Type,
-                                    atKeyPath keyPath: String? = nil,
-                                    using decoder: JSONDecoder = .init()) -> Single<T> {
-        return flatMap { target -> Single<T> in
-            return target.request().map(type, atKeyPath: keyPath, using: decoder).storeCachedObject(for: target)
-        }
-    }
-}
-
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType: Codable {
     
     public func storeCachedObject(for target: TargetType) -> Single<ElementType> {
-        return flatMap { object -> Single<ElementType> in
-            if let storage = try? Storage(diskConfig: DiskConfig(name: "RxNetworkObjectCache"),
-                                          memoryConfig: MemoryConfig(),
-                                          transformer: TransformerFactory.forCodable(ofType: ElementType.self)) {
+        return map { object -> ElementType in
+            do {
+                let storage = try Storage(diskConfig: DiskConfig(name: "RxNetworkObjectCache"),
+                                           memoryConfig: MemoryConfig(),
+                                           transformer: TransformerFactory.forCodable(ofType: ElementType.self))
                 try storage.setObject(object, forKey: target.cachedKey)
+                return object
+            } catch {
+                return object
             }
-            return Single.just(object)
         }
     }
 }
@@ -38,9 +30,13 @@ extension PrimitiveSequence where TraitType == SingleTrait, ElementType: Codable
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
     
     public func storeCachedResponse(for target: TargetType) -> Single<Response> {
-        return flatMap { response -> Single<Response> in
-            try Network.storage?.setObject(response, forKey: target.cachedKey)
-            return Single.just(response)
+        return map { response -> Response in
+            do {
+                try Network.storage?.setObject(response, forKey: target.cachedKey)
+                return response
+            } catch {
+                return response
+            }
         }
     }
 }
