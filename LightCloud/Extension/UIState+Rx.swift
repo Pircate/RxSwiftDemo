@@ -68,9 +68,10 @@ extension ObservableConvertibleType {
         }, observableFactory: {
             return $0.asObservable().do(onNext: { _ in
                 relay.accept(.success(success))
-            }).catchError({
+            }, onError: {
                 relay.accept(.failure(failure($0)))
-                return Observable.error($0)
+            }, onCompleted: {
+                relay.accept(.success(nil))
             })
         })
     }

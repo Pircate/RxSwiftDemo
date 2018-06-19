@@ -15,7 +15,7 @@ extension Network {
     struct Response<T: Codable>: Codable {
         let code: Int
         let message: String
-        let result: T
+        let data: T
         
         var success: Bool {
             return code == 2000
@@ -48,17 +48,40 @@ extension Network {
     }
 }
 
-extension PrimitiveSequence where TraitType == SingleTrait, ElementType: Moya.Response {
+extension OnCache {
     
-    func mapResult<T: Codable>(_ type: T.Type,
-                               atKeyPath keyPath: String? = nil,
-                               using decoder: JSONDecoder = .init()) -> Single<T> {
+    func requestObject() -> Single<C> {
+        return target.request()
+            .map(Network.Response<C>.self)
+            .map({
+                if $0.success { return $0.data }
+                throw Network.Error.status(code: $0.code, message: $0.message)
+            }).storeCachedObject(for: target)
+    }
+}
+
+extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
+    
+    func mapObject<T: Codable>(_ type: T.Type) -> Single<T> {
         return flatMap { response -> Single<T> in
             guard let resp = try? response.map(Network.Response<T>.self) else {
                 return Single.error(MoyaError.jsonMapping(response))
             }
-            if resp.success { return Single.just(resp.result) }
+            if resp.success { return Single.just(resp.data) }
             return Single.error(Network.Error.status(code: resp.code, message: resp.message))
+        }
+    }
+}
+
+extension ObservableType where E == Response {
+    
+    func mapObject<T: Codable>(_ type: T.Type) -> Observable<T> {
+        return map { response -> T in
+            guard let resp = try? response.map(Network.Response<T>.self) else {
+                throw MoyaError.jsonMapping(response)
+            }
+            if resp.success { return resp.data }
+            throw Network.Error.status(code: resp.code, message: resp.message)
         }
     }
 }
