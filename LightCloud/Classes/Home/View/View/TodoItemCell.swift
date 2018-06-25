@@ -75,23 +75,13 @@ class TodoItemCell: UITableViewCell {
 
 extension TodoItemCell {
     
-    func bindItem(_ item: TodoItemModel) {
+    func bindViewModel(_ item: TodoItemModel) {
         nameLabel.text = item.name
         followButton.isSelected = item.follow
         
-        let state = PublishRelay<UIState>()
-        followButton.rx.tap
-            .map { _ -> TodoItemModel in
-                item.follow = !item.follow
-                return item
-            }
-            .flatMap({
-                $0.object.rx.save().trackState(state).catchErrorJustComplete()
-            })
-            .map(to: item.follow)
-            .asDriver(onErrorJustReturn: false)
-            .drive(followButton.rx.isSelected)
-            .disposed(by: disposeBag)
-        state.asDriver(onErrorJustReturn: .idle).drive(Toast.rx.state).disposed(by: disposeBag)
+        let input = TodoItemModel.Input(followTap: followButton.rx.tap)
+        let output = item.transform(input)
+        output.isSelected.drive(followButton.rx.isSelected).disposed(by: disposeBag)
+        output.state.drive(Toast.rx.state).disposed(by: disposeBag)
     }
 }

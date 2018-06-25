@@ -39,7 +39,7 @@ final class HomeViewController: BaseViewController {
     private lazy var proxy: RxTableViewSectionedReloadProxy<TodoSectionModel> = {
         RxTableViewSectionedReloadProxy<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
-            cell.bindItem(item)
+            cell.bindViewModel(item)
             return cell
         }, canEditRowAtIndexPath: { _, _ in
             return true
