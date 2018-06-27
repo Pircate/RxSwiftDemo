@@ -40,7 +40,7 @@ extension QueryViewModel: ViewModelType {
             }).map({ items -> [LCObject] in
                 objects = items
                 return objects
-            }).shareOnce()
+            }).asDriver(onErrorJustReturn: [])
         
         // 下拉刷新
         let refresh = input.refresh.then(page = 0)
@@ -50,9 +50,9 @@ extension QueryViewModel: ViewModelType {
             }).map({ items -> [LCObject] in
                 objects = items
                 return objects
-            }).shareOnce()
+            }).asDriver(onErrorJustReturn: [])
         
-        let endRefresh = refresh.map(to: ()).asDriver(onErrorJustReturn: ())
+        let endRefresh = refresh.map(to: ())
         
         // 上拉加载更多
         let more = input.more.then(page += 1)
@@ -62,11 +62,11 @@ extension QueryViewModel: ViewModelType {
             }).map { items -> [LCObject] in
                 objects += items
                 return objects
-            }.shareOnce()
+            }.asDriver(onErrorJustReturn: [])
         
-        let endMore = more.map(to: ()).asDriver(onErrorJustReturn: ())
+        let endMore = more.map(to: ())
         
-        let items = Observable.merge(query, refresh, more).asDriver(onErrorJustReturn: [])
+        let items = Driver.of(query, refresh, more).merge()
         
         return Output(items: items, endRefresh: endRefresh, endMore: endMore)
     }
