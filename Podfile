@@ -23,6 +23,7 @@ target 'LightCloud' do
   pod 'FSCycleScrollView'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
+  pod 'netfox'
 
   target 'LightCloudTests' do
     inherit! :search_paths
