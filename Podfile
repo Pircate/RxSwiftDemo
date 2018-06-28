@@ -24,7 +24,6 @@ target 'LightCloud' do
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
   pod 'netfox'
-  pod 'Texture'
 
   target 'LightCloudTests' do
     inherit! :search_paths

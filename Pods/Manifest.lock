@@ -23,21 +23,6 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - netfox (1.11.1)
-  - PINCache (3.0.1-beta.6):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
-    - PINCache/Core (= 3.0.1-beta.6)
-  - PINCache/Arc-exception-safe (3.0.1-beta.6):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.6):
-    - PINOperation (~> 1.1.0)
-  - PINOperation (1.1.1)
-  - PINRemoteImage/Core (3.0.0-beta.13):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.13):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.13):
-    - PINCache (= 3.0.1-beta.6)
-    - PINRemoteImage/Core
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -72,13 +57,6 @@ PODS:
     - RxCocoa
     - RxSwift
   - SnapKit (4.0.0)
-  - Texture (2.7):
-    - Texture/PINRemoteImage (= 2.7)
-  - Texture/Core (2.7)
-  - Texture/PINRemoteImage (2.7):
-    - PINRemoteImage/iOS (= 3.0.0-beta.13)
-    - PINRemoteImage/PINCache
-    - Texture/Core
   - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
@@ -100,7 +78,6 @@ DEPENDENCIES:
   - RxSwiftX/DataSources
   - RxSwiftX/MJRefresh
   - SnapKit
-  - Texture
   - Toast-Swift
 
 SPEC REPOS:
@@ -118,9 +95,6 @@ SPEC REPOS:
     - MJRefresh
     - Moya
     - netfox
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
     - Result
     - RxCocoa
     - RxDataSources
@@ -130,7 +104,6 @@ SPEC REPOS:
     - RxSwiftExt
     - RxSwiftX
     - SnapKit
-    - Texture
     - Toast-Swift
 
 EXTERNAL SOURCES:
@@ -152,9 +125,6 @@ SPEC CHECKSUMS:
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   netfox: 5230196df3ca093a9418e079eb6e8f3776f15d14
-  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
-  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
-  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
@@ -164,9 +134,8 @@ SPEC CHECKSUMS:
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
   RxSwiftX: 5ceee32d9e5baa58180763750940df8fe291e09b
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 1f883f07039f53549e7c7796fa67b479a50e2f1e
+PODFILE CHECKSUM: b333f5e9cded3386cee4dd081818f1424495b683
 
 COCOAPODS: 1.5.3
