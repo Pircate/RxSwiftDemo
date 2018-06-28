@@ -53,11 +53,14 @@ extension TodoItemModel: ViewModelType {
             .map({ item -> TodoItemModel in
                 item.follow = !item.follow
                 return item
-            }).flatMap({
-                $0.object.rx.save()
+            }).flatMap({ item -> Observable<Bool> in
+                item.object.rx.save()
                     .trackState(state)
-                    .catchErrorJustComplete()
-                    .map(to: $0.follow)
+                    .catchError({ _ in
+                        item.follow = !item.follow
+                        return Observable.empty()
+                    })
+                    .map(to: item.follow)
             }).asDriver(onErrorJustReturn: false)
         return Output(isSelected: isSelected, state: state.asDriver(onErrorJustReturn: .idle))
     }
