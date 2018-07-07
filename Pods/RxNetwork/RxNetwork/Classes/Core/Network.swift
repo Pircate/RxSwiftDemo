@@ -9,15 +9,17 @@
 import Moya
 import Result
 
-public let kNetworkTimeoutInterval: TimeInterval = 60
-
 public final class Network {
     
-    public static let `default`: Network = Network()
+    public static let `default`: Network = {
+        Network(configuration: Configuration())
+    }()
     
-    public init() {}
+    public init(configuration: Configuration) {
+        self.configuration = configuration
+    }
     
-    public var configuration: Configuration = Configuration()
+    public let configuration: Configuration
     
     public private(set) lazy var provider: MoyaProvider<MultiTarget> = {
         MoyaProvider(configuration: configuration)

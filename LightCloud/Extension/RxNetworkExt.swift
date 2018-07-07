@@ -48,18 +48,6 @@ extension Network {
     }
 }
 
-extension OnCache {
-    
-    func requestObject() -> Single<C> {
-        return target.request()
-            .map(Network.Response<C>.self)
-            .map({
-                if $0.success { return $0.data }
-                throw Network.Error.status(code: $0.code, message: $0.message)
-            }).storeCachedObject(for: target)
-    }
-}
-
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
     
     func mapObject<T: Codable>(_ type: T.Type) -> Single<T> {
