@@ -14,13 +14,13 @@ public extension Network {
     
     class Configuration {
         
+        public static var `default`: Configuration = Configuration()
+        
         public var taskClosure: (TargetType) -> Task = { $0.task }
         
         public var timeoutInterval: TimeInterval = kNetworkTimeoutInterval
         
         public var plugins: [PluginType] = []
-        
-        public var storagePolicyClosure: (Response) -> Bool = { _ in true }
         
         public init() {}
     }

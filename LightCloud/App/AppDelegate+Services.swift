@@ -29,7 +29,7 @@ extension AppDelegate {
         
         ToastManager.shared.style.activitySize = CGSize(width: 88, height: 88)
         
-        Network.default.configuration.timeoutInterval = 20
-        Network.default.configuration.plugins = [NetworkIndicatorPlugin(), NetworkLoggerPlugin(verbose: true)]
+        Network.Configuration.default.timeoutInterval = 20
+        Network.Configuration.default.plugins = [NetworkIndicatorPlugin(), NetworkLoggerPlugin(verbose: true)]
     }
 }
