@@ -27,7 +27,7 @@ public extension Reactive where Base: UITableView {
                 self.base,
                 proxy: proxy as (UITableViewDataSource & UITableViewDelegate),
                 retainDelegate: true,
-                binding: { [weak tableView = self.base] (_, _, event) in
+                binding: { [weak tableView = self.base] (event) in
                     guard let tableView = tableView else { return }
                     proxy.tableView(tableView, observedEvent: event)
             })
@@ -40,7 +40,7 @@ fileprivate extension ObservableType {
     func subscribeTableViewProxy(_ tableView: UITableView,
                                  proxy: UITableViewDataSource & UITableViewDelegate,
                                  retainDelegate: Bool,
-                                 binding: @escaping (RxTableViewDataSourceProxy, RxTableViewDelegateProxy, Event<E>) -> Void)
+                                 binding: @escaping (Event<E>) -> Void)
         -> Disposable {
             let dataSourceProxy = RxTableViewDataSourceProxy.proxy(for: tableView)
             let delegateProxy = RxTableViewDelegateProxy.proxy(for: tableView)
@@ -66,7 +66,7 @@ fileprivate extension ObservableType {
                         assert(delegateProxy === RxTableViewDelegateProxy.currentDelegate(for: tableView), "Proxy changed from the time it was first set.\nOriginal: \(delegateProxy)\nExisting: \(String(describing: RxTableViewDelegateProxy.currentDelegate(for: tableView)))")
                     }
                     
-                    binding(dataSourceProxy, delegateProxy, event)
+                    binding(event)
                     
                     switch event {
                     case .error(let error):

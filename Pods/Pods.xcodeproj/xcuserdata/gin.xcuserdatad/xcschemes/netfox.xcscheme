@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1FDD748BB332307166EBAC7AE8942F3"
-               BuildableName = "RxSwiftExt.framework"
-               BlueprintName = "RxSwiftExt"
+               BlueprintIdentifier = "A97DD76006A90F78E97127D9F42D0FC6"
+               BuildableName = "netfox.framework"
+               BlueprintName = "netfox"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDD748BB332307166EBAC7AE8942F3"
-            BuildableName = "RxSwiftExt.framework"
-            BlueprintName = "RxSwiftExt"
+            BlueprintIdentifier = "A97DD76006A90F78E97127D9F42D0FC6"
+            BuildableName = "netfox.framework"
+            BlueprintName = "netfox"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

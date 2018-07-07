@@ -66,7 +66,7 @@ final class LoginViewController: BaseViewController {
     private func buildNavigation() {
         navigation.item.title = "登录"
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
-        navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.push(RegisterViewController.self, animated: true)).disposed(by: disposeBag)
+        navigation.item.rightBarButtonItem?.rx.tap.map(to: RegisterViewController()).bind(to: rx.push()).disposed(by: disposeBag)
         navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
         let leftTap = navigation.item.leftBarButtonItem!.rx.tap.shareOnce()
         leftTap.bind(to: rx.pop(animated: true)).disposed(by: disposeBag)
@@ -128,6 +128,6 @@ final class LoginViewController: BaseViewController {
         output.login.drive(view.rx.endEditing).disposed(by: disposeBag)
         output.state.drive(Toast.rx.state).disposed(by: disposeBag)
         
-        view.rx.swipeGesture(.left).when(.recognized).map(to: ()).bind(to: rx.push(RegisterViewController.self, animated: true)).disposed(by: disposeBag)
+        view.rx.swipeGesture(.left).when(.recognized).map(to: RegisterViewController()).bind(to: rx.push()).disposed(by: disposeBag)
     }
 }

@@ -16,4 +16,10 @@ public extension Reactive where Base: UIView {
             view.endEditing(force)
         }
     }
+    
+    var originY: Binder<CGFloat> {
+        return Binder(base) { view, y in
+            view.frame.origin.y = y
+        }
+    }
 }

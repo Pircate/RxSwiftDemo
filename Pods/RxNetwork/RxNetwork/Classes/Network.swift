@@ -8,48 +8,32 @@
 
 import Moya
 import Result
-import Cache
 
 public let kNetworkTimeoutInterval: TimeInterval = 60
 
 public final class Network {
     
-    public var taskClosure: (TargetType) -> Task = { $0.task }
+    public let provider: MoyaProvider<MultiTarget>
     
-    public var timeoutInterval: TimeInterval = kNetworkTimeoutInterval
-    
-    public var plugins: [PluginType] = []
-    
-    public static let `default` = Network()
-    
-    public init() {}
-    
-    public lazy var provider: MoyaProvider<MultiTarget> = {
-        MoyaProvider<MultiTarget>(taskClosure: taskClosure, timeoutInterval: timeoutInterval, plugins: plugins)
+    public static let `default`: Network = {
+        Network(configuration: Network.Configuration.default)
     }()
+    
+    public init(configuration: Configuration) {
+        provider = MoyaProvider(configuration: configuration)
+    }
 }
 
-public extension Network {
+public extension MoyaProvider {
     
-    static let storage = try? Storage(diskConfig: DiskConfig(name: "RxNetworkResponseCache"),
-                                      memoryConfig: MemoryConfig(),
-                                      transformer: Transformer<Response>(
-                                        toData: { $0.data },
-                                        fromData: { Response(statusCode: 200, data: $0) }))
-}
-
-extension MoyaProvider {
-    
-    public convenience init(taskClosure: @escaping (TargetType) -> Task = { $0.task },
-                            timeoutInterval: TimeInterval = kNetworkTimeoutInterval,
-                            plugins: [PluginType] = []) {
+    convenience init(configuration: Network.Configuration) {
         self.init(endpointClosure: { (target) -> Endpoint in
-            MoyaProvider.defaultEndpointMapping(for: target).replacing(task: taskClosure(target))
+            MoyaProvider.defaultEndpointMapping(for: target).replacing(task: configuration.taskClosure(target))
         }, requestClosure: { (endpoint, callback) -> Void in
             if var request = try? endpoint.urlRequest() {
-                request.timeoutInterval = timeoutInterval
+                request.timeoutInterval = configuration.timeoutInterval
                 callback(.success(request))
             }
-        }, plugins: plugins)
+        }, plugins: configuration.plugins)
     }
 }

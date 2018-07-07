@@ -25,16 +25,16 @@ open class RxCollectionViewSectionedReloadProxy<S: SectionModelType>: RxCollecti
     open var referenceSizeForHeaderInSection: ReferenceSizeForHeaderInSection
     open var referenceSizeForFooterInSection: ReferenceSizeForFooterInSection
     
-    init(configureCell: @escaping ConfigureCell,
-         configureSupplementaryView: ConfigureSupplementaryView? = nil,
-         moveItem: @escaping MoveItem = { _, _, _ in () },
-         canMoveItemAtIndexPath: @escaping CanMoveItemAtIndexPath = { _, _ in false },
-         sizeForItemAtIndexPath: @escaping SizeForItemAtIndexPath = { _, _, _ in CGSize.zero },
-         insetForSectionAtSection: @escaping InsetForSectionAtSection = { _, _, _ in UIEdgeInsets.zero },
-         minimumLineSpacingForSectionAtSection: @escaping MinimumLineSpacingForSectionAtSection = { _, _, _ in 0 },
-         minimumInteritemSpacingForSectionAtSection: @escaping MinimumInteritemSpacingForSectionAtSection = { _, _, _ in 0 },
-         referenceSizeForHeaderInSection: @escaping ReferenceSizeForHeaderInSection = { _, _, _ in CGSize.zero },
-         referenceSizeForFooterInSection: @escaping ReferenceSizeForFooterInSection = { _, _, _ in CGSize.zero }) {
+    public init(configureCell: @escaping ConfigureCell,
+                configureSupplementaryView: ConfigureSupplementaryView? = nil,
+                moveItem: @escaping MoveItem = { _, _, _ in () },
+                canMoveItemAtIndexPath: @escaping CanMoveItemAtIndexPath = { _, _ in false },
+                sizeForItemAtIndexPath: @escaping SizeForItemAtIndexPath = { _, _, _ in CGSize.zero },
+                insetForSectionAtSection: @escaping InsetForSectionAtSection = { _, _, _ in UIEdgeInsets.zero },
+                minimumLineSpacingForSectionAtSection: @escaping MinimumLineSpacingForSectionAtSection = { _, _, _ in 0 },
+                minimumInteritemSpacingForSectionAtSection: @escaping MinimumInteritemSpacingForSectionAtSection = { _, _, _ in 0 },
+                referenceSizeForHeaderInSection: @escaping ReferenceSizeForHeaderInSection = { _, _, _ in CGSize.zero },
+                referenceSizeForFooterInSection: @escaping ReferenceSizeForFooterInSection = { _, _, _ in CGSize.zero }) {
         
         self.sizeForItemAtIndexPath = sizeForItemAtIndexPath
         self.insetForSectionAtSection = insetForSectionAtSection

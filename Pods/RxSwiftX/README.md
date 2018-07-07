@@ -24,7 +24,6 @@ pod 'RxSwiftX'
 
 ```ruby
 pod 'RxSwiftX/DataSources'
-pod 'RxSwiftX/Network'
 pod 'RxSwiftX/MJRefresh'
 ```
 
