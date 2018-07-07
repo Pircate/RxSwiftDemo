@@ -13,15 +13,15 @@ public let kNetworkTimeoutInterval: TimeInterval = 60
 
 public final class Network {
     
-    public let provider: MoyaProvider<MultiTarget>
+    public static let `default`: Network = Network()
     
-    public static let `default`: Network = {
-        Network(configuration: Network.Configuration.default)
+    public init() {}
+    
+    public var configuration: Configuration = Configuration()
+    
+    public private(set) lazy var provider: MoyaProvider<MultiTarget> = {
+        MoyaProvider(configuration: configuration)
     }()
-    
-    public init(configuration: Configuration) {
-        provider = MoyaProvider(configuration: configuration)
-    }
 }
 
 public extension MoyaProvider {
