@@ -145,7 +145,8 @@
 			children = (
 				336115D520B5A018001B5668 /* TodoItemCell.swift */,
 			);
-			path = View;
+			name = View;
+			path = View/View;
 			sourceTree = "<group>";
 		};
 		B585042320BCF39D00D9846D /* Model */ = {
@@ -237,27 +238,11 @@
 		B5CE128220A3DF9E00EC3F30 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE128320A3DF9E00EC3F30 /* Model */,
-				B5CE128420A3DF9E00EC3F30 /* View */,
+				B5CE128520A3DF9E00EC3F30 /* Controller */,
+				B5CE128620A3DF9E00EC3F30 /* View */,
 				B5CE128720A3DF9E00EC3F30 /* ViewModel */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		B5CE128320A3DF9E00EC3F30 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B5CE128420A3DF9E00EC3F30 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B5CE128520A3DF9E00EC3F30 /* Controller */,
-				B5CE128620A3DF9E00EC3F30 /* View */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B5CE128520A3DF9E00EC3F30 /* Controller */ = {
@@ -274,7 +259,8 @@
 			children = (
 				B5CE129D20A3E4D100EC3F30 /* EffectTextField.swift */,
 			);
-			path = View;
+			name = View;
+			path = View/View;
 			sourceTree = "<group>";
 		};
 		B5CE128720A3DF9E00EC3F30 /* ViewModel */ = {
@@ -289,20 +275,12 @@
 		B5CE128820A3DF9E00EC3F30 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE128B20A3DF9E00EC3F30 /* Controller */,
 				B585042320BCF39D00D9846D /* Model */,
-				B5CE128A20A3DF9E00EC3F30 /* View */,
+				336115D420B59FC9001B5668 /* View */,
 				B5CE128D20A3DF9E00EC3F30 /* ViewModel */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		B5CE128A20A3DF9E00EC3F30 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				336115D420B59FC9001B5668 /* View */,
-				B5CE128B20A3DF9E00EC3F30 /* Controller */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B5CE128B20A3DF9E00EC3F30 /* Controller */ = {
@@ -336,34 +314,9 @@
 		B5CE12A220A3F55F00EC3F30 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE12A420A3F57400EC3F30 /* Model */,
-				B5CE12A520A3F57400EC3F30 /* View */,
-				B5CE12A320A3F57400EC3F30 /* ViewModel */,
+				B5CE12A620A3F57400EC3F30 /* Controller */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		B5CE12A320A3F57400EC3F30 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		B5CE12A420A3F57400EC3F30 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B5CE12A520A3F57400EC3F30 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B5CE12A620A3F57400EC3F30 /* Controller */,
-				B5CE12A720A3F57400EC3F30 /* View */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B5CE12A620A3F57400EC3F30 /* Controller */ = {
@@ -373,13 +326,6 @@
 				B5DEFE8920C8F3580051C7DE /* MainViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B5CE12A720A3F57400EC3F30 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B5CE12AA20A4140C00EC3F30 /* API */ = {
