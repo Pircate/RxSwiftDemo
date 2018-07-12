@@ -18,6 +18,7 @@ extension Reactive where Base: LCObject {
                 switch result {
                 case .success:
                     observer.onNext(true)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -32,6 +33,7 @@ extension Reactive where Base: LCObject {
                 switch result {
                 case .success:
                     observer.onNext(true)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }

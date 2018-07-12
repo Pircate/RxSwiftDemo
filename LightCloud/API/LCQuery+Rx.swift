@@ -27,6 +27,7 @@ extension Reactive where Base: LCQuery {
                 switch result {
                 case .success(let objects):
                     observer.onNext(objects)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }

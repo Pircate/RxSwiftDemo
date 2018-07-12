@@ -18,6 +18,7 @@ extension Reactive where Base: LCUser {
                 switch result {
                 case .success:
                     observer.onNext(true)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -36,6 +37,7 @@ extension Reactive where Base: LCUser {
                 switch result {
                 case .success:
                     observer.onNext(true)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -50,6 +52,7 @@ extension Reactive where Base: LCUser {
                 switch result {
                 case .success(let object):
                     observer.onNext(object)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -64,6 +67,7 @@ extension Reactive where Base: LCUser {
                 switch result {
                 case .success(let object):
                     observer.onNext(object)
+                    observer.onCompleted()
                 case .failure(let error):
                     observer.onError(error)
                 }

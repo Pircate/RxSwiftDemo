@@ -11,27 +11,40 @@ import RxCocoa
 
 public extension Reactive where Base: UIViewController {
         
-    func push(animated: Bool = true) -> Binder<UIViewController> {
-        return Binder(base) { viewController, to in
-            viewController.navigationController?.pushViewController(to, animated: animated)
+    func push(_ viewController: @escaping @autoclosure () -> UIViewController,
+              animated: Bool = true)
+        -> Binder<Void>
+    {
+        return Binder(base) { this, _ in
+            this.navigationController?.pushViewController(viewController(), animated: animated)
         }
     }
     
     func pop(animated: Bool = true) -> Binder<Void> {
-        return Binder(base) { viewController, _ in
-            viewController.navigationController?.popViewController(animated: animated)
+        return Binder(base) { this, _ in
+            this.navigationController?.popViewController(animated: animated)
         }
     }
     
     func popToRoot(animated: Bool = true) -> Binder<Void> {
-        return Binder(base) { viewController, _ in
-            viewController.navigationController?.popToRootViewController(animated: animated)
+        return Binder(base) { this, _ in
+            this.navigationController?.popToRootViewController(animated: animated)
+        }
+    }
+    
+    func present(_ viewController: @escaping @autoclosure () -> UIViewController,
+                 animated: Bool = true,
+                 completion: (() -> Void)? = nil)
+        -> Binder<Void>
+    {
+        return Binder(base) { this, _ in
+            this.present(viewController(), animated: animated, completion: completion)
         }
     }
     
     func dismiss(animated: Bool = true) -> Binder<Void> {
-        return Binder(base) { viewController, _ in
-            viewController.dismiss(animated: animated, completion: nil)
+        return Binder(base) { this, _ in
+            this.dismiss(animated: animated, completion: nil)
         }
     }
 }

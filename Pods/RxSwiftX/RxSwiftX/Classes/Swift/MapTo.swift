@@ -11,12 +11,12 @@ import RxCocoa
 
 public extension ObservableType {
     
-    func map<T>(to transform: @escaping @autoclosure () -> T) -> Observable<T> {
-        return map { _ in transform() }
+    func map<T>(to transform: @escaping @autoclosure () throws -> T) -> Observable<T> {
+        return map { _ in try transform() }
     }
     
-    func flatMap<T>(to transform: @escaping @autoclosure () -> Observable<T>) -> Observable<T> {
-        return flatMap { _ in transform() }
+    func flatMap<T>(to transform: @escaping @autoclosure () throws -> Observable<T>) -> Observable<T> {
+        return flatMap { _ in try transform() }
     }
 }
 

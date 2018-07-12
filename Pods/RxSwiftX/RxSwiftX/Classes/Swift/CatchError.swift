@@ -3,6 +3,7 @@
 //  RxSwiftX
 //
 //  Created by Pircate on 2018/6/4.
+//  Copyright © 2018年 Pircate. All rights reserved.
 //
 
 import RxSwift
@@ -10,9 +11,9 @@ import RxCocoa
 
 public extension ObservableType {
     
-    func catchErrorJustReturn(closure: @escaping @autoclosure () -> E) -> Observable<E> {
+    func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> E) -> Observable<E> {
         return catchError { _ in
-            return Observable.just(closure())
+            return Observable.just(try closure())
         }
     }
 }

@@ -35,10 +35,9 @@ class MainViewController: BaseViewController {
             make.left.bottom.right.equalToSuperview()
         }
         
-        Driver.of(dataSource)
-            .drive(tableView.rx.items(cellIdentifier: "cellID")) { _, item, cell in
-                cell.textLabel?.text = item.0
-            }.disposed(by: disposeBag)
+        Driver.of(dataSource).drive(tableView.rx.items(cellIdentifier: "cellID")) { _, item, cell in
+            cell.textLabel?.text = item.0
+        }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected.bind(to: tableView.rx.deselectRow(animated: true)).disposed(by: disposeBag)
         tableView.rx.modelSelected((String, BaseViewController.Type).self).map({ $0.1 }).bind(to: rx.push).disposed(by: disposeBag)

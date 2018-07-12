@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1000"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "125BA0AD5E0FFFE1E7296DDEC077A9DB"
+               BlueprintIdentifier = "26D163A5AC8BE33C56A437B04E16266A"
                BuildableName = "CocoaChainKit.framework"
                BlueprintName = "CocoaChainKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "125BA0AD5E0FFFE1E7296DDEC077A9DB"
+            BlueprintIdentifier = "26D163A5AC8BE33C56A437B04E16266A"
             BuildableName = "CocoaChainKit.framework"
             BlueprintName = "CocoaChainKit"
             ReferencedContainer = "container:Pods.xcodeproj">
