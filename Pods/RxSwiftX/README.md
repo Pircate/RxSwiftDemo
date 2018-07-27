@@ -27,6 +27,38 @@ pod 'RxSwiftX/DataSources'
 pod 'RxSwiftX/MJRefresh'
 ```
 
+### Usage
+
+#### DataSources
+```swift
+
+private lazy var proxy: RxTableViewSectionedReloadProxy<TodoSectionModel> = {
+    RxTableViewSectionedReloadProxy<TodoSectionModel>(configureCell: { (_, tableView, indexPath, item) -> UITableViewCell in
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! TodoItemCell
+        cell.bindViewModel(item)
+        return cell
+    }, canEditRowAtIndexPath: { _, _ in
+        return true
+    }, canMoveRowAtIndexPath: { _, _ in
+        return true
+    }, heightForRowAtIndexPath: { _, _, item in
+        return 60
+    }, heightForHeaderInSection: { _, _ -> CGFloat in
+        return 50
+    }, viewForHeaderInSection: { _, _, _  -> UIView? in
+        return UILabel().chain.text("云推荐").textAlignment(.center).build
+    })
+}()
+
+// Bind to proxy not dataSource
+items.drive(tableView.rx.items(proxy: proxy)).disposed(by: disposeBag)
+
+```
+
+### Demo
+
+https://github.com/Pircate/RxSwiftDemo
+
 ## Author
 
 Pircate, gao497868860@163.com

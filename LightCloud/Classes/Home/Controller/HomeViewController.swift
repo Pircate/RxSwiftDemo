@@ -45,9 +45,7 @@ final class HomeViewController: BaseViewController {
             return true
         }, canMoveRowAtIndexPath: { _, _ in
             return true
-        }, heightForRowAtIndexPath: { _, _, item in
-            return 60
-        }, heightForHeaderInSection: { _, _ -> CGFloat in
+        }, heightForHeaderInSection: { _, _, _  -> CGFloat in
             return 50
         }, viewForHeaderInSection: { _, _, _  -> UIView? in
             return UILabel().chain.text("云推荐").textAlignment(.center).build

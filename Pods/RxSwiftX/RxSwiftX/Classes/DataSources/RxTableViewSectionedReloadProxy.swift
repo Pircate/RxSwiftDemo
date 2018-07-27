@@ -11,9 +11,9 @@ import RxDataSources
 
 open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSectionedReloadDataSource<S>, UITableViewDelegate {
     
-    public typealias HeightForRowAtIndexPath = (RxTableViewSectionedReloadProxy<S>, IndexPath, I) -> CGFloat
-    public typealias HeightForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
-    public typealias HeightForFooterInSection = (RxTableViewSectionedReloadProxy<S>, Int) -> CGFloat
+    public typealias HeightForRowAtIndexPath = (RxTableViewSectionedReloadProxy<S>, UITableView, IndexPath, I) -> CGFloat
+    public typealias HeightForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> CGFloat
+    public typealias HeightForFooterInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> CGFloat
     public typealias ViewForHeaderInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> UIView?
     public typealias ViewForFooterInSection = (RxTableViewSectionedReloadProxy<S>, UITableView, Int) -> UIView?
     
@@ -30,9 +30,9 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
                 canMoveRowAtIndexPath: @escaping CanMoveRowAtIndexPath = { _, _ in false },
                 sectionIndexTitles: @escaping SectionIndexTitles = { _ in nil },
                 sectionForSectionIndexTitle: @escaping SectionForSectionIndexTitle = { _, _, index in index },
-                heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, _, _ in UITableViewAutomaticDimension },
-                heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, _ in UITableViewAutomaticDimension },
-                heightForFooterInSection: @escaping HeightForFooterInSection = { _, _ in UITableViewAutomaticDimension },
+                heightForRowAtIndexPath: @escaping HeightForRowAtIndexPath = { _, tableView, _, _ in tableView.rowHeight },
+                heightForHeaderInSection: @escaping HeightForHeaderInSection = { _, tableView, _  in tableView.sectionHeaderHeight },
+                heightForFooterInSection: @escaping HeightForFooterInSection = { _, tableView, _  in tableView.sectionFooterHeight },
                 viewForHeaderInSection: @escaping ViewForHeaderInSection = { _, _, _ in nil },
                 viewForFooterInSection: @escaping ViewForFooterInSection = { _, _, _ in nil }) {
         
@@ -53,15 +53,15 @@ open class RxTableViewSectionedReloadProxy<S: SectionModelType>: RxTableViewSect
     
     // MARK: - UITableViewDelegate
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return heightForRowAtIndexPath(self, indexPath, self[indexPath])
+        return heightForRowAtIndexPath(self, tableView, indexPath, self[indexPath])
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return heightForHeaderInSection(self, section)
+        return heightForHeaderInSection(self, tableView, section)
     }
     
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return heightForFooterInSection(self, section)
+        return heightForFooterInSection(self, tableView, section)
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
