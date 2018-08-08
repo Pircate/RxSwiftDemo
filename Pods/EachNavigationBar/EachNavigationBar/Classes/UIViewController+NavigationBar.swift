@@ -9,9 +9,6 @@
 import UIKit
 import ObjectiveC
 
-private var kUIViewControllerNavigationBarKey = "UI_VIEW_CONTROLLER_NAVIGATION_BAR_KEY"
-private var kUIViewControllerNavigationItemKey = "UI_VIEW_CONTROLLER_NAVIGATION_ITEM_KEY"
-
 extension UIViewController {
     
     public static let setupNavigationBar: Void = {
@@ -27,24 +24,25 @@ extension UIViewController {
     public func adjustsNavigationBarPosition() {
         guard let navigationBar = navigationController?.navigationBar else { return }
         _navigationBar.frame = navigationBar.frame
+        _navigationBar.frame.size.height += _navigationBar.extraHeight
         _navigationBar.setNeedsLayout()
     }
     
     var _navigationBar: EachNavigationBar {
-        if let bar = objc_getAssociatedObject(self, &kUIViewControllerNavigationBarKey) as? EachNavigationBar {
+        if let bar = objc_getAssociatedObject(self, &AssociatedKeys.navigationBar) as? EachNavigationBar {
             return bar
         }
         let bar = EachNavigationBar(navigationItem: _navigationItem)
-        objc_setAssociatedObject(self, &kUIViewControllerNavigationBarKey, bar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(self, &AssociatedKeys.navigationBar, bar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return bar
     }
     
     var _navigationItem: UINavigationItem {
-        if let item = objc_getAssociatedObject(self, &kUIViewControllerNavigationItemKey) as? UINavigationItem {
+        if let item = objc_getAssociatedObject(self, &AssociatedKeys.navigationItem) as? UINavigationItem {
             return item
         }
         let item = UINavigationItem()
-        objc_setAssociatedObject(self, &kUIViewControllerNavigationItemKey, item, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(self, &AssociatedKeys.navigationItem, item, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return item
     }
     

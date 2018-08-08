@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (4.7.3)
-  - CocoaChainKit (0.5.2)
+  - CocoaChainKit (0.6.0)
   - Differentiator (3.0.2)
-  - EachNavigationBar (0.3.0)
+  - EachNavigationBar (0.3.2)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
     - Kingfisher
-  - FSPagerView (0.7.1)
+  - FSPagerView (0.7.2)
   - IQKeyboardManagerSwift (6.1.1)
   - Kingfisher (4.8.1)
   - LeanCloud (11.0.1):
@@ -111,12 +111,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  CocoaChainKit: 98559e247bde72a0ac646ad937661c503ee3b5f6
+  CocoaChainKit: 69b773a62dcbfb7274da555ac02c67e186fa90cc
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
-  EachNavigationBar: 9d7f4391e8fbda7e07f52243c43ec7da9f074a7f
+  EachNavigationBar: e74fcaa39bd40f2f244fd09874df094e5066bc80
   ExtensionX: 5c532cdabafa029bff1c461a9eca6a2bc4a7c754
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
-  FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
+  FSPagerView: 7515f63c424da71623d299d4fbbfb3dd884642ff
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219

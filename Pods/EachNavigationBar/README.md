@@ -1,6 +1,6 @@
 # EachNavigationBar
 
-[![CI Status](http://img.shields.io/travis/G-Xi0N/EachNavigationBar.svg?style=flat)](https://travis-ci.org/G-Xi0N/EachNavigationBar)
+[![CI Status](http://img.shields.io/travis/Pircate/EachNavigationBar.svg?style=flat)](https://travis-ci.org/Pircate/EachNavigationBar)
 [![Version](https://img.shields.io/cocoapods/v/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
 [![License](https://img.shields.io/cocoapods/l/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
 [![Platform](https://img.shields.io/cocoapods/p/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
@@ -67,6 +67,11 @@ navigation.item -> UINavigationItem
 // Remove blur effect
 navigation.bar.isTranslucent = false
 
+// hide bottom black line
+navigation.bar.shadowImage = UIImage()
+// if version < iOS 11.0, also need:
+navigation.bar.setBackgroundImage(UIImage(), for: .default)
+
 // If you need to set status bar style lightContent
 navigationController?.navigationBar.barStyle = .black
 
@@ -93,7 +98,7 @@ if #available(iOS 11.0, *) {
 
 ## Author
 
-gaoX, gao497868860@163.com
+Pircate, gao497868860@163.com
 
 ## License
 
