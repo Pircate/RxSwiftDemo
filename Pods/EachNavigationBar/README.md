@@ -55,6 +55,7 @@ nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.bl
 nav.navigation.configuration.barTintColor = UIColor.red
 nav.navigation.configuration.backgroundImage = UIImage(named: "nav")
 nav.navigation.configuration.shadowImage = UIImage(named: "shadow")
+nav.navigation.configuration.backImage = UIImage(named: "back")
 ```
 
 #### Each view controller
@@ -95,6 +96,9 @@ if #available(iOS 11.0, *) {
     navigationItem.largeTitleDisplayMode = .never
 }
 ```
+
+### For Objective-C
+![AYNavigationBar](https://github.com/Pircate/AYNavigationBar)
 
 ## Author
 
