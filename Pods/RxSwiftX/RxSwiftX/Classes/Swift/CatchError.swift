@@ -9,11 +9,17 @@
 import RxSwift
 import RxCocoa
 
-public extension ObservableType {
+public extension ObservableConvertibleType {
     
     func catchErrorJustReturn(closure: @escaping @autoclosure () throws -> E) -> Observable<E> {
-        return catchError { _ in
+        return asObservable().catchError { _ in
             return Observable.just(try closure())
+        }
+    }
+    
+    func catchErrorJustComplete() -> Observable<E> {
+        return asObservable().catchError { _ in
+            Observable.empty()
         }
     }
 }

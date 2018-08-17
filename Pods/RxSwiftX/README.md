@@ -1,6 +1,6 @@
 # RxSwiftX
 
-[![CI Status](https://img.shields.io/travis/G-Xi0N/RxSwiftX.svg?style=flat)](https://travis-ci.org/G-Xi0N/RxSwiftX)
+[![CI Status](https://img.shields.io/travis/Pircate/RxSwiftX.svg?style=flat)](https://travis-ci.org/Pircate/RxSwiftX)
 [![Version](https://img.shields.io/cocoapods/v/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
 [![License](https://img.shields.io/cocoapods/l/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
 [![Platform](https://img.shields.io/cocoapods/p/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
