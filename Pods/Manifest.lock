@@ -14,7 +14,7 @@ PODS:
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
-  - MJRefresh (3.1.15.3)
+  - MJRefresh (3.1.15.6)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
-  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  MJRefresh: 0efa19656679d70a0f47cbe76e56c2271fe53a97
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   netfox: 5230196df3ca093a9418e079eb6e8f3776f15d14
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -136,4 +136,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b333f5e9cded3386cee4dd081818f1424495b683
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

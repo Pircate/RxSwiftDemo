@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BD30AC798C12C0BA3C7F0613961F2F31"
+               BlueprintIdentifier = "6A7248FD48EB3A2934D4ECDAAEE1CA8C"
                BuildableName = "Pods_LightCloud.framework"
                BlueprintName = "Pods-LightCloud"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BD30AC798C12C0BA3C7F0613961F2F31"
+            BlueprintIdentifier = "6A7248FD48EB3A2934D4ECDAAEE1CA8C"
             BuildableName = "Pods_LightCloud.framework"
             BlueprintName = "Pods-LightCloud"
             ReferencedContainer = "container:Pods.xcodeproj">
