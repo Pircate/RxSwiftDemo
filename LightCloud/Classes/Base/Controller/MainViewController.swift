@@ -31,7 +31,7 @@ class MainViewController: BaseViewController {
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(navigation.bar.snp.bottom)
+            make.top.equalTo(snp.topLayoutGuide)
             make.left.bottom.right.equalToSuperview()
         }
         

@@ -70,7 +70,7 @@ fileprivate extension HomeViewModel.Input {
         }
     
         return refresh.flatMap({ _ in
-            LCQuery.rx.query("TodoList", keyword: "Todo")
+            LCQuery.rx.query("Todo", keyword: "Todo")
                 .map({ $0.map(TodoItemModel.init) })
                 .map({ [TodoSectionModel(items: $0)] })
                 .trackState(state)

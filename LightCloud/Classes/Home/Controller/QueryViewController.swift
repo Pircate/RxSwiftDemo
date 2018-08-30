@@ -55,8 +55,9 @@ final class QueryViewController: BaseViewController {
         disablesAdjustScrollViewInsets(tableView)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigation.bar.snp.bottom)
-            make.left.bottom.right.equalToSuperview()
+            make.top.equalTo(snp.topLayoutGuide)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(snp.bottomLayoutGuide)
         }
     }
     
