@@ -9,7 +9,7 @@ PODS:
     - Kingfisher
   - FSPagerView (0.7.2)
   - IQKeyboardManagerSwift (6.1.1)
-  - Kingfisher (4.8.1)
+  - Kingfisher (4.9.0)
   - LeanCloud (11.0.1):
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
@@ -32,9 +32,9 @@ PODS:
   - RxGesture (1.2.1):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxNetwork (0.8.4):
-    - RxNetwork/Core (= 0.8.4)
-  - RxNetwork/Core (0.8.4):
+  - RxNetwork (0.8.6):
+    - RxNetwork/Core (= 0.8.6)
+  - RxNetwork/Core (0.8.6):
     - Moya/RxSwift
   - RxSwift (4.2.0)
   - RxSwiftExt (3.3.0):
@@ -118,7 +118,7 @@ SPEC CHECKSUMS:
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 7515f63c424da71623d299d4fbbfb3dd884642ff
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
-  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
   MJRefresh: 0efa19656679d70a0f47cbe76e56c2271fe53a97
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -127,7 +127,7 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
-  RxNetwork: 7f7cbc1dc97714f1779aad2ac473ff04294ce6a7
+  RxNetwork: b906988fc69c84ef2aa6639f5c5746f3fbe76a24
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c

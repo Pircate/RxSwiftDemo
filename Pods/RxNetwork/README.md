@@ -1,7 +1,8 @@
 # RxNetwork
 
-[![CI Status](http://img.shields.io/travis/G-Xi0N/RxNetwork.svg?style=flat)](https://travis-ci.org/G-Xi0N/RxNetwork)
+[![CI Status](http://img.shields.io/travis/Pircate/RxNetwork.svg?style=flat)](https://travis-ci.org/Pircate/RxNetwork)
 [![Version](https://img.shields.io/cocoapods/v/RxNetwork.svg?style=flat)](http://cocoapods.org/pods/RxNetwork)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/RxNetwork.svg?style=flat)](http://cocoapods.org/pods/RxNetwork)
 [![Platform](https://img.shields.io/cocoapods/p/RxNetwork.svg?style=flat)](http://cocoapods.org/pods/RxNetwork)
 
@@ -138,7 +139,7 @@ Network.Cache.shared.storagePolicyClosure = { response in
 
 ## Author
 
-gaoX, gao497868860@163.com
+Pircate, gao497868860@163.com
 
 ## License
 
