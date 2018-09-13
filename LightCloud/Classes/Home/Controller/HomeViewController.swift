@@ -72,7 +72,10 @@ final class HomeViewController: BaseViewController {
             .systemFont(ofSize: 16).build
         navigation.item.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
-        let isSelected = editButton.rx.tap.map(to: !editButton.isSelected ).shareOnce()
+        let isSelected = editButton.rx.tap
+            .map(to: !editButton.isSelected )
+            .shareOnce()
+        
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)
         isSelected.bind(to: tableView.rx.isEditing).disposed(by: disposeBag)
         // 编辑状态禁用下拉刷新
@@ -102,20 +105,27 @@ final class HomeViewController: BaseViewController {
                                         dataSource: Observable.of(proxy))
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(proxy: proxy)).disposed(by: disposeBag)
+        output.items
+            .drive(tableView.rx.items(proxy: proxy))
+            .disposed(by: disposeBag)
         
         output.banners.bind { [weak self] items in
             self?.cycleScrollView.dataSourceType = .both(items: items)
         }.disposed(by: disposeBag)
         
         // 请求完成结束刷新
-        output.items.map(to: ()).drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
+        output.items.map(to: ())
+            .drive(tableView.mj_header.rx.endRefreshing)
+            .disposed(by: disposeBag)
         
-        output.state.drive(Toast.rx.state).disposed(by: disposeBag)
+        output.state
+            .drive(Toast.rx.state)
+            .disposed(by: disposeBag)
         
-        output.itemDeleted.subscribeNext(weak: self, { (self) in
-            { self.itemDeleted(at: $0) }
-        }).disposed(by: disposeBag)
+        output.itemDeleted
+            .subscribeNext(weak: self, { (self) in
+                { self.itemDeleted(at: $0) }
+            }).disposed(by: disposeBag)
         
         itemMovedBind(proxy)
         
@@ -123,11 +133,19 @@ final class HomeViewController: BaseViewController {
     }
     
     private func contentOffsetBindNavigationBar() {
-        let offsetY = tableView.rx.contentOffset.map { $0.y + kCycleScrollViewHeight }.shareOnce()
-        offsetY.map({
+        let offsetY = tableView.rx.contentOffset
+            .map { $0.y + kCycleScrollViewHeight }
+            .shareOnce()
+        
+        offsetY.map {
             $0 > 0 ? $0 / (kCycleScrollViewHeight - (UIApplication.shared.statusBarFrame.maxY + 44)) : 0
-        }).bind(to: navigation.bar.rx.alpha).disposed(by: disposeBag)
-        offsetY.map({ $0 > 0 ? -$0 : 0 }).bind(to: cycleScrollView.rx.originY).disposed(by: disposeBag)
+            }
+            .bind(to: navigation.bar.rx.alpha)
+            .disposed(by: disposeBag)
+        
+        offsetY.map { $0 > 0 ? -$0 : 0 }
+            .bind(to: cycleScrollView.rx.originY)
+            .disposed(by: disposeBag)
     }
     
     // cell 删除操作
@@ -148,15 +166,16 @@ final class HomeViewController: BaseViewController {
     
     // cell 移动操作
     private func itemMovedBind(_ proxy: RxTableViewSectionedReloadProxy<TodoSectionModel>) {
-        tableView.rx.itemMoved.subscribe(onNext: { (from, to) in
-            let sections = proxy.sectionModels
-            let item = proxy[from]
-            var fromItems = sections[from.section].items
-            var toItems = sections[to.section].items
-            fromItems.remove(at: from.item)
-            toItems.insert(item, at: to.row)
-            proxy.setSections(sections)
-        }).disposed(by: disposeBag)
+        tableView.rx.itemMoved
+            .subscribe(onNext: { (from, to) in
+                let sections = proxy.sectionModels
+                let item = proxy[from]
+                var fromItems = sections[from.section].items
+                var toItems = sections[to.section].items
+                fromItems.remove(at: from.item)
+                toItems.insert(item, at: to.row)
+                proxy.setSections(sections)
+            }).disposed(by: disposeBag)
     }
 }
 

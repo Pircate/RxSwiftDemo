@@ -68,11 +68,17 @@ final class QueryViewController: BaseViewController {
                                          more: tableView.mj_footer.rx.refreshing)
         let output = viewModel.transform(input)
         
-        output.items.drive(tableView.rx.items(cellIdentifier: "cellID")) { index, item, cell in
-            cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
-        }.disposed(by: disposeBag)
+        output.items
+            .drive(tableView.rx.items(cellIdentifier: "cellID")) { index, item, cell in
+                cell.textLabel?.text = (item.value(forKey: "name") as? LCString)?.value
+            }.disposed(by: disposeBag)
         
-        output.endRefresh.drive(tableView.mj_header.rx.endRefreshing).disposed(by: disposeBag)
-        output.endMore.drive(tableView.mj_footer.rx.endRefreshing).disposed(by: disposeBag)
+        output.endRefresh
+            .drive(tableView.mj_header.rx.endRefreshing)
+            .disposed(by: disposeBag)
+        
+        output.endMore
+            .drive(tableView.mj_footer.rx.endRefreshing)
+            .disposed(by: disposeBag)
     }
 }

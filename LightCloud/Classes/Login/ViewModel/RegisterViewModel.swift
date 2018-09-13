@@ -47,10 +47,14 @@ fileprivate extension RegisterViewModel.Input {
     }
     
     func requestRegister(_ state: State) -> Driver<Bool> {
-        let usernameAndPassword = Observable.combineLatest(username, password) { (username: $0, password: $1) }
-        return registerTap.withLatestFrom(usernameAndPassword).flatMapLatest({
-            LCUser.rx.register(username: $0.username, password: $0.password)
-                .trackState(state, success: "注册成功").catchErrorJustComplete()
-        }).asDriver(onErrorJustReturn: false)
+        let usernameAndPassword = Observable.combineLatest(username, password) {
+            (username: $0, password: $1)
+        }
+        return registerTap.withLatestFrom(usernameAndPassword)
+            .flatMapLatest {
+                LCUser.rx.register(username: $0.username, password: $0.password)
+                    .trackState(state, success: "注册成功")
+                    .catchErrorJustComplete()
+            }.asDriver(onErrorJustReturn: false)
     }
 }
