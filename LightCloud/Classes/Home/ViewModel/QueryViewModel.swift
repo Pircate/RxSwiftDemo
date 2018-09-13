@@ -36,7 +36,8 @@ extension QueryViewModel: ViewModelType {
             .throttle(1, scheduler: MainScheduler.instance)
             .distinctUntilChanged().then(page = 0)
             .flatMap({
-                LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
+                LCQuery.rx.query("QueryList", keyword: $0, page: page)
+                    .catchErrorJustReturn(closure: [])
             }).map({ items -> [LCObject] in
                 objects = items
                 return objects
@@ -46,7 +47,8 @@ extension QueryViewModel: ViewModelType {
         let refresh = input.refresh.then(page = 0)
             .withLatestFrom(input.keyword)
             .flatMap({
-                LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
+                LCQuery.rx.query("QueryList", keyword: $0, page: page)
+                    .catchErrorJustReturn(closure: [])
             }).map({ items -> [LCObject] in
                 objects = items
                 return objects
@@ -58,7 +60,8 @@ extension QueryViewModel: ViewModelType {
         let more = input.more.then(page += 1)
             .withLatestFrom(input.keyword)
             .flatMap({
-                LCQuery.rx.query("QueryList", keyword: $0, page: page).catchErrorJustReturn(closure: [])
+                LCQuery.rx.query("QueryList", keyword: $0, page: page)
+                    .catchErrorJustReturn(closure: [])
             }).map { items -> [LCObject] in
                 objects += items
                 return objects

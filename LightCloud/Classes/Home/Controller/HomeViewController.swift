@@ -73,7 +73,7 @@ final class HomeViewController: BaseViewController {
         navigation.item.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         
         let isSelected = editButton.rx.tap
-            .map(to: !editButton.isSelected )
+            .map(to: !editButton.isSelected)
             .shareOnce()
         
         isSelected.bind(to: editButton.rx.isSelected).disposed(by: disposeBag)

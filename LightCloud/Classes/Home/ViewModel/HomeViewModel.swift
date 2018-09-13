@@ -71,8 +71,8 @@ fileprivate extension HomeViewModel.Input {
     
         return refresh.flatMap { _ in
             LCQuery.rx.query("Todo", keyword: "Todo")
-                .map({ $0.map(TodoItemModel.init) })
-                .map({ [TodoSectionModel(items: $0)] })
+                .map { $0.map(TodoItemModel.init) }
+                .map { [TodoSectionModel(items: $0)] }
                 .trackState(state)
                 .catchErrorJustReturn(closure: [TodoSectionModel(items: Array(models))])
             }.asDriver(onErrorJustReturn: [])
@@ -82,17 +82,18 @@ fileprivate extension HomeViewModel.Input {
         return refresh.flatMap {
             BannerAPI.items.request()
                 .map(BannerListModel.self)
-                .map({ $0.topStories })
-                .map({ $0.map({ (image: $0.image, title: $0.title) })})
+                .map { $0.topStories }
+                .map { $0.map { (image: $0.image, title: $0.title) }}
                 .asObservable()
                 .catchErrorJustComplete()
         }
     }
     
     func requestDeleteItem(_ state: State) -> Observable<IndexPath> {
-        return Observable.combineLatest(itemDeleted, dataSource) {
-            (item: $1[$0], indexPath: $0) }
-            .flatMap({
+        let source =  Observable.combineLatest(itemDeleted, dataSource) {
+            (item: $1[$0], indexPath: $0)
+        }
+        return source.flatMap({
                 $0.item.object.rx.delete()
                     .trackState(state, success: "删除成功")
                     .catchErrorJustComplete()
