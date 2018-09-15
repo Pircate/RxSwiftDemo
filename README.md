@@ -39,23 +39,33 @@ extension LoginViewModel: ViewModelType {
 fileprivate extension LoginViewModel.Input {
     
     func verifyloginButton() -> Driver<Bool> {
-        return Observable.combineLatest(username.isEmpty, password.isEmpty) { !$0 && !$1 }
+        return Observable
+        	.combineLatest(username.isEmpty, password.isEmpty) { !$0 && !$1 }
             .asDriver(onErrorJustReturn: false)
     }
     
     func requestLoginCaptcha(_ state: State) -> Driver<(title: String, isEnabled: Bool)> {
-        return captchaTap.withLatestFrom(username).flatMap({
-            LCUser.rx.requestLoginCaptcha(mobile: $0)
-                .trackState(state, success: "验证码已发送").catchErrorJustComplete()
-        }).flatMap(to: 60.countdown()).asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
+        return captchaTap.withLatestFrom(username)
+            .flatMap{
+                LCUser.rx.requestLoginCaptcha(mobile: $0)
+                    .trackState(state, success: "验证码已发送")
+                    .catchErrorJustComplete()
+            }
+            .flatMap(to: 60.countdown())
+            .asDriver(onErrorJustReturn: (title: "重新发送", isEnabled: true))
     }
     
     func requestLogin(_ state: State) -> Driver<Bool> {
-        let usernameAndPassword = Observable.combineLatest(username, password) { (username: $0, password: $1) }
-        return loginTap.withLatestFrom(usernameAndPassword).flatMap {
-            LCUser.rx.login(mobile: $0.username, captcha: $0.password)
-                .trackState(state, success: "登录成功").catchErrorJustComplete()
-            }.map(to: true).asDriver(onErrorJustReturn: false)
+        let usernameAndPassword = Observable
+        .combineLatest(username, password) { (username: $0, password: $1) }
+        return loginTap.withLatestFrom(usernameAndPassword)
+            .flatMap {
+                LCUser.rx.login(mobile: $0.username, captcha: $0.password)
+                    .trackState(state, success: "登录成功")
+                    .catchErrorJustComplete()
+            }
+            .map(to: true)
+            .asDriver(onErrorJustReturn: false)
     }
 }
 ```
