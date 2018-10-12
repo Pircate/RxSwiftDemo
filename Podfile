@@ -6,6 +6,7 @@ target 'LightCloud' do
 
   pod 'ExtensionX', :path => './Pods/ExtensionX'
 
+  pod 'CleanJSON'
   pod 'LeanCloud'
   pod 'RxSwift'
   pod 'RxCocoa'

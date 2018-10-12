@@ -11,6 +11,7 @@ import RxCocoa
 import RxDataSources
 import LeanCloud
 import RxNetwork
+import CleanJSON
 
 struct TodoSectionModel {
     
@@ -81,7 +82,7 @@ fileprivate extension HomeViewModel.Input {
     func requestBannerList() -> Observable<[(image: String, title: String)]> {
         return refresh.flatMap {
             BannerAPI.items.request()
-                .map(BannerListModel.self)
+                .map(BannerListModel.self, using: CleanJSONDecoder())
                 .map { $0.topStories }
                 .map { $0.map { (image: $0.image, title: $0.title) }}
                 .asObservable()

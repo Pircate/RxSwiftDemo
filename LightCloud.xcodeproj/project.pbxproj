@@ -19,7 +19,6 @@
 		B585042720BCF51B00D9846D /* Network+LightCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042620BCF51B00D9846D /* Network+LightCloud.swift */; };
 		B59F983D20BFE771007A8880 /* UIState+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F983C20BFE771007A8880 /* UIState+Rx.swift */; };
 		B5A2581520F72FC9005DE7FA /* Response+LightCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2581420F72FC9005DE7FA /* Response+LightCloud.swift */; };
-		B5B96BAD20BCFA0F00D60EDE /* CleanJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */; };
 		B5B96BAF20BD1C4800D60EDE /* LCError+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B96BAE20BD1C4800D60EDE /* LCError+Message.swift */; };
 		B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF557520AD45ED00BAF346 /* Toast.swift */; };
 		B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE124620A3D88700EC3F30 /* AppDelegate.swift */; };
@@ -80,7 +79,6 @@
 		B585042620BCF51B00D9846D /* Network+LightCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Network+LightCloud.swift"; sourceTree = "<group>"; };
 		B59F983C20BFE771007A8880 /* UIState+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIState+Rx.swift"; sourceTree = "<group>"; };
 		B5A2581420F72FC9005DE7FA /* Response+LightCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response+LightCloud.swift"; sourceTree = "<group>"; };
-		B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanJSON.swift; sourceTree = "<group>"; };
 		B5B96BAE20BD1C4800D60EDE /* LCError+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCError+Message.swift"; sourceTree = "<group>"; };
 		B5BF557520AD45ED00BAF346 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B5CE124320A3D88700EC3F30 /* LightCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +355,6 @@
 		B5D62F0920AA6BF5002F8FB3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				B5B96BAC20BCFA0F00D60EDE /* CleanJSON.swift */,
 				B5BF557520AD45ED00BAF346 /* Toast.swift */,
 			);
 			path = Vendor;
@@ -543,6 +540,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CleanJSON/CleanJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework",
@@ -569,6 +567,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleanJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaChainKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EachNavigationBar.framework",
@@ -646,7 +645,6 @@
 				33E40B5A20BD8C2700F7EAF1 /* Toast+Rx.swift in Sources */,
 				B5CE128F20A3DFB300EC3F30 /* LoginViewController.swift in Sources */,
 				B5CE12A020A3EB9200EC3F30 /* LoginViewModel.swift in Sources */,
-				B5B96BAD20BCFA0F00D60EDE /* CleanJSON.swift in Sources */,
 				B585042520BCF3B200D9846D /* BannerItemModel.swift in Sources */,
 				B5F7C09420B25FA700B8F53B /* HomeViewModel.swift in Sources */,
 				33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */,

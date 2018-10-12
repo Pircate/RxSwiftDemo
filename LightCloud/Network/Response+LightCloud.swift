@@ -8,6 +8,7 @@
 
 import Moya
 import RxNetwork
+import CleanJSON
 
 extension PrimitiveSequence where TraitType == SingleTrait, ElementType == Response {
     
@@ -26,7 +27,7 @@ extension ObservableType where E == Response {
 public extension Response {
     
     func mapObject<T: Codable>(_ type: T.Type) throws -> T {
-        let response = try map(Network.Response<T>.self)
+        let response = try map(Network.Response<T>.self, using: CleanJSONDecoder())
         if response.success { return response.data }
         throw Network.Error.status(code: response.code, message: response.message)
     }
