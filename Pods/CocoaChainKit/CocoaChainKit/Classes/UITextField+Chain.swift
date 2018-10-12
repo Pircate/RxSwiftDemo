@@ -26,14 +26,18 @@ public extension Chain where Base: UITextField {
     }
     
     @discardableResult
-    func borderStyle(_ borderStyle: UITextBorderStyle) -> Chain {
+    func borderStyle(_ borderStyle: TextFieldBorderStyle) -> Chain {
         base.borderStyle = borderStyle
         return self
     }
     
     @discardableResult
     func defaultTextAttributes(_ defaultTextAttributes: [String: Any]) -> Chain {
+        #if swift(>=4.2)
+        base.defaultTextAttributes = convertToNSAttributedStringKeyDictionary(defaultTextAttributes)
+        #else
         base.defaultTextAttributes = defaultTextAttributes
+        #endif
         return self
     }
     
@@ -63,12 +67,16 @@ public extension Chain where Base: UITextField {
     
     @discardableResult
     func typingAttributes(_ typingAttributes: [String: Any]?) -> Chain {
+        #if swift(>=4.2)
+        base.typingAttributes = convertToOptionalNSAttributedStringKeyDictionary(typingAttributes)
+        #else
         base.typingAttributes = typingAttributes
+        #endif
         return self
     }
     
     @discardableResult
-    func clearButtonMode(_ clearButtonMode: UITextFieldViewMode) -> Chain {
+    func clearButtonMode(_ clearButtonMode: TextFieldViewMode) -> Chain {
         base.clearButtonMode = clearButtonMode
         return self
     }
@@ -80,7 +88,7 @@ public extension Chain where Base: UITextField {
     }
     
     @discardableResult
-    func leftViewMode(_ leftViewMode: UITextFieldViewMode) -> Chain {
+    func leftViewMode(_ leftViewMode: TextFieldViewMode) -> Chain {
         base.leftViewMode = leftViewMode
         return self
     }
@@ -92,7 +100,7 @@ public extension Chain where Base: UITextField {
     }
     
     @discardableResult
-    func rightViewMode(_ rightViewMode: UITextFieldViewMode) -> Chain {
+    func rightViewMode(_ rightViewMode: TextFieldViewMode) -> Chain {
         base.rightViewMode = rightViewMode
         return self
     }
@@ -122,4 +130,15 @@ public extension Chain where Base: UITextField {
         }
         return self
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [AttributedStringKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (AttributedStringKey(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [AttributedStringKey: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (AttributedStringKey(rawValue: key), value)})
 }

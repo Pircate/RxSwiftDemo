@@ -25,7 +25,11 @@ extension UINavigationController {
         
         public var shadowImage: UIImage?
         
+        #if swift(>=4.2)
+        public var titleTextAttributes: [NSAttributedString.Key : Any]?
+        #else
         public var titleTextAttributes: [NSAttributedStringKey : Any]?
+        #endif
         
         public var isTranslucent: Bool = true
         
@@ -34,7 +38,8 @@ extension UINavigationController {
         /// Extra height for the navigation bar.
         public var extraHeight: CGFloat = 0
         
-        /// Image for leftBarButtonItem(not backBarButtonItem). If you don't set, there will be no back button by default.
+        /// Image for leftBarButtonItem(not backBarButtonItem).
+        /// If you don't set, there will be no back button by default.
         public var backImage: UIImage?
     }
     

@@ -24,9 +24,14 @@ import Foundation
     import UIKit
     public typealias Touch = UITouch
     public typealias GestureRecognizer = UIGestureRecognizer
-    public typealias GestureRecognizerState = UIGestureRecognizerState
+    #if swift(>=4.2)
+        public typealias GestureRecognizerState = UIGestureRecognizer.State
+    #else
+        public typealias GestureRecognizerState = UIGestureRecognizerState
+    #endif
     public typealias GestureRecognizerDelegate = UIGestureRecognizerDelegate
     public typealias View = UIView
+    public typealias Point = CGPoint
 #elseif os(OSX)
     import AppKit
     public typealias Touch = NSTouch
@@ -34,6 +39,7 @@ import Foundation
     public typealias GestureRecognizerState = NSGestureRecognizer.State
     public typealias GestureRecognizerDelegate = NSGestureRecognizerDelegate
     public typealias View = NSView
+    public typealias Point = NSPoint
 #endif
 
 public enum TargetView {
@@ -64,5 +70,20 @@ public enum TargetView {
         case .this(let view):
             return view
         }
+    }
+}
+
+extension GestureRecognizerState: CustomStringConvertible {
+    public var description: String {
+        return String(describing: type(of: self)) + {
+            switch self {
+            case .possible:  return ".possible"
+            case .began:     return ".began"
+            case .changed:   return ".changed"
+            case .ended:     return ".ended"
+            case .cancelled: return ".cancelled"
+            case .failed:    return ".failed"
+            }
+            }()
     }
 }
