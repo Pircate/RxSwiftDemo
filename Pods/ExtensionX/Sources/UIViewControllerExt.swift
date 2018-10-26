@@ -17,7 +17,7 @@ public extension UIViewController {
     
     func alert(title: String?,
                message: String?,
-               preferredStyle: UIAlertControllerStyle = .alert,
+               preferredStyle: UIAlertController.Style = .alert,
                cancelTitle: String?,
                otherTitles: [String],
                completionHandler: @escaping (Int) -> ()) {

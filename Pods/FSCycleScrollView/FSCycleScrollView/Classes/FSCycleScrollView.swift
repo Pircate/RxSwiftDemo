@@ -33,7 +33,7 @@ open class FSCycleScrollView: UIView {
     
     open var placeholder: UIImage?
     
-    open var scrollDirection: FSPagerViewScrollDirection = .horizontal {
+    open var scrollDirection: FSPagerView.ScrollDirection = .horizontal {
         didSet {
             pagerView.scrollDirection = scrollDirection
         }

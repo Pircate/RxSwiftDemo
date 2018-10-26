@@ -13,9 +13,9 @@ open class EachNavigationBar: UINavigationBar {
     private var _alpha: CGFloat = 1
     
     /// Default is false. If set true, navigation bar will not restore when the UINavigationController call viewWillLayoutSubviews
-    open var isUnrestoredWhenViewWillLayoutSubviews = false
+    @objc open var isUnrestoredWhenViewWillLayoutSubviews = false
     
-    open var extraHeight: CGFloat = 0 {
+    @objc open var extraHeight: CGFloat = 0 {
         didSet {
             frame.size.height = 44.0 + extraHeight
         }
@@ -57,5 +57,17 @@ open class EachNavigationBar: UINavigationBar {
                                   y: -UIApplication.shared.statusBarFrame.maxY,
                                   width: bounds.width,
                                   height: bounds.height + UIApplication.shared.statusBarFrame.maxY)
+    }
+}
+
+extension UINavigationBar {
+    
+    @objc public func setShadowHidden(_ hidden: Bool) {
+        let image = hidden ? UIImage() : nil
+        shadowImage = image
+        guard #available(iOS 11.0, *) else {
+            setBackgroundImage(image, for: .default)
+            return
+        }
     }
 }

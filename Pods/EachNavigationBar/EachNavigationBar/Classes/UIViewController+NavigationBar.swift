@@ -21,16 +21,20 @@ extension UIViewController {
         }
     }()
     
-    var _navigationBar: EachNavigationBar {
+    @objc public static func swizzle_setupNavigationBar() {
+        setupNavigationBar
+    }
+    
+    @objc public var each_navigationBar: EachNavigationBar {
         if let bar = objc_getAssociatedObject(self, &AssociatedKeys.navigationBar) as? EachNavigationBar {
             return bar
         }
-        let bar = EachNavigationBar(navigationItem: _navigationItem)
+        let bar = EachNavigationBar(navigationItem: each_navigationItem)
         objc_setAssociatedObject(self, &AssociatedKeys.navigationBar, bar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return bar
     }
     
-    var _navigationItem: UINavigationItem {
+    @objc public var each_navigationItem: UINavigationItem {
         if let item = objc_getAssociatedObject(self, &AssociatedKeys.navigationItem) as? UINavigationItem {
             return item
         }
@@ -38,6 +42,21 @@ extension UIViewController {
         objc_setAssociatedObject(self, &AssociatedKeys.navigationItem, item, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return item
     }
+    
+    @available(iOS 11.0, *)
+    @objc public func each_setLargeTitleHidden(_ hidden: Bool) {
+        navigationItem.largeTitleDisplayMode = hidden ? .never : .always
+    }
+    
+    @objc public func adjustsNavigationBarPosition() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        each_navigationBar.frame = navigationBar.frame
+        each_navigationBar.frame.size.height += each_navigationBar.extraHeight
+        each_navigationBar.setNeedsLayout()
+    }
+}
+
+extension UIViewController {
     
     @objc private func each_viewDidLoad() {
         each_viewDidLoad()
@@ -52,20 +71,13 @@ extension UIViewController {
 
 extension UIViewController {
     
-    public func adjustsNavigationBarPosition() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        _navigationBar.frame = navigationBar.frame
-        _navigationBar.frame.size.height += _navigationBar.extraHeight
-        _navigationBar.setNeedsLayout()
-    }
-    
     private func bindNavigationBar() {
         guard let navigationController = navigationController,
             navigationController.navigation.configuration.isEnabled else { return }
         navigationController.navigationBar.isHidden = true
         configureNavigationBarStyle()
         setupBackBarButtonItem()
-        view.addSubview(_navigationBar)
+        view.addSubview(each_navigationBar)
     }
     
     private func bringNavigationBarToFront() {
@@ -74,29 +86,34 @@ extension UIViewController {
         #if swift(>=4.2)
         view.bringSubviewToFront(_navigationBar)
         #else
-        view.bringSubview(toFront: _navigationBar)
+        view.bringSubview(toFront: each_navigationBar)
         #endif
     }
     
     private func configureNavigationBarStyle() {
         guard let configuration = navigationController?.navigation.configuration else { return }
-        _navigationBar.barTintColor = configuration.barTintColor
-        _navigationBar.shadowImage = configuration.shadowImage
-        _navigationBar.titleTextAttributes = configuration.titleTextAttributes
-        _navigationBar.setBackgroundImage(configuration.backgroundImage, for: configuration.position, barMetrics: configuration.metrics)
-        _navigationBar.isTranslucent = configuration.isTranslucent
-        _navigationBar.barStyle = configuration.barStyle
-        _navigationBar.extraHeight = configuration.extraHeight
+        each_navigationBar.isHidden = configuration.isHidden
+        each_navigationBar.alpha = configuration.alpha
+        each_navigationBar.barTintColor = configuration.barTintColor
+        each_navigationBar.shadowImage = configuration.shadowImage
+        each_navigationBar.titleTextAttributes = configuration.titleTextAttributes
+        each_navigationBar.setBackgroundImage(
+            configuration.backgroundImage,
+            for: configuration.barPosition,
+            barMetrics: configuration.barMetrics)
+        each_navigationBar.isTranslucent = configuration.isTranslucent
+        each_navigationBar.barStyle = configuration.barStyle
+        each_navigationBar.extraHeight = configuration.extraHeight
     }
     
     private func setupBackBarButtonItem() {
         guard let navigationController = navigationController,
             navigationController.viewControllers.count > 1,
             let image = navigationController.navigation.configuration.backImage else { return }
-        _navigationItem.leftBarButtonItem = UIBarButtonItem(image: image,
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(backAction))
+        each_navigationItem.leftBarButtonItem = UIBarButtonItem(image: image,
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(backAction))
     }
     
     @objc private func backAction() {

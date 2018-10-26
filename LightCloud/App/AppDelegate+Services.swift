@@ -18,7 +18,7 @@ private let clientKey = "tSmrT1lKWnPwcLTXBDeL0N8A"
 
 extension AppDelegate {
     
-    func registerServices(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    func registerServices(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         
         LeanCloud.initialize(applicationID: appID, applicationKey: clientKey)
         

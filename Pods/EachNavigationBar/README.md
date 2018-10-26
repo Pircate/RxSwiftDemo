@@ -20,13 +20,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 EachNavigationBar is available through [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage). To install
 it, simply add the following line to your Podfile or Cartfile:
 
-### CocoaPods
+#### Podfile
 
 ```ruby
 pod 'EachNavigationBar'
 ```
 
-### Carthage
+#### Cartfile
 ```ruby
 github "Pircate/EachNavigationBar"
 ```
@@ -39,27 +39,45 @@ github "Pircate/EachNavigationBar"
 
 ### Import
 
+Swift
 ``` swift
 import EachNavigationBar
 ```
+Objective-C
+``` ObjC
+@import EachNavigationBar;
+```
 
-### Setup (Don't Forget)
+### Setup before window set rootViewController (Don't Forget)
 
+Swift
 ``` swift
-// before window set rootViewController
 UIViewController.setupNavigationBar
+```
+
+Objective-C
+``` ObjC
+[UIViewController swizzle_setupNavigationBar];
 ```
 
 ### To enable EachNavigationBar of a navigation controller
 
+Swift
 ``` swift
 let nav = UINavigationController(rootViewController: vc)
 nav.navigation.configuration.isEnabled = true
 ```
 
+Objective-C
+``` ObjC
+UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+nav.global_configuration.isEnabled = YES;
+```
+
 ### Setting
 #### Global
 
+Swift
 ``` swift
 let nav = UINavigationController(rootViewController: vc)
 nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.blue]
@@ -69,9 +87,20 @@ nav.navigation.configuration.shadowImage = UIImage(named: "shadow")
 nav.navigation.configuration.backImage = UIImage(named: "back")
 ```
 
+Objective-C
+``` ObjC
+UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+nav.global_configuration.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blueColor};
+nav.global_configuration.barTintColor = UIColor.redColor;
+nav.global_configuration.backgroundImage = [UIImage imageNamed:@"nav"];
+nav.global_configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+nav.global_configuration.backImage = [UIImage imageNamed:@"back"];
+```
+
 #### Each view controller
 ##### normal
 
+Swift
 ``` swift
 navigation.bar  -> EachNavigationBar -> UINavigationBar
 navigation.item -> UINavigationItem
@@ -86,9 +115,7 @@ navigation.bar.alpha = 0.5
 navigation.bar.isTranslucent = false
 
 // hide bottom black line
-navigation.bar.shadowImage = UIImage()
-// if version < iOS 11.0, also need:
-navigation.bar.setBackgroundImage(UIImage(), for: .default)
+navigation.bar.setShadowHidden(true)
 
 // if you need to set status bar style lightContent
 navigationController?.navigationBar.barStyle = .black
@@ -96,29 +123,56 @@ navigationController?.navigationBar.barStyle = .black
 // if you want change navigation bar position
 navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = true
 
+// navigation bar extra height
+navigation.bar.extraHeight = 14
+
 // custom back action
 navigation.item.leftBarButtonItem?.action = #selector(backBarButtonAction)
+
+// adjust navigation bar position when status bar appearance update
+setNeedsStatusBarAppearanceUpdate()
+adjustsNavigationBarPosition()
+```
+
+Objective-C
+``` ObjC
+self.each_navigationBar
+self.each_navigationItem
 ```
 
 ##### largeTitle(iOS 11.0+)
 
+Swift
 ``` swift
 // enable
 if #available(iOS 11.0, *) {
-    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationController?.navigation.configuration.prefersLargeTitles = true
 }
 // show
 if #available(iOS 11.0, *) {
-    navigationItem.largeTitleDisplayMode = .always
+    navigation.setLargeTitleHidden(false)
 }
 // hide
 if #available(iOS 11.0, *) {
-    navigationItem.largeTitleDisplayMode = .never
+    navigation.setLargeTitleHidden(true)
 }
 ```
 
-### For Objective-C
-[AYNavigationBar](https://github.com/Pircate/AYNavigationBar)
+Objective-C
+``` ObjC
+// enable
+if (@available(iOS 11.0, *)) {
+    self.navigationController.global_configuration.prefersLargeTitles = YES;
+}
+// show
+if (@available(iOS 11.0, *)) {
+    [self each_setLargeTitleHidden:NO];
+}
+// hide
+if (@available(iOS 11.0, *)) {
+    [self each_setLargeTitleHidden:YES];
+}
+```
 
 ## Author
 
