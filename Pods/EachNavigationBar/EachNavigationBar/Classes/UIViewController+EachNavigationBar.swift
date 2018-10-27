@@ -9,6 +9,7 @@
 import UIKit
 import ObjectiveC
 
+// MARK: - Public
 extension UIViewController {
     
     public static let setupNavigationBar: Void = {
@@ -21,15 +22,11 @@ extension UIViewController {
         }
     }()
     
-    @objc public static func swizzle_setupNavigationBar() {
-        setupNavigationBar
-    }
-    
     @objc public var each_navigationBar: EachNavigationBar {
         if let bar = objc_getAssociatedObject(self, &AssociatedKeys.navigationBar) as? EachNavigationBar {
             return bar
         }
-        let bar = EachNavigationBar(navigationItem: each_navigationItem)
+        let bar = EachNavigationBar(self)
         objc_setAssociatedObject(self, &AssociatedKeys.navigationBar, bar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return bar
     }
@@ -43,9 +40,8 @@ extension UIViewController {
         return item
     }
     
-    @available(iOS 11.0, *)
-    @objc public func each_setLargeTitleHidden(_ hidden: Bool) {
-        navigationItem.largeTitleDisplayMode = hidden ? .never : .always
+    @objc public static func swizzle_setupNavigationBar() {
+        setupNavigationBar
     }
     
     @objc public func adjustsNavigationBarPosition() {
@@ -56,41 +52,54 @@ extension UIViewController {
     }
 }
 
+// MARK: - Swizzle
 extension UIViewController {
+    
+    private var asTableViewController: UITableViewController? {
+        return self as? UITableViewController
+    }
     
     @objc private func each_viewDidLoad() {
         each_viewDidLoad()
+        
+        guard let navigationController = navigationController,
+            navigationController.navigation.configuration.isEnabled else { return }
+        
         bindNavigationBar()
+        asTableViewController?.addObserverIfViewIsTableView()
     }
     
     @objc private func each_viewWillAppear(_ animated: Bool) {
         each_viewWillAppear(animated)
+        
+        guard let navigationController = navigationController,
+            navigationController.navigation.configuration.isEnabled else { return }
+        
         bringNavigationBarToFront()
+        asTableViewController?.adjustsTableViewContentInset()
     }
 }
 
+// MARK: - Configure each navigation bar
 extension UIViewController {
     
     private func bindNavigationBar() {
-        guard let navigationController = navigationController,
-            navigationController.navigation.configuration.isEnabled else { return }
+        guard let navigationController = navigationController else { return }
         navigationController.navigationBar.isHidden = true
-        configureNavigationBarStyle()
+        setupNavigationBarStyle()
         setupBackBarButtonItem()
         view.addSubview(each_navigationBar)
     }
     
     private func bringNavigationBarToFront() {
-        guard let navigationController = navigationController,
-            navigationController.navigation.configuration.isEnabled else { return }
         #if swift(>=4.2)
-        view.bringSubviewToFront(_navigationBar)
+        view.bringSubviewToFront(each_navigationBar)
         #else
         view.bringSubview(toFront: each_navigationBar)
         #endif
     }
     
-    private func configureNavigationBarStyle() {
+    private func setupNavigationBarStyle() {
         guard let configuration = navigationController?.navigation.configuration else { return }
         each_navigationBar.isHidden = configuration.isHidden
         each_navigationBar.alpha = configuration.alpha
@@ -118,31 +127,5 @@ extension UIViewController {
     
     @objc private func backAction() {
         navigationController?.popViewController(animated: true)
-    }
-}
-
-extension UINavigationController {
-    
-    open override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        guard let bar = topViewController?.navigation.bar else { return }
-        
-        if #available(iOS 11.0, *) {
-            bar.prefersLargeTitles = navigationBar.prefersLargeTitles
-            bar.largeTitleTextAttributes = navigationBar.largeTitleTextAttributes
-        }
-        
-        if bar.isUnrestoredWhenViewWillLayoutSubviews {
-            bar.frame.size = navigationBar.frame.size
-        } else {
-            bar.frame = navigationBar.frame
-            if #available(iOS 11.0, *) {
-                if bar.prefersLargeTitles {
-                    bar.frame.origin.y = UIApplication.shared.statusBarFrame.maxY
-                }
-            }
-        }
-        bar.frame.size.height = navigationBar.frame.height + bar.extraHeight
     }
 }

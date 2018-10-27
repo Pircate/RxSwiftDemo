@@ -6,6 +6,8 @@
 [![License](https://img.shields.io/cocoapods/l/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
 
+[中文文档](https://github.com/Pircate/EachNavigationBar/blob/master/README_CN.md)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -82,9 +84,9 @@ Swift
 let nav = UINavigationController(rootViewController: vc)
 nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.blue]
 nav.navigation.configuration.barTintColor = UIColor.red
-nav.navigation.configuration.backgroundImage = UIImage(named: "nav")
 nav.navigation.configuration.shadowImage = UIImage(named: "shadow")
 nav.navigation.configuration.backImage = UIImage(named: "back")
+nav.navigation.configuration.setBackgroundImage(UIImage(named: "nav"), for: .any, barMetrics: .default)
 ```
 
 Objective-C
@@ -92,9 +94,9 @@ Objective-C
 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
 nav.global_configuration.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blueColor};
 nav.global_configuration.barTintColor = UIColor.redColor;
-nav.global_configuration.backgroundImage = [UIImage imageNamed:@"nav"];
 nav.global_configuration.shadowImage = [UIImage imageNamed:@"shadow"];
 nav.global_configuration.backImage = [UIImage imageNamed:@"back"];
+[nav.global_configuration setBackgroundImage:[UIImage imageNamed:@"nav"] for:UIBarPositionAny barMetrics:UIBarMetricsDefault];
 ```
 
 #### Each view controller
@@ -136,8 +138,8 @@ adjustsNavigationBarPosition()
 
 Objective-C
 ``` ObjC
-self.each_navigationBar
-self.each_navigationItem
+self.each_navigationBar.xxx
+self.each_navigationItem.xxx
 ```
 
 ##### largeTitle(iOS 11.0+)
@@ -150,11 +152,11 @@ if #available(iOS 11.0, *) {
 }
 // show
 if #available(iOS 11.0, *) {
-    navigation.setLargeTitleHidden(false)
+    navigation.bar.isLargeTitleHidden = false
 }
 // hide
 if #available(iOS 11.0, *) {
-    navigation.setLargeTitleHidden(true)
+    navigation.bar.isLargeTitleHidden = true
 }
 ```
 
@@ -166,11 +168,11 @@ if (@available(iOS 11.0, *)) {
 }
 // show
 if (@available(iOS 11.0, *)) {
-    [self each_setLargeTitleHidden:NO];
+    self.each_navigationBar.isLargeTitleHidden = NO;
 }
 // hide
 if (@available(iOS 11.0, *)) {
-    [self each_setLargeTitleHidden:YES];
+    self.each_navigationBar.isLargeTitleHidden = YES;
 }
 ```
 

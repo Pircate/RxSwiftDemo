@@ -3,7 +3,7 @@ PODS:
   - CleanJSON (0.2.4)
   - CocoaChainKit (0.6.3)
   - Differentiator (3.1.0)
-  - EachNavigationBar (0.7.0)
+  - EachNavigationBar (0.8.1)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   CleanJSON: 8d2e5ae682520d0b8c8ee9452a3b2fc4b5672ddc
   CocoaChainKit: 3cf4974c1d0f5adee412fba8a6145ca2592b68b9
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: bb3f03959489cebb3487a86f3eac3bc7e45f5a52
+  EachNavigationBar: a4dfb9f52daf50c90d1de7048e06fc9d6520649f
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476

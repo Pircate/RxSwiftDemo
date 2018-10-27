@@ -61,7 +61,7 @@ open class FSCycleScrollView: UIView {
         }
     }
     
-    open var imageViewContentMode: UIViewContentMode = .scaleToFill
+    open var imageViewContentMode: UIView.ContentMode = .scaleToFill
     
     open var selectItemAtIndex: (Int) -> Void = { _ in }
     
