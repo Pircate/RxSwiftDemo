@@ -21,6 +21,7 @@ final class QueryViewController: BaseViewController {
             .masksToBounds(true)
             .textAlignment(.center)
             .backgroundColor(UIColor.white)
+            .clearButtonMode(.always)
             .systemFont(ofSize: 14)
             .placeholder("请输入关键字Query").build
     }()

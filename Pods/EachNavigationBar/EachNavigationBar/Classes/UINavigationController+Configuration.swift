@@ -2,7 +2,7 @@
 //  UINavigationController+Configuration.swift
 //  EachNavigationBar
 //
-//  Created by Pircate on 2018/6/26.
+//  Created by Pircate(gao497868860@gmail.com) on 2018/6/26.
 //  Copyright © 2018年 Pircate. All rights reserved.
 //
 
@@ -93,7 +93,12 @@ public class Configuration: NSObject {
 
 extension UINavigationController {
     
+    @available(swift, obsoleted: 4.2, message: "Please use navigation.configuration")
     @objc public var global_configuration: Configuration {
+        return _configuration
+    }
+    
+    var _configuration: Configuration {
         if let configuration = objc_getAssociatedObject(self, &AssociatedKeys.configuration) as? Configuration {
             return configuration
         }

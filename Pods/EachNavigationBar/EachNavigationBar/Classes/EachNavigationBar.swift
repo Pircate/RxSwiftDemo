@@ -2,7 +2,7 @@
 //  EachNavigationBar.swift
 //  EachNavigationBar
 //
-//  Created by Pircate on 2018/3/28.
+//  Created by Pircate(gao497868860@gmail.com) on 2018/3/28.
 //  Copyright © 2018年 Pircate. All rights reserved.
 //
 
@@ -48,7 +48,7 @@ open class EachNavigationBar: UINavigationBar {
     public convenience init(_ viewController: UIViewController) {
         self.init()
         self.viewController = viewController
-        setItems([viewController.each_navigationItem], animated: false)
+        setItems([viewController._navigationItem], animated: false)
     }
     
     open override func layoutSubviews() {
@@ -79,6 +79,20 @@ extension EachNavigationBar {
 }
 
 extension UINavigationBar {
+    
+    @objc public func setTitleAlpha(_ alpha: CGFloat) {
+        if var titleTextAttributes = titleTextAttributes {
+            let color = titleTextAttributes[.foregroundColor] as? UIColor ?? UIColor.black
+            titleTextAttributes[.foregroundColor] = color.withAlphaComponent(alpha)
+            self.titleTextAttributes = titleTextAttributes
+        } else {
+            self.titleTextAttributes = [.foregroundColor: UIColor.black.withAlphaComponent(alpha)]
+        }
+    }
+    
+    @objc public func setTintAlpha(_ alpha: CGFloat) {
+        tintColor = tintColor.withAlphaComponent(alpha)
+    }
     
     @objc public func setShadowHidden(_ hidden: Bool) {
         let image = hidden ? UIImage() : nil

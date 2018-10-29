@@ -110,8 +110,18 @@ navigation.item -> UINavigationItem
 // hide navigation bar
 navigation.bar.isHidden = true
 
-// set alpha
+// set bar alpha
 navigation.bar.alpha = 0.5
+
+// set title alpha
+navigation.bar.setTitleAlpha(0.5)
+
+// set barButtonItem alpha
+navigation.bar.setTintAlpha(0.5)
+// if barButtonItem is customView
+navigation.item.leftBarButtonItem?.customView?.alpha = 0.5
+// if barButtonItem customized tintColor
+navigation.item.leftBarButtonItem?.tintColor = navigation.item.leftBarButtonItem?.tintColor?.withAlphaComponent(0.5)
 
 // remove blur effect
 navigation.bar.isTranslucent = false
@@ -130,10 +140,6 @@ navigation.bar.extraHeight = 14
 
 // custom back action
 navigation.item.leftBarButtonItem?.action = #selector(backBarButtonAction)
-
-// adjust navigation bar position when status bar appearance update
-setNeedsStatusBarAppearanceUpdate()
-adjustsNavigationBarPosition()
 ```
 
 Objective-C
