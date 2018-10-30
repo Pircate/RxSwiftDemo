@@ -36,6 +36,7 @@ github "Pircate/EachNavigationBar"
 ## Overview
 
 ![](https://github.com/Pircate/EachNavigationBar/blob/master/demo.gif)
+![](https://github.com/Pircate/EachNavigationBar/blob/master/new_demo.gif)
 
 ## Usage
 
@@ -50,7 +51,8 @@ Objective-C
 @import EachNavigationBar;
 ```
 
-### Setup before window set rootViewController (Don't Forget)
+### Setup 
+#### before window set rootViewController (Don't Forget)
 
 Swift
 ``` swift
@@ -100,7 +102,7 @@ nav.global_configuration.backImage = [UIImage imageNamed:@"back"];
 ```
 
 #### Each view controller
-##### normal
+##### Normal
 
 Swift
 ``` swift
@@ -148,37 +150,37 @@ self.each_navigationBar.xxx
 self.each_navigationItem.xxx
 ```
 
-##### largeTitle(iOS 11.0+)
+##### LargeTitle(iOS 11.0+)
 
 Swift
 ``` swift
-// enable
-if #available(iOS 11.0, *) {
-    navigationController?.navigation.configuration.prefersLargeTitles = true
-}
 // show
 if #available(iOS 11.0, *) {
-    navigation.bar.isLargeTitleHidden = false
+    navigation.bar.prefersLargeTitles = true
 }
 // hide
 if #available(iOS 11.0, *) {
-    navigation.bar.isLargeTitleHidden = true
+    navigation.bar.prefersLargeTitles = false
+}
+// alpha
+if #available(iOS 11.0, *) {
+    navigation.bar.setLargeTitleAlpha(0.5)
 }
 ```
 
 Objective-C
 ``` ObjC
-// enable
-if (@available(iOS 11.0, *)) {
-    self.navigationController.global_configuration.prefersLargeTitles = YES;
-}
 // show
 if (@available(iOS 11.0, *)) {
-    self.each_navigationBar.isLargeTitleHidden = NO;
+    self.each_navigationBar.prefersLargeTitles = YES;
 }
 // hide
 if (@available(iOS 11.0, *)) {
-    self.each_navigationBar.isLargeTitleHidden = YES;
+    self.each_navigationBar.prefersLargeTitles = NO;
+}
+// alpha
+if (@available(iOS 11.0, *)) {
+    [self.each_navigationBar setLargeTitleAlpha:0.5];
 }
 ```
 

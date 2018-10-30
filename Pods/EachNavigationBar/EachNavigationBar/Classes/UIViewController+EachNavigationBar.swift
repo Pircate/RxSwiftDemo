@@ -36,7 +36,7 @@ extension UIViewController {
     @objc public func adjustsNavigationBarPosition() {
         guard let navigationBar = navigationController?.navigationBar else { return }
         _navigationBar.frame = navigationBar.frame
-        _navigationBar.frame.size.height += _navigationBar.extraHeight
+        _navigationBar.frame.size.height += _navigationBar.additionalHeight
         _navigationBar.setNeedsLayout()
     }
 }
@@ -89,7 +89,7 @@ extension UIViewController {
         if let bar = objc_getAssociatedObject(self, &AssociatedKeys.navigationBar) as? EachNavigationBar {
             return bar
         }
-        let bar = EachNavigationBar(self)
+        let bar = EachNavigationBar(navigationItem: _navigationItem)
         objc_setAssociatedObject(self, &AssociatedKeys.navigationBar, bar, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return bar
     }
@@ -133,19 +133,24 @@ extension UIViewController {
         _navigationBar.isTranslucent = configuration.isTranslucent
         _navigationBar.barStyle = configuration.barStyle
         _navigationBar.extraHeight = configuration.extraHeight
+        if #available(iOS 11.0, *) {
+            _navigationBar.prefersLargeTitles = configuration.prefersLargeTitles
+            _navigationBar.largeTitleTextAttributes = configuration.largeTitleTextAttributes
+        }
     }
     
     private func setupBackBarButtonItem() {
         guard let navigationController = navigationController,
             navigationController.viewControllers.count > 1,
             let image = navigationController.navigation.configuration.backImage else { return }
-        _navigationItem.leftBarButtonItem = UIBarButtonItem(image: image,
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(backAction))
+        _navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: image,
+            style: .plain,
+            target: self,
+            action: #selector(each_backBarButtonAction))
     }
     
-    @objc private func backAction() {
+    @objc private func each_backBarButtonAction() {
         navigationController?.popViewController(animated: true)
     }
 }

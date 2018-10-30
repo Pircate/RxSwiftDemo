@@ -17,7 +17,7 @@ open class EachNavigationBar: UINavigationBar {
     
     @objc open var extraHeight: CGFloat = 0 {
         didSet {
-            frame.size.height = 44.0 + extraHeight
+            frame.size.height = 44.0 + additionalHeight
         }
     }
     
@@ -43,12 +43,26 @@ open class EachNavigationBar: UINavigationBar {
         }
     }
     
-    private weak var viewController: UIViewController?
+    @available(iOS 11.0, *)
+    open override var prefersLargeTitles: Bool {
+        get {
+            return super.prefersLargeTitles
+        }
+        set {
+            super.prefersLargeTitles = newValue
+            frame.size.height =  44.0 + additionalHeight
+        }
+    }
     
-    public convenience init(_ viewController: UIViewController) {
+    private lazy var _contentView: UIView? = {
+        subviews.filter {
+            String(describing: $0.classForCoder) == "_UINavigationBarContentView"
+        }.first
+    }()
+    
+    public convenience init(navigationItem: UINavigationItem) {
         self.init()
-        self.viewController = viewController
-        setItems([viewController._navigationItem], animated: false)
+        setItems([navigationItem], animated: false)
     }
     
     open override func layoutSubviews() {
@@ -61,45 +75,29 @@ open class EachNavigationBar: UINavigationBar {
             y: -UIApplication.shared.statusBarFrame.maxY,
             width: bounds.width,
             height: bounds.height + UIApplication.shared.statusBarFrame.maxY)
+        
+        _contentView?.frame.origin.y = extraHeight
     }
 }
 
 extension EachNavigationBar {
     
     @available(iOS 11.0, *)
-    @objc public var isLargeTitleHidden: Bool {
-        get {
-            guard let viewController = viewController else { return false }
-            return viewController.navigationItem.largeTitleDisplayMode == .never
+    var largeTitleHeight: CGFloat {
+        guard prefersLargeTitles else { return 0 }
+        guard let largeTitleTextAttributes = largeTitleTextAttributes,
+            let font = largeTitleTextAttributes[.font] as? UIFont else {
+                return 49
         }
-        set {
-            viewController?.navigationItem.largeTitleDisplayMode = newValue ? .never : .always
-        }
+        let size = font.pointSize * 1.2
+        return size > 49 ? size : 49
     }
-}
-
-extension UINavigationBar {
     
-    @objc public func setTitleAlpha(_ alpha: CGFloat) {
-        if var titleTextAttributes = titleTextAttributes {
-            let color = titleTextAttributes[.foregroundColor] as? UIColor ?? UIColor.black
-            titleTextAttributes[.foregroundColor] = color.withAlphaComponent(alpha)
-            self.titleTextAttributes = titleTextAttributes
+    var additionalHeight: CGFloat {
+        if #available(iOS 11.0, *) {
+            return extraHeight + largeTitleHeight
         } else {
-            self.titleTextAttributes = [.foregroundColor: UIColor.black.withAlphaComponent(alpha)]
-        }
-    }
-    
-    @objc public func setTintAlpha(_ alpha: CGFloat) {
-        tintColor = tintColor.withAlphaComponent(alpha)
-    }
-    
-    @objc public func setShadowHidden(_ hidden: Bool) {
-        let image = hidden ? UIImage() : nil
-        shadowImage = image
-        guard #available(iOS 11.0, *) else {
-            setBackgroundImage(image, for: .default)
-            return
+            return extraHeight
         }
     }
 }
