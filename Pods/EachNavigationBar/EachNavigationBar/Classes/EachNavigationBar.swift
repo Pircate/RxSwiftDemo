@@ -54,6 +54,13 @@ open class EachNavigationBar: UINavigationBar {
         }
     }
     
+    @objc public var isShadowHidden: Bool = false {
+        didSet {
+            guard let background = subviews.first else { return }
+            background.clipsToBounds = isShadowHidden
+        }
+    }
+    
     private lazy var _contentView: UIView? = {
         subviews.filter {
             String(describing: $0.classForCoder) == "_UINavigationBarContentView"
@@ -70,13 +77,16 @@ open class EachNavigationBar: UINavigationBar {
         
         guard let background = subviews.first else { return }
         background.alpha = _alpha
+        background.clipsToBounds = isShadowHidden
         background.frame = CGRect(
             x: 0,
             y: -UIApplication.shared.statusBarFrame.maxY,
             width: bounds.width,
             height: bounds.height + UIApplication.shared.statusBarFrame.maxY)
         
-        _contentView?.frame.origin.y = extraHeight
+        if #available(iOS 11.0, *) {
+            _contentView?.frame.origin.y = extraHeight
+        }
     }
 }
 

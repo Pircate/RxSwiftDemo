@@ -39,6 +39,18 @@ extension UIViewController {
         _navigationBar.frame.size.height += _navigationBar.additionalHeight
         _navigationBar.setNeedsLayout()
     }
+    
+    @objc public func adjustsScrollViewContentInset(_ scrollView: UIScrollView) {
+        let top: CGFloat
+        if #available(iOS 11.0, *) {
+            top = scrollView.contentInsetAdjustmentBehavior == .never ? statusBarMaxY : 0
+        } else {
+            top = automaticallyAdjustsScrollViewInsets ? 0 : statusBarMaxY
+        }
+        let contentInsetTop = top + (_navigationBar.isHidden ? 0 : _navigationBar.bounds.height)
+        scrollView.contentInset.top = contentInsetTop
+        scrollView.scrollIndicatorInsets.top = contentInsetTop
+    }
 }
 
 // MARK: - Swizzle
@@ -125,6 +137,7 @@ extension UIViewController {
         _navigationBar.alpha = configuration.alpha
         _navigationBar.barTintColor = configuration.barTintColor
         _navigationBar.shadowImage = configuration.shadowImage
+        _navigationBar.isShadowHidden = configuration.isShadowHidden
         _navigationBar.titleTextAttributes = configuration.titleTextAttributes
         _navigationBar.setBackgroundImage(
             configuration.backgroundImage,
@@ -152,5 +165,12 @@ extension UIViewController {
     
     @objc private func each_backBarButtonAction() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension UIViewController {
+    
+    var statusBarMaxY: CGFloat {
+        return UIApplication.shared.statusBarFrame.maxY
     }
 }
