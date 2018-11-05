@@ -11,6 +11,11 @@ extension UINavigationController {
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        guard _configuration.isEnabled else { return }
+        
+        isNavigationBarHidden = false
+        navigationBar.isHidden = true
+        
         guard let bar = topViewController?._navigationBar else { return }
         
         if bar.isUnrestoredWhenViewWillLayoutSubviews {
