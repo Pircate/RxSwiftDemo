@@ -9,7 +9,6 @@
 extension AppDelegate {
     
     func setupRootViewController() {
-        UIViewController.navigation.swizzle()
         window = UIWindow(frame: UIScreen.main.bounds).chain.backgroundColor(UIColor.white).build
         let nav = UINavigationController(rootViewController: MainViewController())
         nav.navigation.configuration.isEnabled = true

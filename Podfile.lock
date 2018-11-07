@@ -3,7 +3,7 @@ PODS:
   - CleanJSON (0.3.0)
   - CocoaChainKit (0.6.3)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.1.0)
+  - EachNavigationBar (1.1.2)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -117,8 +117,8 @@ SPEC CHECKSUMS:
   CleanJSON: 53a2ce215de523c314b8ab382ab67f6486d95d26
   CocoaChainKit: 3cf4974c1d0f5adee412fba8a6145ca2592b68b9
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: 05dd13cee22a5c289c3c54b20cd3aa1cb77507ed
-  ExtensionX: 5c532cdabafa029bff1c461a9eca6a2bc4a7c754
+  EachNavigationBar: b465cc4c95fddae4805131e6481f99c9a84a9d32
+  ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
@@ -140,4 +140,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 487ddfa7abf2ddf51e9988887923e346e294f054
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2
