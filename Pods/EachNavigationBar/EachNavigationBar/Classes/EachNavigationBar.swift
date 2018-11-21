@@ -16,7 +16,7 @@ open class EachNavigationBar: UINavigationBar {
     
     @objc open var extraHeight: CGFloat = 0 {
         didSet {
-            frame.size.height = 44.0 + additionalHeight
+            frame.size.height = barHeight + extraHeight
         }
     }
     
@@ -62,23 +62,28 @@ open class EachNavigationBar: UINavigationBar {
         }
         set {
             super.prefersLargeTitles = newValue
-            frame.size.height =  44.0 + additionalHeight
+            
+            updateLargeTitleDisplayMode(for: newValue)
         }
     }
     
-    var _barStyle: UIBarStyle {
-        return statusBarStyle == .default ? .default : .black
+    @available(iOS 11.0, *)
+    open override var largeTitleTextAttributes: [NSAttributedString.Key : Any]? {
+        get {
+            return super.largeTitleTextAttributes
+        }
+        set {
+            super.largeTitleTextAttributes = newValue
+            
+            viewController?.navigationController?.navigationBar.largeTitleTextAttributes = newValue
+        }
     }
     
     private lazy var _contentView: UIView? = {
-        subviews.filter {
-            String(describing: $0.classForCoder) == "_UINavigationBarContentView"
-        }.first
+        subviews.filter { String(describing: $0.classForCoder) == "_UINavigationBarContentView" }.first
     }()
     
     private var _alpha: CGFloat = 1
-    
-    private var scrollViewsForAdjustsContentInset: Set<UIScrollView> = []
     
     private weak var viewController: UIViewController?
     
@@ -91,18 +96,14 @@ open class EachNavigationBar: UINavigationBar {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        scrollViewsForAdjustsContentInset.forEach {
-            adjustsScrollViewContentInset($0)
-        }
-        
         guard let background = subviews.first else { return }
         background.alpha = _alpha
         background.clipsToBounds = isShadowHidden
         background.frame = CGRect(
             x: 0,
-            y: -UIApplication.shared.statusBarFrame.maxY,
+            y: -CGFloat.StatusBar.maxY,
             width: bounds.width,
-            height: bounds.height + UIApplication.shared.statusBarFrame.maxY)
+            height: bounds.height + CGFloat.StatusBar.maxY)
         
         if #available(iOS 11.0, *) {
             _contentView?.frame.origin.y = extraHeight
@@ -112,50 +113,24 @@ open class EachNavigationBar: UINavigationBar {
 
 extension EachNavigationBar {
     
-    var additionalHeight: CGFloat {
-        if #available(iOS 11.0, *) {
-            return extraHeight + largeTitleHeight
-        } else {
-            return extraHeight
-        }
+    var _barStyle: UIBarStyle {
+        return statusBarStyle == .default ? .default : .black
     }
     
-    @available(iOS 11.0, *)
-    private var largeTitleHeight: CGFloat {
-        guard prefersLargeTitles else { return 0 }
-        guard let largeTitleTextAttributes = largeTitleTextAttributes,
-            let font = largeTitleTextAttributes[.font] as? UIFont else {
-                return 49
+    private var barHeight: CGFloat {
+        if let bar = viewController?.navigationController?.navigationBar {
+            return bar.frame.height
+        } else {
+            return CGFloat.NavigationBar.height
         }
-        let size = font.pointSize * 1.2
-        return size > 49 ? size : 49
     }
 }
 
 extension EachNavigationBar {
     
-    func appendScrollView(forAdjustsContentInset scrollView: UIScrollView) {
-        scrollViewsForAdjustsContentInset.insert(scrollView)
-    }
-    
-    private func adjustsScrollViewContentInset(_ scrollView: UIScrollView) {
-        guard let viewController = viewController else { return }
-        let bar = viewController._navigationBar
-        let barMaxY = bar.isHidden ? bar.frame.minY : bar.frame.maxY
-        let scrollViewY = viewController.view.convert(scrollView.frame, to: viewController.view).minY
-        guard scrollViewY < barMaxY else { return }
-        let contentInsetTop: CGFloat
-        if #available(iOS 11.0, *) {
-            if scrollView.contentInsetAdjustmentBehavior == .never {
-                contentInsetTop = barMaxY - scrollViewY
-            } else {
-                let inset = max(scrollViewY, viewController.view.safeAreaInsets.top)
-                contentInsetTop = barMaxY - inset
-            }
-        } else {
-            contentInsetTop = barMaxY - scrollViewY
-        }
-        scrollView.contentInset.top = contentInsetTop
-        scrollView.scrollIndicatorInsets.top = contentInsetTop
+    @available(iOS 11.0, *)
+    private func updateLargeTitleDisplayMode(for prefersLargeTitles: Bool) {
+        viewController?.navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
+        viewController?.navigationItem.largeTitleDisplayMode = prefersLargeTitles ? .always : .never
     }
 }

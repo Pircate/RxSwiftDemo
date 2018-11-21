@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.7.3)
   - CleanJSON (0.3.0)
-  - CocoaChainKit (0.6.3)
+  - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.2.0)
+  - EachNavigationBar (1.3.1)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -16,32 +16,38 @@ PODS:
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
   - MJRefresh (3.1.15.7)
-  - Moya/Core (11.0.2):
+  - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Moya/RxSwift (11.0.2):
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
   - netfox (1.13.0)
-  - Result (3.2.4)
-  - RxCocoa (4.3.1):
+  - Result (4.0.0)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxGesture (2.0.1):
-    - RxCocoa (~> 4.3.1)
-    - RxSwift (~> 4.3.1)
+  - RxGesture (2.1.0):
+    - RxCocoa (~> 4.4.0)
+    - RxSwift (~> 4.4.0)
   - RxNetwork (0.8.6):
     - RxNetwork/Core (= 0.8.6)
   - RxNetwork/Core (0.8.6):
     - Moya/RxSwift
-  - RxSwift (4.3.1)
-  - RxSwiftExt (3.3.0):
-    - RxSwiftExt/Core (= 3.3.0)
-  - RxSwiftExt/Core (3.3.0):
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
     - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
   - RxSwiftX (0.5.1):
     - RxCocoa
     - RxSwift
@@ -98,6 +104,7 @@ SPEC REPOS:
     - Moya
     - netfox
     - Result
+    - RxAtomic
     - RxCocoa
     - RxDataSources
     - RxGesture
@@ -115,9 +122,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CleanJSON: 53a2ce215de523c314b8ab382ab67f6486d95d26
-  CocoaChainKit: 3cf4974c1d0f5adee412fba8a6145ca2592b68b9
+  CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: b27656a01875ceb6dbca4410fcd3da165125ac18
+  EachNavigationBar: ba8efcaa89fbd34bfb9e3309c2b8f8e4a050409f
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
@@ -125,15 +132,16 @@ SPEC CHECKSUMS:
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   netfox: 44e626a4fe8bd1cde774346b03edb84a593077de
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
+  RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
   RxNetwork: b906988fc69c84ef2aa6639f5c5746f3fbe76a24
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
