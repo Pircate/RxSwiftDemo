@@ -205,7 +205,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     open var scrollOffset: CGFloat {
         let contentOffset = max(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y)
         let scrollOffset = Double(contentOffset/self.collectionViewLayout.itemSpacing)
-        return fmod(CGFloat(scrollOffset), CGFloat(Double(self.numberOfItems)))
+        return fmod(CGFloat(scrollOffset), CGFloat(self.numberOfItems))
     }
     
     /// The underlying gesture recognizer for pan gestures.
@@ -214,14 +214,13 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
         return self.collectionView.panGestureRecognizer
     }
     
-    @objc open internal(set) dynamic var currentIndex: Int = 0
+    @objc open fileprivate(set) dynamic var currentIndex: Int = 0
     
     // MARK: - Private properties
     
     internal weak var collectionViewLayout: FSPagerViewLayout!
-    internal weak var collectionView: FSPagerViewCollectionView!
+    internal weak var collectionView: FSPagerCollectionView!
     internal weak var contentView: UIView!
-    
     internal var timer: Timer?
     internal var numberOfItems: Int = 0
     internal var numberOfSections: Int = 0
@@ -253,9 +252,14 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
         }
         return IndexPath(item: 0, section: 0)
     }
-    
+    fileprivate var isPossiblyRotating: Bool {
+        guard let animationKeys = self.contentView.layer.animationKeys() else {
+            return false
+        }
+        let rotationAnimationKeys = ["position", "bounds.origin", "bounds.size"]
+        return animationKeys.contains(where: { rotationAnimationKeys.contains($0) })
+    }
     fileprivate var possibleTargetingIndexPath: IndexPath?
-    
     
     // MARK: - Overriden functions
     
@@ -387,7 +391,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.numberOfItems > 0 {
+        if !self.isPossiblyRotating && self.numberOfItems > 0 {
             // In case someone is using KVO
             let currentIndex = lround(Double(self.scrollOffset)) % self.numberOfItems
             if (currentIndex != self.currentIndex) {
@@ -557,7 +561,7 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
         
         // UICollectionView
         let collectionViewLayout = FSPagerViewLayout()
-        let collectionView = FSPagerViewCollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+        let collectionView = FSPagerCollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.clear

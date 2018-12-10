@@ -16,7 +16,7 @@ open class EachNavigationBar: UINavigationBar {
     
     @objc open var extraHeight: CGFloat = 0 {
         didSet {
-            frame.size.height = barHeight + extraHeight
+            frame.size.height = barHeight + additionalHeight
         }
     }
     
@@ -30,6 +30,12 @@ open class EachNavigationBar: UINavigationBar {
     @objc open var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
             viewController?.navigationController?.navigationBar.barStyle = _barStyle
+        }
+    }
+    
+    open override var isHidden: Bool {
+        didSet {
+            viewController?.adjustsSafeAreaInsetsAfterIOS11()
         }
     }
     
@@ -106,7 +112,7 @@ open class EachNavigationBar: UINavigationBar {
             height: bounds.height + CGFloat.StatusBar.maxY)
         
         if #available(iOS 11.0, *) {
-            _contentView?.frame.origin.y = extraHeight
+            _contentView?.frame.origin.y = additionalHeight
         }
     }
 }
@@ -115,6 +121,13 @@ extension EachNavigationBar {
     
     var _barStyle: UIBarStyle {
         return statusBarStyle == .default ? .default : .black
+    }
+    
+    var additionalHeight: CGFloat {
+        if #available(iOS 11.0, *) {
+            if prefersLargeTitles { return 0 }
+        }
+        return extraHeight
     }
     
     private var barHeight: CGFloat {

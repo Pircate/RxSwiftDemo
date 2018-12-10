@@ -1,14 +1,14 @@
 PODS:
-  - Alamofire (4.7.3)
-  - CleanJSON (0.3.0)
+  - Alamofire (4.8.0)
+  - CleanJSON (0.5.0)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.3.1)
+  - EachNavigationBar (1.3.3)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
     - Kingfisher
-  - FSPagerView (0.8.1)
+  - FSPagerView (0.8.2)
   - IQKeyboardManagerSwift (6.2.0)
   - Kingfisher (4.10.1)
   - LeanCloud (11.0.1):
@@ -64,7 +64,7 @@ PODS:
     - RxCocoa
     - RxSwift
   - SnapKit (4.2.0)
-  - Toast-Swift (4.0.0)
+  - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
   - CleanJSON
@@ -120,14 +120,14 @@ EXTERNAL SOURCES:
     :path: "./Pods/ExtensionX"
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  CleanJSON: 53a2ce215de523c314b8ab382ab67f6486d95d26
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  CleanJSON: 2dbf88bbeb4896f969a15075d5a40dae71f7e367
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: ba8efcaa89fbd34bfb9e3309c2b8f8e4a050409f
+  EachNavigationBar: 6ab2a12a2683ff776d37739c0c01bae7f4c59cc6
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
-  FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
+  FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
@@ -144,7 +144,7 @@ SPEC CHECKSUMS:
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
 PODFILE CHECKSUM: 487ddfa7abf2ddf51e9988887923e346e294f054
 

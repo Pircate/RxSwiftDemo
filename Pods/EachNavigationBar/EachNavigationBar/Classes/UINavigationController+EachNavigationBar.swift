@@ -17,6 +17,9 @@ extension UINavigationController {
         
         guard let bar = topViewController?._navigationBar else { return }
         
+        isNavigationBarHidden = false
+        navigationBar.isHidden = bar.isHidden
+        
         if bar.isUnrestoredWhenViewWillLayoutSubviews {
             bar.frame.size = navigationBar.frame.size
         } else {
@@ -28,12 +31,10 @@ extension UINavigationController {
             }
         }
         
-        bar.frame.size.height = navigationBar.frame.height + bar.extraHeight
+        bar.frame.size.height = navigationBar.frame.height + bar.additionalHeight
     }
     
     func sendNavigationBarToBack() {
-        isNavigationBarHidden = false
-        navigationBar.isHidden = false
         navigationBar.tintColor = UIColor.clear
         if navigationBar.shadowImage == nil {
             let image = UIImage()
