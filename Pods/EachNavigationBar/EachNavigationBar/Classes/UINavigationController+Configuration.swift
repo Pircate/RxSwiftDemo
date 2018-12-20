@@ -36,7 +36,10 @@ public class Configuration: NSObject {
     
     /// Image for leftBarButtonItem(not backBarButtonItem).
     /// If you don't set, there will be no back button by default.
+    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
     @objc public var backImage: UIImage?
+    
+    public var backBarButtonItem: BackBarButtonItem = .init()
     
     @objc public var prefersLargeTitles: Bool = false
     
@@ -66,11 +69,18 @@ extension UINavigationController {
     }
     
     var _configuration: Configuration {
-        if let configuration = objc_getAssociatedObject(self, &AssociatedKeys.configuration) as? Configuration {
+        if let configuration = objc_getAssociatedObject(
+            self,
+            &AssociatedKeys.configuration)
+            as? Configuration {
             return configuration
         }
         let configuration = Configuration()
-        objc_setAssociatedObject(self, &AssociatedKeys.configuration, configuration, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(
+            self,
+            &AssociatedKeys.configuration,
+            configuration,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return configuration
     }
 }

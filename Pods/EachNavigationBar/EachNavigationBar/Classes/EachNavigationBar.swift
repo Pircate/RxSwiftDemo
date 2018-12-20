@@ -17,6 +17,7 @@ open class EachNavigationBar: UINavigationBar {
     @objc open var extraHeight: CGFloat = 0 {
         didSet {
             frame.size.height = barHeight + additionalHeight
+            viewController?.adjustsSafeAreaInsetsAfterIOS11()
         }
     }
     
@@ -29,7 +30,14 @@ open class EachNavigationBar: UINavigationBar {
     
     @objc open var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
-            viewController?.navigationController?.navigationBar.barStyle = _barStyle
+            superNavigationBar?.barStyle = _barStyle
+        }
+    }
+    
+    open var backBarButtonItem: BackBarButtonItem = .init() {
+        didSet {
+            viewController?._navigationItem.leftBarButtonItem = backBarButtonItem
+                .makeBarButtonItem(self, action: #selector(backBarButtonItemAction))
         }
     }
     
@@ -81,7 +89,7 @@ open class EachNavigationBar: UINavigationBar {
         set {
             super.largeTitleTextAttributes = newValue
             
-            viewController?.navigationController?.navigationBar.largeTitleTextAttributes = newValue
+            superNavigationBar?.largeTitleTextAttributes = newValue
         }
     }
     
@@ -102,18 +110,13 @@ open class EachNavigationBar: UINavigationBar {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        guard let background = subviews.first else { return }
-        background.alpha = _alpha
-        background.clipsToBounds = isShadowHidden
-        background.frame = CGRect(
-            x: 0,
-            y: -CGFloat.StatusBar.maxY,
-            width: bounds.width,
-            height: bounds.height + CGFloat.StatusBar.maxY)
-        
-        if #available(iOS 11.0, *) {
-            _contentView?.frame.origin.y = additionalHeight
-        }
+        updateSubviews()
+    }
+    
+    @objc private func backBarButtonItemAction() {
+        backBarButtonItem.willBack()
+        viewController?.navigationController?.popViewController(animated: true)
+        backBarButtonItem.didBack()
     }
 }
 
@@ -130,8 +133,12 @@ extension EachNavigationBar {
         return extraHeight
     }
     
+    private var superNavigationBar: UINavigationBar? {
+        return viewController?.navigationController?.navigationBar
+    }
+    
     private var barHeight: CGFloat {
-        if let bar = viewController?.navigationController?.navigationBar {
+        if let bar = superNavigationBar {
             return bar.frame.height
         } else {
             return CGFloat.NavigationBar.height
@@ -141,9 +148,24 @@ extension EachNavigationBar {
 
 extension EachNavigationBar {
     
+    private func updateSubviews() {
+        guard let background = subviews.first else { return }
+        background.alpha = _alpha
+        background.clipsToBounds = isShadowHidden
+        background.frame = CGRect(
+            x: 0,
+            y: -CGFloat.StatusBar.maxY,
+            width: bounds.width,
+            height: bounds.height + CGFloat.StatusBar.maxY)
+        
+        if #available(iOS 11.0, *) {
+            _contentView?.frame.origin.y = additionalHeight
+        }
+    }
+    
     @available(iOS 11.0, *)
     private func updateLargeTitleDisplayMode(for prefersLargeTitles: Bool) {
-        viewController?.navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
+        superNavigationBar?.prefersLargeTitles = prefersLargeTitles
         viewController?.navigationItem.largeTitleDisplayMode = prefersLargeTitles ? .always : .never
     }
 }

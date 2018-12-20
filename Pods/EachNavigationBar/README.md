@@ -74,7 +74,7 @@ Swift
 nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.blue]
 nav.navigation.configuration.barTintColor = UIColor.red
 nav.navigation.configuration.shadowImage = UIImage(named: "shadow")
-nav.navigation.configuration.backImage = UIImage(named: "back")
+nav.navigation.configuration.backBarButtonItem = .init(style: .image(UIImage(named: "back")), tintColor: UIColor.red)
 nav.navigation.configuration.setBackgroundImage(UIImage(named: "nav"), for: .any, barMetrics: .default)
 ```
 
@@ -114,11 +114,24 @@ navigation.item.leftBarButtonItem?.tintColor = navigation.item.leftBarButtonItem
 // remove blur effect
 navigation.bar.isTranslucent = false
 
-// hide bottom black line
+// hide shadow
 navigation.bar.isShadowHidden = true
 
 // set status bar style
 navigation.bar.statusBarStyle = .lightContent
+
+// set back bar button item
+navigation.bar.backBarButtonItem = .init(style: .title("Back"), tintColor: .red)
+
+// handler before back
+navigation.bar.backBarButtonItem.willBack = {
+    // do something
+}
+
+// handler after back
+navigation.bar.backBarButtonItem.didBack = {
+    // do something
+}
 
 // if you want change navigation bar position
 navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = true

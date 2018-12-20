@@ -1,5 +1,5 @@
 //
-//  Navigation+UIViewController.swift
+//  UIViewController+Navigation.swift
 //  EachNavigationBar
 //
 //  Created by Pircate(gao497868860@gmail.com) on 2018/6/26.
@@ -14,5 +14,12 @@ public extension Navigation where Base: UIViewController {
     
     var item: UINavigationItem {
         return base._navigationItem
+    }
+}
+
+public extension Navigation where Base: UINavigationController {
+    
+    var configuration: Configuration {
+        return base._configuration
     }
 }
