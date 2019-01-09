@@ -24,7 +24,7 @@ extension Reactive where Base: Toast {
                 if let info = info {
                     Toast.show(info: info)
                 } else {
-                    Toast.hide()
+                    Toast.hideActivity()
                 }
             case .failure(let info):
                 if let info = info {
