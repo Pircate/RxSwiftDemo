@@ -7,65 +7,49 @@
 //
 
 import UIKit
-import ObjectiveC
 
-// MARK: - Public
 extension UIViewController {
-    
-    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
-    @objc public var each_navigationBar: EachNavigationBar {
-        return _navigationBar
-    }
-    
-    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
-    @objc public var each_navigationItem: UINavigationItem {
-        return _navigationItem
-    }
-}
 
-// MARK: - Setup navigation bar
-extension UIViewController {
-    
-    var _navigationBar: EachNavigationBar {
-        if let bar = objc_getAssociatedObject(
-            self,
-            &AssociatedKeys.navigationBar)
-            as? EachNavigationBar {
-            return bar
-        }
-        let bar = EachNavigationBar(viewController: self)
-        objc_setAssociatedObject(
-            self,
-            &AssociatedKeys.navigationBar,
-            bar,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return bar
-    }
-    
-    var _navigationItem: UINavigationItem {
-        if let item = objc_getAssociatedObject(
-            self,
-            &AssociatedKeys.navigationItem)
-            as? UINavigationItem {
-            return item
-        }
-        let item = UINavigationItem()
-        objc_setAssociatedObject(
-            self,
-            &AssociatedKeys.navigationItem,
-            item,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return item
-    }
-    
     func setupNavigationBarWhenViewDidLoad() {
         guard let navigationController = navigationController else { return }
         navigationController.sendNavigationBarToBack()
-        _navigationBar.setup(with: navigationController._configuration)
-        if navigationController.viewControllers.count > 1 {
-            _navigationBar.backBarButtonItem = navigationController._configuration.backBarButtonItem
-        }
+        
+        let configuration = navigationController._configuration
+        _navigationBar.setup(with: configuration)
+        
+        setupBackBarButtonItem(navigationController)
+        
         view.addSubview(_navigationBar)
+    }
+    
+    private func setupBackBarButtonItem(_ navigationController: UINavigationController) {
+        let count = navigationController.viewControllers.count
+        guard count > 1 else { return }
+        
+        let configuration = navigationController._configuration
+        guard case .none = configuration.backBarButtonItem.style else {
+            configuration.backBarButtonItem.needsDuplicate = true
+            _navigationBar.backBarButtonItem = configuration.backBarButtonItem
+            return
+        }
+        
+        let backButton = UIButton(type: .system)
+        let image = UIImage(named: "navigation_back_default", in: Bundle.current, compatibleWith: nil)
+        backButton.setImage(image, for: .normal)
+        
+        if let title = navigationController.viewControllers[count - 2]._navigationItem.title {
+            let maxWidth = UIScreen.main.bounds.width / 3
+            let width = (title as NSString).boundingRect(
+                with: CGSize(width: maxWidth, height: 20),
+                options: NSStringDrawingOptions.usesFontLeading,
+                attributes: [.font: UIFont.boldSystemFont(ofSize: 17)],
+                context: nil).size.width
+            backButton.setTitle(width < maxWidth ? title : "Back", for: .normal)
+        }
+        backButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        backButton.sizeToFit()
+    
+        _navigationBar.backBarButtonItem = BackBarButtonItem(style: .custom(backButton))
     }
     
     func updateNavigationBarWhenViewWillAppear() {
@@ -95,5 +79,50 @@ extension UIViewController {
         additionalSafeAreaInsets.top = _navigationBar.isHidden
             ? -view.safeAreaInsets.top
             : _navigationBar.additionalHeight
+    }
+}
+
+private extension EachNavigationBar {
+    
+    func setup(with configuration: Configuration) {
+        isHidden = configuration.isHidden
+        alpha = configuration.alpha
+        isTranslucent = configuration.isTranslucent
+        barTintColor = configuration.barTintColor
+        tintColor = configuration.tintColor
+        
+        titleTextAttributes = configuration.titleTextAttributes
+        shadowImage = configuration.shadowImage
+        setBackgroundImage(
+            configuration.backgroundImage,
+            for: configuration.barPosition,
+            barMetrics: configuration.barMetrics)
+        
+        barStyle = configuration.barStyle
+        statusBarStyle = configuration.statusBarStyle
+        
+        extraHeight = configuration.extraHeight
+        
+        isShadowHidden = configuration.isShadowHidden
+        
+        if let shadow = configuration.shadow {
+            self.shadow = shadow
+        }
+        
+        if #available(iOS 11.0, *) {
+            prefersLargeTitles = configuration.prefersLargeTitles
+            largeTitleTextAttributes = configuration.largeTitleTextAttributes
+        }
+    }
+}
+
+private extension Bundle {
+    
+    static var current: Bundle? {
+        guard let resourcePath = Bundle(for: EachNavigationBar.self).resourcePath,
+            let bundle = Bundle(path: "\(resourcePath)/EachNavigationBar.bundle") else {
+                return nil
+        }
+        return bundle
     }
 }

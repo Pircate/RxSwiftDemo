@@ -63,7 +63,7 @@ nav.navigation.configuration.isEnabled = true
 Objective-C
 ``` ObjC
 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-nav.global_configuration.isEnabled = YES;
+nav.navigation_configuration.isEnabled = YES;
 ```
 
 ### Setting
@@ -72,19 +72,27 @@ nav.global_configuration.isEnabled = YES;
 Swift
 ``` swift
 nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.blue]
+
 nav.navigation.configuration.barTintColor = UIColor.red
+
 nav.navigation.configuration.shadowImage = UIImage(named: "shadow")
+
 nav.navigation.configuration.backBarButtonItem = .init(style: .image(UIImage(named: "back")), tintColor: UIColor.red)
+
 nav.navigation.configuration.setBackgroundImage(UIImage(named: "nav"), for: .any, barMetrics: .default)
 ```
 
 Objective-C
 ``` ObjC
-nav.global_configuration.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blueColor};
-nav.global_configuration.barTintColor = UIColor.redColor;
-nav.global_configuration.shadowImage = [UIImage imageNamed:@"shadow"];
-nav.global_configuration.backImage = [UIImage imageNamed:@"back"];
-[nav.global_configuration setBackgroundImage:[UIImage imageNamed:@"nav"] for:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+nav.navigation_configuration.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blueColor};
+
+nav.navigation_configuration.barTintColor = UIColor.redColor;
+
+nav.navigation_configuration.shadowImage = [UIImage imageNamed:@"shadow"];
+
+nav.navigation_configuration.backBarButtonItem = [[BackBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]];
+
+[nav.navigation_configuration setBackgroundImage:[UIImage imageNamed:@"nav"] for:UIBarPositionAny barMetrics:UIBarMetricsDefault];
 ```
 
 #### Each view controller
@@ -123,6 +131,12 @@ navigation.bar.statusBarStyle = .lightContent
 // set back bar button item
 navigation.bar.backBarButtonItem = .init(style: .title("Back"), tintColor: .red)
 
+// allow back
+navigation.bar.backBarButtonItem.shouldBack = { item in
+    // do something
+    return false
+}
+
 // handler before back
 navigation.bar.backBarButtonItem.willBack = {
     // do something
@@ -139,14 +153,14 @@ navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = true
 // navigation bar extra height
 navigation.bar.extraHeight = 14
 
-// custom back action
-navigation.item.leftBarButtonItem?.action = #selector(backBarButtonAction)
+// item padding
+navigation.bar.layoutPaddings = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
 ```
 
 Objective-C
 ``` ObjC
-self.each_navigationBar.xxx
-self.each_navigationItem.xxx
+self.navigation_bar.xxx
+self.navigation_item.xxx
 ```
 
 ##### LargeTitle(iOS 11.0+)

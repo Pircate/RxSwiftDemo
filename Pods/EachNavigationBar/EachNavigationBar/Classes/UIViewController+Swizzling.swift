@@ -17,20 +17,16 @@ private func <=>(left: Selector, right: Selector) {
 
 extension UIViewController {
     
-    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
-    @objc public static func each_methodSwizzling() {
-        methodSwizzling
-    }
-    
-    private static let methodSwizzling: Void = {
-        #selector(viewDidLoad) <=> #selector(each_viewDidLoad)
-        #selector(viewWillAppear(_:)) <=> #selector(each_viewWillAppear(_:))
+    static let methodSwizzling: Void = {
+        #selector(viewDidLoad) <=> #selector(navigation_viewDidLoad)
+        #selector(viewWillAppear(_:)) <=> #selector(navigation_viewWillAppear(_:))
         #selector(setNeedsStatusBarAppearanceUpdate)
-            <=> #selector(each_setNeedsStatusBarAppearanceUpdate)
+            <=> #selector(navigation_setNeedsStatusBarAppearanceUpdate)
+        #selector(viewDidLayoutSubviews) <=> #selector(navigation_viewDidLayoutSubviews)
     }()
     
-    @objc private func each_viewDidLoad() {
-        each_viewDidLoad()
+    @objc private func navigation_viewDidLoad() {
+        navigation_viewDidLoad()
         
         guard let navigationController = navigationController,
             navigationController.navigation.configuration.isEnabled else { return }
@@ -42,8 +38,8 @@ extension UIViewController {
         }
     }
     
-    @objc private func each_viewWillAppear(_ animated: Bool) {
-        each_viewWillAppear(animated)
+    @objc private func navigation_viewWillAppear(_ animated: Bool) {
+        navigation_viewWillAppear(animated)
         
         guard let navigationController = navigationController,
             navigationController.navigation.configuration.isEnabled else { return }
@@ -51,9 +47,15 @@ extension UIViewController {
         updateNavigationBarWhenViewWillAppear()
     }
     
-    @objc private func each_setNeedsStatusBarAppearanceUpdate() {
-        each_setNeedsStatusBarAppearanceUpdate()
+    @objc private func navigation_setNeedsStatusBarAppearanceUpdate() {
+        navigation_setNeedsStatusBarAppearanceUpdate()
         
         adjustsNavigationBarPosition()
+    }
+    
+    @objc private func navigation_viewDidLayoutSubviews() {
+        navigation_viewDidLayoutSubviews()
+        
+        view.bringSubviewToFront(_navigationBar)
     }
 }

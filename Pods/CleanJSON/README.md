@@ -9,14 +9,18 @@
 
 继承自 JSONDecoder，在标准库源码基础上做了改动，以解决 JSONDecoder 各种解析失败的问题，如键值不存在，值为 null，类型不一致。
 
+```
+属性可以全部使用不可选类型
+```
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
-* iOS 9.0+
-* Swift 4
+* iOS 9.0
+* Swift 4.2
 
 ## Installation
 
@@ -43,14 +47,12 @@ import CleanJSON
 
 ## Usage
 
-### Normal
-
 ```swift
 let decoder = CleanJSONDecoder()
 try decoder.decode(Model.self, from: data)
 ```
 
-对于不可选的枚举类型请遵循 CaseDefaultable 协议，如果解析失败会返回默认 case
+对于不可选的枚举类型请遵循 `CaseDefaultable` 协议，如果解析失败会返回默认 case
 
 ```swift
 enum Enum: Int, Codable, CaseDefaultable {
@@ -65,33 +67,33 @@ enum Enum: Int, Codable, CaseDefaultable {
 }
 ```
 
-### Custom type convertion
+### Customize decoding strategy
 
-可以通过 valueNotFoundDecodingStrategy 在值为 null 或类型不匹配的时候自定义解码，默认规则请看[这里](https://github.com/Pircate/CleanJSON/blob/master/CleanJSON/Classes/TypeConvertor.swift)
+可以通过 `valueNotFoundDecodingStrategy` 在值为 null 或类型不匹配的时候自定义解码，默认策略请看[这里](https://github.com/Pircate/CleanJSON/blob/master/CleanJSON/Classes/Adaptor.swift)
 
-下面代码设定在解析的时候将 JSON 的 Int 类型 转换为 swift 的 Bool 类型
+下面代码设定在解析的时候将 JSON 的 Int 类型转换为 swift 的 Bool 类型
 
 ```swift
-var convertor = CleanJSONDecoder.TypeConvertor()
-convertor.convertToBool = { decoder in
+var adaptor = CleanJSONDecoder.Adaptor()
+adaptor.decodeBool = { decoder in
     // 值为 null
     if decoder.decodeNull() {
         return false
     }
     
-    if let intValue = try decoder.decode(Int.self) {
-        // 类型不匹配
+    if let intValue = try decoder.decodeIfPresent(Int.self) {
+        // 类型不匹配，期望 Bool 类型，实际是 Int 类型
         return intValue != 0
     }
     
     return false
 }
-decoder.valueNotFoundDecodingStrategy = .custom(convertor)
+decoder.valueNotFoundDecodingStrategy = .custom(adaptor)
 ```
 
 ### For Moya
 
-使用 Moya.Response 自带的 [map](https://github.com/Moya/Moya/blob/master/Sources/Moya/Response.swift) 方法解析，传入 CleanJSONDecoder
+使用 `Moya.Response` 自带的 [map](https://github.com/Moya/Moya/blob/master/Sources/Moya/Response.swift) 方法解析，传入 `CleanJSONDecoder`
 
 ```swift
 provider = MoyaProvider<GitHub>()

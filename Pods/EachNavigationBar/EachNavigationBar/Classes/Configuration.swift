@@ -19,6 +19,8 @@ public class Configuration: NSObject {
     
     @objc public var barTintColor: UIColor?
     
+    @objc public var tintColor: UIColor?
+    
     @objc public var shadowImage: UIImage?
     
     @objc public var isShadowHidden: Bool = false
@@ -34,53 +36,51 @@ public class Configuration: NSObject {
     /// Extra height for the navigation bar.
     @objc public var extraHeight: CGFloat = 0
     
-    /// Image for leftBarButtonItem(not backBarButtonItem).
-    /// If you don't set, there will be no back button by default.
-    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
-    @objc public var backImage: UIImage?
-    
-    public var backBarButtonItem: BackBarButtonItem = .init()
+    @objc public var backBarButtonItem: BackBarButtonItem = .none
     
     @objc public var prefersLargeTitles: Bool = false
     
     @objc public var largeTitleTextAttributes: [NSAttributedString.Key: Any]?
+    
+    @objc public var shadow: Shadow?
     
     var backgroundImage: UIImage?
     
     var barMetrics: UIBarMetrics = .default
     
     var barPosition: UIBarPosition = .any
+}
+
+extension Configuration {
     
     @objc public func setBackgroundImage(
         _ backgroundImage: UIImage?,
-        for barPosition: UIBarPosition,
-        barMetrics: UIBarMetrics) {
+        for barPosition: UIBarPosition = .any,
+        barMetrics: UIBarMetrics = .default) {
         self.backgroundImage = backgroundImage
         self.barPosition = barPosition
         self.barMetrics = barMetrics
     }
 }
 
-extension UINavigationController {
+public class Shadow: NSObject {
+    @objc public var color: CGColor?
+    @objc public var opacity: Float = 0
+    @objc public var offset: CGSize = CGSize(width: 0, height: -3)
+    @objc public var radius: CGFloat = 3
+    @objc public var path: CGPath?
     
-    @available(swift, obsoleted: 4.2, message: "Only for Objective-C call.")
-    @objc public var global_configuration: Configuration {
-        return _configuration
-    }
-    
-    var _configuration: Configuration {
-        if let configuration = objc_getAssociatedObject(
-            self,
-            &AssociatedKeys.configuration)
-            as? Configuration {
-            return configuration
-        }
-        let configuration = Configuration()
-        objc_setAssociatedObject(
-            self,
-            &AssociatedKeys.configuration,
-            configuration,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        return configuration
+    @objc public convenience init(
+        color: CGColor? = nil,
+        opacity: Float = 0,
+        offset: CGSize = CGSize(width: 0, height: -3),
+        radius: CGFloat = 3,
+        path: CGPath? = nil) {
+        self.init()
+        self.color = color
+        self.opacity = opacity
+        self.offset = offset
+        self.radius = radius
+        self.path = path
     }
 }

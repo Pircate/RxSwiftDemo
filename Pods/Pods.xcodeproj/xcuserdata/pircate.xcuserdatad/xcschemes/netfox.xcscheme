@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "51B854E3982029B9B16128BCB2C27C2B"
+               BlueprintIdentifier = "06052E56B02943899DCE71919F7E0CB6"
                BlueprintName = "netfox"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "netfox.framework">
