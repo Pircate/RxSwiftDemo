@@ -14,6 +14,10 @@ extension UIViewController {
         guard let navigationController = navigationController else { return }
         navigationController.sendNavigationBarToBack()
         
+        if #available(iOS 11.0, *) {
+            _navigationBar.prefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
+        }
+        
         let configuration = navigationController._configuration
         _navigationBar.setup(with: configuration)
         
@@ -38,7 +42,7 @@ extension UIViewController {
         backButton.setImage(image, for: .normal)
         
         if let title = navigationController.viewControllers[count - 2]._navigationItem.title {
-            let maxWidth = UIScreen.main.bounds.width / 3
+            let maxWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) / 3
             let width = (title as NSString).boundingRect(
                 with: CGSize(width: maxWidth, height: 20),
                 options: NSStringDrawingOptions.usesFontLeading,
@@ -58,7 +62,7 @@ extension UIViewController {
         navigationBar.isHidden = _navigationBar.isHidden
         if #available(iOS 11.0, *) {
             adjustsSafeAreaInsetsAfterIOS11()
-            navigationBar.prefersLargeTitles = _navigationBar.prefersLargeTitles
+            navigationItem.title = _navigationItem.title
             navigationBar.largeTitleTextAttributes = _navigationBar.largeTitleTextAttributes
         }
         view.bringSubviewToFront(_navigationBar)
@@ -67,18 +71,18 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func adjustsNavigationBarPosition() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        _navigationBar.frame = navigationBar.frame
-        _navigationBar.frame.size.height += _navigationBar.additionalHeight
+    @objc public func adjustsNavigationBarLayout() {
+        _navigationBar.adjustsLayout()
         _navigationBar.setNeedsLayout()
     }
     
     func adjustsSafeAreaInsetsAfterIOS11() {
         guard #available(iOS 11.0, *) else { return }
+        
+        let height = _navigationBar.additionalView?.frame.height ?? 0
         additionalSafeAreaInsets.top = _navigationBar.isHidden
             ? -view.safeAreaInsets.top
-            : _navigationBar.additionalHeight
+            : _navigationBar._additionalHeight + height
     }
 }
 
@@ -101,7 +105,7 @@ private extension EachNavigationBar {
         barStyle = configuration.barStyle
         statusBarStyle = configuration.statusBarStyle
         
-        extraHeight = configuration.extraHeight
+        additionalHeight = configuration.additionalHeight
         
         isShadowHidden = configuration.isShadowHidden
         
@@ -110,7 +114,7 @@ private extension EachNavigationBar {
         }
         
         if #available(iOS 11.0, *) {
-            prefersLargeTitles = configuration.prefersLargeTitles
+            layoutPaddings = configuration.layoutPaddings
             largeTitleTextAttributes = configuration.largeTitleTextAttributes
         }
     }

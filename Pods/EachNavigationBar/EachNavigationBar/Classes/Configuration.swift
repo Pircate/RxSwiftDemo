@@ -23,6 +23,7 @@ public class Configuration: NSObject {
     
     @objc public var shadowImage: UIImage?
     
+    // Hides shadow image.
     @objc public var isShadowHidden: Bool = false
     
     @objc public var titleTextAttributes: [NSAttributedString.Key : Any]?
@@ -33,22 +34,40 @@ public class Configuration: NSObject {
     
     @objc public var statusBarStyle: UIStatusBarStyle = .default
     
-    /// Extra height for the navigation bar.
-    @objc public var extraHeight: CGFloat = 0
+    /// Additional height for the navigation bar.
+    @objc public var additionalHeight: CGFloat = 0
     
+    /// Bar button item to use for the back button in the child navigation item.
     @objc public var backBarButtonItem: BackBarButtonItem = .none
     
-    @objc public var prefersLargeTitles: Bool = false
-    
-    @objc public var largeTitleTextAttributes: [NSAttributedString.Key: Any]?
+    @available(iOS 11.0, *)
+    /// Padding of navigation bar content view.
+    @objc public lazy var layoutPaddings: UIEdgeInsets = {
+        Const.NavigationBar.layoutPaddings
+    }()
     
     @objc public var shadow: Shadow?
+    
+    var _largeTitleTextAttributes: [NSAttributedString.Key: Any]?
     
     var backgroundImage: UIImage?
     
     var barMetrics: UIBarMetrics = .default
     
     var barPosition: UIBarPosition = .any
+}
+
+extension Configuration {
+    
+    @available(iOS 11.0, *)
+    @objc public var largeTitleTextAttributes: [NSAttributedString.Key: Any]? {
+        get {
+            return _largeTitleTextAttributes
+        }
+        set {
+            _largeTitleTextAttributes = newValue
+        }
+    }
 }
 
 extension Configuration {
@@ -64,11 +83,13 @@ extension Configuration {
 }
 
 public class Shadow: NSObject {
-    @objc public var color: CGColor?
-    @objc public var opacity: Float = 0
-    @objc public var offset: CGSize = CGSize(width: 0, height: -3)
-    @objc public var radius: CGFloat = 3
-    @objc public var path: CGPath?
+    @objc public private(set) var color: CGColor?
+    @objc public private(set) var opacity: Float = 0
+    @objc public private(set) var offset: CGSize = CGSize(width: 0, height: -3)
+    @objc public private(set) var radius: CGFloat = 3
+    @objc public private(set) var path: CGPath?
+    
+    @objc public static let none: Shadow = .init()
     
     @objc public convenience init(
         color: CGColor? = nil,
@@ -82,5 +103,18 @@ public class Shadow: NSObject {
         self.offset = offset
         self.radius = radius
         self.path = path
+    }
+}
+
+extension Configuration {
+    
+    @available(swift, deprecated: 4.2, message: "Please use additionalHeight.")
+    @objc public var extraHeight: CGFloat {
+        get {
+            return additionalHeight
+        }
+        set {
+            additionalHeight = newValue
+        }
     }
 }

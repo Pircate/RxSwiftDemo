@@ -3,7 +3,7 @@ PODS:
   - CleanJSON (0.6.4)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.7.0)
+  - EachNavigationBar (1.8.1)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -22,10 +22,10 @@ PODS:
   - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - netfox (1.14.0)
+  - netfox (1.15.0)
   - Result (4.1.0)
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
+  - RxAtomic (4.4.1)
+  - RxCocoa (4.4.1):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
@@ -38,7 +38,7 @@ PODS:
     - RxNetwork/Core (= 0.8.6)
   - RxNetwork/Core (0.8.6):
     - Moya/RxSwift
-  - RxSwift (4.4.0):
+  - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
   - RxSwiftExt (3.4.0):
     - RxSwiftExt/Core (= 3.4.0)
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   CleanJSON: ab7818bd1b4e61561d2154d5d4780e916510ea31
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: 33bdae9dac2aa86a2b94f1a74d6a4fe4498483a1
+  EachNavigationBar: 4856b6d0595dd8cc4091bd0fe9f68fb09fd40299
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
@@ -133,14 +133,14 @@ SPEC CHECKSUMS:
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  netfox: 184c9c5dcb6d9ba3347641fe470341bee57f684c
+  netfox: 6ddcca687ad0a58550054fea481cb487461b5e0c
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
   RxNetwork: b906988fc69c84ef2aa6639f5c5746f3fbe76a24
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
@@ -148,4 +148,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 487ddfa7abf2ddf51e9988887923e346e294f054
 
-COCOAPODS: 1.6.0.rc.2
+COCOAPODS: 1.6.0

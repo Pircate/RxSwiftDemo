@@ -122,7 +122,7 @@ navigation.item.leftBarButtonItem?.tintColor = navigation.item.leftBarButtonItem
 // remove blur effect
 navigation.bar.isTranslucent = false
 
-// hide shadow
+// hides shadow image
 navigation.bar.isShadowHidden = true
 
 // set status bar style
@@ -148,13 +148,22 @@ navigation.bar.backBarButtonItem.didBack = {
 }
 
 // if you want change navigation bar position
-navigation.bar.isUnrestoredWhenViewWillLayoutSubviews = true
+navigation.bar.automaticallyAdjustsPosition = false
 
-// navigation bar extra height
-navigation.bar.extraHeight = 14
+// navigation bar additional height
+navigation.bar.additionalHeight = 14
+
+// navigation bar additional view
+navigation.bar.additionalView = UIView()
 
 // item padding
 navigation.bar.layoutPaddings = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+
+// shadow
+navigation.bar.shadow = Shadow(
+    color: UIColor.black.cgColor,
+    opacity: 0.5,
+    offset: CGSize(width: 0, height: 3))
 ```
 
 Objective-C
@@ -165,19 +174,18 @@ self.navigation_item.xxx
 
 ##### LargeTitle(iOS 11.0+)
 
+UINavigationController
 ``` swift
-// show
-if #available(iOS 11.0, *) {
-    navigation.bar.prefersLargeTitles = true
-}
-// hide
-if #available(iOS 11.0, *) {
-    navigation.bar.prefersLargeTitles = false
-}
+// enable
+nav.navigation.prefersLargeTitles()
+```
+UIViewController
+```swift
+// show or hide
+navigation.bar.prefersLargeTitles = true
+
 // alpha
-if #available(iOS 11.0, *) {
-    navigation.bar.setLargeTitleAlpha(0.5)
-}
+navigation.bar.setLargeTitleAlpha(0.5)
 ```
 
 #### For UITableViewController
