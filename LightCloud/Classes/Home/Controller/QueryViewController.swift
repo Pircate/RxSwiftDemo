@@ -50,6 +50,9 @@ final class QueryViewController: BaseViewController {
     
     private func buildNavigation() {
         navigation.item.titleView = searchTextField
+        if #available(iOS 11.0, *) {
+            navigation.bar.prefersLargeTitles = false
+        }
     }
     
     private func buildSubviews() {

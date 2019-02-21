@@ -26,7 +26,11 @@ extension UIViewController {
 public extension ConstraintViewControllerDSL {
     
     var topLayoutGuide: ConstraintItem {
-        return base.navigation.bar.snp.bottom
+        if #available(iOS 11.0, *) {
+            return base.view.safeAreaLayoutGuide.snp.top
+        } else {
+            return base.topLayoutGuide.snp.bottom
+        }
     }
     
     var bottomLayoutGuide: ConstraintItem {
