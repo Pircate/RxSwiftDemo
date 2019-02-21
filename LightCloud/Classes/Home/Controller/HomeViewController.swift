@@ -60,11 +60,6 @@ final class HomeViewController: BaseViewController {
         bindViewModel()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     private func setupNavigation() {        
         let editButton = UIButton(type: .custom).chain
             .title("编辑", for: .normal, .highlighted)
@@ -110,7 +105,8 @@ final class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.banners.bind { [weak self] items in
-            self?.cycleScrollView.dataSourceType = .both(items: items)
+            guard let `self` = self else { return }
+            self.cycleScrollView.dataSourceType = .both(items: items)
         }.disposed(by: disposeBag)
         
         // 请求完成结束刷新
@@ -123,9 +119,9 @@ final class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.itemDeleted
-            .subscribeNext(weak: self, { (self) in
+            .subscribeNext(weak: self) { (self) in
                 { self.itemDeleted(at: $0) }
-            }).disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
         
         itemMovedBind(proxy)
         

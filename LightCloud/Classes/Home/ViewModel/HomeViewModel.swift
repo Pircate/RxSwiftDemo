@@ -51,10 +51,11 @@ extension HomeViewModel: ViewModelType {
         let banners = input.requestBannerList()
         let itemDeleted = input.requestDeleteItem(state)
         
-        return Output(items: items,
-                      banners: banners,
-                      itemDeleted: itemDeleted,
-                      state: state.asDriver(onErrorJustReturn: .idle))
+        return Output(
+            items: items,
+            banners: banners,
+            itemDeleted: itemDeleted,
+            state: state.asDriver(onErrorJustReturn: .idle))
     }
 }
 

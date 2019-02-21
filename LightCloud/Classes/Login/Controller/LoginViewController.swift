@@ -57,20 +57,16 @@ final class LoginViewController: BaseViewController {
         buildSubviews()
         bindViewModel()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     private func buildNavigation() {
         navigation.item.title = "登录"
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.push(RegisterViewController())).disposed(by: disposeBag)
-        navigation.item.leftBarButtonItem = UIBarButtonItem(title: "关闭").chain.tintColor(UIColor.white).build
-        let leftTap = navigation.item.leftBarButtonItem!.rx.tap.shareOnce()
-        leftTap.bind(to: rx.pop(animated: true)).disposed(by: disposeBag)
-        leftTap.map(to: true).bind(to: view.rx.endEditing).disposed(by: disposeBag)
+        
+        navigation.bar.backBarButtonItem.willBack = { [weak self] in
+            guard let `self` = self else { return }
+            self.view.endEditing(true)
+        }
     }
     
     private func buildSubviews() {
@@ -114,10 +110,11 @@ final class LoginViewController: BaseViewController {
         usernameTextField.maxLength = 11
         passwordTextField.maxLength = 6
         
-        let input = LoginViewModel.Input(username: username,
-                                         password: password,
-                                         captchaTap: captchaButton.rx.tap,
-                                         loginTap: loginButton.rx.tap)
+        let input = LoginViewModel.Input(
+            username: username,
+            password: password,
+            captchaTap: captchaButton.rx.tap,
+            loginTap: loginButton.rx.tap)
         let output = viewModel.transform(input)
         
         output.isEnabled

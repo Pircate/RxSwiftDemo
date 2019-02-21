@@ -16,7 +16,7 @@ final class QueryViewController: BaseViewController {
     
     private lazy var searchTextField: UITextField = {
         UITextField().chain
-            .frame(x: 0, y: 0, width: UIScreen.width - 60, height: 30)
+            .frame(x: 0, y: 0, width: UIScreen.width - 80, height: 30)
             .cornerRadius(15)
             .masksToBounds(true)
             .textAlignment(.center)
@@ -42,11 +42,6 @@ final class QueryViewController: BaseViewController {
         buildSubviews()
         bindViewModel()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     private func buildNavigation() {
         navigation.item.titleView = searchTextField
@@ -57,6 +52,7 @@ final class QueryViewController: BaseViewController {
     
     private func buildSubviews() {
         disablesAdjustScrollViewInsets(tableView)
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(snp.topLayoutGuide)
@@ -67,9 +63,10 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
-        let input = QueryViewModel.Input(keyword: searchTextField.rx.text.orEmpty.shareOnce(),
-                                         refresh: tableView.mj_header.rx.refreshing,
-                                         more: tableView.mj_footer.rx.refreshing)
+        let input = QueryViewModel.Input(
+            keyword: searchTextField.rx.text.orEmpty.shareOnce(),
+            refresh: tableView.mj_header.rx.refreshing,
+            more: tableView.mj_footer.rx.refreshing)
         let output = viewModel.transform(input)
         
         output.items

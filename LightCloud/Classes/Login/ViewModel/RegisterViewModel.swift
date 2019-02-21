@@ -33,9 +33,10 @@ extension RegisterViewModel: ViewModelType {
         let state = State()
         let register = input.requestRegister(state)
         
-        return Output(isEnabled: isEnabled,
-                      register: register,
-                      state: state.asDriver(onErrorJustReturn: .idle))
+        return Output(
+            isEnabled: isEnabled,
+            register: register,
+            state: state.asDriver(onErrorJustReturn: .idle))
     }
 }
 

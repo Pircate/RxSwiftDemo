@@ -45,10 +45,11 @@ extension LoginViewModel: ViewModelType {
         let captcha = input.requestLoginCaptcha(state)
         let login = input.requestLogin(state)
         
-        return Output(isEnabled: isEnabled,
-                      captcha: captcha,
-                      login: login,
-                      state: state.asDriver(onErrorJustReturn: .idle))
+        return Output(
+            isEnabled: isEnabled,
+            captcha: captcha,
+            login: login,
+            state: state.asDriver(onErrorJustReturn: .idle))
     }
 }
 

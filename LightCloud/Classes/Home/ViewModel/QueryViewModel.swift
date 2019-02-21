@@ -35,34 +35,34 @@ extension QueryViewModel: ViewModelType {
         let query = input.keyword.skip(1)
             .throttle(1, scheduler: MainScheduler.instance)
             .distinctUntilChanged().then(page = 0)
-            .flatMap({
+            .flatMap {
                 LCQuery.rx.query("QueryList", keyword: $0, page: page)
                     .catchErrorJustReturn(closure: [])
-            }).map({ items -> [LCObject] in
+            }.map { items -> [LCObject] in
                 objects = items
                 return objects
-            }).asDriver(onErrorJustReturn: [])
+            }.asDriver(onErrorJustReturn: [])
         
         // 下拉刷新
         let refresh = input.refresh.then(page = 0)
             .withLatestFrom(input.keyword)
-            .flatMap({
+            .flatMap {
                 LCQuery.rx.query("QueryList", keyword: $0, page: page)
                     .catchErrorJustReturn(closure: [])
-            }).map({ items -> [LCObject] in
+            }.map { items -> [LCObject] in
                 objects = items
                 return objects
-            }).asDriver(onErrorJustReturn: [])
+            }.asDriver(onErrorJustReturn: [])
         
         let endRefresh = refresh.map(to: ())
         
         // 上拉加载更多
         let more = input.more.then(page += 1)
             .withLatestFrom(input.keyword)
-            .flatMap({
+            .flatMap {
                 LCQuery.rx.query("QueryList", keyword: $0, page: page)
                     .catchErrorJustReturn(closure: [])
-            }).map { items -> [LCObject] in
+            }.map { items -> [LCObject] in
                 objects += items
                 return objects
             }.asDriver(onErrorJustReturn: [])
