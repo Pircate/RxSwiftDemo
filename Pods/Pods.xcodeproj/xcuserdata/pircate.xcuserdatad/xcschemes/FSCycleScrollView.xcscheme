@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C85CC1981A28A4705C1C68DA06A55862"
+               BuildableName = "FSCycleScrollView.framework"
                BlueprintName = "FSCycleScrollView"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FSCycleScrollView.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

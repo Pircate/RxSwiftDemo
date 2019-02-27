@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F8BB333A0A65FA009FB209DEA6550CF1"
+               BuildableName = "ExtensionX.framework"
                BlueprintName = "ExtensionX"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "ExtensionX.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

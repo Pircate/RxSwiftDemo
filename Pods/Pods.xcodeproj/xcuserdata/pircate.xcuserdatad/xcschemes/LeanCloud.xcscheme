@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB030991C5CA4DB710FDD48C6F4C4C0B"
+               BuildableName = "LeanCloud.framework"
                BlueprintName = "LeanCloud"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "LeanCloud.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FE4B8A47D07CE0B3F61C921122B76E0F"
+               BuildableName = "CocoaChainKit.framework"
                BlueprintName = "CocoaChainKit"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "CocoaChainKit.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

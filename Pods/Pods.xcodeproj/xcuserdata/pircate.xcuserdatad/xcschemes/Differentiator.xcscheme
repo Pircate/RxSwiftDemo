@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "01D165410A4A48B9A21A0074E7AF9578"
+               BuildableName = "Differentiator.framework"
                BlueprintName = "Differentiator"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Differentiator.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

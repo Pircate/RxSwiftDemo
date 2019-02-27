@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "837869CC36A3AB677918B18B18F4B3EA"
+               BuildableName = "CleanJSON.framework"
                BlueprintName = "CleanJSON"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "CleanJSON.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
