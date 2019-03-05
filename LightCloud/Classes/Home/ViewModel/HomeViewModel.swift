@@ -59,7 +59,7 @@ extension HomeViewModel: ViewModelType {
     }
 }
 
-fileprivate extension HomeViewModel.Input {
+private extension HomeViewModel.Input {
     
     // 获取 todo 列表
     func requestTodoList(_ state: State) -> Driver<[TodoSectionModel]> {

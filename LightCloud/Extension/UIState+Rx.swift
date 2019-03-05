@@ -8,13 +8,13 @@
 
 import RxSwift
 
-enum UIState {
+public enum UIState {
     case idle
-    case loading
+    case loading(String?)
     case success(String?)
     case failure(String?)
     
-    var isSuccess: Bool {
+    public var isSuccess: Bool {
         switch self {
         case .success:
             return true
@@ -23,7 +23,7 @@ enum UIState {
         }
     }
     
-    var isFailure: Bool {
+    public var isFailure: Bool {
         switch self {
         case .failure:
             return true
@@ -31,6 +31,11 @@ enum UIState {
             return false
         }
     }
+}
+
+public enum Loading {
+    case none
+    case start(String?)
 }
 
 struct UIStateToken<E>: Disposable {
@@ -48,22 +53,28 @@ struct UIStateToken<E>: Disposable {
     public func dispose() {}
 }
 
-extension ObservableConvertibleType {
+public extension ObservableConvertibleType {
     
     /// Toast
     ///
     /// - Parameters:
     ///   - state: UIState publish relay
-    ///   - loading: 是否显示loading框
+    ///   - loading: loadng 选项
     ///   - success: 成功提示信息
     ///   - failure: 失败提示信息
     /// - Returns: 绑定的序列
     func trackState(_ relay: PublishRelay<UIState>,
-                    loading: Bool = true,
+                    loading: Loading = .start(nil),
                     success: String? = nil,
-                    failure: @escaping (Error) -> String? = { $0.errorMessage }) -> Observable<E> {
+                    failure: @escaping (Error) -> String? = { _ in nil }) -> Observable<E> {
         return Observable.using({ () -> UIStateToken<E> in
-            if loading { relay.accept(.loading) }
+            switch loading {
+            case .none:
+                break
+            case .start(let text):
+                relay.accept(.loading(text))
+            }
+            
             return UIStateToken(source: self.asObservable())
         }, observableFactory: {
             return $0.asObservable().do(onNext: { _ in

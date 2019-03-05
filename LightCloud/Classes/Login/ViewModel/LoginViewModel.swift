@@ -53,7 +53,7 @@ extension LoginViewModel: ViewModelType {
     }
 }
 
-fileprivate extension LoginViewModel.Input {
+private extension LoginViewModel.Input {
     
     func verifyloginButton() -> Driver<Bool> {
         return Observable.combineLatest(username.isEmpty, password.isEmpty) { !$0 && !$1 }

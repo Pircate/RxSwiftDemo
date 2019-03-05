@@ -40,7 +40,7 @@ extension RegisterViewModel: ViewModelType {
     }
 }
 
-fileprivate extension RegisterViewModel.Input {
+private extension RegisterViewModel.Input {
     
     func verifyloginButton() -> Driver<Bool> {
         return Observable.combineLatest(username.isEmpty, password.isEmpty) { !$0 && !$1 }
