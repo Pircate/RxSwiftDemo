@@ -24,9 +24,13 @@ it, simply add the following line to your Podfile or Cartfile:
 
 ```ruby
 pod 'RxNetwork'
-
-or
-
+```
+自己实现缓存
+```ruby
+pod 'RxNetwork/Cacheable'
+```
+默认基于 [Cache](https://github.com/onmyway133/Cache) 实现缓存
+```ruby
 pod 'RxNetwork/Cache'
 ```
 
@@ -80,8 +84,6 @@ StoryAPI.latest
 
 ### Request with cache
 
-#### normal
-
 ```swift
 /*
  {
@@ -106,8 +108,6 @@ StoryAPI.latest
 
     }).disposed(by: disposeBag)
 ```
-
-### other
 
 ```swift
 /*
@@ -135,6 +135,16 @@ TestTarget.test(count: 10)
         
     })
     .disposed(by: disposeBag)
+```
+
+### Cacheable
+
+需要缓存请遵循 `Cacheable` 协议
+
+```swift
+enum API: TargetType, Cacheable {
+    case api
+}
 ```
 
 ### Notice

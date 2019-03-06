@@ -3,7 +3,7 @@ PODS:
   - CleanJSON (0.6.4)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.9.0)
+  - EachNavigationBar (1.9.2)
   - ExtensionX (0.1.0)
   - FSCycleScrollView (0.2.0):
     - FSPagerView
@@ -34,9 +34,9 @@ PODS:
   - RxGesture (2.1.0):
     - RxCocoa (~> 4.4.0)
     - RxSwift (~> 4.4.0)
-  - RxNetwork (0.8.7):
-    - RxNetwork/Core (= 0.8.7)
-  - RxNetwork/Core (0.8.7):
+  - RxNetwork (0.9.2):
+    - RxNetwork/Core (= 0.9.2)
+  - RxNetwork/Core (0.9.2):
     - Moya/RxSwift
   - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   CleanJSON: ab7818bd1b4e61561d2154d5d4780e916510ea31
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: c95f4cc8bdec56983b49e24e3782ecd6f10d547f
+  EachNavigationBar: 4978d1327a85d7c50d070b0a387f6e30fa089cfc
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
@@ -139,7 +139,7 @@ SPEC CHECKSUMS:
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
-  RxNetwork: 41bfdab9b4c5962a149d46dbba6de264dc30e38e
+  RxNetwork: ea5a5292138ca0d902a337be8ad6b39def8858b3
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
