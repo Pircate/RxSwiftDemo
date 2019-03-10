@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
-  - CleanJSON (0.6.5)
+  - CleanJSON (0.6.6)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
   - EachNavigationBar (1.9.2)
@@ -121,7 +121,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  CleanJSON: 04f5c267512115159e83335d03e3c60c2175e606
+  CleanJSON: 6255db2f1750694b31f43c29dadfe8e91da6a22b
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EachNavigationBar: 4978d1327a85d7c50d070b0a387f6e30fa089cfc
