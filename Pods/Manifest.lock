@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
-  - CleanJSON (0.6.4)
+  - CleanJSON (0.6.5)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
   - EachNavigationBar (1.9.2)
@@ -34,9 +34,9 @@ PODS:
   - RxGesture (2.1.0):
     - RxCocoa (~> 4.4.0)
     - RxSwift (~> 4.4.0)
-  - RxNetwork (0.9.2):
-    - RxNetwork/Core (= 0.9.2)
-  - RxNetwork/Core (0.9.2):
+  - RxNetwork (0.9.3):
+    - RxNetwork/Core (= 0.9.3)
+  - RxNetwork/Core (0.9.3):
     - Moya/RxSwift
   - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
@@ -121,7 +121,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  CleanJSON: ab7818bd1b4e61561d2154d5d4780e916510ea31
+  CleanJSON: 04f5c267512115159e83335d03e3c60c2175e606
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EachNavigationBar: 4978d1327a85d7c50d070b0a387f6e30fa089cfc
@@ -139,7 +139,7 @@ SPEC CHECKSUMS:
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
-  RxNetwork: ea5a5292138ca0d902a337be8ad6b39def8858b3
+  RxNetwork: b3bd1a6554cd3989945d57180b6ae2182d27e7e6
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
