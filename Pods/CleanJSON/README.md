@@ -5,22 +5,20 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/CleanJSON.svg?style=flat)](https://cocoapods.org/pods/CleanJSON)
 [![Platform](https://img.shields.io/cocoapods/p/CleanJSON.svg?style=flat)](https://cocoapods.org/pods/CleanJSON)
+[![codebeat badge](https://codebeat.co/badges/08f46dcc-348d-44e0-b2af-0c62e76432c4)](https://codebeat.co/projects/github-com-pircate-cleanjson-master)
 
 
 继承自 JSONDecoder，在标准库源码基础上做了改动，以解决 JSONDecoder 各种解析失败的问题，如键值不存在，值为 null，类型不一致。
 
-```
-只需将 JSONDecoder 替换成 CleanJSONDecoder，属性可以全部使用不可选类型。
-```
+> 只需将 JSONDecoder 替换成 CleanJSONDecoder，属性可以全部使用不可选类型。
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
-
 * iOS 9.0
-* Swift 4.2
+* Swift 5.0
 
 ## Installation
 
@@ -75,28 +73,29 @@ enum Enum: Int, Codable, CaseDefaultable {
 
 ### Customize decoding strategy
 
-可以通过 `valueNotFoundDecodingStrategy` 在值为 null 或类型不匹配的时候自定义解码，默认策略请看[这里](https://github.com/Pircate/CleanJSON/blob/master/CleanJSON/Classes/Adapter.swift)
-
-下面代码设定在解析的时候将 JSON 的 Int 类型转换为 swift 的 Bool 类型
+可以通过 `valueNotFoundDecodingStrategy` 在值为 null 或类型不匹配的时候自定义解码，默认策略请看[这里](https://github.com/Pircate/CleanJSON/blob/master/CleanJSON/Classes/JSONAdapter.swift)
 
 ```swift
-var adapter = CleanJSONDecoder.Adapter()
-// 由于 Swift 布尔类型不是非 0 即 true，所以默认没有提供类型转换。
-// 如果想实现 Int 转 Bool 可以自定义解码。
-adapter.decodeBool = { decoder in
-    // 值为 null
-    if decoder.decodeNull() {
+struct CustomAdapter: JSONAdapter {
+    
+    // 由于 Swift 布尔类型不是非 0 即 true，所以默认没有提供类型转换。
+    // 如果想实现 Int 转 Bool 可以自定义解码。
+    func adapt(_ decoder: CleanDecoder) throws -> Bool {
+        // 值为 null
+        if decoder.decodeNil() {
+            return false
+        }
+        
+        if let intValue = try decoder.decodeIfPresent(Int.self) {
+            // 类型不匹配，期望 Bool 类型，实际是 Int 类型
+            return intValue != 0
+        }
+        
         return false
     }
-    
-    if let intValue = try decoder.decodeIfPresent(Int.self) {
-        // 类型不匹配，期望 Bool 类型，实际是 Int 类型
-        return intValue != 0
-    }
-    
-    return false
 }
-decoder.valueNotFoundDecodingStrategy = .custom(adapter)
+
+decoder.valueNotFoundDecodingStrategy = .custom(CustomAdapter())
 ```
 
 ### For Moya
@@ -139,7 +138,7 @@ provider.rx.request(.userProfile("ashfurrow"))
 
 ## Author
 
-Pircate, gao497868860@gmail.com
+Pircate, swifter.dev@gmail.com
 
 ## License
 

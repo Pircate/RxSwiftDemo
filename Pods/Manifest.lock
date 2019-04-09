@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (4.8.1)
-  - CleanJSON (0.6.6)
+  - Alamofire (4.8.2)
+  - CleanJSON (0.8.2)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
   - EachNavigationBar (1.9.2)
@@ -9,13 +9,13 @@ PODS:
     - FSPagerView
     - Kingfisher
   - FSPagerView (0.8.2)
-  - IQKeyboardManagerSwift (6.2.0)
+  - IQKeyboardManagerSwift (6.2.1)
   - Kingfisher (4.10.1)
   - LeanCloud (11.0.1):
     - LeanCloud/Storage (= 11.0.1)
   - LeanCloud/Storage (11.0.1):
     - Alamofire (~> 4.7)
-  - MJRefresh (3.1.15.7)
+  - MJRefresh (3.1.16)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
@@ -24,9 +24,9 @@ PODS:
     - RxSwift (~> 4.0)
   - netfox (1.15.0)
   - Result (4.1.0)
-  - RxAtomic (4.4.1)
-  - RxCocoa (4.4.1):
-    - RxSwift (~> 4.0)
+  - RxAtomic (4.4.2)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
@@ -34,12 +34,12 @@ PODS:
   - RxGesture (2.1.0):
     - RxCocoa (~> 4.4.0)
     - RxSwift (~> 4.4.0)
-  - RxNetwork (0.9.3):
-    - RxNetwork/Core (= 0.9.3)
-  - RxNetwork/Core (0.9.3):
+  - RxNetwork (0.10.0):
+    - RxNetwork/Core (= 0.10.0)
+  - RxNetwork/Core (0.10.0):
     - Moya/RxSwift
-  - RxSwift (4.4.1):
-    - RxAtomic (~> 4.4)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
   - RxSwiftExt (3.4.0):
     - RxSwiftExt/Core (= 3.4.0)
     - RxSwiftExt/RxCocoa (= 3.4.0)
@@ -48,23 +48,23 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
-  - RxSwiftX (0.5.1):
+  - RxSwiftX (0.5.2):
     - RxCocoa
     - RxSwift
-    - RxSwiftX/Core (= 0.5.1)
-  - RxSwiftX/Core (0.5.1):
+    - RxSwiftX/Core (= 0.5.2)
+  - RxSwiftX/Core (0.5.2):
     - RxCocoa
     - RxSwift
-  - RxSwiftX/DataSources (0.5.1):
+  - RxSwiftX/DataSources (0.5.2):
     - RxCocoa
     - RxDataSources
     - RxSwift
-  - RxSwiftX/MJRefresh (0.5.1):
+  - RxSwiftX/MJRefresh (0.5.2):
     - MJRefresh
     - RxCocoa
     - RxSwift
   - SnapKit (4.2.0)
-  - Toast-Swift (4.0.1)
+  - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - CleanJSON
@@ -120,32 +120,32 @@ EXTERNAL SOURCES:
     :path: "./Pods/ExtensionX"
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  CleanJSON: 6255db2f1750694b31f43c29dadfe8e91da6a22b
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CleanJSON: f7be273cc133747dfc638da4f2f9d552d05a4289
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EachNavigationBar: 4978d1327a85d7c50d070b0a387f6e30fa089cfc
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSCycleScrollView: 7b86b4000aa8a958d338e0ed294a3c02f9fb73de
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
-  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   LeanCloud: f9776746a4cd62bdb441f2768017a91c9516d219
-  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   netfox: 6ddcca687ad0a58550054fea481cb487461b5e0c
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
-  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
-  RxNetwork: b3bd1a6554cd3989945d57180b6ae2182d27e7e6
-  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  RxNetwork: 23fdb8eaeeef1266cb65fb971a4028d9c14f7129
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
-  RxSwiftX: 4521dafbdd23e78754d1a354512d5bb829fc016c
+  RxSwiftX: abdb26ccd9925210466672efd7dfc9aa57a19029
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
 PODFILE CHECKSUM: 487ddfa7abf2ddf51e9988887923e346e294f054
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.0.beta.3

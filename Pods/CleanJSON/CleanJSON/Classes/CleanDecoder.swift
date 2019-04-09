@@ -2,7 +2,7 @@
 //  CleanDecoder.swift
 //  CleanJSON
 //
-//  Created by Pircate(gao497868860@gmail.com) on 2018/12/10
+//  Created by Pircate(swifter.dev@gmail.com) on 2018/12/10
 //  Copyright © 2018 Pircate. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 public protocol CleanDecoder: Decoder {
     
-    func decodeNull() -> Bool
+    func decodeNil() -> Bool
     
     func decodeIfPresent(_ type: Bool.Type) throws -> Bool?
     
@@ -51,10 +51,6 @@ public protocol CleanDecoder: Decoder {
 
 // MARK: CleanDecoder Methods
 extension _CleanJSONDecoder {
-    
-    func decodeNull() -> Bool {
-        return storage.topContainer is NSNull
-    }
     
     func decodeIfPresent(_ type: Bool.Type) throws -> Bool? {
         return try unbox(storage.topContainer, as: type)

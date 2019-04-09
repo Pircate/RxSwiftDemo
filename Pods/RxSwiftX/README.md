@@ -2,14 +2,18 @@
 
 [![CI Status](https://img.shields.io/travis/Pircate/RxSwiftX.svg?style=flat)](https://travis-ci.org/Pircate/RxSwiftX)
 [![Version](https://img.shields.io/cocoapods/v/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
-[![Platform](https://img.shields.io/cocoapods/p/RxSwiftX.svg?style=flat)](https://cocoapods.org/pods/RxSwiftX)
+![platforms](https://img.shields.io/badge/platforms-iOS-333333.svg) 
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+* iOS 9.0+
+* Swift 4.2
 
 ## Installation
 

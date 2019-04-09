@@ -2,7 +2,7 @@
 //  Defaultable.swift
 //  CleanJSON
 //
-//  Created by Pircate(gao497868860@gmail.com) on 2018/12/14
+//  Created by Pircate(swifter.dev@gmail.com) on 2018/12/14
 //  Copyright © 2018 Pircate. All rights reserved.
 //
 
@@ -91,5 +91,17 @@ extension Double: Defaultable {
 extension String: Defaultable {
     static var defaultValue: String {
         return ""
+    }
+}
+
+extension Date: Defaultable {
+    static var defaultValue: Date {
+        return Date(timeIntervalSinceReferenceDate: 0)
+    }
+}
+
+extension Decimal: Defaultable {
+    static var defaultValue: Decimal {
+        return Decimal(0)
     }
 }
