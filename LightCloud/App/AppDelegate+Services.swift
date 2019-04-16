@@ -20,7 +20,7 @@ extension AppDelegate {
     
     func registerServices(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         
-        LeanCloud.initialize(applicationID: appID, applicationKey: clientKey)
+        LCApplication.default.set(id: appID, key: clientKey)
         
         NFX.sharedInstance().start()
         

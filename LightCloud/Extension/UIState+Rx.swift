@@ -53,7 +53,7 @@ struct UIStateToken<E>: Disposable {
     public func dispose() {}
 }
 
-public extension ObservableConvertibleType {
+extension ObservableConvertibleType {
     
     /// Toast
     ///
@@ -66,7 +66,7 @@ public extension ObservableConvertibleType {
     func trackState(_ relay: PublishRelay<UIState>,
                     loading: Loading = .start(nil),
                     success: String? = nil,
-                    failure: @escaping (Error) -> String? = { _ in nil }) -> Observable<E> {
+                    failure: @escaping (Error) -> String? = { $0.errorMessage }) -> Observable<E> {
         return Observable.using({ () -> UIStateToken<E> in
             switch loading {
             case .none:

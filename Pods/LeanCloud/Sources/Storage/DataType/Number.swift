@@ -14,7 +14,7 @@ import Foundation
  It is a wrapper of `Swift.Double` type, used to store a number value.
  */
 public final class LCNumber: NSObject, LCValue, LCValueExtension, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
-    public fileprivate(set) var value: Double = 0
+    public private(set) var value: Double = 0
 
     public override init() {
         super.init()
@@ -53,27 +53,31 @@ public final class LCNumber: NSObject, LCValue, LCValueExtension, ExpressibleByF
         }
     }
 
-    public var jsonValue: AnyObject {
-        return value as AnyObject
+    public var jsonValue: Any {
+        return value
+    }
+
+    func formattedJSONString(indentLevel: Int, numberOfSpacesForOneIndentLevel: Int = 4) -> String {
+        return String(format: "%g", value)
     }
 
     public var jsonString: String {
-        return ObjectProfiler.getJSONString(self)
+        return formattedJSONString(indentLevel: 0)
     }
 
     public var rawValue: LCValueConvertible {
         return value
     }
 
-    var lconValue: AnyObject? {
-        return value as AnyObject?
+    var lconValue: Any? {
+        return jsonValue
     }
 
     static func instance() -> LCValue {
         return LCNumber()
     }
 
-    func forEachChild(_ body: (_ child: LCValue) -> Void) {
+    func forEachChild(_ body: (_ child: LCValue) throws -> Void) rethrows {
         /* Nothing to do. */
     }
 

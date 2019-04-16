@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'LightCloud' do
 
@@ -21,7 +21,8 @@ target 'LightCloud' do
   pod 'MJRefresh'
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
-  pod 'FSCycleScrollView'
+  pod 'FSPagerView'
+  pod 'Kingfisher'
   pod 'CocoaChainKit'
   pod 'EachNavigationBar'
   pod 'netfox'

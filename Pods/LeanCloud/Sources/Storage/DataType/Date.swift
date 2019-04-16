@@ -14,7 +14,7 @@ import Foundation
  This type used to represent a point in UTC time.
  */
 public final class LCDate: NSObject, LCValue, LCValueExtension {
-    public fileprivate(set) var value: Date = Date()
+    public private(set) var value: Date = Date()
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -52,14 +52,14 @@ public final class LCDate: NSObject, LCValue, LCValueExtension {
         value = date
     }
 
-    init?(dictionary: [String: AnyObject]) {
+    init?(dictionary: [String: Any]) {
         guard let type = dictionary["__type"] as? String else {
             return nil
         }
-        guard let dataType = RESTClient.DataType(rawValue: type) else {
+        guard let dataType = HTTPClient.DataType(rawValue: type) else {
             return nil
         }
-        guard case dataType = RESTClient.DataType.date else {
+        guard case dataType = HTTPClient.DataType.date else {
             return nil
         }
         guard let ISOString = dictionary["iso"] as? String else {
@@ -72,13 +72,13 @@ public final class LCDate: NSObject, LCValue, LCValueExtension {
         value = date
     }
 
-    init?(jsonValue: AnyObject?) {
+    init?(jsonValue: Any?) {
         var value: Date?
 
         switch jsonValue {
         case let ISOString as String:
             value = LCDate.dateFromString(ISOString)
-        case let dictionary as [String: AnyObject]:
+        case let dictionary as [String: Any]:
             if let date = LCDate(dictionary: dictionary) {
                 value = date.value
             }
@@ -115,22 +115,30 @@ public final class LCDate: NSObject, LCValue, LCValueExtension {
         }
     }
 
-    public var jsonValue: AnyObject {
+    public var jsonValue: Any {
+        return typedJSONValue
+    }
+
+    private var typedJSONValue: [String: String] {
         return [
             "__type": "Date",
             "iso": isoString
-        ] as AnyObject
+        ]
+    }
+
+    func formattedJSONString(indentLevel: Int, numberOfSpacesForOneIndentLevel: Int = 4) -> String {
+        return LCDictionary(typedJSONValue).formattedJSONString(indentLevel: indentLevel, numberOfSpacesForOneIndentLevel: numberOfSpacesForOneIndentLevel)
     }
 
     public var jsonString: String {
-        return ObjectProfiler.getJSONString(self)
+        return formattedJSONString(indentLevel: 0)
     }
 
     public var rawValue: LCValueConvertible {
         return value
     }
 
-    var lconValue: AnyObject? {
+    var lconValue: Any? {
         return jsonValue
     }
 
@@ -138,7 +146,7 @@ public final class LCDate: NSObject, LCValue, LCValueExtension {
         return self.init()
     }
 
-    func forEachChild(_ body: (_ child: LCValue) -> Void) {
+    func forEachChild(_ body: (_ child: LCValue) throws -> Void) rethrows {
         /* Nothing to do. */
     }
 

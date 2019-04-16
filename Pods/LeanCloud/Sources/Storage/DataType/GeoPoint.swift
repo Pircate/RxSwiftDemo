@@ -14,8 +14,8 @@ import Foundation
  This type can be used to represent a 2D location with latitude and longitude.
  */
 public final class LCGeoPoint: NSObject, LCValue, LCValueExtension {
-    public fileprivate(set) var latitude: Double = 0
-    public fileprivate(set) var longitude: Double = 0
+    public private(set) var latitude: Double = 0
+    public private(set) var longitude: Double = 0
 
     public enum Unit: String {
         case mile = "Miles"
@@ -43,14 +43,14 @@ public final class LCGeoPoint: NSObject, LCValue, LCValueExtension {
         self.longitude = longitude
     }
 
-    init?(dictionary: [String: AnyObject]) {
+    init?(dictionary: [String: Any]) {
         guard let type = dictionary["__type"] as? String else {
             return nil
         }
-        guard let dataType = RESTClient.DataType(rawValue: type) else {
+        guard let dataType = HTTPClient.DataType(rawValue: type) else {
             return nil
         }
-        guard case dataType = RESTClient.DataType.geoPoint else {
+        guard case dataType = HTTPClient.DataType.geoPoint else {
             return nil
         }
         guard let latitude = dictionary["latitude"] as? Double else {
@@ -86,23 +86,31 @@ public final class LCGeoPoint: NSObject, LCValue, LCValueExtension {
         }
     }
 
-    public var jsonValue: AnyObject {
+    public var jsonValue: Any {
+        return typedJSONValue
+    }
+
+    private var typedJSONValue: [String: LCValueConvertible] {
         return [
             "__type"    : "GeoPoint",
             "latitude"  : latitude,
             "longitude" : longitude
-        ] as AnyObject
+        ]
+    }
+
+    func formattedJSONString(indentLevel: Int, numberOfSpacesForOneIndentLevel: Int = 4) -> String {
+        return LCDictionary(typedJSONValue).formattedJSONString(indentLevel: indentLevel, numberOfSpacesForOneIndentLevel: numberOfSpacesForOneIndentLevel)
     }
 
     public var jsonString: String {
-        return ObjectProfiler.getJSONString(self)
+        return formattedJSONString(indentLevel: 0)
     }
 
     public var rawValue: LCValueConvertible {
         return self
     }
 
-    var lconValue: AnyObject? {
+    var lconValue: Any? {
         return jsonValue
     }
 
@@ -110,7 +118,7 @@ public final class LCGeoPoint: NSObject, LCValue, LCValueExtension {
         return self.init()
     }
 
-    func forEachChild(_ body: (_ child: LCValue) -> Void) {
+    func forEachChild(_ body: (_ child: LCValue) throws -> Void) rethrows {
         /* Nothing to do. */
     }
 

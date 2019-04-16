@@ -10,7 +10,6 @@ import UIKit
 import LeanCloud
 import MJRefresh
 import RxDataSources
-import FSCycleScrollView
 import RxSwiftX
 
 private let kCycleScrollViewHeight: CGFloat = 240

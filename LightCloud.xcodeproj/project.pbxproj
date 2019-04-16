@@ -12,6 +12,7 @@
 		336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336115D520B5A018001B5668 /* TodoItemCell.swift */; };
 		33E40B5A20BD8C2700F7EAF1 /* Toast+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */; };
 		33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */; };
+		6CA10A592265A48C00B1AD5E /* FSCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA10A582265A48C00B1AD5E /* FSCycleScrollView.swift */; };
 		6CDC6000213776DA002EF24E /* SnapKit+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDC5FFF213776DA002EF24E /* SnapKit+UIViewController.swift */; };
 		B585042020BCE4D200D9846D /* ImportFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585041F20BCE4D200D9846D /* ImportFile.swift */; };
 		B585042220BCF28000D9846D /* BannerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042120BCF28000D9846D /* BannerAPI.swift */; };
@@ -68,6 +69,7 @@
 		336115D520B5A018001B5668 /* TodoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemCell.swift; sourceTree = "<group>"; };
 		33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Rx.swift"; sourceTree = "<group>"; };
 		33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCObject+Rx.swift"; sourceTree = "<group>"; };
+		6CA10A582265A48C00B1AD5E /* FSCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCycleScrollView.swift; sourceTree = "<group>"; };
 		6CDC5FFF213776DA002EF24E /* SnapKit+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapKit+UIViewController.swift"; sourceTree = "<group>"; };
 		7248AAD6D56F320C01A23F26 /* Pods-LightCloudTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.release.xcconfig"; sourceTree = "<group>"; };
 		7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		B5D62F0920AA6BF5002F8FB3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				6CA10A582265A48C00B1AD5E /* FSCycleScrollView.swift */,
 				B5BF557520AD45ED00BAF346 /* Toast.swift */,
 			);
 			path = Vendor;
@@ -609,6 +612,7 @@
 				B5DEFE8A20C8F3580051C7DE /* MainViewController.swift in Sources */,
 				B5F7C09920B2610100B8F53B /* LCQuery+Rx.swift in Sources */,
 				336115D620B5A019001B5668 /* TodoItemCell.swift in Sources */,
+				6CA10A592265A48C00B1AD5E /* FSCycleScrollView.swift in Sources */,
 				B5CE12B020A41B1800EC3F30 /* RegisterViewController.swift in Sources */,
 				B5BF557620AD45ED00BAF346 /* Toast.swift in Sources */,
 				B5F7C09520B25FA700B8F53B /* QueryViewModel.swift in Sources */,
@@ -792,7 +796,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -815,7 +819,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BDD68D98V;
 				INFOPLIST_FILE = LightCloud/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

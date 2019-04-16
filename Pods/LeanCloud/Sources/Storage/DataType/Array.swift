@@ -17,7 +17,7 @@ public final class LCArray: NSObject, LCValue, LCValueExtension, Collection, Exp
     public typealias Index = Int
     public typealias Element = LCValue
 
-    public fileprivate(set) var value: [Element] = []
+    public private(set) var value: [Element] = []
 
     public override init() {
         super.init()
@@ -28,14 +28,26 @@ public final class LCArray: NSObject, LCValue, LCValueExtension, Collection, Exp
         self.value = value
     }
 
+    public convenience init(_ value: [LCValueConvertible]) {
+        self.init()
+        self.value = value.map { element in element.lcValue }
+    }
+
     public convenience required init(arrayLiteral elements: Element...) {
         self.init(elements)
     }
 
-    public convenience init(unsafeObject: [AnyObject]) {
+    public convenience init(unsafeObject: Any) throws {
         self.init()
-        value = unsafeObject.map { element in
-            try! ObjectProfiler.object(jsonValue: element)
+
+        guard let object = unsafeObject as? [Any] else {
+            throw LCError(
+                code: .malformedData,
+                reason: "Failed to construct LCArray with non-array object.")
+        }
+
+        value = try object.map { element in
+            try ObjectProfiler.shared.object(jsonValue: element)
         }
     }
 
@@ -79,28 +91,43 @@ public final class LCArray: NSObject, LCValue, LCValueExtension, Collection, Exp
         get { return value[index] }
     }
 
-    public var jsonValue: AnyObject {
-        return value.map { element in element.jsonValue } as AnyObject
+    public var jsonValue: Any {
+        return value.map { element in element.jsonValue }
+    }
+
+    func formattedJSONString(indentLevel: Int, numberOfSpacesForOneIndentLevel: Int = 4) -> String {
+        if value.isEmpty {
+            return "[]"
+        }
+
+        let lastIndent = " " * (numberOfSpacesForOneIndentLevel * indentLevel)
+        let bodyIndent = " " * (numberOfSpacesForOneIndentLevel * (indentLevel + 1))
+        let body = value
+            .map { value in (value as! LCValueExtension).formattedJSONString(indentLevel: indentLevel + 1, numberOfSpacesForOneIndentLevel: numberOfSpacesForOneIndentLevel) }
+            .joined(separator: ",\n" + bodyIndent)
+
+        return "[\n\(bodyIndent)\(body)\n\(lastIndent)]"
     }
 
     public var jsonString: String {
-        return ObjectProfiler.getJSONString(self)
+        return formattedJSONString(indentLevel: 0)
     }
 
     public var rawValue: LCValueConvertible {
-        return value.map { element in element.rawValue }
+        let array = value.map { element in element.rawValue }
+        return array as! LCValueConvertible
     }
 
-    var lconValue: AnyObject? {
-        return value.map { element in (element as! LCValueExtension).lconValue! } as AnyObject
+    var lconValue: Any? {
+        return value.compactMap { element in (element as? LCValueExtension)?.lconValue }
     }
 
     static func instance() -> LCValue {
         return self.init([])
     }
 
-    func forEachChild(_ body: (_ child: LCValue) -> Void) {
-        forEach { element in body(element) }
+    func forEachChild(_ body: (_ child: LCValue) throws -> Void) rethrows {
+        try forEach { element in try body(element) }
     }
 
     func add(_ other: LCValue) throws -> LCValue {

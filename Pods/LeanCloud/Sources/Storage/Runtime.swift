@@ -10,124 +10,6 @@ import Foundation
 
 class Runtime {
     /**
-     Check whether a class is subclass of another class.
-
-     - parameter subclass:   Inspected subclass.
-     - parameter superclass: Superclass which to compare with.
-
-     - returns: true or false.
-     */
-    static func isSubclass(_ subclass: AnyClass!, superclass: AnyClass!) -> Bool {
-        
-        guard let superclass = superclass else {
-            return false
-        }
-
-        var eachSubclass: AnyClass! = subclass
-
-        while let eachSuperclass: AnyClass = class_getSuperclass(eachSubclass) {
-            /* Use ObjectIdentifier instead of `===` to make identity test.
-               Because some types cannot respond to `===`, like WKObject in WebKit framework. */
-            if ObjectIdentifier(eachSuperclass) == ObjectIdentifier(superclass) {
-                return true
-            }
-            eachSubclass = eachSuperclass
-        }
-
-        return false
-    }
-
-    /**
-     Get all subclasses of a base class.
-
-     - parameter baseclass: A base class.
-
-     - returns: All subclasses of given base class.
-     */
-    static func subclasses(_ baseclass: AnyClass!) -> [AnyClass] {
-        var result = [AnyClass]()
-
-        guard let baseclass = baseclass else {
-            return result
-        }
-
-        let count: Int32 = objc_getClassList(nil, 0)
-
-        guard count > 0 else {
-            return result
-        }
-        
-        let classes = UnsafeMutablePointer<AnyClass>.allocate(
-            capacity: Int(count)
-        )
-        
-        defer {
-            classes.deallocate()
-        }
-
-        let buffer = AutoreleasingUnsafeMutablePointer<AnyClass>(classes)
-        
-        for i in 0..<Int(objc_getClassList(buffer, count)) {
-            let someclass: AnyClass = classes[i]
-            if isSubclass(someclass, superclass: baseclass) {
-                result.append(someclass)
-            }
-        }
-        
-        return result
-    }
-
-    /**
-     Create toposort for classes.
-
-     Superclass will be placed before subclass.
-
-     - parameter classes: An array of classes.
-
-     - returns: The toposort of classes.
-     */
-    static func toposort(classes: [AnyClass]) -> [AnyClass] {
-        var result: [AnyClass] = []
-        var visitStatusTable: [UInt: Int] = [:]
-
-        toposortStart(classes: classes, &result, &visitStatusTable)
-
-        return result
-    }
-
-    fileprivate static func toposortStart(classes: [AnyClass], _ result: inout [AnyClass], _ visitStatusTable: inout [UInt: Int]) {
-        classes.forEach { aClass in
-            try! toposortVisit(aClass: aClass, classes, &result, &visitStatusTable)
-        }
-    }
-
-    fileprivate static func toposortVisit(aClass: AnyClass, _ classes: [AnyClass], _ result: inout [AnyClass], _ visitStatusTable: inout [UInt: Int]) throws {
-        let key = UInt(bitPattern: ObjectIdentifier(aClass))
-
-        switch visitStatusTable[key] ?? 0 {
-        case 0: /* Unvisited */
-            visitStatusTable[key] = 1
-
-            var eachSubclass: AnyClass! = aClass
-
-            while let eachSuperclass: AnyClass = class_getSuperclass(eachSubclass) {
-                try! toposortVisit(aClass: eachSuperclass, classes, &result, &visitStatusTable)
-                eachSubclass = eachSuperclass
-            }
-
-            visitStatusTable[key] = 2
-
-            if classes.contains(where: { $0 === aClass }) {
-                result.append(aClass)
-            }
-        case 1: /* Visiting */
-            throw LCError(code: .inconsistency, reason: "Circular reference.", userInfo: nil)
-        default: /* Visited */
-            break
-        }
-    }
-
-    /**
      Get all properties of a class.
 
      - parameter aClass: Target class.
@@ -250,19 +132,15 @@ class Runtime {
 
      - returns: Value of instance variable correspond to the property name.
      */
-    static func instanceVariableValue(_ object: AnyObject, _ propertyName: String) -> AnyObject? {
-        
-        let aClass: AnyClass = object_getClass(object)!
-        
-        guard let ivar: Ivar = self.instanceVariable(aClass, propertyName) else {
+    static func instanceVariableValue(_ object: Any, _ propertyName: String) -> Any? {
+        guard
+            let aClass = object_getClass(object),
+            let ivar = instanceVariable(aClass, propertyName)
+        else {
             return nil
         }
 
-        var ivarValue: AnyObject? = nil
-        
-        if let obj: AnyObject = (object_getIvar(object, ivar) as AnyObject?) {
-            ivarValue = obj
-        }
+        let ivarValue = object_getIvar(object, ivar)
         
         return ivarValue
     }
@@ -274,19 +152,20 @@ class Runtime {
      - parameter propertyName: Property name on which you want to set.
      - parameter value:        New property value.
      */
-    static func setInstanceVariable(_ object: AnyObject, _ propertyName: String, _ value: AnyObject?) {
-        
-        guard let aClass: AnyClass = object_getClass(object) else {
+    static func setInstanceVariable(_ object: Any, _ propertyName: String, _ value: Any?) {
+        guard
+            let aClass = object_getClass(object),
+            let ivar = instanceVariable(aClass, propertyName)
+        else {
             return
         }
-        
-        guard let ivar: Ivar = instanceVariable(aClass, propertyName) else {
-            return
+
+        if let value = value {
+            let ivarValue = retainedObject(value as AnyObject)
+            object_setIvar(object, ivar, ivarValue)
+        } else {
+            object_setIvar(object, ivar, nil)
         }
-        
-        let ivarValue = retainedObject(value)
-        
-        object_setIvar(object, ivar, ivarValue)
     }
 
     /**
@@ -296,7 +175,7 @@ class Runtime {
 
      - returns: An retained object.
      */
-    static func retainedObject<T: AnyObject>(_ object: T?) -> T? {
-        return object != nil ? Unmanaged.passRetained(object!).takeUnretainedValue() : nil
+    static func retainedObject<T: AnyObject>(_ object: T) -> T {
+        return Unmanaged.passRetained(object).takeUnretainedValue()
     }
 }

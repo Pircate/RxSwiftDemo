@@ -65,9 +65,13 @@ private extension HomeViewModel.Input {
     func requestTodoList(_ state: State) -> Driver<[TodoSectionModel]> {
         let models = (0...99).lazy.map { index -> TodoItemModel in
             let object = LCObject(className: "TodoList")
-            object.set("id", value: index)
-            object.set("name", value: "Todo-\(index)")
-            object.set("follow", value: false)
+            do {
+                try object.set("id", value: index)
+                try object.set("name", value: "Todo-\(index)")
+                try object.set("follow", value: false)
+            } catch {
+                
+            }
             return TodoItemModel(object)
         }
     

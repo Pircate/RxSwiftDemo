@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 precedencegroup UniqueAdd {
     associativity: left
@@ -116,25 +117,24 @@ extension Dictionary {
     }
 
     func mapValue<T>(_ transform: (Value) throws -> T) rethrows -> [Key: T] {
-        let elements = try map { (key, value) in (key, try transform(value)) }
+        let elements: [(Key, T)] = try compactMap { (key, value) in
+            (key, try transform(value))
+        }
+        return Dictionary<Key, T>(elements: elements)
+    }
+
+    func compactMapValue<T>(_ transform: (Value) throws -> T?) rethrows -> [Key: T] {
+        let elements: [(Key, T)] = try compactMap { (key, value) in
+            guard let value = try transform(value) else {
+                return nil
+            }
+            return (key, value)
+        }
         return Dictionary<Key, T>(elements: elements)
     }
 }
 
 extension String {
-    var md5String: String {
-        let bytes = Array<MD5.Byte>(self.utf8)
-        let encodedBytes = MD5.calculate(bytes)
-
-        let string = encodedBytes.reduce("") { string, byte in
-            let radix = 16
-            let hex = String(byte, radix: radix)
-            let sum = string + (byte < MD5.Byte(radix) ? "0" : "") + hex
-            return sum
-        }
-
-        return string
-    }
 
     var regularEscapedString: String {
         return NSRegularExpression.escapedPattern(for: self)
@@ -159,25 +159,157 @@ extension String {
     var doubleQuoteEscapedString: String {
         return replacingOccurrences(of: "\"", with: "\\\"")
     }
+
+    var urlPathEncoded: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+    }
+
+    var urlQueryEncoded: String {
+        return URLEncoding.queryString.escape(self)
+    }
+
+    func appendingPathComponent(_ component: String) -> String {
+        return (self as NSString).appendingPathComponent(component)
+    }
+
+    func prefix(upTo end: Int) -> String {
+        return String(prefix(upTo: index(startIndex, offsetBy: end)))
+    }
 }
 
-extension Collection {
-    func unique(_ equal: (_ a: Iterator.Element, _ b: Iterator.Element) -> Bool) -> [Iterator.Element] {
-        var result: [Iterator.Element] = []
+extension Sequence {
 
-        for candidate in self {
-            var existed = false
-            for element in result {
-                if equal(candidate, element) {
-                    existed = true
-                    break
-                }
-            }
-            if !existed {
-                result.append(candidate)
-            }
+    var unique: [Element] {
+        return NSOrderedSet(array: Array(self)).array as? [Element] ?? []
+    }
+
+}
+
+extension LCApplication {
+
+    var storageContextCache: StorageContextCache {
+        return lc_lazyload("storageContextCache", .OBJC_ASSOCIATION_RETAIN) {
+            StorageContextCache(application: self)
+        }
+    }
+
+}
+
+extension LCError {
+
+    /**
+     Initialize with an LCResponse object.
+
+     - parameter response: The response object.
+     */
+    init?(response: LCResponse) {
+        /*
+         Guard response has error.
+         If error not found, it means that the response is OK, there's no need to create error.
+         */
+        guard let error = response.error else {
+            return nil
         }
 
-        return result
+        guard let data = response.data else {
+            self = LCError(underlyingError: error)
+            return
+        }
+
+        let body: Any
+
+        do {
+            body = try JSONSerialization.jsonObject(with: data, options: [])
+        } catch
+            /*
+             We discard the deserialization error,
+             because it's not the real error that user should care about.
+             */
+            _
+        {
+            self = LCError(underlyingError: error)
+            return
+        }
+
+        /*
+         Try to extract error from HTTP body,
+         which contains the error defined in https://leancloud.cn/docs/error_code.html
+         */
+        if
+            let body = body as? [String: Any],
+            let code = body["code"] as? Int,
+            let reason = body["error"] as? String
+        {
+            self = LCError(code: code, reason: reason, userInfo: nil)
+        } else {
+            self = LCError(underlyingError: error)
+        }
     }
+
+}
+
+/**
+ Synchronize on an object and do something.
+
+ - parameter object: The object locked on.
+ - parameter body: Something you want to do.
+
+ - returns: Result of body.
+ */
+func synchronize<T>(on object: Any, body: () throws -> T) rethrows -> T {
+    objc_sync_enter(object)
+
+    defer { objc_sync_exit(object) }
+
+    return try body()
+}
+
+/**
+ Dispatch task in main queue asynchronously.
+
+ - parameter task: The task to be dispatched.
+ */
+func mainQueueAsync(task: @escaping () -> Void) {
+    DispatchQueue.main.async {
+        task()
+    }
+}
+
+/**
+ Dispatch task in main queue synchronously.
+
+ - parameter task: The task to be dispatched.
+ */
+func mainQueueSync<T>(task: () throws -> T) rethrows -> T {
+    if Thread.isMainThread {
+        return try task()
+    } else {
+        return try DispatchQueue.main.sync {
+            try task()
+        }
+    }
+}
+
+/**
+ Wait an asynchronous task to be done.
+
+ - parameter task: The task to be done.
+
+ - note: When task finish it's job, it must call `fulfill` to provide expected result.
+ */
+func expect<T>(task: @escaping (_ fulfill: @escaping (T) -> Void) -> Void) -> T {
+    var result: T!
+
+    let dispatchGroup = DispatchGroup()
+
+    dispatchGroup.enter()
+
+    task { value in
+        result = value
+        dispatchGroup.leave()
+    }
+
+    dispatchGroup.wait()
+
+    return result
 }

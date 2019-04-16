@@ -15,13 +15,22 @@ class TodoItemModel {
     
     var name: String {
         didSet {
-            object.set("name", value: name)
+            do {
+                try object.set("name", value: name)
+            } catch {
+                
+            }
+            
         }
     }
     
     var follow: Bool {
         didSet {
-            object.set("follow", value: follow)
+            do {
+                try object.set("follow", value: follow)
+            } catch {
+                
+            }
         }
     }
     

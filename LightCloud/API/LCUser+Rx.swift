@@ -14,7 +14,7 @@ extension Reactive where Base: LCUser {
     
     static func requestLoginCaptcha(mobile: String) -> Observable<Bool> {
         return Observable.create({ (observer) -> Disposable in
-            LCUser.requestLoginVerificationCode(mobilePhoneNumber: mobile, completion: { (result) in
+            let request = LCUser.requestLoginVerificationCode(mobilePhoneNumber: mobile) { (result) in
                 switch result {
                 case .success:
                     observer.onNext(true)
@@ -22,8 +22,8 @@ extension Reactive where Base: LCUser {
                 case .failure(let error):
                     observer.onError(error)
                 }
-            })
-            return Disposables.create()
+            }
+            return Disposables.create { request.cancel() }
         })
     }
     
@@ -33,7 +33,7 @@ extension Reactive where Base: LCUser {
             user.username = LCString(username)
             user.password = LCString(password)
             user.mobilePhoneNumber = LCString(username)
-            user.signUp({ (result) in
+            let request = user.signUp({ (result) in
                 switch result {
                 case .success:
                     observer.onNext(true)
@@ -42,13 +42,13 @@ extension Reactive where Base: LCUser {
                     observer.onError(error)
                 }
             })
-            return Disposables.create()
+            return Disposables.create { request.cancel() }
         }
     }
     
     static func login(mobile: String, captcha: String) -> Observable<LCUser> {
         return Observable.create { (observer) -> Disposable in
-            LCUser.logIn(mobilePhoneNumber: mobile, verificationCode: captcha, completion: { (result) in
+            let request = LCUser.logIn(mobilePhoneNumber: mobile, verificationCode: captcha) { (result) in
                 switch result {
                 case .success(let object):
                     observer.onNext(object)
@@ -56,14 +56,14 @@ extension Reactive where Base: LCUser {
                 case .failure(let error):
                     observer.onError(error)
                 }
-            })
-            return Disposables.create()
+            }
+            return Disposables.create { request.cancel() }
         }
     }
     
     static func login(username: String, password: String) -> Observable<LCUser> {
         return Observable.create { (observer) -> Disposable in
-            LCUser.logIn(username: username, password: password, completion: { (result) in
+            let request = LCUser.logIn(username: username, password: password) { (result) in
                 switch result {
                 case .success(let object):
                     observer.onNext(object)
@@ -71,8 +71,8 @@ extension Reactive where Base: LCUser {
                 case .failure(let error):
                     observer.onError(error)
                 }
-            })
-            return Disposables.create()
+            }
+            return Disposables.create { request.cancel() }
         }
     }
 }

@@ -23,7 +23,7 @@ extension Reactive where Base: LCQuery {
             if page >= 0 {
                 query.whereKey("page", .equalTo(page))
             }
-            query.find({ (result) in
+            let request = query.find { (result) in
                 switch result {
                 case .success(let objects):
                     observer.onNext(objects)
@@ -31,8 +31,8 @@ extension Reactive where Base: LCQuery {
                 case .failure(let error):
                     observer.onError(error)
                 }
-            })
-            return Disposables.create()
+            }
+            return Disposables.create { request.cancel() }
         }
     }
 }

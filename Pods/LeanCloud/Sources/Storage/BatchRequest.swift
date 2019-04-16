@@ -10,10 +10,10 @@ import Foundation
 
 class BatchRequest {
     let object: LCObject
-    let method: RESTClient.Method?
+    let method: HTTPClient.Method?
     let operationTable: OperationTable?
 
-    init(object: LCObject, method: RESTClient.Method? = nil, operationTable: OperationTable? = nil) {
+    init(object: LCObject, method: HTTPClient.Method? = nil, operationTable: OperationTable? = nil) {
         self.object = object
         self.method = method
         self.operationTable = operationTable
@@ -23,28 +23,14 @@ class BatchRequest {
         return !object.hasObjectId
     }
 
-    var actualMethod: RESTClient.Method {
+    var actualMethod: HTTPClient.Method {
         return method ?? (isNewborn ? .post : .put)
     }
 
-    var path: String {
-        var path: String
-        let apiVersion = RESTClient.apiVersion
+    func getBody(internalId: String) -> [String: Any] {
+        var body: [String: Any] = [:]
 
-        switch actualMethod {
-        case .get, .put, .delete:
-            path = RESTClient.eigenEndpoint(object)!
-        case .post:
-            path = RESTClient.endpoint(object)
-        }
-
-        return "/\(apiVersion)/\(path)"
-    }
-
-    var body: AnyObject {
-        var body: [String: AnyObject] = [
-            "__internalId": object.objectId?.value as AnyObject? ?? object.internalId as AnyObject
-        ]
+        body["__internalId"] = internalId
 
         var children: [(String, LCObject)] = []
 
@@ -66,44 +52,50 @@ class BatchRequest {
         }
 
         if children.count > 0 {
-            var list: [AnyObject] = []
+            var list: [Any] = []
 
             children.forEach { (key, child) in
                 list.append([
                     "className": child.actualClassName,
                     "cid": child.internalId,
                     "key": key
-                ] as AnyObject)
+                ])
             }
 
-            body["__children"] = list as AnyObject?
+            body["__children"] = list
         }
 
-        return body as AnyObject
+        return body
     }
 
-    func jsonValue() -> AnyObject {
+    func jsonValue() throws -> Any {
         let method = actualMethod
+        let path = try HTTPClient.default.getBatchRequestPath(object: object, method: method)
+        let internalId = object.objectId?.value ?? object.internalId
 
-        var request: [String: AnyObject] = [
-            "path": path as AnyObject,
-            "method": method.rawValue as AnyObject
+        if let request = try object.preferredBatchRequest(method: method, path: path, internalId: internalId) {
+            return request
+        }
+
+        var request: [String: Any] = [
+            "path": path,
+            "method": method.rawValue
         ]
 
         switch method {
         case .get:
             break
         case .post, .put:
-            request["body"] = body
+            request["body"] = getBody(internalId: internalId)
 
             if isNewborn {
-                request["new"] = true as AnyObject?
+                request["new"] = true
             }
         case .delete:
             break
         }
 
-        return request as AnyObject
+        return request
     }
 }
 
@@ -128,7 +120,7 @@ class BatchRequestBuilder {
 
      - returns: The operation table list.
      */
-    fileprivate static func initialOperationTableList(_ object: LCObject) -> OperationTableList {
+    private static func initialOperationTableList(_ object: LCObject) -> OperationTableList {
         var operationTable: OperationTable = [:]
 
         /* Collect all non-null properties. */
@@ -154,7 +146,7 @@ class BatchRequestBuilder {
 
      - returns: A list of operation tables.
      */
-    fileprivate static func operationTableList(_ object: LCObject) -> OperationTableList {
+    private static func operationTableList(_ object: LCObject) -> OperationTableList {
         if object.hasObjectId {
             return object.operationHub.operationTableList()
         } else {

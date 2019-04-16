@@ -14,7 +14,7 @@ import Foundation
  It is a wrapper of `Swift.String` type, used to store a string value.
  */
 public final class LCString: NSObject, LCValue, LCValueExtension, ExpressibleByStringLiteral {
-    public fileprivate(set) var value: String = ""
+    public private(set) var value: String = ""
 
     public typealias UnicodeScalarLiteralType = Character
     public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
@@ -60,27 +60,31 @@ public final class LCString: NSObject, LCValue, LCValueExtension, ExpressibleByS
         }
     }
 
-    public var jsonValue: AnyObject {
-        return value as AnyObject
+    public var jsonValue: Any {
+        return value
+    }
+
+    func formattedJSONString(indentLevel: Int, numberOfSpacesForOneIndentLevel: Int = 4) -> String {
+        return "\"\(value.doubleQuoteEscapedString)\""
     }
 
     public var jsonString: String {
-        return ObjectProfiler.getJSONString(self)
+        return formattedJSONString(indentLevel: 0)
     }
 
     public var rawValue: LCValueConvertible {
         return value
     }
 
-    var lconValue: AnyObject? {
-        return value as AnyObject?
+    var lconValue: Any? {
+        return jsonValue
     }
 
     class func instance() -> LCValue {
         return self.init()
     }
 
-    func forEachChild(_ body: (_ child: LCValue) -> Void) {
+    func forEachChild(_ body: (_ child: LCValue) throws -> Void) rethrows {
         /* Nothing to do. */
     }
 
