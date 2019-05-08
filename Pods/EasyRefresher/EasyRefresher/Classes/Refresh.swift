@@ -17,7 +17,7 @@ public struct Refresh<Base> {
     }
 }
 
-public protocol RefreshCompatible {
+public protocol RefreshCompatible: class {
     
     associatedtype CompatibleType
     

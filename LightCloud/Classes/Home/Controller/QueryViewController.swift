@@ -27,7 +27,7 @@ final class QueryViewController: BaseViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        var tableView = UITableView(frame: CGRect.zero, style: .plain).chain
+        let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
         tableView.tableFooterView = UIView()
         tableView.refresh.header = RefreshHeader()

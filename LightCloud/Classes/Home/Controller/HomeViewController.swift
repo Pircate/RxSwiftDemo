@@ -17,7 +17,7 @@ private let kCycleScrollViewHeight: CGFloat = 240
 final class HomeViewController: BaseViewController {
     
     private lazy var tableView: UITableView = {
-        var tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
             .rowHeight(60)
             .contentInset(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
             .scrollIndicatorInsets(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
