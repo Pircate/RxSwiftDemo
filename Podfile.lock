@@ -1,14 +1,14 @@
 PODS:
   - Alamofire (4.8.2)
-  - CleanJSON (0.8.2)
+  - CleanJSON (0.8.3)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.10.0)
+  - EachNavigationBar (1.11.0)
   - EasyRefresher (0.4.2)
   - ExtensionX (0.1.0)
   - FSPagerView (0.8.2)
-  - IQKeyboardManagerSwift (6.2.1)
-  - Kingfisher (5.3.1)
+  - IQKeyboardManagerSwift (6.3.0)
+  - Kingfisher (5.4.0)
   - LeanCloud (15.0.0):
     - LeanCloud/Foundation (= 15.0.0)
     - LeanCloud/LocalStorage (= 15.0.0)
@@ -20,10 +20,10 @@ PODS:
     - Alamofire (~> 4.8.0)
     - LeanCloud/Foundation
     - LeanCloud/LocalStorage
-  - Moya/Core (13.0.0):
+  - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.1)
-  - Moya/RxSwift (13.0.0):
+  - Moya/RxSwift (13.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
   - netfox (1.15.0)
@@ -61,7 +61,7 @@ PODS:
     - RxCocoa
     - RxDataSources
     - RxSwift
-  - SnapKit (4.2.0)
+  - SnapKit (5.0.0)
   - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
@@ -117,17 +117,17 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CleanJSON: f7be273cc133747dfc638da4f2f9d552d05a4289
+  CleanJSON: c7b921efa378c133e1b5325f8b06c957c8d73d14
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: f5b24fe478daadc28a9ac3112ad96ccbc5230556
+  EachNavigationBar: 9397813591f9e2876f507cf862d8f53333684c36
   EasyRefresher: ab912ba2c7680cf24c18139a6760eed7bf261c73
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
-  IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
-  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  Kingfisher: 9c8f2cc6710334e06f32ba2b45e77707d5e2f0c9
   LeanCloud: 62fe4e615494425081fd719c0d56fae130f764ea
-  Moya: 161263550064ff8a4948e8ff63137fd72a876292
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   netfox: 6ddcca687ad0a58550054fea481cb487461b5e0c
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
@@ -137,7 +137,7 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxSwiftX: abdb26ccd9925210466672efd7dfc9aa57a19029
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
 PODFILE CHECKSUM: 18469d039893cecae3711a3911a8973d2dd67e5c
