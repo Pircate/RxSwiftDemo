@@ -8,7 +8,7 @@
 
 import UIKit
 import LeanCloud
-import MJRefresh
+import EasyRefresher
 import RxDataSources
 import RxSwiftX
 
@@ -17,12 +17,12 @@ private let kCycleScrollViewHeight: CGFloat = 240
 final class HomeViewController: BaseViewController {
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
+        var tableView = UITableView(frame: CGRect.zero, style: .grouped).chain
             .rowHeight(60)
             .contentInset(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
             .scrollIndicatorInsets(top: kCycleScrollViewHeight, left: 0, bottom: 0, right: 0)
             .register(TodoItemCell.self, forCellReuseIdentifier: "cellID").build
-        tableView.mj_header = MJRefreshNormalHeader()
+        tableView.refresh.header = RefreshHeader()
         disablesAdjustScrollViewInsets(tableView)
         return tableView
     }()
@@ -89,12 +89,15 @@ final class HomeViewController: BaseViewController {
             make.height.equalTo(kCycleScrollViewHeight)
         }
         
-        tableView.mj_header.beginRefreshing()
+        tableView.refresh.header.beginRefreshing()
     }
     
     private func bindViewModel() {
         let viewModel = HomeViewModel()
-        let input = HomeViewModel.Input(refresh: tableView.mj_header.rx.refreshing.shareOnce(),
+        
+        let header = tableView.refresh.header as! RefreshHeader
+        
+        let input = HomeViewModel.Input(refresh: header.rx.refreshing.shareOnce(),
                                         itemDeleted: tableView.rx.itemDeleted,
                                         dataSource: Observable.of(proxy))
         let output = viewModel.transform(input)
@@ -110,7 +113,7 @@ final class HomeViewController: BaseViewController {
         
         // 请求完成结束刷新
         output.items.map(to: ())
-            .drive(tableView.mj_header.rx.endRefreshing)
+            .drive(header.rx.endRefreshing)
             .disposed(by: disposeBag)
         
         output.state

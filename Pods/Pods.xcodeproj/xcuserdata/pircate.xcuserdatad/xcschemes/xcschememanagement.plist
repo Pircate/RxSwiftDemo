@@ -46,42 +46,42 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>ExtensionX.xcscheme</key>
+		<key>EasyRefresher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>FSPagerView.xcscheme</key>
+		<key>ExtensionX.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
-		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<key>FSPagerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>Kingfisher.xcscheme</key>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
-		<key>LeanCloud.xcscheme</key>
+		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
-		<key>MJRefresh.xcscheme</key>
+		<key>LeanCloud.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

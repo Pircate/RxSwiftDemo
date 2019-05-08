@@ -13,6 +13,7 @@
 		33E40B5A20BD8C2700F7EAF1 /* Toast+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */; };
 		33F1094E20B5AB2400F24154 /* LCObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */; };
 		6CA10A592265A48C00B1AD5E /* FSCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA10A582265A48C00B1AD5E /* FSCycleScrollView.swift */; };
+		6CB829E12282D514007801BD /* EasyRefresher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB829E02282D514007801BD /* EasyRefresher+Rx.swift */; };
 		6CDC6000213776DA002EF24E /* SnapKit+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDC5FFF213776DA002EF24E /* SnapKit+UIViewController.swift */; };
 		B585042020BCE4D200D9846D /* ImportFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585041F20BCE4D200D9846D /* ImportFile.swift */; };
 		B585042220BCF28000D9846D /* BannerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585042120BCF28000D9846D /* BannerAPI.swift */; };
@@ -70,6 +71,7 @@
 		33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast+Rx.swift"; sourceTree = "<group>"; };
 		33F1094D20B5AB2400F24154 /* LCObject+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LCObject+Rx.swift"; sourceTree = "<group>"; };
 		6CA10A582265A48C00B1AD5E /* FSCycleScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCycleScrollView.swift; sourceTree = "<group>"; };
+		6CB829E02282D514007801BD /* EasyRefresher+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EasyRefresher+Rx.swift"; sourceTree = "<group>"; };
 		6CDC5FFF213776DA002EF24E /* SnapKit+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapKit+UIViewController.swift"; sourceTree = "<group>"; };
 		7248AAD6D56F320C01A23F26 /* Pods-LightCloudTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudTests/Pods-LightCloudTests.release.xcconfig"; sourceTree = "<group>"; };
 		7356DC83A161CD1EEDA74BE6 /* Pods-LightCloudUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightCloudUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightCloudUITests/Pods-LightCloudUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				33E40B5920BD8C2700F7EAF1 /* Toast+Rx.swift */,
 				B59F983C20BFE771007A8880 /* UIState+Rx.swift */,
 				6CDC5FFF213776DA002EF24E /* SnapKit+UIViewController.swift */,
+				6CB829E02282D514007801BD /* EasyRefresher+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -543,11 +546,9 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LightCloud/Pods-LightCloud-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -625,6 +626,7 @@
 				B5CE12AC20A4141E00EC3F30 /* LCUser+Rx.swift in Sources */,
 				B5CE12AE20A419F000EC3F30 /* RegisterViewModel.swift in Sources */,
 				B5CE124920A3D88700EC3F30 /* HomeViewController.swift in Sources */,
+				6CB829E12282D514007801BD /* EasyRefresher+Rx.swift in Sources */,
 				B5CE124720A3D88700EC3F30 /* AppDelegate.swift in Sources */,
 				B5B96BAF20BD1C4800D60EDE /* LCError+Message.swift in Sources */,
 			);

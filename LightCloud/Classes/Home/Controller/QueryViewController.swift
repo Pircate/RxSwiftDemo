@@ -8,7 +8,7 @@
 
 import UIKit
 import LeanCloud
-import MJRefresh
+import EasyRefresher
 import RxSwift
 import RxCocoa
 
@@ -27,11 +27,11 @@ final class QueryViewController: BaseViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .plain).chain
+        var tableView = UITableView(frame: CGRect.zero, style: .plain).chain
             .register(UITableViewCell.self, forCellReuseIdentifier: "cellID").build
         tableView.tableFooterView = UIView()
-        tableView.mj_header = MJRefreshNormalHeader()
-        tableView.mj_footer = MJRefreshBackStateFooter()
+        tableView.refresh.header = RefreshHeader()
+        tableView.refresh.footer = RefreshFooter()
         return tableView
     }()
 
@@ -63,10 +63,14 @@ final class QueryViewController: BaseViewController {
     
     private func bindViewModel() {
         let viewModel = QueryViewModel()
+        
+        let header = tableView.refresh.header as! RefreshHeader
+        let footer = tableView.refresh.footer as! RefreshFooter
+        
         let input = QueryViewModel.Input(
             keyword: searchTextField.rx.text.orEmpty.shareOnce(),
-            refresh: tableView.mj_header.rx.refreshing,
-            more: tableView.mj_footer.rx.refreshing)
+            refresh: header.rx.refreshing,
+            more: footer.rx.refreshing)
         let output = viewModel.transform(input)
         
         output.items
@@ -75,11 +79,11 @@ final class QueryViewController: BaseViewController {
             }.disposed(by: disposeBag)
         
         output.endRefresh
-            .drive(tableView.mj_header.rx.endRefreshing)
+            .drive(header.rx.endRefreshing)
             .disposed(by: disposeBag)
         
         output.endMore
-            .drive(tableView.mj_footer.rx.endRefreshing)
+            .drive(footer.rx.endRefreshing)
             .disposed(by: disposeBag)
     }
 }

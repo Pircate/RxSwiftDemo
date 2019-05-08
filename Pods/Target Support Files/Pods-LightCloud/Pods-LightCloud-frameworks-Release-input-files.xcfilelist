@@ -4,12 +4,12 @@ ${BUILT_PRODUCTS_DIR}/CleanJSON/CleanJSON.framework
 ${BUILT_PRODUCTS_DIR}/CocoaChainKit/CocoaChainKit.framework
 ${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework
 ${BUILT_PRODUCTS_DIR}/EachNavigationBar/EachNavigationBar.framework
+${BUILT_PRODUCTS_DIR}/EasyRefresher/EasyRefresher.framework
 ${BUILT_PRODUCTS_DIR}/ExtensionX/ExtensionX.framework
 ${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/LeanCloud/LeanCloud.framework
-${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
 ${BUILT_PRODUCTS_DIR}/Result/Result.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework

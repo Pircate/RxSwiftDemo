@@ -1,5 +1,7 @@
 platform :ios, '10.0'
 
+install! 'cocoapods', :disable_input_output_paths => true
+
 target 'LightCloud' do
 
   use_frameworks!
@@ -16,9 +18,8 @@ target 'LightCloud' do
   pod 'RxNetwork'
   pod 'RxSwiftX'
   pod 'RxSwiftX/DataSources'
-  pod 'RxSwiftX/MJRefresh'
   pod 'SnapKit'
-  pod 'MJRefresh'
+  pod 'EasyRefresher'
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
   pod 'FSPagerView'
