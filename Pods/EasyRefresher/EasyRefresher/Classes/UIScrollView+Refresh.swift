@@ -57,18 +57,18 @@ extension UIScrollView {
         }
     }
     
-    var _refreshInset: UIEdgeInsets {
+    var _changedInset: UIEdgeInsets {
         get {
-            if let obj = objcGetAssociatedObject(for: &AssociatedKeys.inset) as? UIEdgeInsets {
+            if let obj = objcGetAssociatedObject(for: &AssociatedKeys.changedInset) as? UIEdgeInsets {
                 return obj
             }
             
-            objcSetAssociatedObject(UIEdgeInsets.zero, for: &AssociatedKeys.inset)
+            objcSetAssociatedObject(UIEdgeInsets.zero, for: &AssociatedKeys.changedInset)
             
             return .zero
         }
         set {
-            objcSetAssociatedObject(newValue, for: &AssociatedKeys.inset)
+            objcSetAssociatedObject(newValue, for: &AssociatedKeys.changedInset)
         }
     }
 }
@@ -90,5 +90,5 @@ struct AssociatedKeys {
     
     static var footer = "com.pircate.github.refresh.footer"
     
-    static var inset = "com.pircate.github.refresh.inset"
+    static var changedInset = "com.pircate.github.changed.inset"
 }

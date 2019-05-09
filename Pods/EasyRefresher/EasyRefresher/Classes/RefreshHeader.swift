@@ -36,13 +36,13 @@ open class RefreshHeader: RefreshComponent {
     
     private var panStateObservation: NSKeyValueObservation?
     
-    override func didChangeInset() {
+    override func didChangeInset(completion: @escaping (Bool) -> Void) {
         guard let scrollView = scrollView else { return }
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.25, animations: {
             scrollView.contentInset.top = self.idleInset.top + 54
-            scrollView._refreshInset = scrollView.contentInset
-        }
+            scrollView._changedInset.top = 54
+        }, completion: completion)
     }
 }
 

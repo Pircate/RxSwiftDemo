@@ -24,10 +24,9 @@ open class RefreshComponent: UIView, Refresher {
             case .idle:
                 stopRefreshing()
             case .refreshing:
-                refreshClosure()
                 startRefreshing()
             default:
-                break
+                activityIndicator.stopAnimating()
             }
             
             rotate(for: state)
@@ -100,10 +99,10 @@ open class RefreshComponent: UIView, Refresher {
     public func beginRefreshing() {
         willChangeInset()
         state = .refreshing
-        didChangeInset()
+        didChangeInset { _ in self.refreshClosure() }
     }
     
-    func didChangeInset() {}
+    func didChangeInset(completion: @escaping (Bool) -> Void) {}
 }
 
 extension RefreshComponent {
@@ -130,16 +129,19 @@ extension RefreshComponent {
         guard let scrollView = scrollView else { return }
         
         var contentInset = scrollView.contentInset
-        contentInset.top -= scrollView._refreshInset.top
-        contentInset.bottom -= scrollView._refreshInset.bottom
+        contentInset.top -= scrollView._changedInset.top
+        contentInset.bottom -= scrollView._changedInset.bottom
         
         idleInset = contentInset
     }
     
     private func resetInset() {
+        guard let scrollView = scrollView else { return }
+        
         UIView.animate(withDuration: 0.25) {
-            self.scrollView?.contentInset = self.idleInset
-            self.scrollView?._refreshInset = self.idleInset
+            scrollView.contentInset = self.idleInset
+            scrollView._changedInset.top = 0
+            scrollView._changedInset.bottom = 0
         }
     }
     
