@@ -18,7 +18,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 * iOS 9.0
-* Swift 5.0
+* Swift 4.2
 
 ## Installation
 
@@ -96,6 +96,16 @@ struct CustomAdapter: JSONAdapter {
 }
 
 decoder.valueNotFoundDecodingStrategy = .custom(CustomAdapter())
+```
+
+可以通过 `JSONStringDecodingStrategy` 将 JSON 格式的字符串自动转成 `Codable` 对象或数组
+
+```swift
+// 包含这些 key 的 JSON 字符串转成对象
+decoder.jsonStringDecodingStrategy = .containsKeys([])
+
+// 所有 JSON 字符串都转成对象
+decoder.jsonStringDecodingStrategy = .all
 ```
 
 ### For Moya

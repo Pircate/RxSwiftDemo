@@ -11,4 +11,6 @@ public protocol Displayable {
     var alpha: CGFloat { get set }
     
     var backgroundColor: UIColor? { get set }
+    
+    var automaticallyChangeAlpha: Bool { get set }
 }

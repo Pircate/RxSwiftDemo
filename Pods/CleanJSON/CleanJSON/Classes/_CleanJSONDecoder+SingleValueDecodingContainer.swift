@@ -213,14 +213,17 @@ extension _CleanJSONDecoder : SingleValueDecodingContainer {
             return try decodeUsingDefaultValue()
         }
     }
+}
+
+private extension _CleanJSONDecoder {
     
-    private func decode(as type: Date.Type) throws -> Date {
+    func decode(as type: Date.Type) throws -> Date {
         guard let date = try unbox(storage.topContainer, as: type) else {
             switch options.valueNotFoundDecodingStrategy {
             case .throw:
                 throw DecodingError.Keyed.valueNotFound(type, codingPath: codingPath)
             case .useDefaultValue:
-                return Date.defaultValue
+                return Date.defaultValue(for: options.dateDecodingStrategy)
             case .custom(let adapter):
                 return try adapter.adapt(self)
             }
@@ -229,7 +232,7 @@ extension _CleanJSONDecoder : SingleValueDecodingContainer {
         return date
     }
     
-    private func decode(as type: Decimal.Type) throws -> Decimal {
+    func decode(as type: Decimal.Type) throws -> Decimal {
         guard let decimal = try unbox(storage.topContainer, as: type) else {
             switch options.valueNotFoundDecodingStrategy {
             case .throw:

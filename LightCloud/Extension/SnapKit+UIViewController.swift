@@ -1,9 +1,10 @@
+//
 //  SnapKit+UIViewController.swift
-//  Created on 2018/8/30
-//  Description <#文件描述#>
-
-//  Copyright © 2018年 Huami inc. All rights reserved.
-//  @author gaoxiang(gaoxiang@huami.com)
+//  LightCloud
+//
+//  Created by Pircate(swifter.dev@gmail.com) on 2018/8/30
+//  Copyright © 2018 Pircate. All rights reserved.
+//
 
 import SnapKit
 

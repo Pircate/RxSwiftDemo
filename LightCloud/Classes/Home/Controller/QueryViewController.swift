@@ -64,8 +64,8 @@ final class QueryViewController: BaseViewController {
     private func bindViewModel() {
         let viewModel = QueryViewModel()
         
-        let header = tableView.refresh.header as! RefreshHeader
-        let footer = tableView.refresh.footer as! RefreshFooter
+        let header = tableView.refresh.header as! RefreshComponent
+        let footer = tableView.refresh.footer as! RefreshComponent
         
         let input = QueryViewModel.Input(
             keyword: searchTextField.rx.text.orEmpty.shareOnce(),

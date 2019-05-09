@@ -6,11 +6,13 @@
 //  Copyright © 2019 Pircate. All rights reserved.
 //
 
-open class RefreshComponent: UIView, Refresher {
+open class RefreshComponent: UIView {
     
     public var activityIndicatorStyle: UIActivityIndicatorView.Style = .gray {
         didSet { activityIndicator.style = activityIndicatorStyle }
     }
+    
+    public var automaticallyChangeAlpha: Bool = true
     
     public var stateTitles: [RefreshState : String] = [:]
     
@@ -20,49 +22,52 @@ open class RefreshComponent: UIView, Refresher {
         didSet {
             guard state != oldValue else { return }
             
+            stateChanged(state)
+            
             switch state {
-            case .idle:
-                stopRefreshing()
             case .refreshing:
-                startRefreshing()
+                activityIndicator.startAnimating()
             default:
                 activityIndicator.stopAnimating()
             }
             
-            rotate(for: state)
+            rotateArrow(for: state)
             
-            if let attributedTitle = attributedTitle(for: state) {
-                stateLabel.attributedText = attributedTitle
-            } else {
-                stateLabel.text = title(for: state)
-            }
-            
-            stateLabel.sizeToFit()
+            changeStateTitle(for: state)
         }
     }
     
-    public var refreshClosure: () -> Void = {}
+    public var refreshClosure: () -> Void
     
     weak var scrollView: UIScrollView? {
-        didSet {
-            scrollView?.alwaysBounceVertical = true
-        }
+        didSet { scrollView?.alwaysBounceVertical = true }
     }
     
-    var idleInset: UIEdgeInsets = .zero
+    lazy var originalInset: UIEdgeInsets = {
+        guard let scrollView = scrollView else { return .zero }
+        
+        return scrollView.contentInset
+    }()
     
     var arrowDirection: ArrowDirection { return .down }
+    
+    private var stateChanged: (RefreshState) -> Void = { _ in }
+    
+    private var isEnding: Bool = false
+    
+    private lazy var observation: ScrollViewObservation = { ScrollViewObservation() }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [activityIndicator, arrowImageView, stateLabel])
         stackView.spacing = 8
-        stackView.distribution = .fillProportionally
+        stackView.alignment = .center
         return stackView
     }()
     
     private lazy var arrowImageView: UIImageView = {
-        let image = UIImage(named: "refresh_arrow_down", in: Bundle.current, compatibleWith: nil)
-        return UIImageView(image: image)
+        let arrowImageView = UIImageView(image: "refresh_arrow_down".bundleImage())
+        arrowImageView.isHidden = true
+        return arrowImageView
     }()
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
@@ -76,36 +81,130 @@ open class RefreshComponent: UIView, Refresher {
         return stateLabel
     }()
     
-    public required init(refreshClosure: @escaping () -> Void) {
+    public init(refreshClosure: @escaping () -> Void) {
         self.refreshClosure = refreshClosure
         
         super.init(frame: CGRect.zero)
         
         build()
+        prepare()
+    }
+    
+    public init<T>(
+        stateView: T,
+        refreshClosure: @escaping () -> Void)
+        where T: UIView, T: RefreshStateful
+    {
+        self.refreshClosure = refreshClosure
+        
+        super.init(frame: .zero)
+        
+        prepare()
+        
+        addSubview(stateView)
+        
+        stateView.translatesAutoresizingMaskIntoConstraints = false
+        stateView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        stateView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        stateView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        stateView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        stateChanged = { stateView.refresher(self, didChangeState: $0) }
     }
     
     public override init(frame: CGRect) {
+        self.refreshClosure = {}
+        
         super.init(frame: frame)
         
         build()
+        prepare()
     }
     
     public required init?(coder aDecoder: NSCoder) {
+        self.refreshClosure = {}
+        
         super.init(coder: aDecoder)
         
         build()
+        prepare()
     }
     
-    public func beginRefreshing() {
-        willChangeInset()
-        state = .refreshing
-        didChangeInset { _ in self.refreshClosure() }
+    func add(to scrollView: UIScrollView) {
+        guard !scrollView.subviews.contains(self) else { return }
+        
+        scrollView.addSubview(self)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        heightAnchor.constraint(equalToConstant: 54).isActive = true
     }
     
-    func didChangeInset(completion: @escaping (Bool) -> Void) {}
+    func observe(_ scrollView: UIScrollView) {
+        observation.invalidate()
+        
+        observation.observe(scrollView) { [weak self] this, keyPath in
+            guard let `self` = self else { return }
+            
+            switch keyPath {
+            case .contentOffset:
+                this.bringSubviewToFront(self)
+                
+                guard !self.isRefreshing else { return }
+                
+                self.scrollViewContentOffsetDidChange(this)
+            case .contentSize:
+                self.scrollViewContentSizeDidChange(this)
+            case .panGestureState:
+                self.scrollViewPanGestureStateDidChange(this)
+            }
+        }
+    }
+    
+    func prepare() {
+        setTitle("loading".localized(), for: .refreshing)
+        setTitle("no_more_data".localized(), for: .disabled)
+    }
+    
+    func willBeginRefreshing(completion: @escaping () -> Void) {}
+    
+    func didEndRefreshing(completion: @escaping () -> Void) {}
+    
+    func scrollViewContentOffsetDidChange(_ scrollView: UIScrollView) {}
+    
+    func scrollViewContentSizeDidChange(_ scrollView: UIScrollView) {}
+    
+    func scrollViewPanGestureStateDidChange(_ scrollView: UIScrollView) {
+        guard scrollView.panGestureRecognizer.state == .ended, state == .willRefresh else { return }
+        
+        beginRefreshing()
+    }
 }
 
 extension RefreshComponent {
+    
+    var isDescendantOfScrollView: Bool {
+        guard let scrollView = scrollView else { return false }
+        
+        return isDescendant(of: scrollView)
+    }
+    
+    func changeAlpha(by offset: CGFloat) {
+        guard automaticallyChangeAlpha else {
+            alpha = 1
+            return
+        }
+        
+        switch offset {
+        case 0...:
+            alpha = 0
+        case -54..<0:
+            alpha = -offset / 54
+        default:
+            alpha = 1
+        }
+    }
     
     private func build() {
         addSubview(stackView)
@@ -115,38 +214,31 @@ extension RefreshComponent {
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
-    private func startRefreshing() {
-        activityIndicator.startAnimating()
-    }
-    
-    private func stopRefreshing() {
-        activityIndicator.stopAnimating()
-        
-        resetInset()
-    }
-    
-    private func willChangeInset() {
+    private func prepareForRefreshing() {
         guard let scrollView = scrollView else { return }
         
         var contentInset = scrollView.contentInset
-        contentInset.top -= scrollView._changedInset.top
-        contentInset.bottom -= scrollView._changedInset.bottom
+        contentInset.top -= scrollView.changed_inset.top
+        contentInset.bottom -= scrollView.changed_inset.bottom
         
-        idleInset = contentInset
+        originalInset = contentInset
     }
     
-    private func resetInset() {
-        guard let scrollView = scrollView else { return }
+    private func endRefreshing(to state: RefreshState) {
+        assert(isDescendantOfScrollView, "Please add refresher to UIScrollView before end refreshing")
         
-        UIView.animate(withDuration: 0.25) {
-            scrollView.contentInset = self.idleInset
-            scrollView._changedInset.top = 0
-            scrollView._changedInset.bottom = 0
+        guard isRefreshing, !isEnding else { return }
+        
+        isEnding = true
+        
+        didEndRefreshing {
+            self.state = state
+            self.isEnding = false
         }
     }
     
-    private func rotate(for state: RefreshState) {
-        arrowImageView.isHidden = state == .idle || state == .refreshing
+    private func rotateArrow(for state: RefreshState) {
+        arrowImageView.isHidden = state == .idle || isRefreshing || isDisabled
         
         let transform: CGAffineTransform
         switch arrowDirection {
@@ -158,6 +250,54 @@ extension RefreshComponent {
         
         UIView.animate(withDuration: 0.25) { self.arrowImageView.transform = transform }
     }
+    
+    private func changeStateTitle(for state: RefreshState) {
+        if let attributedTitle = attributedTitle(for: state) {
+            stateLabel.isHidden = false
+            stateLabel.attributedText = attributedTitle
+        } else if let title = title(for: state) {
+            stateLabel.isHidden = false
+            stateLabel.text = title
+        } else {
+            stateLabel.isHidden = true
+        }
+    }
+}
+
+extension RefreshComponent: Refresher {
+    
+    public func addRefreshClosure(_ refreshClosure: @escaping () -> Void) {
+        self.refreshClosure = refreshClosure
+        
+        guard let scrollView = scrollView else { return }
+        
+        add(to: scrollView)
+        observe(scrollView)
+    }
+    
+    public func beginRefreshing() {
+        assert(isDescendantOfScrollView, "Please add refresher to UIScrollView before begin refreshing")
+        
+        guard !isRefreshing, !isDisabled else { return }
+        
+        prepareForRefreshing()
+        state = .refreshing
+        willBeginRefreshing { self.refreshClosure() }
+    }
+    
+    public func endRefreshing() {
+        endRefreshing(to: .idle)
+    }
+    
+    public func enable() {
+        guard isDisabled else { return }
+        
+        state = .idle
+    }
+    
+    public func disable() {
+        endRefreshing(to: .disabled)
+    }
 }
 
 extension RefreshComponent {
@@ -165,16 +305,5 @@ extension RefreshComponent {
     enum ArrowDirection {
         case up
         case down
-    }
-}
-
-private extension Bundle {
-    
-    static var current: Bundle? {
-        guard let resourcePath = Bundle(for: RefreshComponent.self).resourcePath,
-            let bundle = Bundle(path: "\(resourcePath)/EasyRefresher.bundle") else {
-                return nil
-        }
-        return bundle
     }
 }

@@ -95,7 +95,7 @@ final class HomeViewController: BaseViewController {
     private func bindViewModel() {
         let viewModel = HomeViewModel()
         
-        let header = tableView.refresh.header as! RefreshHeader
+        let header = tableView.refresh.header as! RefreshComponent
         
         let input = HomeViewModel.Input(refresh: header.rx.refreshing.shareOnce(),
                                         itemDeleted: tableView.rx.itemDeleted,

@@ -10,5 +10,3 @@ public protocol HasActivityIndicator {
     
     var activityIndicatorStyle: UIActivityIndicatorView.Style { get set }
 }
-
-

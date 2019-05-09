@@ -1,6 +1,6 @@
 // 
 //  UIScrollView+Refresh.swift
-//  Refresher
+//  EasyRefresher
 //
 //  Created by Pircate(swifter.dev@gmail.com) on 2019/4/26
 //  Copyright © 2019 Pircate. All rights reserved.
@@ -13,7 +13,7 @@ public typealias Refresher = Refreshable & HasStateTitle & HasActivityIndicator 
 
 extension UIScrollView {
     
-    var _refreshHeader: Refresher {
+    var refresh_header: Refresher {
         get {
             if let obj = objcGetAssociatedObject(for: &AssociatedKeys.header) as? Refresher {
                 return obj
@@ -29,13 +29,17 @@ extension UIScrollView {
         set {
             objcSetAssociatedObject(newValue, for: &AssociatedKeys.header)
             
-            guard let header = newValue as? RefreshComponent else { return }
+            guard let header = newValue as? RefreshHeader else {
+                fatalError("Please use RefreshHeader or it's subclass.")
+            }
             
             header.scrollView = self
+            header.add(to: self)
+            header.observe(self)
         }
     }
     
-    var _refreshFooter: Refresher {
+    var refresh_footer: Refresher {
         get {
             if let obj = objcGetAssociatedObject(for: &AssociatedKeys.footer) as? Refresher {
                 return obj
@@ -51,13 +55,17 @@ extension UIScrollView {
         set {
             objcSetAssociatedObject(newValue, for: &AssociatedKeys.footer)
             
-            guard let footer = newValue as? RefreshComponent else { return }
+            guard let footer = newValue as? RefreshFooter else {
+                fatalError("Please use RefreshFooter or it's subclass.")
+            }
             
             footer.scrollView = self
+            footer.add(to: self)
+            footer.observe(self)
         }
     }
     
-    var _changedInset: UIEdgeInsets {
+    var changed_inset: UIEdgeInsets {
         get {
             if let obj = objcGetAssociatedObject(for: &AssociatedKeys.changedInset) as? UIEdgeInsets {
                 return obj
@@ -91,4 +99,15 @@ struct AssociatedKeys {
     static var footer = "com.pircate.github.refresh.footer"
     
     static var changedInset = "com.pircate.github.changed.inset"
+}
+
+extension UIScrollView {
+    
+    var refreshInset: UIEdgeInsets {
+        guard #available(iOS 11.0, *) else {
+            return contentInset
+        }
+        
+        return adjustedContentInset
+    }
 }

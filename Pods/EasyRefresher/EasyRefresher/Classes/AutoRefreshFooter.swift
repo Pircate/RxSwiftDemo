@@ -6,9 +6,12 @@
 //  Copyright © 2019 Pircate. All rights reserved.
 //
 
-import UIKit
-
 open class AutoRefreshFooter: RefreshFooter {
 
+    override var isAutoRefresh: Bool { return true }
+}
+
+open class AppearanceAutoRefreshFooter: AppearanceRefreshFooter {
+    
     override var isAutoRefresh: Bool { return true }
 }

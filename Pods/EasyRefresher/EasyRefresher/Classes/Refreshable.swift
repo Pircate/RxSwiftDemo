@@ -1,35 +1,38 @@
 // 
 //  Refreshable.swift
-//  Refresher
+//  EasyRefresher
 //
 //  Created by Pircate(swifter.dev@gmail.com) on 2019/4/26
 //  Copyright © 2019 Pircate. All rights reserved.
 //
-
-import Foundation
 
 public enum RefreshState {
     case idle
     case pulling
     case willRefresh
     case refreshing
+    case disabled
 }
 
 public protocol Refreshable: class {
     
-    var state: RefreshState { get set }
+    var state: RefreshState { get }
     
     var isRefreshing: Bool { get }
     
-    var refreshClosure: () -> Void { get set }
+    var isDisabled: Bool { get }
     
-    init(refreshClosure: @escaping () -> Void)
+    var refreshClosure: () -> Void { get set }
     
     func addRefreshClosure(_ refreshClosure: @escaping () -> Void)
     
     func beginRefreshing()
     
     func endRefreshing()
+    
+    func enable()
+    
+    func disable()
 }
 
 public extension Refreshable {
@@ -38,15 +41,7 @@ public extension Refreshable {
         return state == .refreshing
     }
     
-    func addRefreshClosure(_ refreshClosure: @escaping () -> Void) {
-        self.refreshClosure = refreshClosure
-    }
-    
-    func beginRefreshing() {
-        state = .refreshing
-    }
-    
-    func endRefreshing() {
-        state = .idle
+    var isDisabled: Bool {
+        return state == .disabled
     }
 }

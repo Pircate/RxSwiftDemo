@@ -1,47 +1,19 @@
 //
 //  RefreshFooter.swift
-//  Refresher
+//  EasyRefresher
 //
 //  Created by Pircate(swifter.dev@gmail.com) on 2019/4/26
 //  Copyright © 2019 Pircate. All rights reserved.
 //
 
-import UIKit
-
 open class RefreshFooter: RefreshComponent {
-    
-    public override var stateTitles: [RefreshState : String] {
-        get {
-            guard super.stateTitles.isEmpty else { return super.stateTitles }
-            
-            return [.pulling: "上拉可以加载更多",
-                    .willRefresh: "松开立即加载更多",
-                    .refreshing: "正在加载更多的数据..."]
-        }
-        set {
-            super.stateTitles = newValue
-        }
-    }
     
     var isAutoRefresh: Bool { return false }
     
     override var arrowDirection: ArrowDirection { return .up }
     
-    override weak var scrollView: UIScrollView? {
-        didSet {
-            guard let scrollView = scrollView else { return }
-            
-            add(into: scrollView)
-            observe(scrollView)
-        }
-    }
-    
-    private var scrollObservation: NSKeyValueObservation?
-    
-    private var panStateObservation: NSKeyValueObservation?
-    
-    private lazy var constraintTop: NSLayoutConstraint? = {
-        guard let scrollView = scrollView else { return nil }
+    private lazy var constraintOfTopAnchor: NSLayoutConstraint? = {
+        guard let scrollView = scrollView, isDescendant(of: scrollView) else { return nil }
         
         let constraint = topAnchor.constraint(equalTo: scrollView.topAnchor)
         constraint.isActive = true
@@ -49,86 +21,88 @@ open class RefreshFooter: RefreshComponent {
         return constraint
     }()
     
-    override func didChangeInset(completion: @escaping (Bool) -> Void) {
+    override func prepare() {
+        super.prepare()
+        
+        alpha = 0
+        setTitle("pull_up_to_load_more".localized(), for: .pulling)
+        setTitle("release_to_load_more".localized(), for: .willRefresh)
+    }
+    
+    override func willBeginRefreshing(completion: @escaping () -> Void) {
+        guard let scrollView = scrollView else { return }
+        
+        alpha = 1
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            scrollView.contentInset.bottom = self.originalInset.bottom + 54
+            scrollView.changed_inset.bottom = 54
+        }, completion: { _ in completion() })
+    }
+    
+    override func didEndRefreshing(completion: @escaping () -> Void) {
         guard let scrollView = scrollView else { return }
         
         UIView.animate(withDuration: 0.25, animations: {
-            if scrollView.contentSize.height > scrollView.bounds.height {
-                scrollView.contentInset.bottom = self.idleInset.bottom + 54
-                scrollView._changedInset.bottom = 54
-            } else {
-                scrollView.contentInset.top = self.idleInset.top + scrollView._changedInset.top - 54
-                scrollView._changedInset.top = -54
-            }
-        }, completion: completion)
+            self.alpha = 0
+            scrollView.contentInset.bottom -= scrollView.changed_inset.bottom
+            scrollView.changed_inset.bottom = 0
+        }, completion: { _ in completion() })
+    }
+    
+    override func scrollViewContentOffsetDidChange(_ scrollView: UIScrollView) {
+        let offset: CGFloat
+        
+        if scrollView.refreshInset.top + scrollView.contentSize.height >= scrollView.bounds.height {
+            offset = scrollView.contentOffset.y
+                + scrollView.bounds.height
+                - scrollView.contentSize.height
+                - scrollView.refreshInset.bottom
+        } else {
+            offset = scrollView.contentOffset.y + scrollView.refreshInset.top
+        }
+        
+        changeAlpha(by: -offset)
+        
+        if isDisabled { return }
+        
+        if isAutoRefresh, scrollView.isDragging, offset > 0 {
+            beginRefreshing()
+            return
+        }
+        
+        changeState(by: offset)
+    }
+    
+    override func scrollViewContentSizeDidChange(_ scrollView: UIScrollView) {
+        super.scrollViewContentSizeDidChange(scrollView)
+        
+        updateConstraintOfTopAnchorIfNeeded()
+    }
+    
+    override func scrollViewPanGestureStateDidChange(_ scrollView: UIScrollView) {
+        guard !isAutoRefresh else { return }
+        
+        super.scrollViewPanGestureStateDidChange(scrollView)
+    }
+    
+    func changeState(by offset: CGFloat) {
+        switch -offset {
+        case 0...:
+            state = .idle
+        case -54..<0:
+            state = .pulling
+        default:
+            state = .willRefresh
+        }
     }
 }
 
 extension RefreshFooter {
     
-    private func add(into scrollView: UIScrollView) {
-        guard !scrollView.subviews.contains(self) else { return }
+    private func updateConstraintOfTopAnchorIfNeeded() {
+        guard let scrollView = scrollView else { return }
         
-        scrollView.addSubview(self)
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        heightAnchor.constraint(equalToConstant: 54).isActive = true
-    }
-    
-    private func removeAllObservers() {
-        scrollObservation?.invalidate()
-        panStateObservation?.invalidate()
-    }
-    
-    private func observe(_ scrollView: UIScrollView) {
-        removeAllObservers()
-        
-        scrollObservation = scrollView.observe(\.contentOffset) { [weak self] this, change in
-            guard let `self` = self else { return }
-            
-            this.bringSubviewToFront(self)
-            
-            guard !self.isRefreshing else { return }
-            
-            let offset: CGFloat
-            let constant: CGFloat
-            
-            if this.contentSize.height > this.bounds.height {
-                offset = this.contentOffset.y + this.bounds.height - this.contentSize.height
-                constant = this.contentSize.height
-            } else {
-                offset = this.contentOffset.y + this.contentInset.top
-                constant = this.bounds.height - this.contentInset.top
-            }
-            
-            self.constraintTop?.constant = constant
-
-            if self.isAutoRefresh, this.isDragging, offset > 0 {
-                self.beginRefreshing()
-                return
-            }
-            
-            switch offset {
-            case 54...:
-                self.state = .willRefresh
-            case 0..<54:
-                self.state = .pulling
-            default:
-                self.state = .idle
-            }
-        }
-        
-        panStateObservation = scrollView.observe(
-        \.panGestureRecognizer.state) { [weak self] this, change in
-            guard let `self` = self,
-                !self.isAutoRefresh,
-                this.panGestureRecognizer.state == .ended else { return }
-            
-            guard self.state == .willRefresh else { return }
-            
-            self.beginRefreshing()
-        }
+        constraintOfTopAnchor?.constant = scrollView.contentSize.height
     }
 }
