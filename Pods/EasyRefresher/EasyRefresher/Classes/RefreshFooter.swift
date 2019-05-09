@@ -25,6 +25,17 @@ open class RefreshFooter: RefreshComponent {
     
     var isAutoRefresh: Bool { return false }
     
+    override var arrowDirection: ArrowDirection { return .up }
+    
+    override weak var scrollView: UIScrollView? {
+        didSet {
+            guard let scrollView = scrollView else { return }
+            
+            add(into: scrollView)
+            observe(scrollView)
+        }
+    }
+    
     private var scrollObservation: NSKeyValueObservation?
     
     private var panStateObservation: NSKeyValueObservation?
@@ -38,15 +49,6 @@ open class RefreshFooter: RefreshComponent {
         return constraint
     }()
     
-    override weak var scrollView: UIScrollView? {
-        didSet {
-            guard let scrollView = scrollView else { return }
-            
-            add(into: scrollView)
-            observe(scrollView)
-        }
-    }
-    
     override func didChangeInset() {
         guard let scrollView = scrollView else { return }
         
@@ -57,7 +59,7 @@ open class RefreshFooter: RefreshComponent {
                 scrollView.contentInset.top = self.idleInset.top - 54
             }
             
-            scrollView.offsetInset = scrollView.contentInset
+            scrollView._refreshInset = scrollView.contentInset
         }
     }
 }
@@ -104,8 +106,7 @@ extension RefreshFooter {
             self.constraintTop?.constant = constant
 
             if self.isAutoRefresh, this.isDragging, offset > 0 {
-                self.willChangeInset()
-                self.state = .refreshing
+                self.beginRefreshing()
                 return
             }
             
@@ -127,8 +128,7 @@ extension RefreshFooter {
             
             guard self.state == .willRefresh else { return }
             
-            self.willChangeInset()
-            self.state = .refreshing
+            self.beginRefreshing()
         }
     }
 }

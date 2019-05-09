@@ -23,10 +23,6 @@ open class RefreshHeader: RefreshComponent {
         }
     }
     
-    private var scrollObservation: NSKeyValueObservation?
-    
-    private var panStateObservation: NSKeyValueObservation?
-    
     override weak var scrollView: UIScrollView? {
         didSet {
             guard let scrollView = scrollView else { return }
@@ -36,12 +32,16 @@ open class RefreshHeader: RefreshComponent {
         }
     }
     
+    private var scrollObservation: NSKeyValueObservation?
+    
+    private var panStateObservation: NSKeyValueObservation?
+    
     override func didChangeInset() {
         guard let scrollView = scrollView else { return }
         
         UIView.animate(withDuration: 0.25) {
             scrollView.contentInset.top = self.idleInset.top + 54
-            scrollView.offsetInset = scrollView.contentInset
+            scrollView._refreshInset = scrollView.contentInset
         }
     }
 }
@@ -92,8 +92,7 @@ extension RefreshHeader {
             
             guard self.state == .willRefresh else { return }
             
-            self.willChangeInset()
-            self.state = .refreshing
+            self.beginRefreshing()
         }
     }
 }

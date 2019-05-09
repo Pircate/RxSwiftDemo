@@ -4,7 +4,7 @@ PODS:
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
   - EachNavigationBar (1.11.0)
-  - EasyRefresher (0.4.3)
+  - EasyRefresher (0.5.2)
   - ExtensionX (0.1.0)
   - FSPagerView (0.8.2)
   - IQKeyboardManagerSwift (6.3.0)
@@ -121,7 +121,7 @@ SPEC CHECKSUMS:
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   EachNavigationBar: 9397813591f9e2876f507cf862d8f53333684c36
-  EasyRefresher: 236b825fd8a397bd79594c617f0212981f33570a
+  EasyRefresher: 9d0f6133aec1bdd42c3ca567e9577be5b63dad3d
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f

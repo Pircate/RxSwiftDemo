@@ -25,7 +25,7 @@ public protocol Refreshable: class {
     
     init(refreshClosure: @escaping () -> Void)
     
-    func addRefresher(_ refreshClosure: @escaping () -> Void)
+    func addRefreshClosure(_ refreshClosure: @escaping () -> Void)
     
     func beginRefreshing()
     
@@ -38,7 +38,7 @@ public extension Refreshable {
         return state == .refreshing
     }
     
-    func addRefresher(_ refreshClosure: @escaping () -> Void) {
+    func addRefreshClosure(_ refreshClosure: @escaping () -> Void) {
         self.refreshClosure = refreshClosure
     }
     
