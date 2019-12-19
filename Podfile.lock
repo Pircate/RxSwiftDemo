@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (4.8.2)
-  - CleanJSON (0.8.5)
+  - CleanJSON (1.0.0)
   - CocoaChainKit (0.7.0)
   - Differentiator (3.1.0)
-  - EachNavigationBar (1.11.0)
+  - EachNavigationBar (1.14.0)
   - EasyRefresher (0.8.1)
   - ExtensionX (0.1.0)
   - FSPagerView (0.8.2)
@@ -65,9 +65,9 @@ PODS:
   - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
-  - CleanJSON
+  - CleanJSON (= 1.0.0)
   - CocoaChainKit
-  - EachNavigationBar
+  - EachNavigationBar (= 1.14.0)
   - EasyRefresher
   - ExtensionX (from `./Pods/ExtensionX`)
   - FSPagerView
@@ -87,12 +87,10 @@ DEPENDENCIES:
   - Toast-Swift
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - CleanJSON
     - CocoaChainKit
     - Differentiator
-    - EachNavigationBar
     - EasyRefresher
     - FSPagerView
     - IQKeyboardManagerSwift
@@ -110,6 +108,9 @@ SPEC REPOS:
     - RxSwiftX
     - SnapKit
     - Toast-Swift
+  trunk:
+    - CleanJSON
+    - EachNavigationBar
 
 EXTERNAL SOURCES:
   ExtensionX:
@@ -117,10 +118,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CleanJSON: f5791e5fbedbabcae10b56a7a9e103273b18bb38
+  CleanJSON: 702dd619e1329c6399a579aa19af311acf47e461
   CocoaChainKit: 66c13211d6cc1d5e46192d1a354f733c69b35671
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  EachNavigationBar: 9397813591f9e2876f507cf862d8f53333684c36
+  EachNavigationBar: ff866e24f57cf4630508bee102c2cd497d0e5d8f
   EasyRefresher: 4d6ff2647e3df4bc6dcd9eee1e4cecc3ac366c6a
   ExtensionX: 69f37b6e028ec3460e2c36a519af304b282fc7fa
   FSPagerView: 816a18842306973cc7cc6df8a5332272f7815c30
@@ -140,6 +141,6 @@ SPEC CHECKSUMS:
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 18469d039893cecae3711a3911a8973d2dd67e5c
+PODFILE CHECKSUM: 3283af8e50e2c3a45b0c1731ddb262916b53d07d
 
-COCOAPODS: 1.7.0.rc.2
+COCOAPODS: 1.8.4

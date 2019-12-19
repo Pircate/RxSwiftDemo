@@ -18,8 +18,8 @@ extension AppDelegate {
         nav.navigation.configuration.titleTextAttributes = [.foregroundColor: UIColor.white]
         nav.navigation.configuration.tintColor = UIColor.white
         if #available(iOS 11.0, *) {
-            nav.navigation.prefersLargeTitles()
-            nav.navigation.configuration.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            nav.navigation.configuration.prefersLargeTitles = true
+            nav.navigation.configuration.largeTitle.textAttributes = [.foregroundColor: UIColor.white]
         }
         nav.navigationBar.barStyle = .black
         

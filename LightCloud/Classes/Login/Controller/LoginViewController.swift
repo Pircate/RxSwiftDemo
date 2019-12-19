@@ -63,7 +63,7 @@ final class LoginViewController: BaseViewController {
         navigation.item.rightBarButtonItem = UIBarButtonItem(title: "注册").chain.tintColor(UIColor.white).build
         navigation.item.rightBarButtonItem?.rx.tap.bind(to: rx.push(RegisterViewController())).disposed(by: disposeBag)
         
-        navigation.bar.backBarButtonItem.willBack = { [weak self] in
+        navigation.bar.backBarButtonItem?.willBack = { [weak self] in
             guard let `self` = self else { return }
             self.view.endEditing(true)
         }

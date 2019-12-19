@@ -11,7 +11,7 @@ import Foundation
 open class CleanJSONDecoder: JSONDecoder {
     
     /// Options set on the top-level encoder to pass down the decoding hierarchy.
-    struct _Options {
+    struct Options {
         let dateDecodingStrategy: DateDecodingStrategy
         let dataDecodingStrategy: DataDecodingStrategy
         let nonConformingFloatDecodingStrategy: NonConformingFloatDecodingStrategy
@@ -24,16 +24,16 @@ open class CleanJSONDecoder: JSONDecoder {
     }
     
     /// The options set on the top-level decoder.
-    var options: _Options {
-        return _Options(dateDecodingStrategy: dateDecodingStrategy,
-                        dataDecodingStrategy: dataDecodingStrategy,
-                        nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
-                        keyDecodingStrategy: keyDecodingStrategy,
-                        keyNotFoundDecodingStrategy: keyNotFoundDecodingStrategy,
-                        valueNotFoundDecodingStrategy: valueNotFoundDecodingStrategy,
-                        nestedContainerDecodingStrategy: nestedContainerDecodingStrategy,
-                        jsonStringDecodingStrategy: jsonStringDecodingStrategy,
-                        userInfo: userInfo)
+    var options: Options {
+        return Options(dateDecodingStrategy: dateDecodingStrategy,
+                       dataDecodingStrategy: dataDecodingStrategy,
+                       nonConformingFloatDecodingStrategy: nonConformingFloatDecodingStrategy,
+                       keyDecodingStrategy: keyDecodingStrategy,
+                       keyNotFoundDecodingStrategy: keyNotFoundDecodingStrategy,
+                       valueNotFoundDecodingStrategy: valueNotFoundDecodingStrategy,
+                       nestedContainerDecodingStrategy: nestedContainerDecodingStrategy,
+                       jsonStringDecodingStrategy: jsonStringDecodingStrategy,
+                       userInfo: userInfo)
     }
     
     /// The strategy to use for decoding when key not found. Defaults to `.useDefaultValue`.
