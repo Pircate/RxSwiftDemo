@@ -1,3 +1,4 @@
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
 install! 'cocoapods', :disable_input_output_paths => true
@@ -25,7 +26,7 @@ target 'LightCloud' do
   pod 'FSPagerView'
   pod 'Kingfisher'
   pod 'CocoaChainKit'
-  pod 'EachNavigationBar'
+  pod 'EachNavigationBar', '1.15.0'
   pod 'netfox'
 
   target 'LightCloudTests' do

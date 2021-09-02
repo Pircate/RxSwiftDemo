@@ -12,7 +12,9 @@ extension UINavigationController {
     
     public final class Configuration {
         
-        public var isEnabled = false
+        public var isEnabled = false {
+            didSet { UIViewController.methodSwizzling }
+        }
         
         public var isHidden = false
         
@@ -44,7 +46,7 @@ extension UINavigationController {
         
         var background: Background = .init()
         
-        private var _layoutPaddings: UIEdgeInsets = Const.NavigationBar.layoutPaddings
+        private var _layoutPaddings: UIEdgeInsets = .barLayoutPaddings
         
         private var _prefersLargeTitles: Bool = false
         
@@ -87,10 +89,15 @@ public extension UINavigationController.Configuration {
 extension UINavigationController.Configuration {
     
     public struct BackItem {
-        public let style: BackBarButtonItem.ItemStyle
+        public let style: Style
         public let tintColor: UIColor?
         
-        public init(style: BackBarButtonItem.ItemStyle, tintColor: UIColor? = nil) {
+        public enum Style {
+            case title(String?)
+            case image(UIImage?)
+        }
+        
+        public init(style: Style, tintColor: UIColor? = nil) {
             self.style = style
             self.tintColor = tintColor
         }

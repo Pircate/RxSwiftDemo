@@ -1,6 +1,6 @@
 # EachNavigationBar
 
-[![CI Status](http://img.shields.io/travis/Pircate/EachNavigationBar.svg?style=flat)](https://travis-ci.org/Pircate/EachNavigationBar)
+[![Lint](https://github.com/Pircate/EachNavigationBar/workflows/Lint/badge.svg)](https://github.com/Pircate/EachNavigationBar/actions?query=workflow%3ALint)
 [![Version](https://img.shields.io/cocoapods/v/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/EachNavigationBar.svg?style=flat)](http://cocoapods.org/pods/EachNavigationBar)
@@ -74,6 +74,7 @@ nav.navigation.configuration.largeTitle.displayMode = .always
 ```
 
 #### Each view controller
+
 ##### Normal
 
 ``` swift
@@ -83,6 +84,31 @@ navigation.item -> UINavigationItem
 // hide navigation bar
 navigation.bar.isHidden = true
 
+// remove blur effect
+navigation.bar.isTranslucent = false
+
+// hides shadow image
+navigation.bar.isShadowHidden = true
+
+// set status bar style
+navigation.bar.statusBarStyle = .lightContent
+
+// if you want change navigation bar position
+navigation.bar.automaticallyAdjustsPosition = false
+
+// item padding
+navigation.bar.layoutPaddings = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+
+// shadow
+navigation.bar.shadow = Shadow(
+    color: UIColor.black.cgColor,
+    opacity: 0.5,
+    offset: CGSize(width: 0, height: 3)
+)
+```
+
+#### Alpha
+```swift
 // set bar alpha
 navigation.bar.alpha = 0.5
 
@@ -95,16 +121,19 @@ navigation.bar.setTintAlpha(0.5)
 navigation.item.leftBarButtonItem?.customView?.alpha = 0.5
 // if barButtonItem customized tintColor
 navigation.item.leftBarButtonItem?.tintColor = navigation.item.leftBarButtonItem?.tintColor?.withAlphaComponent(0.5)
+```
 
-// remove blur effect
-navigation.bar.isTranslucent = false
+#### Additional height or view
+```swift
+// navigation bar additional height
+navigation.bar.additionalHeight = 14
 
-// hides shadow image
-navigation.bar.isShadowHidden = true
+// navigation bar additional view
+navigation.bar.additionalView = UIView()
+```
 
-// set status bar style
-navigation.bar.statusBarStyle = .lightContent
-
+#### BackBarButtonItem
+```swift
 // set back bar button item
 navigation.bar.backBarButtonItem = .init(style: .title("Back"), tintColor: .red)
 
@@ -124,34 +153,14 @@ navigation.bar.backBarButtonItem.didBack = {
     // do something
 }
 
-// if you want change navigation bar position
-navigation.bar.automaticallyAdjustsPosition = false
-
-// navigation bar additional height
-navigation.bar.additionalHeight = 14
-
-// navigation bar additional view
-navigation.bar.additionalView = UIView()
-
-// item padding
-navigation.bar.layoutPaddings = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-
-// shadow
-navigation.bar.shadow = Shadow(
-    color: UIColor.black.cgColor,
-    opacity: 0.5,
-    offset: CGSize(width: 0, height: 3))
 ```
 
-##### LargeTitle(iOS 11.0+)
+#### LargeTitle(iOS 11.0+)
 
-UINavigationController
 ``` swift
 // enable
 navigation.bar.prefersLargeTitles = true
-```
-UIViewController
-```swift
+
 // display mode
 navigation.item.largeTitleDisplayMode = .always
 
